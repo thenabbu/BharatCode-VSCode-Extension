@@ -238,8 +238,19 @@ const allTargets: {
   },
 ]
 
+// ponytail: KILO_CLI_TARGETS=win32-x64 cross-builds one platform on low-RAM boxes
+// (comma list of os-arch; drops baseline/abi variants for the named pair)
+const envTargets = process.env.KILO_CLI_TARGETS
+  ? allTargets.filter(
+      (item) =>
+        process.env.KILO_CLI_TARGETS!.split(",").includes(`${item.os}-${item.arch}`) &&
+        item.avx2 !== false &&
+        item.abi === undefined,
+    )
+  : undefined
+
 const targets = singleFlag
-  ? allTargets.filter((item) => {
+  ? (envTargets ?? allTargets).filter((item) => {
       if (item.os !== process.platform || item.arch !== process.arch) {
         return false
       }
@@ -257,7 +268,7 @@ const targets = singleFlag
 
       return true
     })
-  : allTargets
+  : (envTargets ?? allTargets)
 
 // kilocode_change start
 await $`rm -rf dist`

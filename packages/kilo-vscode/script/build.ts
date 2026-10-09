@@ -102,6 +102,8 @@ for (const config of targets) {
   await ensureFfmpegForTarget(config.target, binDir)
 
   console.log(`  📦 Packaging .vsix for ${config.target}${prerelease ? " (pre-release)" : ""}...`)
+  // drop sourcemaps left in dist/: vsce re-includes them through !dist/** (ignore-order quirk)
+  for (const f of new Bun.Glob("dist/**/*.map").scanSync(".")) rmSync(f)
   const vsixPath = join(outDir, `kilo-vscode-${config.target}.vsix`)
   const args = ["--no-dependencies", "--skip-license", "--target", config.target, "-o", vsixPath]
   if (prerelease) args.push("--pre-release")
