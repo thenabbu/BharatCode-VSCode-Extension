@@ -110,6 +110,11 @@
     },
     "commands": [
       {
+        "command": "kilo-code.new.setBharatcodeKey",
+        "title": "BharatCode: Set API Key",
+        "category": "Kilo Code"
+      },
+      {
         "command": "kilo-code.new.plusButtonClicked",
         "title": "New Task",
         "category": "Kilo Code",
@@ -1018,12 +1023,12 @@
         },
         "kilo-code.new.model.providerID": {
           "type": "string",
-          "default": "kilo",
+          "default": "bharatcode",
           "description": "Default model provider ID for new sessions"
         },
         "kilo-code.new.model.modelID": {
           "type": "string",
-          "default": "kilo-auto/free",
+          "default": "qwen-3.8-27b",
           "description": "Default model ID for new sessions"
         },
         "kilo-code.new.autocomplete.model": {
