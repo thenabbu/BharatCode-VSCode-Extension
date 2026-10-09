@@ -1,0 +1,273 @@
+import { createConnection } from "net"
+import { createServer } from "http"
+import { escapeHtml } from "@/util/html"
+import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import { OAUTH_CALLBACK_PORT, OAUTH_CALLBACK_PATH, parseRedirectUri } from "./oauth-provider"
+import * as KiloOAuthCallback from "../kilocode/mcp-oauth-callback" // kilocode_change
+
+const log = Log.create({ service: "mcp.oauth-callback" }) // kilocode_change
+
+// Current callback server configuration (may differ from defaults if custom redirectUri is used)
+let currentPort = OAUTH_CALLBACK_PORT
+let currentPath = OAUTH_CALLBACK_PATH
+
+const HTML_SUCCESS = `<!DOCTYPE html>
+<html>
+<head>
+  <!-- kilocode_change start -->
+  <title>Kilo - Authorization Successful</title>
+  <!-- kilocode_change end -->
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #1a1a2e; color: #eee; }
+    .container { text-align: center; padding: 2rem; }
+    h1 { color: #4ade80; margin-bottom: 1rem; }
+    p { color: #aaa; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Authorization Successful</h1>
+    <!-- kilocode_change start -->
+    <p>You can close this window and return to Kilo.</p>
+    <!-- kilocode_change end -->
+  </div>
+  <script>setTimeout(() => window.close(), 2000);</script>
+</body>
+</html>`
+
+const HTML_ERROR = (error: string) => `<!DOCTYPE html>
+<html>
+<head>
+  <!-- kilocode_change start -->
+  <title>Kilo - Authorization Failed</title>
+  <!-- kilocode_change end -->
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #1a1a2e; color: #eee; }
+    .container { text-align: center; padding: 2rem; }
+    h1 { color: #f87171; margin-bottom: 1rem; }
+    p { color: #aaa; }
+    .detail { color: #fca5a5; font-family: monospace; margin-top: 1rem; padding: 1rem; background: rgba(248,113,113,0.1); border-radius: 0.5rem; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Authorization Failed</h1>
+    <p>An error occurred during authorization.</p>
+    <pre class="detail" id="oc-detail">${escapeHtml(error)}</pre>
+  </div>
+</body>
+</html>`
+
+interface PendingAuth {
+  resolve: (code: string) => void
+  reject: (error: Error) => void
+  timeout: ReturnType<typeof setTimeout>
+}
+
+let server: ReturnType<typeof createServer> | undefined
+const pendingAuths = new Map<string, PendingAuth>()
+// Reverse index: mcpName → oauthState, so cancelPending(mcpName) can
+// find the right entry in pendingAuths (which is keyed by oauthState).
+const mcpNameToState = new Map<string, string>()
+// kilocode_change start - set when a newer Kilo attempt takes this process's listener over,
+// so a flow that had not registered its callback yet fails by name instead of hanging
+let replaced = false
+// kilocode_change end
+
+const CALLBACK_TIMEOUT_MS = 5 * 60 * 1000 // 5 minutes
+
+function cleanupStateIndex(oauthState: string) {
+  for (const [name, state] of mcpNameToState) {
+    if (state === oauthState) {
+      mcpNameToState.delete(name)
+      break
+    }
+  }
+}
+
+function stopIfIdle() {
+  if (pendingAuths.size > 0 || !server) return
+
+  server.close()
+  server = undefined
+}
+
+function handleRequest(req: import("http").IncomingMessage, res: import("http").ServerResponse) {
+  const url = new URL(req.url || "/", `http://localhost:${currentPort}`)
+
+  // kilocode_change start - a newer Kilo attempt takes the listener over: every flow waiting
+  // on it is rejected by name, the port is released, and the caller may bind it. Only a request
+  // at this listener's own path that carries the takeover header is honored, so a cross-origin
+  // page cannot abort an authorization that is in flight.
+  if (url.pathname === currentPath && KiloOAuthCallback.isTakeoverRequest(req, url)) {
+    replaced = true
+    const closing = server
+    server = undefined
+    for (const pending of pendingAuths.values()) {
+      clearTimeout(pending.timeout)
+      pending.reject(KiloOAuthCallback.replaced())
+    }
+    pendingAuths.clear()
+    mcpNameToState.clear()
+    res.writeHead(200, {
+      "Content-Type": "text/plain; charset=utf-8",
+      [KiloOAuthCallback.TAKEOVER_HEADER]: KiloOAuthCallback.TAKEOVER_VALUE,
+      Connection: "close",
+    })
+    // the listener is closed once the answer is flushed, so the newer attempt can bind the port
+    res.end("released", () => closing?.close())
+    return
+  }
+  // kilocode_change end
+
+  if (url.pathname !== currentPath) {
+    res.writeHead(404)
+    res.end("Not found")
+    return
+  }
+
+  const code = url.searchParams.get("code")
+  const state = url.searchParams.get("state")
+  const error = url.searchParams.get("error")
+  const errorDescription = url.searchParams.get("error_description")
+
+  // Enforce state parameter presence
+  if (!state) {
+    const errorMsg = "Missing required state parameter - potential CSRF attack"
+    res.writeHead(400, { "Content-Type": "text/html; charset=utf-8" })
+    res.end(HTML_ERROR(errorMsg))
+    return
+  }
+
+  if (error) {
+    const errorMsg = errorDescription || error
+    if (pendingAuths.has(state)) {
+      const pending = pendingAuths.get(state)!
+      clearTimeout(pending.timeout)
+      pendingAuths.delete(state)
+      cleanupStateIndex(state)
+      pending.reject(new Error(errorMsg))
+    }
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" })
+    res.end(HTML_ERROR(errorMsg))
+    stopIfIdle()
+    return
+  }
+
+  if (!code) {
+    res.writeHead(400, { "Content-Type": "text/html; charset=utf-8" })
+    res.end(HTML_ERROR("No authorization code provided"))
+    return
+  }
+
+  // Validate state parameter
+  if (!pendingAuths.has(state)) {
+    const errorMsg = "Invalid or expired state parameter - potential CSRF attack"
+    res.writeHead(400, { "Content-Type": "text/html; charset=utf-8" })
+    res.end(HTML_ERROR(errorMsg))
+    return
+  }
+
+  const pending = pendingAuths.get(state)!
+
+  clearTimeout(pending.timeout)
+  pendingAuths.delete(state)
+  cleanupStateIndex(state)
+  pending.resolve(code)
+
+  res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" })
+  res.end(HTML_SUCCESS)
+  stopIfIdle()
+}
+
+export async function ensureRunning(redirectUri?: string): Promise<void> {
+  // kilocode_change start - this process starts a flow, so it owns the listener again;
+  // delegate Kilo-specific callback binding from here because OAuth state lives in this module
+  replaced = false
+  await KiloOAuthCallback.ensureRunning({
+    redirectUri,
+    parse: parseRedirectUri,
+    state: () => ({ server, port: currentPort, path: currentPath }),
+    set: (next) => {
+      server = next.server
+      currentPort = next.port
+      currentPath = next.path
+    },
+    create: () => createServer(handleRequest),
+    stop,
+    info: (msg, data) => log.info(msg, data),
+    error: (msg, data) => log.error(msg, data),
+  })
+  // kilocode_change end
+}
+
+export function waitForCallback(oauthState: string, mcpName?: string): Promise<string> {
+  // kilocode_change start - a newer Kilo attempt took the listener over while this flow was
+  // starting, so no callback can arrive: name the step instead of waiting out the timeout
+  if (replaced) return Promise.reject(KiloOAuthCallback.replaced())
+  // kilocode_change end
+  if (mcpName) mcpNameToState.set(mcpName, oauthState)
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      if (pendingAuths.has(oauthState)) {
+        pendingAuths.delete(oauthState)
+        if (mcpName) mcpNameToState.delete(mcpName)
+        reject(new Error("OAuth callback timeout - authorization took too long"))
+        stopIfIdle()
+      }
+    }, CALLBACK_TIMEOUT_MS)
+
+    pendingAuths.set(oauthState, { resolve, reject, timeout })
+  })
+}
+
+export function cancelPending(mcpName: string): void {
+  // Look up the oauthState for this mcpName via the reverse index
+  const oauthState = mcpNameToState.get(mcpName)
+  const key = oauthState ?? mcpName
+  const pending = pendingAuths.get(key)
+  if (pending) {
+    clearTimeout(pending.timeout)
+    pendingAuths.delete(key)
+    mcpNameToState.delete(mcpName)
+    pending.reject(new Error("Authorization cancelled"))
+    stopIfIdle()
+  }
+}
+
+export async function isPortInUse(port: number = OAUTH_CALLBACK_PORT): Promise<boolean> {
+  return new Promise((resolve) => {
+    const socket = createConnection(port, "127.0.0.1")
+    socket.on("connect", () => {
+      socket.destroy()
+      resolve(true)
+    })
+    socket.on("error", () => {
+      resolve(false)
+    })
+  })
+}
+
+export async function stop(): Promise<void> {
+  if (server) {
+    await new Promise<void>((resolve) => server!.close(() => resolve()))
+    server = undefined
+  }
+
+  for (const [_name, pending] of pendingAuths) {
+    clearTimeout(pending.timeout)
+    pending.reject(new Error("OAuth callback server stopped"))
+  }
+  pendingAuths.clear()
+  mcpNameToState.clear()
+}
+
+export function isRunning(): boolean {
+  return server !== undefined
+}
+
+// kilocode_change start - a flow replaced by a newer attempt is reported by name
+export const isReplaced = KiloOAuthCallback.isReplaced
+// kilocode_change end
+
+export * as McpOAuthCallback from "./oauth-callback"

@@ -1,0 +1,140 @@
+import { test, expect } from "bun:test"
+import {
+  formatImportFileError,
+  parseShareUrl,
+  transformShareData,
+  bootstrapImportedSessionIngest,
+  ingestBootstrapWarning,
+  shouldAttachShareAuthHeaders,
+  type ShareData,
+} from "../../src/cli/cmd/import"
+import { FSUtil } from "@opencode-ai/core/fs-util"
+import { PlatformError } from "effect"
+
+test("formats import file errors", () => {
+  expect(
+    formatImportFileError(
+      "test.json",
+      new PlatformError.PlatformError(
+        new PlatformError.SystemError({
+          _tag: "NotFound",
+          module: "FileSystem",
+          method: "readFileString",
+        }),
+      ),
+    ),
+  ).toBe("File not found: test.json")
+  expect(
+    formatImportFileError(
+      "test.json",
+      new PlatformError.PlatformError(
+        new PlatformError.SystemError({
+          _tag: "PermissionDenied",
+          module: "FileSystem",
+          method: "readFileString",
+        }),
+      ),
+    ),
+  ).toBe("Failed to read file: Permission denied")
+  expect(
+    formatImportFileError(
+      "test.json",
+      new FSUtil.FileSystemError({ method: "readJson", cause: new SyntaxError("Unexpected token") }),
+    ),
+  ).toBe("Invalid JSON in test.json: Unexpected token")
+})
+
+// parseShareUrl tests
+test("parses valid Kilo share URLs", () => {
+  expect(parseShareUrl("https://app.kilo.ai/s/7a755b04-b0fe-4e66-8b30-0ab52a181bd4")).toBe(
+    "7a755b04-b0fe-4e66-8b30-0ab52a181bd4",
+  )
+  expect(parseShareUrl("https://app.kilo.ai/s/Jsj3hNIW")).toBe("Jsj3hNIW")
+  expect(parseShareUrl("https://app.kilo.ai/s/test_id-123")).toBe("test_id-123")
+  // kilocode_change start
+  expect(
+    parseShareUrl(
+      "https://app.kilo.ai/s/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXNfMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMiJ9.signature",
+    ),
+  ).toBe("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXNfMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMiJ9.signature")
+  // kilocode_change end
+})
+
+test("rejects invalid URLs", () => {
+  expect(parseShareUrl("https://app.kilo.ai/s/")).toBeNull()
+  expect(parseShareUrl("https://app.kilo.ai/s/id/extra")).toBeNull()
+  expect(parseShareUrl("https://opncd.ai/share/Jsj3hNIW")).toBeNull()
+  expect(parseShareUrl("https://other.example.com/s/abc")).toBeNull()
+  expect(parseShareUrl("not-a-url")).toBeNull()
+})
+
+test("only attaches share auth headers for same-origin URLs", () => {
+  expect(shouldAttachShareAuthHeaders("https://control.example.com/share/abc", "https://control.example.com")).toBe(
+    true,
+  )
+  expect(shouldAttachShareAuthHeaders("https://other.example.com/share/abc", "https://control.example.com")).toBe(false)
+  expect(shouldAttachShareAuthHeaders("https://control.example.com:443/share/abc", "https://control.example.com")).toBe(
+    true,
+  )
+  expect(shouldAttachShareAuthHeaders("not-a-url", "https://control.example.com")).toBe(false)
+})
+
+// transformShareData tests
+test("transforms share data to storage format", () => {
+  const data: ShareData[] = [
+    { type: "session", data: { id: "sess-1", title: "Test" } as any },
+    { type: "message", data: { id: "msg-1", sessionID: "sess-1" } as any },
+    { type: "part", data: { id: "part-1", messageID: "msg-1" } as any },
+    { type: "part", data: { id: "part-2", messageID: "msg-1" } as any },
+  ]
+
+  const result = transformShareData(data)!
+
+  expect(result.info.id).toBe("sess-1")
+  expect(result.messages).toHaveLength(1)
+  expect(result.messages[0].parts).toHaveLength(2)
+})
+
+test("returns null for invalid share data", () => {
+  expect(transformShareData([])).toBeNull()
+  expect(transformShareData([{ type: "message", data: {} as any }])).toBeNull()
+  expect(transformShareData([{ type: "session", data: { id: "s" } as any }])).toBeNull() // no messages
+})
+
+test("formats ingest bootstrap warning", () => {
+  expect(ingestBootstrapWarning("session-123", new Error("network failed"))).toContain("session-123")
+  expect(ingestBootstrapWarning("session-123", new Error("network failed"))).toContain("network failed")
+  expect(ingestBootstrapWarning("session-123", "oops")).toContain("oops")
+})
+
+test("bootstrapImportedSessionIngest runs bootstrap and does not warn on success", async () => {
+  const calls: string[] = []
+  const warnings: string[] = []
+
+  await bootstrapImportedSessionIngest("session-success", {
+    bootstrap: async (sessionId) => {
+      calls.push(sessionId)
+    },
+    warn: (message) => warnings.push(message),
+  })
+
+  expect(calls).toEqual(["session-success"])
+  expect(warnings).toHaveLength(0)
+})
+
+test("bootstrapImportedSessionIngest warns and continues on failure", async () => {
+  const warnings: string[] = []
+
+  await expect(
+    bootstrapImportedSessionIngest("session-fail", {
+      bootstrap: async () => {
+        throw new Error("boom")
+      },
+      warn: (message) => warnings.push(message),
+    }),
+  ).resolves.toBeUndefined()
+
+  expect(warnings).toHaveLength(1)
+  expect(warnings[0]).toContain("session-fail")
+  expect(warnings[0]).toContain("boom")
+})

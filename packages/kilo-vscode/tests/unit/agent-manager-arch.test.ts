@@ -1,0 +1,1366 @@
+/**
+ * Architecture tests: Agent Manager
+ *
+ * The agent manager runs in the same webview context as other UI.
+ * All its CSS classes must be prefixed with "am-" to avoid conflicts.
+ * These tests also verify consistency between CSS definitions and TSX usage,
+ * and that the provider sends correct message types for each action.
+ */
+
+import { describe, it, expect } from "bun:test"
+import fs from "node:fs"
+import path from "node:path"
+import { Project, SyntaxKind } from "ts-morph"
+import { createProjectWiring } from "../../src/agent-manager/project/wiring"
+import { WorktreeImporter } from "../../src/agent-manager/worktree-importer"
+import type { GitOps } from "../../src/agent-manager/GitOps"
+import type { Host } from "../../src/agent-manager/host"
+
+const ROOT = path.resolve(import.meta.dir, "../..")
+const KILO_PROVIDER_FILE = path.join(ROOT, "src/KiloProvider.ts")
+const EDIT_PREVIEW_PANEL_FILE = path.join(ROOT, "webview-ui/agent-manager/EditPreviewPanel.tsx")
+const CSS_FILES = [
+  path.join(ROOT, "webview-ui/agent-manager/agent-manager.css"),
+  path.join(ROOT, "webview-ui/agent-manager/agent-manager-review.css"),
+  path.join(ROOT, "webview-ui/agent-manager/intro/intro.css"),
+  path.join(ROOT, "webview-ui/browser/browser.css"),
+]
+const TSX_FILES = [
+  path.join(ROOT, "webview-ui/agent-manager/AgentManagerApp.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ShortcutsDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ShortcutHints.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/intro/AgentManagerIntro.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/intro/IntroGraph.tsx"),
+  path.join(ROOT, "webview-ui/src/components/chat/MessageList.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/SubagentPanel.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/EditPreviewPanel.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/SessionRowActions.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/NewWorktreeDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/NewProjectDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/CloneProjectDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectParentField.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectSelect.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/sortable-tab.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/DiffPanel.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/BrowserPanel.tsx"),
+  path.join(ROOT, "webview-ui/browser/BrowserPanel.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/DiffPanelCache.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/review-composers.ts"),
+  path.join(ROOT, "webview-ui/documents/DocumentPanel.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/FullScreenDiffView.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/ReviewDiffItem.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/ImageDiffView.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/MarkdownDiffView.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/VirtualDiffView.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/MarkdownAnnotationLayer.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/markdown-comment-ranges.ts"),
+  path.join(ROOT, "webview-ui/diff-viewer/DiffEndMarker.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/FileTree.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/review-annotations.ts"),
+  path.join(ROOT, "webview-ui/diff-viewer/review-annotation-speech.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/MultiModelSelector.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ApplyDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/WorktreeItem.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/pr/PRBadge.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/SectionHeader.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/SidebarSectionHeader.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/SidebarSearchMenu.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/SidebarToggleButton.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectsSection.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectsFooter.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectSidebarBody.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectList.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectActions.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectRowActions.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectAvatar.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/orphans/OrphanNotice.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/orphans/OrphanDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/Skeleton.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/TabBar.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ClosableTab.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/InspectorTabStrip.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/ProjectBranchDialog.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/tab-rendering.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/terminal/TerminalTab.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/terminal/SideTerminalPanel.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/terminal/TerminalDestinationButton.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/terminal/SortableTerminalTab.tsx"),
+  path.join(ROOT, "webview-ui/agent-manager/terminal/render.tsx"),
+  path.join(ROOT, "webview-ui/diff-virtual/DiffVirtualApp.tsx"),
+  // Shared components that consume agent-manager CSS classes (e.g. am-dropdown,
+  // am-branch-item) used by both the agent manager and the diff viewer.
+  path.join(ROOT, "webview-ui/src/components/shared/ActivityIcon.tsx"),
+  path.join(ROOT, "webview-ui/src/components/shared/BranchSelect.tsx"),
+  path.join(ROOT, "webview-ui/src/components/chat/TabDnd.tsx"),
+  path.join(ROOT, "webview-ui/src/components/chat/SessionTab.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/BaseBranchPicker.tsx"),
+  path.join(ROOT, "webview-ui/diff-viewer/SendAllButton.tsx"),
+]
+const SHARED_CSS = path.join(ROOT, "webview-ui/src/styles/session-tabs.css")
+const TSX_FILE = TSX_FILES[0]!
+const KEYBIND_DEFAULTS_FILE = path.join(ROOT, "webview-ui/agent-manager/keybind-defaults.ts")
+const PROVIDER_FILE = path.join(ROOT, "src/agent-manager/AgentManagerProvider.ts")
+const DIFF_CONTROLLER_FILE = path.join(ROOT, "src/agent-manager/worktree-diff-controller.ts")
+const IMPORTER_FILE = path.join(ROOT, "src/agent-manager/worktree-importer.ts")
+const SETUP_SCRIPT_RUNNER_FILE = path.join(ROOT, "src/agent-manager/SetupScriptRunner.ts")
+const RUN_MESSAGE_FILE = path.join(ROOT, "src/agent-manager/run/message.ts")
+const TAB_LAYOUT_FILE = path.join(ROOT, "src/agent-manager/tab-layout.ts")
+const TERMINAL_ROUTING_FILE = path.join(ROOT, "src/agent-manager/terminal-routing.ts")
+const SCRIPT_TERMINAL_FILE = path.join(ROOT, "src/agent-manager/ScriptTerminalManager.ts")
+const SCRIPT_TERMINAL_RUNTIME_FILE = path.join(ROOT, "src/agent-manager/script-terminal-runtime.ts")
+const RUN_TASK_FILE = path.join(ROOT, "src/agent-manager/run/task.ts")
+const RUN_DESTINATION_FILE = path.join(ROOT, "src/agent-manager/run/destination.ts")
+
+function readAllCss(): string {
+  return CSS_FILES.map((f) => fs.readFileSync(f, "utf-8")).join("\n")
+}
+
+function readAllTsx(): string {
+  return TSX_FILES.map((f) => fs.readFileSync(f, "utf-8")).join("\n")
+}
+
+describe("Agent Manager CSS Prefix", () => {
+  it("all class selectors should use am- prefix", () => {
+    const css = readAllCss()
+    const matches = [...css.matchAll(/\.([a-z][a-z0-9-]*)/gi)]
+    const names = [...new Set(matches.map((m) => m[1]))]
+
+    // Exceptions:
+    // - VS Code sets these body classes on webview elements (scoping
+    //   selectors for high contrast theme support).
+    // - `kilo-diff-theme` is the shared Pierre diff theme utility defined
+    //   in webview-ui/src/styles/diff.css and reused across webviews.
+    // - `css` is matched from `@import "./diff.css"` file extension, not a
+    //   class selector.
+    const host = new Set(["vscode-high-contrast", "vscode-high-contrast-light", "kilo-diff-theme", "css"])
+    const invalid = names.filter((n) => !n!.startsWith("am-") && !host.has(n!))
+
+    expect(invalid, `Classes missing "am-" prefix: ${invalid.join(", ")}`).toEqual([])
+  })
+
+  it("all CSS custom properties should use am- prefix", () => {
+    const css = readAllCss()
+    const matches = [...css.matchAll(/--([a-z][a-z0-9-]*)\s*:/gi)]
+    const names = [...new Set(matches.map((m) => m[1]))]
+
+    // Allow kilo-ui design tokens, vscode theme variables, and third-party
+    // library tokens (@pierre/diffs, kilo-ui sticky-accordion) used as fallbacks
+    const allowed = ["am-", "vscode-", "surface-", "text-", "border-", "diffs-", "sticky-", "syntax-"]
+    const invalid = names.filter((n) => !allowed.some((p) => n!.startsWith(p)))
+
+    expect(invalid, `CSS properties missing allowed prefix: ${invalid.join(", ")}`).toEqual([])
+  })
+
+  it("all @keyframes should use am- prefix", () => {
+    const css = readAllCss()
+    const matches = [...css.matchAll(/@keyframes\s+([a-z][a-z0-9-]*)/gi)]
+    const names = matches.map((m) => m[1])
+
+    const invalid = names.filter((n) => !n!.startsWith("am-"))
+
+    expect(invalid, `Keyframes missing "am-" prefix: ${invalid.join(", ")}`).toEqual([])
+  })
+})
+
+describe("Agent Manager CSS/TSX Consistency", () => {
+  it("all classes used in TSX should be defined in CSS", () => {
+    const css = readAllCss() + fs.readFileSync(SHARED_CSS, "utf-8")
+    const tsx = readAllTsx()
+
+    // Extract am- classes defined in CSS
+    const cssMatches = [...css.matchAll(/\.([a-z][a-z0-9-]*)/gi)]
+    const defined = new Set(cssMatches.map((m) => m[1]))
+
+    // Extract am- classes referenced in TSX (class="am-..." or `am-...`)
+    const tsxMatches = [...tsx.matchAll(/\bam-[a-z0-9-]+/g)]
+    const used = [...new Set(tsxMatches.map((m) => m[0]))]
+
+    const missing = used.filter((c) => !defined.has(c))
+
+    expect(missing, `Classes used in TSX but not defined in CSS: ${missing.join(", ")}`).toEqual([])
+  })
+
+  it("all am- classes defined in CSS should be used in TSX", () => {
+    const css = readAllCss() + fs.readFileSync(SHARED_CSS, "utf-8")
+    const tsx = readAllTsx()
+
+    // Extract am- classes defined in CSS
+    const cssMatches = [...css.matchAll(/\.([a-z][a-z0-9-]*)/gi)]
+    const defined = [...new Set(cssMatches.map((m) => m[1]!).filter((n) => n.startsWith("am-")))]
+
+    const unused = defined.filter((c) => !tsx.includes(c!))
+
+    expect(unused, `Classes defined in CSS but not used in TSX: ${unused.join(", ")}`).toEqual([])
+  })
+})
+
+describe("Browser module boundaries", () => {
+  it("keeps browser core independent from Agent Manager and VS Code context", () => {
+    const files = ["BrowserPanel.tsx", "controller.ts", "types.ts", "index.ts"]
+    for (const file of files) {
+      const source = fs.readFileSync(path.join(ROOT, "webview-ui/browser", file), "utf-8")
+      expect(source).not.toMatch(/agent-manager|AgentManager|SidePanel|useVSCode|window\.postMessage/)
+    }
+  })
+
+  it("owns browser styles in the reusable module", () => {
+    const css = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/agent-manager.css"), "utf-8")
+    const browser = fs.readFileSync(path.join(ROOT, "webview-ui/browser/BrowserPanel.tsx"), "utf-8")
+    expect(css).not.toContain(".am-browser-")
+    expect(browser).toContain('import "./browser.css"')
+  })
+})
+
+describe("Agent Manager edit preview", () => {
+  it("provides a visible close action", () => {
+    const source = fs.readFileSync(EDIT_PREVIEW_PANEL_FILE, "utf-8")
+    expect(source).toContain('icon="close"')
+    expect(source).toContain('class="am-edit-preview-close"')
+    expect(source).toContain("onClick={props.state.close}")
+  })
+
+  it("drives every stacked file from one shared style control", () => {
+    const source = fs.readFileSync(EDIT_PREVIEW_PANEL_FILE, "utf-8")
+    expect(source).toContain("RadioGroup")
+    expect(source).toContain("styleSelect={false}")
+  })
+
+  it("sizes stacked files to their own diff instead of a fixed height", () => {
+    const css = readAllCss()
+    expect(css).toContain(".am-edit-preview-files > .am-review-layout")
+    expect(css).not.toContain("flex: 0 0 min(420px, 50%)")
+    const view = fs.readFileSync(path.join(ROOT, "webview-ui/diff-viewer/VirtualDiffView.tsx"), "utf-8")
+    expect(view).toContain("value.fileDiff.hunks.length")
+    expect(view).toContain("virtualized={heavy()}")
+  })
+})
+
+describe("Agent Manager leftover worktree folders", () => {
+  const bodies = [path.join(ROOT, "webview-ui/agent-manager/ProjectSidebarBody.tsx")]
+
+  it("puts the notice above the worktrees instead of below them", () => {
+    for (const file of bodies) {
+      const source = fs.readFileSync(file, "utf-8")
+      const list = source.indexOf('<div class="am-worktree-list">')
+      const notice = source.indexOf("<OrphanNotice", list)
+      const first = source.indexOf("fallback={<WorktreeSkeleton />}", list)
+      expect(list, `${path.basename(file)} renders the worktree list`).toBeGreaterThan(-1)
+      expect(notice, `${path.basename(file)} renders the orphan notice inside the list`).toBeGreaterThan(list)
+      expect(notice, `${path.basename(file)} renders the orphan notice before the first worktree`).toBeLessThan(first)
+    }
+  })
+
+  it("offers the cleanup as an ordinary action button, not a ghost affordance", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/orphans/OrphanNotice.tsx"), "utf-8")
+    expect(source).toContain('<Button variant="primary" size="small" onClick={props.onResolve}>')
+  })
+
+  it("keeps the banner headline in the normal foreground", () => {
+    const css = readAllCss()
+    expect(css).toContain(".am-orphan-notice-title {\n  color: var(--text-base);\n}")
+  })
+
+  it("explains the list in the dialog header before offering a bulk delete", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/orphans/OrphanDialog.tsx"), "utf-8")
+    expect(source).toMatch(/description=\{<OrphanHelp\b/)
+    for (const key of ["helpIntro", "helpCheckout", "helpCauses", "helpDelete", "helpMore", "helpLess"]) {
+      expect(source, `header explanation covers ${key}`).toContain(`agentManager.orphans.${key}`)
+    }
+  })
+
+  it("collapses the bullet detail behind a toggle, keeping the intro sentence always visible", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/orphans/OrphanDialog.tsx"), "utf-8")
+    const helpIntro = source.indexOf("agentManager.orphans.helpIntro")
+    const showGate = source.indexOf("<Show when={props.expanded}>")
+    const toggle = source.indexOf('class="am-orphan-help-toggle"')
+    expect(helpIntro, "intro renders unconditionally").toBeGreaterThan(-1)
+    expect(showGate, "bullets are gated behind expanded state").toBeGreaterThan(helpIntro)
+    expect(toggle, "toggle button follows the bullets").toBeGreaterThan(showGate)
+
+    const css = readAllCss()
+    expect(css).toContain(".am-orphan-help-toggle {")
+  })
+
+  /**
+   * Sizing is kicked off by whichever reconcile runs first — startup, a repair, the doctor — and only
+   * one of those used to carry a push callback, so the first pass's results never reached the webview
+   * and the banner said "calculating size…" forever. This drives the real `createProjectWiring`
+   * (the only place a `ProjectContext`'s `sized` dep is set in production) end to end, so it fails on
+   * a broken wire regardless of how the fix is spelled — renaming the hook, restructuring the deps
+   * object, or reformatting the file all leave this red only if the push genuinely stops happening.
+   * `orphan-sizing.test.ts` covers the other half: that a completed pass actually calls the hook.
+   */
+  it("wires a fresh project context's sized hook to a webview push, through the real construction path", () => {
+    const pushed: unknown[] = []
+    const disposable = { dispose: () => undefined }
+    const host = {
+      workspacePath: () => "/repo",
+      onDidChangeWorkspaceFolders: () => disposable,
+      onDidChangeWorktreePool: () => disposable,
+    } as unknown as Host
+
+    const wiring = createProjectWiring({
+      host,
+      git: undefined as unknown as GitOps,
+      log: () => undefined,
+      output: () => undefined,
+      activate: () => undefined,
+      empty: () => undefined,
+      expand: () => undefined,
+      ready: () => Promise.resolve({ ok: true, refsFixed: 0, current: true }),
+      push: () => undefined,
+      pushState: (ctx) => pushed.push(ctx),
+      changed: () => undefined,
+      selected: () => undefined,
+    })
+
+    const ctx = wiring.contexts.pinned()
+    ctx?.notifySized()
+
+    expect(ctx, "the fake host must be enough to produce a context").toBeDefined()
+    expect(pushed).toEqual([ctx])
+  })
+
+  it("uses the shared check glyph for selection instead of a bespoke one", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/orphans/OrphanDialog.tsx"), "utf-8")
+    expect(source).toContain('icon={<Icon name="check-small" size="small" />}')
+    expect(source).toContain('icon={<Icon name={someChecked() ? "dash" : "check-small"} size="small" />}')
+  })
+
+  it("gives the dialog body the same gutter as its header", () => {
+    const css = readAllCss()
+    expect(css).toContain('.am-orphan-dialog-root [data-slot="dialog-body"] {\n  padding: 0 20px 20px;\n}')
+  })
+
+  it("left-aligns every cell, including the git checkout flag", () => {
+    const css = readAllCss()
+    const table = css.slice(css.indexOf(".am-orphan-table th {"), css.indexOf(".am-orphan-table tbody tr:last-child"))
+    expect(table.match(/text-align: left;/g)?.length).toBe(2)
+  })
+})
+
+describe("Agent Manager Provider Messages", () => {
+  function getMethodBody(name: string): string {
+    const project = new Project({ compilerOptions: { allowJs: true } })
+    const source = project.addSourceFileAtPath(PROVIDER_FILE)
+    const cls = source.getFirstDescendantByKind(SyntaxKind.ClassDeclaration)
+    const method = cls?.getMethod(name)
+    expect(method, `method ${name} not found in AgentManagerProvider`).toBeTruthy()
+    const text = method!.getText()
+    // Follow one-line delegations into the extracted lifecycle module so the
+    // assertions keep covering the real handler logic.
+    const delegated = text.match(/(?:return|await) (\w+Lifecycle\w+)\(/)
+    if (!delegated) return text
+    const lifecycle = project.addSourceFileAtPath(path.join(ROOT, "src/agent-manager/provider-lifecycle.ts"))
+    const fn = lifecycle.getFunction(delegated[1]!)
+    expect(fn, `delegated function ${delegated[1]} not found in provider-lifecycle`).toBeTruthy()
+    return fn!.getText()
+  }
+
+  /**
+   * Regression: onAddSessionToWorktree must NOT send agentManager.worktreeSetup
+   * because that triggers a full-screen overlay with a spinner. Adding a session
+   * to an existing worktree should use agentManager.sessionAdded instead.
+   */
+  it("onAddSessionToWorktree should not send worktreeSetup messages", () => {
+    const body = getMethodBody("onAddSessionToWorktree")
+    expect(body).not.toContain("agentManager.worktreeSetup")
+  })
+
+  it("onAddSessionToWorktree should send sessionAdded message", () => {
+    const body = getMethodBody("onAddSessionToWorktree")
+    expect(body).toContain("agentManager.sessionAdded")
+  })
+
+  it("warms MCP before creating every new worktree session", () => {
+    const body = getMethodBody("createSessionInWorktree")
+    const warmup = body.indexOf("startSession(")
+    const create = body.indexOf("client.session.create(")
+
+    expect(warmup).toBeGreaterThanOrEqual(0)
+    expect(create).toBeGreaterThanOrEqual(0)
+    expect(warmup).toBeLessThan(create)
+  })
+
+  /**
+   * Regression: WorktreeDiffController calls getRoot() eagerly during
+   * construction, so the project contexts must exist before it is created.
+   * Constructing them later crashed extension activation at runtime.
+   */
+  it("creates project wiring before services that eagerly read the root", () => {
+    const text = fs.readFileSync(PROVIDER_FILE, "utf-8")
+    const wiring = text.indexOf("createProjectWiring(")
+    const diffs = text.indexOf("new WorktreeDiffController(")
+
+    expect(wiring).toBeGreaterThanOrEqual(0)
+    expect(diffs).toBeGreaterThanOrEqual(0)
+    expect(wiring).toBeLessThan(diffs)
+  })
+
+  /**
+   * Regression: project-management messages must be consumed before the
+   * state gate, because selectProject triggers the state initialization
+   * that later messages wait for.
+   */
+  it("handles project messages before state-gated dispatch", () => {
+    const body = getMethodBody("onMessage") + getMethodBody("dispatchMessage")
+    const projects = body.indexOf("handleProjectMessage(m, this.projects)")
+    const gate = body.indexOf("if (this.shouldWaitForState(m))")
+
+    expect(projects).toBeGreaterThanOrEqual(0)
+    expect(gate).toBeGreaterThanOrEqual(0)
+    expect(projects).toBeLessThan(gate)
+  })
+
+  it("state-mutating messages wait for state initialization", () => {
+    const body = fs.readFileSync(path.join(ROOT, "src/agent-manager/project/state-gate.ts"), "utf-8")
+    const messages = [
+      "agentManager.setTabOrder",
+      "agentManager.setPinnedTabs",
+      "agentManager.setWorktreeOrder",
+      "agentManager.persistSession",
+      "agentManager.forgetSession",
+      "agentManager.importFromBranch",
+      "agentManager.importFromPR",
+      "agentManager.createSection",
+      "agentManager.moveToSection",
+    ]
+
+    for (const message of messages) {
+      expect(body, `${message} should wait for loaded state`).toContain(message)
+    }
+
+    expect(getMethodBody("dispatchMessage")).toContain("if (this.shouldWaitForState(m))")
+  })
+
+  it("context state init updates local git exclude before loading persisted state", () => {
+    const text = fs.readFileSync(path.join(ROOT, "src/agent-manager/project/init.ts"), "utf-8")
+    const exclude = text.indexOf("ensureGitExclude(")
+    const load = text.indexOf("state.load()")
+
+    expect(exclude).toBeGreaterThanOrEqual(0)
+    expect(load).toBeGreaterThanOrEqual(0)
+    expect(exclude).toBeLessThan(load)
+  })
+
+  it("async shutdown waits for terminal router cleanup", () => {
+    const body = getMethodBody("disposeAsync")
+    expect(body).toContain("await this.terminalRouter.dispose()")
+    expect(body).not.toContain("void this.terminalRouter.dispose()")
+  })
+
+  it("stops both Local and worktree agents when their session tabs close", () => {
+    const text = fs.readFileSync(TSX_FILE, "utf-8")
+    const start = text.indexOf("const handleCloseTab =")
+    const end = text.indexOf("const handleTabMouseDown =", start)
+    const body = text.slice(start, end)
+    expect(start).toBeGreaterThanOrEqual(0)
+    expect(end).toBeGreaterThan(start)
+    expect(body).toContain("closedDrafts.add(sessionId)")
+    expect(body).toContain('vscode.postMessage({ type: "agentManager.closeSession", sessionId })')
+    expect(body).not.toContain('type: "agentManager.forgetSession"')
+    const close = getMethodBody("onCloseSession")
+    expect(close).toContain("await host.sessions.abort(")
+    // Abort first, then drop the session from state, and only then stop its
+    // processes: a closed session left in state can be restored by a concurrent
+    // state push while a slow process shutdown is still running.
+    expect(close.indexOf("await host.sessions.abort(")).toBeLessThan(close.indexOf("state?.removeSession("))
+    expect(close.indexOf("state?.removeSession(")).toBeLessThan(close.indexOf("stopSessionProcesses("))
+    expect(text).toContain("if (created.draftID && closedDrafts.delete(created.draftID)) return")
+  })
+
+  it("stops open sessions and clears remote registrations when the panel closes", () => {
+    const body = getMethodBody("attachPanel")
+    const abort = body.indexOf("ctx.sessions.abortSessions(ids)")
+    const dispose = body.indexOf("ctx.sessions.dispose()")
+    expect(abort).toBeGreaterThanOrEqual(0)
+    expect(dispose).toBeGreaterThan(abort)
+    expect(body).toContain("const ids = [...this.panelSessions]")
+    expect(body).toContain("if (this.activeSessionId) ids.push(this.activeSessionId)")
+    // Presence must be cleared via visiblePresence.clear() — a direct
+    // registerVisible("agent-manager", []) would leave a stale displayed id
+    // that re-registers on the next flush after the panel reopens.
+    expect(body).toContain("this.visiblePresence.clear()")
+    expect(body).not.toContain('this.connectionService.registerVisible("agent-manager"')
+    expect(body).not.toContain('this.connectionService.registerAttached("agent-manager"')
+    expect(body).toContain("this.activeSessionId = undefined")
+    const messages = getMethodBody("onSessionMessage")
+    expect(messages).toContain("if (m.draftID) this.panelSessions.add(m.draftID)")
+    expect(messages).toContain("this.panel?.sessions.acknowledgeDraft(m.draftID, m.sessionId)")
+    expect(messages).toContain("for (const id of m.sessionIDs) this.panelSessions.add(id)")
+  })
+
+  it("does not treat extension shutdown as a user panel close", () => {
+    const body = getMethodBody("disposeAsync")
+    expect(body.indexOf("this.panel = undefined")).toBeLessThan(body.indexOf("panel?.dispose()"))
+  })
+
+  it("reports all open Agent Manager sessions for remote control", () => {
+    const body = fs.readFileSync(TSX_FILE, "utf-8")
+    expect(body).toContain("reportRemoteSessions(vscode, localSessionIDs, managedSessions, isPending)")
+  })
+})
+
+describe("Agent Manager Model Picker", () => {
+  it("discloses data collection for free models in compare picker", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/MultiModelSelector.tsx"), "utf-8")
+
+    expect(source).toContain("model.tag.dataCollected")
+    expect(source).toContain("model.isFree")
+  })
+})
+
+describe("Agent Manager Worktree Actions", () => {
+  it("opens the configuration dialog from the primary plus action", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/ProjectActions.tsx"), "utf-8")
+    const start = source.indexOf('<div class="am-split-button">')
+    const end = source.indexOf("</div>", start)
+    const actions = source.slice(start, end)
+
+    expect(start).toBeGreaterThanOrEqual(0)
+    expect(end).toBeGreaterThan(start)
+    expect(actions).toContain("onClick={props.onNew}")
+    expect(actions).toContain('keybind={props.bindings.newWorktree ?? ""}')
+    expect(actions).toContain("<DropdownMenu.Item onSelect={props.onCreate}>")
+    expect(actions).toContain('props.t("sidebar.session.newWorktree.from")')
+    expect(actions).toContain('props.bindings.quickWorktree ?? ""')
+    expect(actions).not.toContain("onSelect={props.onNew}")
+  })
+
+  it("opens the configuration dialog from the new-worktree shortcut", () => {
+    const source = fs.readFileSync(TSX_FILE, "utf-8")
+    const start = source.indexOf('else if (msg.action === "newWorktree")')
+    const end = source.indexOf('else if (msg.action === "quickWorktree")', start)
+    const action = source.slice(start, end)
+
+    expect(start).toBeGreaterThanOrEqual(0)
+    expect(end).toBeGreaterThan(start)
+    expect(action).toContain("showNewWorktreeDialog()")
+  })
+
+  it("creates a worktree from the quick-worktree shortcut", () => {
+    const source = fs.readFileSync(TSX_FILE, "utf-8")
+    const start = source.indexOf('else if (msg.action === "quickWorktree")')
+    const end = source.indexOf('else if (msg.action === "openWorktree")', start)
+    const action = source.slice(start, end)
+
+    expect(start).toBeGreaterThanOrEqual(0)
+    expect(end).toBeGreaterThan(start)
+    expect(action).toContain("handleCreateWorktree()")
+  })
+
+  it("registers distinct dialog and quick-create worktree shortcuts", () => {
+    const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf-8")) as {
+      contributes: { keybindings: { command: string; key?: string; mac?: string }[] }
+    }
+    const dialog = manifest.contributes.keybindings.find(
+      (item) => item.command === "kilo-code.new.agentManager.newWorktree",
+    )
+    const quick = manifest.contributes.keybindings.find(
+      (item) => item.command === "kilo-code.new.agentManager.quickWorktree",
+    )
+
+    expect(dialog).toMatchObject({ key: "ctrl+n", mac: "cmd+n" })
+    expect(quick).toMatchObject({ key: "ctrl+shift+n", mac: "cmd+shift+n" })
+    const bindings = fs.readFileSync(KEYBIND_DEFAULTS_FILE, "utf-8")
+    expect(bindings).toContain('newWorktree: isMac ? "⌘N" : "Ctrl+N"')
+    expect(bindings).toContain('quickWorktree: isMac ? "⌘⇧N" : "Ctrl+Shift+N"')
+  })
+
+  it("reserves Cmd+Shift+M for the Agent Manager instead of Problems", () => {
+    const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf-8")) as {
+      contributes: { keybindings: { command: string; key?: string; mac?: string }[] }
+    }
+    const removed = manifest.contributes.keybindings.find((item) => item.command === "-workbench.actions.view.problems")
+    const manager = manifest.contributes.keybindings.find((item) => item.command === "kilo-code.new.agentManagerOpen")
+
+    expect(removed).toMatchObject({ key: "ctrl+shift+m", mac: "cmd+shift+m" })
+    expect(manager).toMatchObject({ key: "ctrl+shift+m", mac: "cmd+shift+m" })
+  })
+
+  it("routes prompt and side-terminal shortcut actions separately", () => {
+    const source = fs.readFileSync(TSX_FILE, "utf-8")
+    const start = source.indexOf('else if (msg.action === "newTerminalTab")')
+    const end = source.indexOf('else if (msg.action === "cycleAgentMode"', start)
+    const action = source.slice(start, end)
+
+    expect(action).toContain('msg.action === "newTerminalTab"')
+    expect(action).toContain("termHandlers.requestNew()")
+    expect(action).toContain('msg.action === "newSideTerminal"')
+    expect(action).toContain("termHandlers.addSide()")
+    expect(action).not.toContain('msg.action === "newMainTerminal"')
+  })
+
+  it("keeps Cmd+W terminal handling before the empty-worktree fallback", () => {
+    const source = fs.readFileSync(TSX_FILE, "utf-8")
+    const start = source.indexOf("const closeActiveTab = () =>")
+    const end = source.indexOf("// Close the currently selected worktree", start)
+    const action = source.slice(start, end)
+
+    expect(start).toBeGreaterThanOrEqual(0)
+    expect(end).toBeGreaterThan(start)
+    expect(action).toContain("termHandlers.closeFocused()")
+    expect(action).toContain("termHandlers.closeActive()")
+    expect(action).toContain("if (tabs.length === 0)")
+  })
+
+  it("forwards the quick-worktree command to immediate creation", () => {
+    const source = fs.readFileSync(path.join(ROOT, "src/extension.ts"), "utf-8")
+    const start = source.indexOf('vscode.commands.registerCommand("kilo-code.new.agentManager.quickWorktree"')
+    const end = source.indexOf('vscode.commands.registerCommand("kilo-code.new.agentManager.openWorktree"', start)
+    const command = source.slice(start, end)
+
+    expect(start).toBeGreaterThanOrEqual(0)
+    expect(end).toBeGreaterThan(start)
+    expect(command).toContain('agentManagerProvider.postMessage({ type: "action", action: "quickWorktree" })')
+  })
+
+  it("shows the same mapping in the keyboard shortcuts dialog", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/shortcuts.ts"), "utf-8")
+
+    expect(source).toContain('t("agentManager.shortcuts.advancedWorktree"), binding: bindings.newWorktree')
+    expect(source).toContain('t("agentManager.shortcuts.newWorktree"), binding: bindings.quickWorktree')
+  })
+
+  it("does not attribute the new-worktree shortcut to session promotion", () => {
+    const source = fs.readFileSync(path.join(ROOT, "webview-ui/agent-manager/SessionRowActions.tsx"), "utf-8")
+
+    expect(source).toContain('t("agentManager.session.openInWorktree")')
+    expect(source).not.toContain("TooltipKeybind")
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Provider message routing — static-analysis regression tests
+//
+// These tests use ts-morph to inspect the source code of AgentManagerProvider
+// and verify structural invariants that prevent regressions without needing
+// a VS Code test host.
+// ---------------------------------------------------------------------------
+
+describe("Agent Manager Provider — onMessage routing", () => {
+  let source: import("ts-morph").SourceFile
+  let cls: import("ts-morph").ClassDeclaration
+
+  function setup() {
+    if (source) return
+    const project = new Project({ compilerOptions: { allowJs: true } })
+    source = project.addSourceFileAtPath(PROVIDER_FILE)
+    cls = source.getFirstDescendantByKind(SyntaxKind.ClassDeclaration)!
+  }
+
+  function body(name: string): string {
+    setup()
+    const method = cls.getMethod(name)
+    expect(method, `method ${name} not found`).toBeTruthy()
+    const text = method!.getText()
+    // Follow one-line delegations into the extracted handler modules so the
+    // assertions keep covering the real handler logic.
+    const delegated = text.match(/(?:return|await) (\w+Lifecycle\w+|createMultiVersion)\(/)
+    if (!delegated) return text
+    const module = delegated[1] === "createMultiVersion" ? "provider-multi-version.ts" : "provider-lifecycle.ts"
+    const lifecycle = source.getProject().addSourceFileAtPath(path.join(ROOT, "src/agent-manager", module))
+    const fn = lifecycle.getFunction(delegated[1]!)
+    expect(fn, `delegated function ${delegated[1]} not found in ${module}`).toBeTruthy()
+    // The multi-version flow spans prepare, provision, and initial-prompt helpers,
+    // so ordering assertions need the whole module, not just the orchestrator.
+    if (delegated[1] === "createMultiVersion") return lifecycle.getText()
+    return fn!.getText()
+  }
+
+  function provider(): string {
+    return fs.readFileSync(PROVIDER_FILE, "utf-8")
+  }
+
+  function diff(): string {
+    return fs.readFileSync(DIFF_CONTROLLER_FILE, "utf-8")
+  }
+
+  function importer(): string {
+    return fs.readFileSync(IMPORTER_FILE, "utf-8")
+  }
+
+  // -- onMessage dispatches all expected message types -----------------------
+
+  it("provider routing handles all documented agentManager.* message types", () => {
+    const text =
+      provider() +
+      fs.readFileSync(RUN_MESSAGE_FILE, "utf-8") +
+      fs.readFileSync(TERMINAL_ROUTING_FILE, "utf-8") +
+      fs.readFileSync(TAB_LAYOUT_FILE, "utf-8")
+    const expected = [
+      "agentManager.createWorktree",
+      "agentManager.deleteWorktree",
+      "agentManager.promoteSession",
+      "agentManager.addSessionToWorktree",
+      "agentManager.forkSession",
+      "agentManager.closeSession",
+      "agentManager.persistSession",
+      "agentManager.forgetSession",
+      "agentManager.configureSetupScript",
+      "agentManager.configureRunScript",
+      "agentManager.runScript",
+      "agentManager.stopRunScript",
+      "agentManager.showTerminal",
+      "agentManager.showLocalTerminal",
+      "agentManager.showWorktreeTerminal",
+      "agentManager.showExistingLocalTerminal",
+      "agentManager.requestRepoInfo",
+      "agentManager.requestState",
+      "agentManager.setTabOrder",
+      "agentManager.setPinnedTabs",
+      "agentManager.setDefaultBaseBranch",
+      "agentManager.terminal.create",
+      "agentManager.terminal.close",
+      "agentManager.terminal.resize",
+    ]
+    for (const msg of expected) {
+      expect(text, `provider routing should handle "${msg}"`).toContain(msg)
+    }
+  })
+
+  it("session routing handles loadMessages for terminal switching", () => {
+    const text = body("onSessionMessage")
+    expect(text).toContain("loadMessages")
+    expect(text).toContain("syncOnSessionSwitch")
+  })
+
+  it("does not activate inspector-only transcript loads", () => {
+    const text = body("onSessionMessage")
+    expect(text).toContain("m.focus === false")
+    expect(text.indexOf("m.focus === false")).toBeLessThan(text.indexOf("this.activeSessionId = m.sessionID"))
+  })
+
+  it("terminal context reveals the terminal associated with the originating session", () => {
+    const text = body("onSessionMessage")
+    const show = text.indexOf("this.terminalManager.prepareContext(m.sessionID, m.agentManagerContext)")
+    expect(show).toBeGreaterThan(-1)
+    expect(text).toContain('type: "terminalContextError"')
+  })
+
+  it("session routing handles clearSession for SSE re-registration", () => {
+    const text = body("onSessionMessage")
+    expect(text).toContain("clearSession")
+    expect(text).toContain("trackSession")
+  })
+
+  it("onMessage delegates to cohesive routing groups", () => {
+    const text = body("onMessage") + body("dispatchMessage")
+    expect(text).toContain("onWorktreeMessage")
+    expect(text).toContain("onSessionMessage")
+    expect(text).toContain("onImportMessage")
+    expect(text).toContain("onDiffMessage")
+    expect(text).not.toContain("agentManager.requestState")
+  })
+
+  it("routes script terminal close and resize messages before user terminals", () => {
+    const text = body("dispatchMessage")
+    expect(text.indexOf("this.scripts.manager.intercept(m)")).toBeLessThan(
+      text.indexOf("this.terminalRouter.handle(m)"),
+    )
+  })
+
+  it("runs scripts through the vscode-free canonical PTY manager", () => {
+    const text = fs.readFileSync(SCRIPT_TERMINAL_FILE, "utf-8")
+    expect(text).toMatch(/client\.v2\.pty\s*\.create/)
+    expect(text).toContain("client.v2.pty.get")
+    expect(text).toContain("client.v2.pty.update")
+    expect(text).toContain("client.v2.pty.remove")
+    expect(text).not.toContain("vscode")
+  })
+
+  it("selects the Run adapter from the panel dropdown message", () => {
+    const text = fs.readFileSync(SCRIPT_TERMINAL_RUNTIME_FILE, "utf-8")
+    expect(text).toContain("pickRunStart")
+    expect(text).toContain("config.destination")
+    expect(text).not.toContain("readRunTerminalDestination")
+    expect(text.indexOf("pickRunStart")).toBeLessThan(text.indexOf("config.destination"))
+  })
+
+  it("keeps the legacy integrated Run adapter isolated and removable", () => {
+    const task = fs.readFileSync(RUN_TASK_FILE, "utf-8")
+    expect(task).toContain("vscode.tasks.executeTask")
+    expect(task).toContain("execution.terminate()")
+    expect(task).toContain("Promise.withResolvers<void>()")
+    expect(task).toContain("await ended.promise")
+    expect(task).toContain("STOP_TIMEOUT_MS")
+    expect(task).toContain("ended.resolve()")
+    expect(task.indexOf("vscode.tasks.onDidEndTaskProcess")).toBeLessThan(task.indexOf("vscode.tasks.taskExecutions"))
+    expect(task).toContain("Remove this")
+    const dest = fs.readFileSync(RUN_DESTINATION_FILE, "utf-8")
+    expect(dest).not.toContain('from "vscode"')
+    expect(dest).toContain("pickRunStart")
+    expect(dest).not.toContain("getConfiguration")
+  })
+
+  it("clears retained script terminals before removing worktree state", () => {
+    for (const name of ["onDeleteWorktree", "onRemoveStaleWorktree"]) {
+      const text = body(name)
+      expect(text).toContain("host.clearRun(worktreeId)")
+      expect(text.indexOf("host.clearRun(worktreeId)")).toBeLessThan(text.indexOf("state.removeWorktree"))
+    }
+    const deleted = body("onDeleteWorktree")
+    expect(deleted.indexOf("host.skipStats")).toBeLessThan(deleted.indexOf("host.removeRun"))
+    const helper = fs.readFileSync(path.join(ROOT, "src/agent-manager/script-terminal-runtime.ts"), "utf-8")
+    expect(helper).toContain('manager.clear("run", worktreeId, projectId)')
+    expect(helper).toContain('manager.clear("setup", worktreeId, projectId)')
+  })
+
+  // -- onDeleteWorktree invariants -------------------------------------------
+
+  /**
+   * Regression: deletion must clean up both disk (manager) and state, then
+   * push to webview. Missing any step leaves ghost worktrees or stale UI.
+   */
+  it("does not restore running indicators after a session is deleted", () => {
+    const lifecycle = body("onSessionLifecycle")
+    const status = body("onSessionStatus")
+    const helper = fs.readFileSync(path.join(ROOT, "src/agent-manager/session-lifecycle.ts"), "utf-8")
+
+    expect(lifecycle).toContain("removed: this.removedSessions")
+    expect(lifecycle).toContain("busy: this.busySessions")
+    expect(helper).toContain("deps.removed.add(id)")
+    expect(helper).toContain("deps.busy.delete(id)")
+    expect(helper).toContain("if (deps.removed.has(info.id)) return")
+    expect(status).toContain("this.removedSessions.has(sid)")
+  })
+
+  it("cleans worktree snapshots only after worktree removal without deleting sessions", () => {
+    const del = body("onDeleteWorktree")
+    expect(del).toContain("removeWorktreeSnapshot")
+    expect(del).not.toContain("session.delete")
+    for (const name of ["onCreateWorktree", "onCreateMultiVersion"]) {
+      const text = body(name)
+      expect(text, `${name} must not delete sessions`).not.toContain("session.delete")
+      const disk = text.indexOf(".removeWorktree(")
+      const snapshot = text.indexOf("removeWorktreeSnapshot(")
+      if (snapshot < 0) continue
+      expect(disk, `${name} must remove the worktree before its snapshots`).toBeGreaterThanOrEqual(0)
+      expect(snapshot, `${name} must remove the worktree before its snapshots`).toBeGreaterThan(disk)
+    }
+    expect(body("onRemoveStaleWorktree")).not.toContain("removeWorktreeSnapshot")
+  })
+
+  // -- onCreateWorktree invariants -------------------------------------------
+
+  /**
+   * Regression: the setup script MUST run before session creation.
+   * If reversed, the agent starts in an unconfigured worktree (missing .env,
+   * deps, etc.) which causes hard-to-debug failures.
+   */
+  it("onCreateWorktree runs setup script before creating session", () => {
+    const text = body("onCreateWorktree")
+    const setupIdx = text.indexOf("host.runSetup(")
+    const sessionIdx = text.indexOf("host.createSession(")
+    expect(setupIdx, "setup script call must exist").toBeGreaterThan(-1)
+    expect(sessionIdx, "session creation call must exist").toBeGreaterThan(-1)
+    expect(setupIdx, "setup script must run before session creation").toBeLessThan(sessionIdx)
+  })
+
+  /**
+   * Regression: if session creation fails after the worktree was already
+   * created on disk, the worktree must be cleaned up to avoid orphaned dirs.
+   */
+  it("onCreateWorktree cleans up worktree on session creation failure", () => {
+    const text = body("onCreateWorktree")
+    expect(text).toContain("removeWorktree")
+  })
+
+  it("multi-version creation registers each session after publishing its worktree mapping", () => {
+    const text = body("onCreateMultiVersion")
+    const ready = text.indexOf("host.notifyReady(session.id, wt.result, wt.worktree.id)")
+    const register = text.indexOf("host.sessions.register(session)")
+    const initial = text.indexOf("agentManager.sendInitialMessage")
+
+    expect(ready, "multi-version path must publish ready state").toBeGreaterThan(-1)
+    expect(register, "multi-version path must register the created session").toBeGreaterThan(-1)
+    expect(register, "sessionCreated must follow the worktree mapping").toBeGreaterThan(ready)
+    expect(initial, "initial prompt phase must exist").toBeGreaterThan(-1)
+    expect(register, "session must be registered before the initial prompt").toBeLessThan(initial)
+  })
+
+  // -- onPromoteSession invariants -------------------------------------------
+
+  /**
+   * Regression: same setup-before-move ordering as onCreateWorktree.
+   */
+  it("onPromoteSession runs setup script before modifying session", () => {
+    const text = body("onPromoteSession")
+    const setupIdx = text.indexOf("host.runSetup(")
+    const moveIdx = text.indexOf("moveSession")
+    expect(setupIdx).toBeGreaterThan(-1)
+    expect(moveIdx).toBeGreaterThan(-1)
+    expect(setupIdx, "setup must run before move").toBeLessThan(moveIdx)
+  })
+
+  /**
+   * Regression: promote must handle the case where the session doesn't
+   * exist in state yet (e.g. a workspace session that was never tracked).
+   * It must branch between addSession (new) and moveSession (existing).
+   */
+  it("onPromoteSession handles both new and existing sessions", () => {
+    const text = body("onPromoteSession")
+    expect(text).toContain("getSession")
+    expect(text).toContain("addSession")
+    expect(text).toContain("moveSession")
+  })
+
+  // -- notifyWorktreeReady invariants ----------------------------------------
+
+  /**
+   * Regression: pushState must come before the ready/meta messages.
+   * If reversed, the webview receives the "ready" signal but can't find
+   * the worktree/session in state, causing a blank panel.
+   */
+  it("notifyWorktreeReady pushes state before sending ready message", () => {
+    const text = body("notifyWorktreeReady")
+    const pushIdx = text.indexOf("this.pushState()")
+    const readyIdx = text.indexOf("agentManager.worktreeSetup")
+    expect(pushIdx, "pushState must come before worktreeSetup").toBeLessThan(readyIdx)
+  })
+
+  // -- agentManager.requestState in non-git workspace -------------------------
+
+  /**
+   * Regression: when the workspace is not a git repo, this.state is undefined.
+   * pushState() silently returns in that case, so requestState must explicitly
+   * call pushEmptyState() instead — otherwise the webview stays stuck on
+   * loading skeletons forever.
+   */
+  it("requestState handler calls pushEmptyState when this.state is falsy", () => {
+    const text = body("onRequestState")
+    expect(text, "must call pushEmptyState when state is absent").toContain("pushEmptyState")
+    expect(text, "must guard on this.state being falsy").toMatch(/!this\.state/)
+  })
+
+  it("requestState handler calls pushState when this.state is truthy", () => {
+    const text = body("onRequestState")
+    expect(text, "must call pushState for the normal path").toContain("this.pushState()")
+  })
+
+  it("worktree diff behavior lives in the cohesive diff controller", () => {
+    const text = diff()
+    const providerText = body("onDiffMessage")
+    expect(text).toContain("class WorktreeDiffController")
+    expect(text).toContain("buildWorktreePatch")
+    expect(text).toContain("revertFile")
+    // Summary/detail diff data comes from the shared DiffSourceCatalog sources
+    // (workspace/staged/unstaged/session), not a bespoke in-controller pipeline.
+    expect(text).toContain("catalog.build")
+    expect(text).toContain("shouldStopDiffPolling")
+    expect(providerText).toContain("this.diffs")
+  })
+
+  it("worktree import behavior lives in the cohesive importer", () => {
+    const text = importer()
+    for (const value of ["createFromPR", "createWorktree", "this.busy(projectId)"]) expect(text).toContain(value)
+    expect(body("onImportMessage")).toContain("this.importer")
+  })
+
+  it("preserves branch and PR import ordering and rollback", async () => {
+    const run = async (kind: "branch" | "pr", fail?: "setup" | "duplicate") => {
+      const events: string[] = []
+      const create = async () => {
+        events.push("create")
+        if (fail === "duplicate") throw new Error("already checked out")
+        return { branch: "topic", path: "/repo/topic", parentBranch: "main" }
+      }
+      const importer = new WorktreeImporter({
+        manager: () =>
+          ({ createWorktree: create, createFromPR: create, removeWorktree: async () => events.push("disk") }) as never,
+        state: () =>
+          ({
+            addWorktree: (input: { branchOwned: boolean }) => ({
+              id: events.push(`add:${input.branchOwned}`) ? "worktree" : "",
+            }),
+            addSession: () => events.push("state-session"),
+            removeWorktree: () => events.push("state-remove"),
+          }) as never,
+        post: (msg) => events.push("message" in msg ? String(msg.message) : msg.type),
+        push: () => events.push("push"),
+        setup: async () => {
+          events.push("setup")
+          if (fail === "setup") throw new Error("setup failed")
+        },
+        session: async () => (events.push("session"), { id: "session" }) as never,
+        register: () => events.push("register"),
+        ready: () => events.push("ready"),
+        log: () => events.push("log"),
+      })
+      const action = () => (kind === "branch" ? importer.branch("topic") : importer.pr("https://example.test/pull/1"))
+      await action()
+      if (fail === "setup") await action()
+      return events.join("|")
+    }
+    for (const kind of ["branch", "pr"] as const) {
+      const branch = kind === "branch"
+      const creating = branch ? "Creating worktree from branch..." : "Resolving PR..."
+      const setup = branch ? "Running setup script..." : "Setting up worktree..."
+      const success = branch ? "Opened branch topic" : "Opened PR branch topic"
+      expect(await run(kind)).toBe(
+        `${creating}|create|add:false|push|${setup}|setup|session|state-session|register|ready|${success}|log`,
+      )
+      expect(await run(kind, "setup")).toBe(
+        `${creating}|create|add:false|push|${setup}|setup|disk|state-remove|push|setup failed|setup failed|${creating}|create|add:false|push|${setup}|setup|disk|state-remove|push|setup failed|setup failed`,
+      )
+      const duplicate = branch
+        ? 'Branch "topic" is already checked out in another worktree'
+        : "This PR's branch is already checked out in another worktree"
+      expect(await run(kind, "duplicate")).toBe(`${creating}|create|${duplicate}|${duplicate}`)
+    }
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Webview — non-git skeleton fix
+// ---------------------------------------------------------------------------
+
+describe("Agent Manager Webview — non-git sessionsLoaded fix", () => {
+  const tsx = readAllTsx()
+
+  /**
+   * Regression: when isGitRepo is false, the Kilo server never sends a
+   * "sessionsLoaded" message, so the skeleton was stuck forever.
+   * The fix must set sessionsLoaded(true) when receiving a state message
+   * with isGitRepo === false.
+   */
+  it("sets sessionsLoaded when agentManager.state arrives with isGitRepo false", () => {
+    // Find the agentManager.state handler block
+    const start = tsx.indexOf('"agentManager.state"')
+    expect(start, "agentManager.state handler must exist").toBeGreaterThan(-1)
+    const snippet = tsx.slice(start, start + 1600)
+    expect(snippet, "must call setSessionsLoaded in the non-git branch").toContain("setSessionsLoaded")
+    expect(snippet, "must check isGitRepo === false before setting sessionsLoaded").toMatch(
+      /isGitRepo.*false|false.*isGitRepo/,
+    )
+  })
+})
+
+// ---------------------------------------------------------------------------
+// KiloProvider — pendingSessionRefresh race condition fix
+// ---------------------------------------------------------------------------
+
+describe("KiloProvider — pending session refresh on reconnect", () => {
+  const provider = fs.readFileSync(KILO_PROVIDER_FILE, "utf-8")
+  const utils = fs.readFileSync(path.join(ROOT, "src/kilo-provider-utils.ts"), "utf-8")
+
+  /**
+   * Regression: when the Agent Manager opens its panel, initializeState()
+   * calls refreshSessions() before the CLI server has started. Because
+   * httpClient is null at that point, handleLoadSessions() used to bail
+   * with an error message and never send "sessionsLoaded" to the webview.
+   * The worktree would show up in the sidebar but display "No sessions open".
+   *
+   * The fix uses a pendingSessionRefresh flag: loadSessions() (in
+   * kilo-provider-utils) sets it when httpClient is unavailable, and
+   * both initializeConnection() and the "connected" state handler flush
+   * the pending refresh.
+   */
+  it("loadSessions sets pendingSessionRefresh when client is null", () => {
+    const start = utils.indexOf("async function loadPage")
+    expect(start, "loadPage must exist in kilo-provider-utils").toBeGreaterThan(-1)
+    const snippet = utils.slice(start, start + 700)
+    expect(snippet, "must set pendingSessionRefresh when client missing").toContain("ctx.pendingSessionRefresh = true")
+    expect(snippet, "must avoid noisy errors while still connecting").toContain('ctx.connectionState !== "connecting"')
+    expect(snippet, "must clear pendingSessionRefresh on successful entry").toContain(
+      "ctx.pendingSessionRefresh = false",
+    )
+  })
+
+  it("handleLoadSessions delegates to loadSessionsUtil", () => {
+    const start = provider.indexOf("private async handleLoadSessions(")
+    expect(start, "handleLoadSessions must exist").toBeGreaterThan(-1)
+    const snippet = provider.slice(start, start + 700)
+    expect(snippet, "must call loadSessionsUtil").toContain("loadSessionsUtil")
+  })
+
+  it("connected state handler flushes deferred session refresh", () => {
+    // Find the onStateChange callback that handles "connected"
+    const connectedIdx = provider.indexOf('state === "connected"')
+    expect(connectedIdx, '"connected" state handler must exist').toBeGreaterThan(-1)
+    const end = provider.indexOf("this.unsubscribeNotificationDismiss", connectedIdx)
+    expect(end, "notification subscription must follow connection handler").toBeGreaterThan(connectedIdx)
+    const snippet = provider.slice(connectedIdx, end)
+    expect(snippet, "must call flushPendingSessionRefresh from connected handler").toContain(
+      'this.flushPendingSessionRefresh("sse-connected")',
+    )
+  })
+
+  it("initializeConnection flushes deferred refresh for missed connected events", () => {
+    const initIdx = provider.indexOf('this.syncWebviewState("initializeConnection")')
+    expect(initIdx, "initializeConnection sync call must exist").toBeGreaterThan(-1)
+    const snippet = provider.slice(initIdx, initIdx + 220)
+    expect(snippet, "must flush deferred session refresh in initializeConnection").toContain(
+      'this.flushPendingSessionRefresh("initializeConnection")',
+    )
+  })
+
+  it("pendingSessionRefresh is declared as a class field", () => {
+    expect(provider, "pendingSessionRefresh field must be declared").toMatch(
+      /private\s+pendingSessionRefresh\s*=\s*false/,
+    )
+  })
+})
+
+// ---------------------------------------------------------------------------
+describe("SetupScriptRunner — task execution model", () => {
+  const runner = fs.readFileSync(SETUP_SCRIPT_RUNNER_FILE, "utf-8")
+  const taskAdapter = fs.readFileSync(path.join(ROOT, "src/agent-manager/task-runner.ts"), "utf-8")
+
+  it("runner is vscode-free and delegates execution via RunTask callback", () => {
+    expect(runner).not.toContain("vscode")
+    expect(runner).toContain("RunTask")
+    expect(runner).toContain("buildSetupTaskCommand")
+  })
+
+  it("runner still provides WORKTREE_PATH and REPO_PATH env vars", () => {
+    expect(runner).toContain("WORKTREE_PATH")
+    expect(runner).toContain("REPO_PATH")
+  })
+
+  it("task-runner adapter hosts the vscode task execution", () => {
+    expect(taskAdapter).toContain("vscode.tasks.executeTask")
+    expect(taskAdapter).toContain("onDidEndTaskProcess")
+    expect(taskAdapter).toContain("new vscode.ProcessExecution")
+  })
+
+  it("does not use manual terminal command injection", () => {
+    expect(runner).not.toContain("createTerminal")
+    expect(runner).not.toContain("sendText")
+  })
+})
+
+// ---------------------------------------------------------------------------
+// VS Code import boundary — layering enforcement
+//
+// The agent-manager is being decoupled from VS Code so it can eventually run
+// outside the extension host. These tests enforce the layering:
+//
+//   1. Only files on the VSCODE_ALLOWED list may import "vscode".
+//   2. Each allowed file has a maxLines cap — shrink it as logic is extracted.
+//
+// To improve the architecture:
+//   - Extract business logic from allowed files into vscode-free modules.
+//   - Lower maxLines once the extraction lands.
+//   - Remove entries from VSCODE_ALLOWED once they no longer need vscode.
+// ---------------------------------------------------------------------------
+
+const AGENT_MANAGER_DIR = path.join(ROOT, "src/agent-manager")
+
+/**
+ * Exception list: files currently allowed to import `vscode`.
+ *
+ * Each entry has a maxLines cap. The goal is to shrink these over time and
+ * eventually remove entries as logic moves into vscode-free modules.
+ *
+ * When you extract code out of one of these files, lower its maxLines to
+ * the new line count rounded up to the nearest 50.
+ *
+ * DO NOT raise maxLines to accommodate new code. If adding a feature would
+ * exceed the cap, extract logic into a vscode-free helper module and have
+ * the provider call it. Only raise the cap as a last resort when the code
+ * is structurally impossible to extract (e.g. deep vscode API interleaving)
+ * — and document the reason in the entry's `note` field.
+ */
+const VSCODE_ALLOWED: Record<string, { note: string }> = {
+  // VS Code adapter implementing the Host interface for the Agent Manager
+  "vscode-host.ts": {
+    note: "vscode adapter implementing Host interface",
+  },
+  // Thin adapter: wraps vscode.window terminal APIs behind TerminalHost interface
+  "terminal-host.ts": {
+    note: "vscode adapter for SessionTerminalManager",
+  },
+  // Thin adapter: wraps vscode.tasks API behind RunTask callback
+  "task-runner.ts": {
+    note: "vscode adapter for SetupScriptRunner",
+  },
+  // Reads terminal.integrated.* and editor.font* config for xterm font settings
+  "terminal-font.ts": {
+    note: "vscode config reader for integrated terminal font settings",
+  },
+  // Reads + watches the terminal button destination setting
+  "terminal-destination.ts": {
+    note: "vscode config reader for the terminal destination setting",
+  },
+}
+
+/**
+ * File size caps — prevent large files from growing unchecked.
+ *
+ * When you extract code out of one of these files, lower its maxLines to
+ * the new line count rounded up to the nearest 50.
+ *
+ * DO NOT raise maxLines to accommodate new code. If adding a feature would
+ * exceed the cap, extract logic into a vscode-free helper module and have
+ * the provider call it. Only raise the cap as a last resort when the code
+ * is structurally impossible to extract (e.g. deep vscode API interleaving)
+ * — and document the reason in the entry's `note` field.
+ */
+const MAX_LINES: Record<string, { maxLines: number; note: string }> = {
+  "AgentManagerProvider.ts": {
+    maxLines: 1900,
+    note: "worktree lifecycle handlers extracted into provider-lifecycle.ts; extract more orchestration next",
+  },
+}
+
+function importsVscode(content: string): boolean {
+  return /(?:from|require\()\s*["']vscode["']/.test(content)
+}
+
+function agentManagerSourceFiles(): string[] {
+  return fs
+    .readdirSync(AGENT_MANAGER_DIR)
+    .filter((f) => f.endsWith(".ts") && !f.endsWith(".test.ts") && !f.endsWith(".spec.ts"))
+}
+
+describe("Agent Manager — VS Code import boundary", () => {
+  it("routes GitHub CLI execution through execGhRead", () => {
+    const gh = path.join(AGENT_MANAGER_DIR, "gh.ts")
+    const violations = agentManagerSourceFiles()
+      .map((file) => path.join(AGENT_MANAGER_DIR, file))
+      .filter((file) => file !== gh)
+      .filter((file) => /(["'])gh(?:\.exe)?\1/.test(fs.readFileSync(file, "utf8")))
+      .map((file) => path.basename(file))
+    expect(violations).toEqual([])
+  })
+
+  it("only allowlisted files may import vscode", () => {
+    const violations: string[] = []
+    for (const file of agentManagerSourceFiles()) {
+      if (file in VSCODE_ALLOWED) continue
+      const content = fs.readFileSync(path.join(AGENT_MANAGER_DIR, file), "utf-8")
+      if (importsVscode(content)) violations.push(file)
+    }
+    expect(
+      violations,
+      `These files import "vscode" but are not on the exception list.\n` +
+        `Either extract the vscode dependency or add them to VSCODE_ALLOWED:\n` +
+        violations.map((v) => `  - ${v}`).join("\n"),
+    ).toEqual([])
+  })
+
+  it("capped files stay within their maxLines limit", () => {
+    const overweight: string[] = []
+    for (const [file, { maxLines }] of Object.entries(MAX_LINES)) {
+      const filepath = path.join(AGENT_MANAGER_DIR, file)
+      if (!fs.existsSync(filepath)) continue
+      const lines = fs.readFileSync(filepath, "utf-8").split("\n").length
+      if (lines > maxLines) overweight.push(`${file}: ${lines} lines (cap: ${maxLines})`)
+    }
+    expect(
+      overweight,
+      `File too large — needs better modularization.\n\n` +
+        overweight.map((o) => `  ${o}`).join("\n") +
+        `\n\n` +
+        `Do NOT raise maxLines. Instead, extract logic into a vscode-free\n` +
+        `helper module and call it from the provider. See fork-session.ts\n` +
+        `for an example of this pattern.`,
+    ).toEqual([])
+  })
+
+  it("every allowlisted file actually exists", () => {
+    const stale = Object.keys(VSCODE_ALLOWED).filter((f) => !fs.existsSync(path.join(AGENT_MANAGER_DIR, f)))
+    expect(
+      stale,
+      `These files are in VSCODE_ALLOWED but no longer exist — remove them:\n` +
+        stale.map((s) => `  - ${s}`).join("\n"),
+    ).toEqual([])
+  })
+
+  it("every allowlisted file actually imports vscode", () => {
+    const unnecessary: string[] = []
+    for (const file of Object.keys(VSCODE_ALLOWED)) {
+      const filepath = path.join(AGENT_MANAGER_DIR, file)
+      if (!fs.existsSync(filepath)) continue
+      if (!importsVscode(fs.readFileSync(filepath, "utf-8"))) unnecessary.push(file)
+    }
+    expect(
+      unnecessary,
+      `These files no longer import "vscode" — remove them from VSCODE_ALLOWED:\n` +
+        unnecessary.map((u) => `  - ${u}`).join("\n"),
+    ).toEqual([])
+  })
+})
+
+const APP_FILE = path.join(ROOT, "webview-ui/src/App.tsx")
+const AGENT_MANAGER_APP_FILE = path.join(ROOT, "webview-ui/agent-manager/AgentManagerApp.tsx")
+const PROVIDER_SHELL_FILE = path.join(ROOT, "webview-ui/src/context/provider-shell.tsx")
+
+describe("Shared webview provider shell", () => {
+  function ordered(source: string, names: string[]) {
+    const positions = names.map((name) => source.indexOf(`<${name}`))
+    expect(
+      positions.every((position) => position >= 0),
+      `Missing provider from ${names.join(" -> ")}`,
+    ).toBe(true)
+    expect(positions).toEqual([...positions].sort((a, b) => a - b))
+  }
+
+  it("owns the common provider order and bridges", () => {
+    const source = fs.readFileSync(PROVIDER_SHELL_FILE, "utf-8")
+    const base = fs.readFileSync(path.join(ROOT, "webview-ui/src/context/provider-base.tsx"), "utf-8")
+    const rich = fs.readFileSync(path.join(ROOT, "webview-ui/src/context/rich-provider.tsx"), "utf-8")
+    const session = fs.readFileSync(path.join(ROOT, "webview-ui/src/context/provider-session.tsx"), "utf-8")
+    expect(source).toContain("<Base content={RichProvider}>")
+    ordered(base, [
+      "ThemeProvider",
+      "DialogProvider",
+      "VSCodeProvider",
+      "ServerProvider",
+      "LanguageBridge",
+      "Content",
+      "ProviderProvider",
+      "ConfigProvider",
+      "SpeechToTextPrewarm",
+      "DisplayProvider",
+    ])
+    ordered(rich, ["MarkedProvider", "DiffComponentProvider", "CodeComponentProvider", "FileComponentProvider"])
+    expect(rich).toContain('window.addEventListener("kilo:save-image", save)')
+    ordered(session, [
+      "IndexingProvider",
+      "KiloEmbeddingModelsProvider",
+      "ImageModelsProvider",
+      "NotificationsProvider",
+      "SessionProvider",
+    ])
+    ordered(source, ["MemoryProvider", "FeedbackProvider"])
+    expect(base.indexOf("<Toast.Region")).toBeGreaterThan(base.indexOf("</VSCodeProvider>"))
+  })
+
+  it("keeps sidebar-only providers in the sidebar root", () => {
+    const source = fs.readFileSync(APP_FILE, "utf-8")
+    ordered(source, [
+      "ProviderShell.Root",
+      "WorkStyleProvider",
+      "ProviderShell.Session",
+      "LocalTabsProvider",
+      "ProviderShell.Chat",
+      "DataBridge",
+      "AppContent",
+    ])
+    expect(fs.readFileSync(PROVIDER_SHELL_FILE, "utf-8")).not.toMatch(/WorkStyleProvider|LocalTabsProvider/)
+  })
+
+  it("keeps worktree mode in the Agent Manager root", () => {
+    const source = fs.readFileSync(AGENT_MANAGER_APP_FILE, "utf-8")
+    ordered(source, [
+      "ProviderShell.Root",
+      "ProviderShell.Session",
+      "ProviderShell.Chat",
+      "WorktreeModeProvider",
+      "DataBridge",
+      "AgentManagerContent",
+    ])
+    expect(fs.readFileSync(PROVIDER_SHELL_FILE, "utf-8")).not.toContain("WorktreeModeProvider")
+  })
+})
+
+describe("Agent Manager worktree setup", () => {
+  it("retains the guarded setup error delay", () => {
+    const source = fs.readFileSync(AGENT_MANAGER_APP_FILE, "utf-8")
+    const timer = source.match(/if \(next.active && next.error\)[\s\S]*?,\s*3000,\s*\)/)?.at(0)
+    expect(timer).toContain("globalThis.setTimeout")
+    expect(timer).toContain('current === next ? { active: false, message: "" } : current')
+  })
+})
