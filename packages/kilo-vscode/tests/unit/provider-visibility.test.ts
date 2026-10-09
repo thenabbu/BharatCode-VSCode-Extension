@@ -3,7 +3,6 @@ import { describe, expect, it } from "bun:test"
 import {
   canChangeProviderKey,
   disabledProviderOptions,
-  providersWithKiloFallback,
   visibleConnectedIds,
 } from "../../webview-ui/src/components/settings/provider-visibility"
 
@@ -113,21 +112,3 @@ describe("disabledProviderOptions", () => {
   })
 })
 
-describe("providersWithKiloFallback", () => {
-  it("adds Kilo when backend providers omit it", () => {
-    const providers = providersWithKiloFallback({
-      anthropic: { id: "anthropic", name: "Anthropic", env: [], models: {} },
-    })
-
-    expect(providers.kilo?.name).toBe("Kilo Gateway")
-    expect(providers.anthropic?.name).toBe("Anthropic")
-  })
-
-  it("keeps the backend Kilo provider when present", () => {
-    const providers = providersWithKiloFallback({
-      kilo: { id: "kilo", name: "Custom Kilo Name", env: [], models: {} },
-    })
-
-    expect(providers.kilo?.name).toBe("Custom Kilo Name")
-  })
-})

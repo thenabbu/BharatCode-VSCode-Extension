@@ -3,7 +3,6 @@ import type { Provider, ProviderConfig } from "../../types/messages"
 import type { ProviderAuthMethod } from "@kilocode/sdk/v2/client"
 import {
   KILO_PROVIDER_ID,
-  createKiloFallbackProvider,
   isCustomProviderPackage,
 } from "../../../../src/shared/provider-model"
 import { isLocalProviderOptionalApiKey } from "../../utils/local-providers"
@@ -46,7 +45,3 @@ export function disabledProviderOptions(providers: Record<string, Provider>, dis
     .sort((a, b) => a.label.localeCompare(b.label))
 }
 
-export function providersWithKiloFallback(providers: Record<string, Provider>): Record<string, Provider> {
-  if (providers[KILO_PROVIDER_ID]) return providers
-  return { [KILO_PROVIDER_ID]: createKiloFallbackProvider(), ...providers }
-}

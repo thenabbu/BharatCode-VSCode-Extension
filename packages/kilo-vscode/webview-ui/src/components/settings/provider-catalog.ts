@@ -3,7 +3,6 @@ import type { Provider } from "../../types/messages"
 import {
   KILO_PROVIDER_ID,
   PROVIDER_PRIORITY as FALLBACK_PROVIDER_IDS,
-  createKiloFallbackProvider,
   providerOrderIndex,
 } from "../../../../src/shared/provider-model"
 
@@ -39,9 +38,6 @@ export function providerIcon(provider: Provider | string): IconName {
   return "synthetic"
 }
 
-export function kiloFallbackProvider(): Provider {
-  return createKiloFallbackProvider()
-}
 
 export function providerNoteKey(provider: Provider | string) {
   if (typeof provider !== "string" && provider.metadata?.noteKey) return provider.metadata.noteKey

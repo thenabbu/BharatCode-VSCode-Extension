@@ -7,18 +7,10 @@ import { Show, createMemo } from "solid-js"
 import { useConfig } from "../../context/config"
 import { useLanguage } from "../../context/language"
 import { useProvider } from "../../context/provider"
-import { useServer } from "../../context/server"
 import type { Provider } from "../../types/messages"
 import ProviderConnectDialog from "./ProviderConnectDialog"
-import {
-  CUSTOM_PROVIDER_ID,
-  isPopularProvider,
-  kiloFallbackProvider,
-  popularProviderIndex,
-  providerIcon,
-} from "./provider-catalog"
+import { CUSTOM_PROVIDER_ID, isPopularProvider, providerIcon, popularProviderIndex } from "./provider-catalog"
 import CustomProviderDialog from "./CustomProviderDialog"
-import { KILO_PROVIDER_ID } from "../../../../src/shared/provider-model"
 
 type ProviderItem = {
   id: string
@@ -30,7 +22,6 @@ const ProviderSelectDialog = () => {
   const dialog = useDialog()
   const { config } = useConfig()
   const provider = useProvider()
-  const server = useServer()
   const language = useLanguage()
 
   const items = createMemo<ProviderItem[]>(() => {
@@ -38,9 +29,9 @@ const ProviderSelectDialog = () => {
 
     const disabled = new Set(config().disabled_providers ?? [])
     const connected = new Set(provider.connected())
-    const all = Object.values(provider.providers())
-    const withKilo = all.some((item) => item.id === KILO_PROVIDER_ID) ? all : [kiloFallbackProvider(), ...all]
-    const available = withKilo.filter((item) => !disabled.has(item.id) && !connected.has(item.id))
+    const available = Object.values(provider.providers()).filter(
+      (item) => !disabled.has(item.id) && !connected.has(item.id),
+    )
 
     return [
       {
@@ -58,13 +49,6 @@ const ProviderSelectDialog = () => {
   function open(item: ProviderItem) {
     if (item.id === CUSTOM_PROVIDER_ID) {
       dialog.show(() => <CustomProviderDialog onBack={() => dialog.show(() => <ProviderSelectDialog />)} />)
-      return
-    }
-
-    if (item.id === KILO_PROVIDER_ID) {
-      dialog.close()
-      // Navigate to the Profile view so the full device-auth UI is visible.
-      server.goToLogin()
       return
     }
 
@@ -131,9 +115,6 @@ const ProviderSelectDialog = () => {
               >
                 {item.name}
               </span>
-              <Show when={item.id === KILO_PROVIDER_ID}>
-                <Tag>{language.t("dialog.provider.tag.recommended")}</Tag>
-              </Show>
               <Show when={item.id === CUSTOM_PROVIDER_ID}>
                 <Tag>{language.t("settings.providers.tag.custom")}</Tag>
               </Show>
