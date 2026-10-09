@@ -20,6 +20,7 @@ import { FileIgnoreController } from "./services/autocomplete/shims/FileIgnoreCo
 import { ChatTextAreaAutocomplete } from "./services/autocomplete/chat-autocomplete/ChatTextAreaAutocomplete"
 import { notebookUri } from "./services/autocomplete/continuedev/core/autocomplete/notebook"
 import { buildWebviewHtml, getWebviewFontSize, isCursorHost } from "./utils"
+import { EXTENSION_ID } from "./constants"
 import { saveImage } from "./kilo-provider/save-image"
 import { handleEditorAction } from "./kilo-provider/editor-actions"
 import { exportTranscript } from "./kilo-provider/export-transcript"
@@ -115,13 +116,6 @@ import { mcpRemoval } from "./services/mcp-removal"
 import { marketplaceBundles } from "./services/marketplace/bundles"
 import { retryable, backoff, MAX_RETRIES } from "./util/retry"
 import { hasGit } from "./kilo-provider/git-status"
-import {
-  handleRequestMigrationData,
-  handleStartMigration,
-  type MigrationContext,
-  type MigrationSource,
-} from "./kilo-provider/handlers/migration"
-import type { MigrationSelections } from "./legacy-migration/legacy-types"
 import {
   handleLogin,
   handleLogout,
@@ -431,8 +425,7 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
   private connectionGeneration = 0
   private loginAttempt = 0
   private isWebviewReady = false
-  private readonly extensionVersion =
-    vscode.extensions.getExtension("kilocode.kilo-code")?.packageJSON?.version ?? "unknown"
+  private readonly extensionVersion = vscode.extensions.getExtension(EXTENSION_ID)?.packageJSON?.version ?? "unknown"
   private cachedProvidersMessage: unknown = null
   /** Directory the cached provider payload was loaded for, so recovery is keyed to the active project. */
   private cachedProvidersDirectory: string | null = null
@@ -537,7 +530,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
   private unsubscribeMcpAuth: (() => void) | null = null
   private mcpAuthRefresh: Promise<void> | undefined
   private unsubscribeMcpRemoval: (() => void) | null = null
-  private migrationCache: MigrationContext["migrationCache"] = new Map()
   private unsubscribeNotificationDismiss: (() => void) | null = null
   private unsubscribeAcknowledged: (() => void) | null = null
   private unsubscribeLanguageChange: (() => void) | null = null
@@ -1331,7 +1323,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       if (this.handleChildSyncMessage(message)) return
       if (await this.handleMemoryMessage(message)) return
       if (await this.handleProfileDataMessage(message)) return
-      if (this.handleMigrationMessage(message)) return
       if (this.handleNotificationSettingsMessage(message)) return
       switch (message.type) {
         case "webviewReady":
@@ -1941,28 +1932,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       case "testOSNotification":
         void this.handleTestOSNotification()
         break
-      default:
-        return false
-    }
-    return true
-  }
-
-  private handleMigrationMessage(message: { type: string }): boolean {
-    switch (message.type) {
-      case "requestMigrationData": {
-        const msg = message as unknown as { source: MigrationSource; operationId: string }
-        void handleRequestMigrationData(this.migrationCtx, msg.source, msg.operationId)
-        break
-      }
-      case "startMigration": {
-        const msg = message as unknown as {
-          source: MigrationSource
-          operationId: string
-          selections: MigrationSelections
-        }
-        void handleStartMigration(this.migrationCtx, msg.source, msg.operationId, msg.selections)
-        break
-      }
       default:
         return false
     }
@@ -5197,7 +5166,7 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
     if (confirmed !== "Reset") return
 
     const prefix = "kilo-code.new."
-    const ext = vscode.extensions.getExtension("kilocode.kilo-code")
+    const ext = vscode.extensions.getExtension(EXTENSION_ID)
     const properties = ext?.packageJSON?.contributes?.configuration?.properties as Record<string, unknown> | undefined
     if (!properties) return
 
@@ -6251,16 +6220,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       module: this.opts.settingsPanel !== undefined,
       preloads: preloads.map((file) => webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", file))),
     })
-  }
-
-  private get migrationCtx(): MigrationContext {
-    return {
-      client: this.client,
-      extensionContext: this.extensionContext,
-      postMessage: (msg) => this.postMessage(msg),
-      migrationCache: this.migrationCache,
-      refreshSessions: () => this.refreshSessions(),
-    }
   }
 
   // ── Worktree stats polling (sidebar diff badge) ──────────────────

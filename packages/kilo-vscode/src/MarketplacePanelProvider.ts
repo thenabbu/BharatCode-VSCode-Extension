@@ -20,6 +20,7 @@ import { TelemetryEventName } from "./services/telemetry/types"
 import { mcpAuth } from "./services/mcp-auth"
 import { mcpRemoval } from "./services/mcp-removal"
 import { notifySignInResult } from "./kilo-provider/mcp-oauth"
+import { EXTENSION_ID } from "./constants"
 
 interface MarketplaceMessage {
   type?: string
@@ -46,8 +47,7 @@ export class MarketplacePanelProvider implements vscode.Disposable {
   private disposables: vscode.Disposable[] = []
   private subscriptions: Array<() => void> = []
   private readonly marketplace = new MarketplaceService()
-  private readonly extensionVersion =
-    vscode.extensions.getExtension("kilocode.kilo-code")?.packageJSON?.version ?? "unknown"
+  private readonly extensionVersion = vscode.extensions.getExtension(EXTENSION_ID)?.packageJSON?.version ?? "unknown"
 
   constructor(
     private readonly extensionUri: vscode.Uri,

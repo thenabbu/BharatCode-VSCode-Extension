@@ -208,12 +208,15 @@ const AboutKiloCodeTab: Component<AboutKiloCodeTabProps> = (props) => {
           }}
         >
           {language.t("settings.aboutKiloCode.feedback.prefix")}{" "}
-          <span style={linkStyle} onClick={() => open("https://github.com/Kilo-Org/kilocode")}>
+          <span
+            style={linkStyle}
+            onClick={() => open("https://github.com/thenabbu/BharatCode-VSCode-Extension/issues")}
+          >
             GitHub
           </span>
           ,{" "}
-          <span style={linkStyle} onClick={() => open("https://reddit.com/r/kilocode")}>
-            Reddit
+          <span style={linkStyle} onClick={() => open("https://bharatcode.ai")}>
+            Website
           </span>
           , {language.t("settings.aboutKiloCode.feedback.or")}{" "}
           <span style={linkStyle} onClick={() => open("https://bharatcode.ai")}>
@@ -313,23 +316,6 @@ const AboutKiloCodeTab: Component<AboutKiloCodeTabProps> = (props) => {
             {language.t("settings.aboutKiloCode.importSettings")}
           </Button>
         </div>
-      </div>
-
-      <div style={sectionStyle}>
-        <h4 style={headingStyle}>{language.t("settings.aboutKiloCode.rooImport.button")}</h4>
-        <p
-          style={{
-            "font-size": "var(--kilo-font-size-12)",
-            color: "var(--vscode-descriptionForeground)",
-            margin: "0 0 12px 0",
-            "line-height": "1.5",
-          }}
-        >
-          {language.t("settings.aboutKiloCode.rooImport.description")}
-        </p>
-        <Button variant="secondary" size="small" onClick={() => props.onMigrationClick?.("roo")}>
-          {language.t("settings.aboutKiloCode.rooImport.button")}
-        </Button>
       </div>
 
       {/* Reset Settings */}
