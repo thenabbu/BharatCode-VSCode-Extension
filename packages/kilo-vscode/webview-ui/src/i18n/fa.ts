@@ -1311,11 +1311,6 @@ export const dict = {
   "question.summary": "{{n}} از {{total}} سؤال",
   "common.review": "بررسی",
 
-  "settings.aboutKiloCode.rooImport.description": "تاریخچه مکالمات را از یک نصب Roo Code وارد کنید.",
-  "settings.aboutKiloCode.rooImport.button": "وارد کردن جلسات از Roo Code",
-
-  "migration.roo.button": "وارد کردن جلسات",
-  "migration.roo.empty": "هیچ جلسه‌ای از Roo Code یافت نشد.",
   "migration.migrate.selectLabel": "انتخاب موارد برای انتقال",
   "migration.migrate.chatHistory": "جلسات و تاریخچه چت",
   "migration.migrate.sessionsDetected": "{{count}} نشست شناسایی شد",

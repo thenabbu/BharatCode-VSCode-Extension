@@ -1248,11 +1248,6 @@ export const dict = {
   "question.summary": "第 {{n}} / {{total}} 個問題",
   "common.review": "審查",
 
-  "settings.aboutKiloCode.rooImport.description": "從 Roo Code 安裝匯入對話歷史記錄。",
-  "settings.aboutKiloCode.rooImport.button": "從 Roo Code 匯入工作階段",
-
-  "migration.roo.button": "匯入工作階段",
-  "migration.roo.empty": "找不到 Roo Code 工作階段。",
   "migration.migrate.selectLabel": "選擇要遷移的內容",
   "migration.migrate.chatHistory": "聊天工作階段與歷史紀錄",
 

@@ -49,7 +49,7 @@ export interface ScanOptions {
    * "history" trusts the provided history items and only checks that each task's
    * conversation file still exists (cheap stat, used by legacy migration).
    * "discover" enumerates every task directory on disk and parses conversation
-   * files to recover titles (used when no history is available, e.g. Roo import).
+   * files to recover titles (used when no history is available).
    */
   mode?: ScanMode
 }

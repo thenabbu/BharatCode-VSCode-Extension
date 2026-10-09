@@ -1183,11 +1183,6 @@ export const dict = {
   "profile.switchingAccount": "Cambio account...",
   "question.summary": "{{n}} di {{total}} domande",
   "common.review": "Revisione",
-  "settings.aboutKiloCode.rooImport.description":
-    "Importa la cronologia delle conversazioni da una installazione di Roo Code.",
-  "settings.aboutKiloCode.rooImport.button": "Importa sessioni da Roo Code",
-  "migration.roo.button": "Importa sessioni",
-  "migration.roo.empty": "Nessuna sessione di Roo Code trovata.",
   "migration.migrate.selectLabel": "Seleziona cosa migrare",
   "migration.migrate.chatHistory": "Sessioni chat e cronologia",
   "migration.migrate.sessionsDetected": "{{count}} sessioni rilevate",

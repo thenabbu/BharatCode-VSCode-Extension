@@ -1293,11 +1293,6 @@ export const dict = {
   "question.summary": "{{n}} จาก {{total}} คำถาม",
   "common.review": "ตรวจสอบ",
 
-  "settings.aboutKiloCode.rooImport.description": "นำเข้าประวัติการสนทนาจากการติดตั้ง Roo Code",
-  "settings.aboutKiloCode.rooImport.button": "นำเข้าเซสชันจาก Roo Code",
-
-  "migration.roo.button": "นำเข้าเซสชัน",
-  "migration.roo.empty": "ไม่พบเซสชัน Roo Code",
   "migration.migrate.selectLabel": "เลือกสิ่งที่จะย้าย",
   "migration.migrate.chatHistory": "เซสชันแชทและประวัติ",
 

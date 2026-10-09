@@ -1292,11 +1292,6 @@ export const dict = {
   "question.summary": "{{total}}개 질문 중 {{n}}번째",
   "common.review": "검토",
 
-  "settings.aboutKiloCode.rooImport.description": "Roo Code 설치에서 대화 기록을 가져옵니다.",
-  "settings.aboutKiloCode.rooImport.button": "Roo Code에서 세션 가져오기",
-
-  "migration.roo.button": "세션 가져오기",
-  "migration.roo.empty": "Roo Code 세션을 찾을 수 없습니다.",
   "migration.migrate.selectLabel": "마이그레이션할 항목 선택",
   "migration.migrate.chatHistory": "채팅 세션 및 기록",
 

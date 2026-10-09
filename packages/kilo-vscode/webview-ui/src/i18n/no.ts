@@ -1314,11 +1314,6 @@ export const dict = {
   "question.summary": "{{n}} av {{total}} spørsmål",
   "common.review": "Gjennomgå",
 
-  "settings.aboutKiloCode.rooImport.description": "Importer samtalehistorikk fra en installasjon av Roo Code.",
-  "settings.aboutKiloCode.rooImport.button": "Importer økter fra Roo Code",
-
-  "migration.roo.button": "Importer økter",
-  "migration.roo.empty": "Ingen Roo Code-økter funnet.",
   "migration.migrate.selectLabel": "Velg hva som skal migreres",
   "migration.migrate.chatHistory": "Chatøkter og historikk",
 

@@ -1324,11 +1324,6 @@ export const dict = {
   "question.summary": "{{n}} od {{total}} pitanja",
   "common.review": "Pregled",
 
-  "settings.aboutKiloCode.rooImport.description": "Uvezite historiju razgovora iz instalacije Roo Code.",
-  "settings.aboutKiloCode.rooImport.button": "Uvezi sesije iz Roo Code",
-
-  "migration.roo.button": "Uvezi sesije",
-  "migration.roo.empty": "Nisu pronađene sesije iz Roo Code.",
   "migration.migrate.selectLabel": "Odaberite šta želite migrirati",
   "migration.migrate.chatHistory": "Sesije razgovora i historija",
 

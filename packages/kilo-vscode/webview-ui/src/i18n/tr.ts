@@ -1292,11 +1292,6 @@ export const dict = {
   "question.summary": "{{total}} sorudan {{n}} tanesi",
   "common.review": "İncele",
 
-  "settings.aboutKiloCode.rooImport.description": "Bir Roo Code yüklemesinden konuşma geçmişini içe aktarın.",
-  "settings.aboutKiloCode.rooImport.button": "Roo Code'dan Oturumları İçe Aktar",
-
-  "migration.roo.button": "Oturumları İçe Aktar",
-  "migration.roo.empty": "Roo Code oturumu bulunamadı.",
   "migration.migrate.selectLabel": "Taşınacakları seçin",
   "migration.migrate.chatHistory": "Sohbet Oturumları ve Geçmiş",
 

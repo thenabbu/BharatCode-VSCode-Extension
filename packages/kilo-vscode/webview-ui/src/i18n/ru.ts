@@ -1317,11 +1317,6 @@ export const dict = {
   "question.summary": "{{n}} из {{total}} вопросов",
   "common.review": "Просмотр",
 
-  "settings.aboutKiloCode.rooImport.description": "Импорт истории переписки из установки Roo Code.",
-  "settings.aboutKiloCode.rooImport.button": "Импортировать сеансы из Roo Code",
-
-  "migration.roo.button": "Импортировать сеансы",
-  "migration.roo.empty": "Сеансы Roo Code не найдены.",
   "migration.migrate.selectLabel": "Выберите, что перенести",
   "migration.migrate.chatHistory": "Сессии чата и история",
 

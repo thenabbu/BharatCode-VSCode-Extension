@@ -1310,11 +1310,6 @@ export const dict = {
   "question.summary": "{{total}} 問中 {{n}} 問目",
   "common.review": "確認",
 
-  "settings.aboutKiloCode.rooImport.description": "インストールしたRoo Codeから会話履歴を移行します。",
-  "settings.aboutKiloCode.rooImport.button": "Roo Codeからセッションをインポート",
-
-  "migration.roo.button": "セッションをインポート",
-  "migration.roo.empty": "Roo Codeのセッションが見つかりませんでした。",
   "migration.migrate.selectLabel": "移行する項目を選択",
   "migration.migrate.chatHistory": "チャットセッションと履歴",
 

@@ -1284,11 +1284,6 @@ export const dict = {
   "question.summary": "{{n}} من {{total}} أسئلة",
   "common.review": "مراجعة",
 
-  "settings.aboutKiloCode.rooImport.description": "استيراد سجل المحادثات من تثبيت Roo Code.",
-  "settings.aboutKiloCode.rooImport.button": "استيراد الجلسات من Roo Code",
-
-  "migration.roo.button": "استيراد الجلسات",
-  "migration.roo.empty": "لم يتم العثور على جلسات Roo Code.",
   "migration.migrate.selectLabel": "اختر ما تريد ترحيله",
   "migration.migrate.chatHistory": "جلسات الدردشة والسجل",
 

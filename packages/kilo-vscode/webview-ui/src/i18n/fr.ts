@@ -1353,12 +1353,6 @@ export const dict = {
   "question.summary": "{{n}} sur {{total}} questions",
   "common.review": "Réviser",
 
-  "settings.aboutKiloCode.rooImport.description":
-    "Importer l'historique des conversations depuis une installation de Roo Code.",
-  "settings.aboutKiloCode.rooImport.button": "Importer les sessions depuis Roo Code",
-
-  "migration.roo.button": "Importer les sessions",
-  "migration.roo.empty": "Aucune session Roo Code trouvée.",
   "migration.migrate.selectLabel": "Sélectionnez ce que vous souhaitez migrer",
   "migration.migrate.chatHistory": "Sessions de discussion et historique",
 

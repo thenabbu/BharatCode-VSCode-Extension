@@ -32,7 +32,6 @@ registerExpandedTaskTool()
 // Apply VS Code sidebar preferences to other tools (e.g. bash expanded by default).
 registerVscodeToolOverrides()
 import HistoryView from "./components/history/HistoryView"
-import { MigrationWizard } from "./components/migration"
 import type { Message as SDKMessage, Part as SDKPart } from "@kilocode/sdk/v2"
 import { cycleAgent as cycle } from "./context/session-agent"
 import { routeChatInput } from "./utils/chat-input-route"
@@ -268,7 +267,6 @@ const AppContent: Component = () => {
   const [settingsFocus, setSettingsFocus] = createSignal<{ token: number; value: string } | undefined>()
   const [settingsSearch, setSettingsSearch] = createSignal(0)
   const [agentManagerProjectId, setAgentManagerProjectId] = createSignal<string | undefined>()
-  const [migration, setMigration] = createSignal(false)
   const session = useSession()
   const tabs = useLocalTabs()
   const server = useServer()
@@ -278,9 +276,7 @@ const AppContent: Component = () => {
   )
   createEffect(() => vscode.postMessage({ type: "sessionActivity", state: activity() }))
   useSessionVisibility(() =>
-    !migration() && (currentView() === "newTask" || currentView() === "subAgentViewer")
-      ? session.currentSessionID()
-      : undefined,
+    currentView() === "newTask" || currentView() === "subAgentViewer" ? session.currentSessionID() : undefined,
   )
 
   const newTask = () => {
@@ -376,7 +372,7 @@ const AppContent: Component = () => {
 
   const open = (message: { type?: string; sessionID?: string }) => {
     if (message.type !== "openSession" || !message.sessionID) return
-    console.log("[Kilo New] App: opening local session:", message.sessionID)
+    console.log("[BharatCode] App: opening local session:", message.sessionID)
     if (tabs) tabs.open(message.sessionID, { scrollToBottom: true })
     if (!tabs) session.selectSession(message.sessionID, { scrollToBottom: true })
     setCurrentView("newTask")
@@ -386,11 +382,11 @@ const AppContent: Component = () => {
     const handler = (event: MessageEvent) => {
       const message = event.data
       if (message?.type === "action" && message.action) {
-        console.log("[Kilo New] App: 🎬 action:", message.action)
+        console.log("[BharatCode] App: 🎬 action:", message.action)
         handleViewAction(message.action)
       }
       if (message?.type === "navigate" && message.view && VALID_VIEWS.has(message.view)) {
-        console.log("[Kilo New] App: 🧭 navigate:", message.view, message.tab ? `tab=${message.tab}` : "")
+        console.log("[BharatCode] App: 🧭 navigate:", message.view, message.tab ? `tab=${message.tab}` : "")
         if (message.tab) setSettingsTab(message.tab)
         if (message.subtab) setSettingsSubtab(message.subtab)
         if (message.focus) setSettingsFocus((prev) => ({ token: (prev?.token ?? 0) + 1, value: message.focus! }))
@@ -399,7 +395,7 @@ const AppContent: Component = () => {
         vscode.postMessage({ type: "settingsTabChanged", tab: message.tab })
       }
       if (message?.type === "openCloudSession" && message.sessionId) {
-        console.log("[Kilo New] App: ☁️ openCloudSession:", message.sessionId)
+        console.log("[BharatCode] App: ☁️ openCloudSession:", message.sessionId)
         session.selectCloudSession(message.sessionId)
         setCurrentView("newTask")
       }
@@ -413,7 +409,7 @@ const AppContent: Component = () => {
         (msg) => window.postMessage(msg, window.origin),
       )
       if (message?.type === "viewSubAgentSession" && message.sessionID) {
-        console.log("[Kilo New] App: 🔍 viewSubAgentSession:", message.sessionID)
+        console.log("[BharatCode] App: 🔍 viewSubAgentSession:", message.sessionID)
         session.setCurrentSessionID(message.sessionID)
         setCurrentView("subAgentViewer")
       }
@@ -460,68 +456,60 @@ const AppContent: Component = () => {
           surface={topBarSurface}
         />
       </Show>
-      <Show
-        when={migration()}
+      <Switch
         fallback={
-          <Switch
-            fallback={
-              <ChatView
-                continueInWorktree
-                onForkMessage={session.status() === "idle" ? handleForkMessage : undefined}
-                promptBoxId="sidebar:fallback"
-                emptyState={emptyState}
-              />
-            }
-          >
-            <Match when={currentView() === "newTask"}>
-              <ChatView
-                onSelectSession={handleSelectSession}
-                onShowHistory={() => setCurrentView("history")}
-                onForkMessage={session.status() === "idle" ? handleForkMessage : undefined}
-                continueInWorktree
-                promptBoxId="sidebar:new-task"
-                emptyState={emptyState}
-              />
-            </Match>
-            <Match when={currentView() === "history"}>
-              <HistoryView onSelectSession={handleSelectSession} onBack={() => setCurrentView("newTask")} />
-            </Match>
-            <Match when={currentView() === "profile"}>
-              <ProfileView
-                profileData={server.profileData()}
-                providerUsage={server.providerUsage()}
-                providerUsageLoading={server.providerUsageLoading()}
-                providerUsageError={server.providerUsageError()}
-                deviceAuth={server.deviceAuth()}
-                onLogin={server.startLogin}
-                onRequestProviderUsage={server.requestProviderUsage}
-                onRefreshProviderUsage={server.refreshProviderUsage}
-              />
-            </Match>
-            <Match when={currentView() === "settings"}>
-              <Settings
-                tab={settingsTab()}
-                subtab={settingsSubtab()}
-                focus={settingsFocus()}
-                agentManagerProjectId={agentManagerProjectId()}
-                agentManagerSettings={host.KILO_AGENT_MANAGER_SETTINGS === true}
-                onTabChange={setSettingsTab}
-                onAgentBehaviourNavigationConsumed={() => {
-                  setSettingsSubtab(undefined)
-                  setSettingsFocus(undefined)
-                }}
-                onMigrationClick={() => setMigration(true)}
-                searchRequest={settingsSearch()}
-              />
-            </Match>
-            <Match when={currentView() === "subAgentViewer"}>
-              <ChatView readonly />
-            </Match>
-          </Switch>
+          <ChatView
+            continueInWorktree
+            onForkMessage={session.status() === "idle" ? handleForkMessage : undefined}
+            promptBoxId="sidebar:fallback"
+            emptyState={emptyState}
+          />
         }
       >
-        <MigrationWizard onBack={() => setMigration(false)} onComplete={() => setMigration(false)} />
-      </Show>
+        <Match when={currentView() === "newTask"}>
+          <ChatView
+            onSelectSession={handleSelectSession}
+            onShowHistory={() => setCurrentView("history")}
+            onForkMessage={session.status() === "idle" ? handleForkMessage : undefined}
+            continueInWorktree
+            promptBoxId="sidebar:new-task"
+            emptyState={emptyState}
+          />
+        </Match>
+        <Match when={currentView() === "history"}>
+          <HistoryView onSelectSession={handleSelectSession} onBack={() => setCurrentView("newTask")} />
+        </Match>
+        <Match when={currentView() === "profile"}>
+          <ProfileView
+            profileData={server.profileData()}
+            providerUsage={server.providerUsage()}
+            providerUsageLoading={server.providerUsageLoading()}
+            providerUsageError={server.providerUsageError()}
+            deviceAuth={server.deviceAuth()}
+            onLogin={server.startLogin}
+            onRequestProviderUsage={server.requestProviderUsage}
+            onRefreshProviderUsage={server.refreshProviderUsage}
+          />
+        </Match>
+        <Match when={currentView() === "settings"}>
+          <Settings
+            tab={settingsTab()}
+            subtab={settingsSubtab()}
+            focus={settingsFocus()}
+            agentManagerProjectId={agentManagerProjectId()}
+            agentManagerSettings={host.KILO_AGENT_MANAGER_SETTINGS === true}
+            onTabChange={setSettingsTab}
+            onAgentBehaviourNavigationConsumed={() => {
+              setSettingsSubtab(undefined)
+              setSettingsFocus(undefined)
+            }}
+            searchRequest={settingsSearch()}
+          />
+        </Match>
+        <Match when={currentView() === "subAgentViewer"}>
+          <ChatView readonly />
+        </Match>
+      </Switch>
     </div>
   )
 }

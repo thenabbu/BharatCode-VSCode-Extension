@@ -7,7 +7,7 @@ import { BharatCodeMark } from "../brand/BharatCodeMark"
 import { useVSCode } from "../../context/vscode"
 import { useLanguage } from "../../context/language"
 
-const GITHUB_ISSUES_URL = "https://github.com/Kilo-Org/kilocode/issues/new/choose"
+const GITHUB_ISSUES_URL = "https://github.com/thenabbu/BharatCode-VSCode-Extension/issues/new/choose"
 const DISCORD_URL = "https://bharatcode.ai"
 const SUPPORT_URL = "https://bharatcode.ai"
 

@@ -1306,11 +1306,6 @@ export const dict = {
   "question.summary": "{{n}} van de {{total}} vragen",
   "common.review": "Beoordelen",
 
-  "settings.aboutKiloCode.rooImport.description": "Importeer gespreksgeschiedenis van een Roo Code installatie.",
-  "settings.aboutKiloCode.rooImport.button": "Sessies importeren uit Roo Code",
-
-  "migration.roo.button": "Sessies importeren",
-  "migration.roo.empty": "Geen Roo Code-sessies gevonden.",
   "migration.migrate.selectLabel": "Selecteer wat je wilt migreren",
   "migration.migrate.chatHistory": "Chatsessies & Geschiedenis",
 

@@ -1243,11 +1243,6 @@ export const dict = {
   "question.summary": "第 {{n}} / {{total}} 个问题",
   "common.review": "审查",
 
-  "settings.aboutKiloCode.rooImport.description": "从 Roo Code 安装导入对话历史记录。",
-  "settings.aboutKiloCode.rooImport.button": "从 Roo Code 导入会话",
-
-  "migration.roo.button": "导入会话",
-  "migration.roo.empty": "未找到 Roo Code 会话。",
   "migration.migrate.selectLabel": "选择要迁移的内容",
   "migration.migrate.chatHistory": "聊天会话和历史记录",
 

@@ -12,7 +12,6 @@ import { useSession } from "../../context/session"
 import ModelsTab from "./ModelsTab"
 import * as Sandboxing from "./sandboxing"
 import { useServer } from "../../context/server"
-import type { MigrationSource } from "../../types/messages"
 import { configMessage } from "../../utils/open-config"
 import type {
   AgentManagerSettingsBranchesLoadedMessage,
@@ -56,7 +55,6 @@ export interface SettingsProps {
   agentManagerSettings?: boolean
   onTabChange?: (tab: string) => void
   onAgentBehaviourNavigationConsumed?: () => void
-  onMigrationClick?: (source: MigrationSource) => void
   /** Increments when the host asks to open the settings search. */
   searchRequest?: number
 }
@@ -562,7 +560,6 @@ const Settings: Component<SettingsProps> = (props) => {
             port={server.serverInfo()?.port ?? null}
             connectionState={server.connectionState()}
             extensionVersion={server.extensionVersion()}
-            onMigrationClick={props.onMigrationClick}
           />
         </Tabs.Content>
 
