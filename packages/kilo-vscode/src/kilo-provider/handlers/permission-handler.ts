@@ -67,7 +67,7 @@ export async function replyOnce(
     return true
   } catch (error) {
     if (!(error instanceof Error && error.message === CANCELLED)) {
-      console.error("[Kilo New] permission-handler: failed to reply once:", error)
+      console.error("[BharatCode] permission-handler: failed to reply once:", error)
     }
     return false
   }
@@ -110,7 +110,7 @@ export async function handlePermissionResponse(
   const target = ctx.getPermissionSession?.(permissionId) ?? sessionID
   const claimed = ctx.isPermissionResponseClaimed?.(permissionId) ?? false
   if (!target || (!dir && !claimed) || (ctx.getPermissionSession?.(permissionId) && target !== sessionID)) {
-    console.error("[Kilo New] KiloProvider: Unknown permission route")
+    console.error("[BharatCode] KiloProvider: Unknown permission route")
     ctx.postMessage({ type: "permissionError", permissionID: permissionId })
     return
   }
@@ -143,7 +143,7 @@ export async function handlePermissionResponse(
         void fetchAndSendPendingPermissions(ctx)
         return { kind: "stale" }
       }
-      console.error("[Kilo New] KiloProvider: Failed to respond to permission:", error)
+      console.error("[BharatCode] KiloProvider: Failed to respond to permission:", error)
       return { kind: "error" }
     }
     ctx.clearPermissionDirectory(permissionId)
@@ -151,7 +151,7 @@ export async function handlePermissionResponse(
   }
 
   const result = await run(permissionId, target, action).catch((error: unknown) => {
-    console.error("[Kilo New] KiloProvider: Failed to process permission response:", error)
+    console.error("[BharatCode] KiloProvider: Failed to process permission response:", error)
     return { kind: "error" } as const
   })
   if (result.kind === "error") {
@@ -195,7 +195,7 @@ export async function fetchAndSendPendingPermissions(ctx: PermissionContext): Pr
             (result) => result.data,
           )
         } catch (error) {
-          console.error(`[Kilo New] KiloProvider: Failed to fetch pending permissions for ${dir}:`, error)
+          console.error(`[BharatCode] KiloProvider: Failed to fetch pending permissions for ${dir}:`, error)
           continue
         }
         valid.add(dir)
@@ -229,6 +229,6 @@ export async function fetchAndSendPendingPermissions(ctx: PermissionContext): Pr
       return
     }
   } catch (error) {
-    console.error("[Kilo New] KiloProvider: Failed to fetch pending permissions:", error)
+    console.error("[BharatCode] KiloProvider: Failed to fetch pending permissions:", error)
   }
 }

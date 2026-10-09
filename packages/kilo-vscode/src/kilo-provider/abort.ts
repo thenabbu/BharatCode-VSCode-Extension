@@ -47,7 +47,7 @@ export class SessionAbort {
       result.status === "rejected" ? [{ dir: dirs[index], error: result.reason }] : [],
     )
     if (failures.length > 0) {
-      console.error("[Kilo New] KiloProvider: Failed to abort session in one or more directories:", failures)
+      console.error("[BharatCode] KiloProvider: Failed to abort session in one or more directories:", failures)
       return false
     }
     if (known) this.active.delete(sessionID)

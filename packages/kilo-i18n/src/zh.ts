@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "如需更多使用统计信息，请",
-  "provider.connect.kiloGateway.byok.link": "通过 Kilo's Gateway 进行 BYOK",
+  "provider.connect.kiloGateway.byok.link": "通过 BharatCode's Gateway 进行 BYOK",
   "provider.connect.kiloGateway.byok.suffix": "。",
 
   // Provider settings translations
@@ -34,16 +34,16 @@ export const dict = {
   "marketplace.install.scope.global.description": "此计算机上的所有项目。存储在你的用户配置中。",
   "marketplace.install.destination": "安装位置",
   "marketplace.install.includedSkills": "包含的技能",
-  "marketplace.install.about.mcp": "MCP 服务器为 Kilo 提供用于处理外部服务或本地程序的额外工具。",
+  "marketplace.install.about.mcp": "MCP 服务器为 BharatCode 提供用于处理外部服务或本地程序的额外工具。",
   "marketplace.install.about.agent": "智能体会添加一个具有专属指令和权限的可复用角色。",
-  "marketplace.install.about.skill": "技能会添加特定任务的指令和资源，Kilo 可在需要时加载它们。",
+  "marketplace.install.about.skill": "技能会添加特定任务的指令和资源，BharatCode 可在需要时加载它们。",
   "marketplace.install.mcp.warning":
-    "MCP 服务器可以运行本地命令或连接外部服务。除非你的权限允许自动使用，否则 Kilo 会在使用其工具前请求许可。",
+    "MCP 服务器可以运行本地命令或连接外部服务。除非你的权限允许自动使用，否则 BharatCode 会在使用其工具前请求许可。",
   "marketplace.install.project.warning":
     "项目文件可能会提交到版本控制。除非配置引用了环境变量，否则不要在此处存储密钥。",
   "marketplace.install.learnMore": "了解 Marketplace 安装的工作方式",
   "marketplace.install.learnMcp": "详细了解 MCP",
-  "marketplace.install.about.plugin": "插件可为 Kilo 添加自定义工具和集成功能。插件以完整权限运行。",
+  "marketplace.install.about.plugin": "插件可为 BharatCode 添加自定义工具和集成功能。插件以完整权限运行。",
   "marketplace.install.plugin.warning":
     "插件以完整权限运行代码。它们可以读取和修改你的文件、运行命令，以及访问你的凭据和网络。请仅安装你信任的插件。",
   "marketplace.intro": "为一个项目或所有项目安装可复用的智能体、技能、MCP 工具和插件。",
@@ -115,7 +115,7 @@ export const dict = {
   "snapshot.slowRepo.answer.continue.description": "等待快照完成。初始快照构建好之后，后续回合会很快。",
   "snapshot.slowRepo.answer.disable": "为此项目禁用",
   "snapshot.slowRepo.answer.disable.description":
-    "关闭本项目的 Kilo 快照。你将失去对 Kilo 更改的撤销/重做，但 git 仍会追踪所有内容。",
+    "关闭本项目的 BharatCode 快照。你将失去对 BharatCode 更改的撤销/重做，但 git 仍会追踪所有内容。",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "在差异查看器中打开",

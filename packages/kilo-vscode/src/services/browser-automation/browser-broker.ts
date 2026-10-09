@@ -132,9 +132,9 @@ export class BrowserLaunchError extends Error {
     const detail = cause instanceof Error ? cause.message : String(cause)
     super(
       missing === "chrome"
-        ? "Google Chrome was not found. Install Chrome or disable Use System Chrome in Kilo Settings > Experimental for the Integrated Browser to use an installed Playwright Chromium browser."
+        ? "Google Chrome was not found. Install Chrome or disable Use System Chrome in BharatCode Settings > Experimental for the Integrated Browser to use an installed Playwright Chromium browser."
         : missing === "chromium"
-          ? "A compatible Playwright Chromium browser was not found. Install one or enable Use System Chrome in Kilo Settings > Experimental for the Integrated Browser."
+          ? "A compatible Playwright Chromium browser was not found. Install one or enable Use System Chrome in BharatCode Settings > Experimental for the Integrated Browser."
           : `The browser could not start. ${detail}`,
       { cause },
     )
@@ -1070,7 +1070,7 @@ export class BrowserBroker {
     if (this.closed) throw new Error("Browser broker is closed")
     if (this.opts.trusted && !this.opts.trusted()) throw new Error("Browser preview requires a trusted workspace.")
     if (this.opts.enabled && !this.opts.enabled()) {
-      throw new Error("Browser automation is disabled. Enable it in Kilo Settings > Experimental.")
+      throw new Error("Browser automation is disabled. Enable it in BharatCode Settings > Experimental.")
     }
   }
 

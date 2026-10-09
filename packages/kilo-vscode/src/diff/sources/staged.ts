@@ -54,7 +54,7 @@ export interface StagedDiffSourceOptions {
  * a real git client). Read-only view.
  */
 export function createStagedDiffSource(opts: StagedDiffSourceOptions = {}): DiffSource {
-  const output = opts.git ? undefined : vscode.window.createOutputChannel("Kilo Diff: Staged")
+  const output = opts.git ? undefined : vscode.window.createOutputChannel("BharatCode Diff: Staged")
   const log = opts.log ?? ((...args: unknown[]) => appendOutput(output!, "StagedDiffSource", ...args))
   const git = opts.git ?? new GitOps({ log })
 

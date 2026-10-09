@@ -228,7 +228,7 @@ export class SourceController {
       // indicator cleared below), but we always log so initial-fetch
       // failures leave a trace in the Extension Host output — previously
       // they were silent and invisible in production.
-      console.log("[Kilo New] SourceController.fetch error", { initial, err })
+      console.log("[BharatCode] SourceController.fetch error", { initial, err })
       return true
     } finally {
       if (initial && this.epoch === epoch) {

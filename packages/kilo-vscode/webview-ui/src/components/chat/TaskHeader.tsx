@@ -117,7 +117,7 @@ export const TaskHeader: Component<TaskHeaderProps> = (props) => {
   window.addEventListener("message", handler)
   onCleanup(() => window.removeEventListener("message", handler))
 
-  // "Kilo Code: Toggle Chat Search" (Command Palette) toggles the search
+  // "BharatCode: Toggle Chat Search" (Command Palette) toggles the search
   // bar from here rather than TranscriptSearch.tsx itself: that component
   // only mounts once search.active() is already true (it's behind a
   // <Show>), so it can never be what turns search on in the first place —

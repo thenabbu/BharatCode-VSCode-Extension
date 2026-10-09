@@ -58,7 +58,7 @@ export async function fetchAndSendNotifications(ctx: NotificationsContext): Prom
     ctx.set(message)
     ctx.post(message)
   } catch (error) {
-    console.error("[Kilo New] KiloProvider: Failed to fetch notifications:", error)
+    console.error("[BharatCode] KiloProvider: Failed to fetch notifications:", error)
   }
 }
 

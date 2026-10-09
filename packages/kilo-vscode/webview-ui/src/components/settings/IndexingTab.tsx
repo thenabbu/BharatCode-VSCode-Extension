@@ -33,7 +33,7 @@ type Project = { id: string; root: string; label: string }
 type TuningKey = "searchMinScore" | "searchMaxResults" | "embeddingBatchSize" | "scannerMaxBatchRetries"
 
 const allProviders: { value: ProviderId; label: string }[] = [
-  { value: "kilo", label: "Kilo" },
+  { value: "kilo", label: "BharatCode" },
   { value: "openai", label: "OpenAI" },
   { value: "ollama", label: "Ollama (local)" },
   { value: "openai-compatible", label: "OpenAI-Compatible" },
@@ -472,7 +472,9 @@ const IndexingTab: Component = () => {
                 : String(cfg().dimension)
             }
             placeholder={
-              selectedProvider() === "kilo" ? "Provided by Kilo" : language.t("settings.indexing.dimension.placeholder")
+              selectedProvider() === "kilo"
+                ? "Provided by BharatCode"
+                : language.t("settings.indexing.dimension.placeholder")
             }
             disabled={selectedProvider() === "kilo"}
             onChange={(value) => saveNumber("dimension", value, { integer: true, min: 1 })}

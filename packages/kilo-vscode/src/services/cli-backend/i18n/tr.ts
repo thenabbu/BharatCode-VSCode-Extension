@@ -3,6 +3,6 @@ export const dict = {
   "server.processSignaled": "CLI işlemi sunucu başlatılmadan önce {{signal}} sinyali ile sonlandırıldı",
   "server.spawnFailed": "CLI ikili dosyası başlatılamadı ({{code}})",
   "server.startupTimeout": "{{seconds}} saniye sonra sunucu başlatma zaman aşımı",
-  "remote.connected": "Kilo Remote: Bağlandı",
-  "remote.connecting": "Kilo Remote: Bağlanıyor\u2026",
+  "remote.connected": "BharatCode Remote: Bağlandı",
+  "remote.connecting": "BharatCode Remote: Bağlanıyor\u2026",
 } as const

@@ -112,7 +112,7 @@ export class KiloProviderMemory {
   async handle(message: Record<string, unknown>): Promise<boolean> {
     if (message.type === "requestMemory") {
       this.fetch(typeof message.sessionID === "string" ? message.sessionID : undefined).catch((err: unknown) =>
-        console.error("[Kilo New] fetchAndSendMemory failed:", err),
+        console.error("[BharatCode] fetchAndSendMemory failed:", err),
       )
       return true
     }
@@ -181,7 +181,7 @@ export class KiloProviderMemory {
       this.cache(directory, msg)
       this.input.post(msg)
     } catch (err) {
-      console.error("[Kilo New] KiloProvider: Failed to fetch memory:", err)
+      console.error("[BharatCode] KiloProvider: Failed to fetch memory:", err)
       this.input.post({
         type: "memoryLoaded",
         sessionID,
@@ -236,7 +236,7 @@ export class KiloProviderMemory {
       const items = stored(show.items)
       if (mode === "show" && items.length === 0) {
         void vscode.window.showInformationMessage(
-          "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+          "This project doesn't have any memory yet. It will start showing after you use BharatCode.",
         )
         return
       }
@@ -273,7 +273,7 @@ export class KiloProviderMemory {
         matchOnDetail: true,
       })
     } catch (err) {
-      console.error("[Kilo New] KiloProvider: Failed to show memory:", err)
+      console.error("[BharatCode] KiloProvider: Failed to show memory:", err)
       this.input.post({
         type: "memoryLoaded",
         sessionID,
@@ -348,7 +348,7 @@ export class KiloProviderMemory {
         message.operation === "status"
           ? { data }
           : await retry(() => api.status({ directory }, { throwOnError: true })).catch((err: unknown) => {
-              console.warn("[Kilo New] Memory changed but refresh failed:", err)
+              console.warn("[BharatCode] Memory changed but refresh failed:", err)
               return undefined
             })
       const status = refreshed?.data
@@ -376,7 +376,7 @@ export class KiloProviderMemory {
       }
       return true
     } catch (err) {
-      console.error("[Kilo New] KiloProvider: Failed memory operation:", err)
+      console.error("[BharatCode] KiloProvider: Failed memory operation:", err)
       this.input.post({
         type: "memoryOperationResult",
         operation: message.operation,

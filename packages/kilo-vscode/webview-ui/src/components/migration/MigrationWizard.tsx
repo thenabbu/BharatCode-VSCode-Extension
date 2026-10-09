@@ -25,18 +25,13 @@ import type {
   MigrationSource,
 } from "../../types/messages"
 import "./migration.css"
+import { BharatCodeMark } from "../brand/BharatCodeMark"
 
-const KiloLogo = (): JSX.Element => {
-  const iconsBaseUri = (window as { ICONS_BASE_URI?: string }).ICONS_BASE_URI || ""
-  const isLight =
-    document.body.classList.contains("vscode-light") || document.body.classList.contains("vscode-high-contrast-light")
-  const icon = isLight ? "kilo-light.svg" : "kilo-dark.svg"
-  return (
-    <div class="migration-wizard__logo">
-      <img src={`${iconsBaseUri}/${icon}`} alt="Kilo Code" />
-    </div>
-  )
-}
+const KiloLogo = (): JSX.Element => (
+  <div class="migration-wizard__logo">
+    <BharatCodeMark />
+  </div>
+)
 
 const CheckmarkSvg = (): JSX.Element => (
   <svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

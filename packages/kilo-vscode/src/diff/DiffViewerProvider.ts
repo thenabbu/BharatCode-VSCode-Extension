@@ -147,7 +147,7 @@ export class DiffViewerProvider implements vscode.Disposable {
   ) {
     this.sessionIdProvider = opts.sessionIdProvider ?? (() => undefined)
     this.sessionDirectoryProvider = opts.sessionDirectoryProvider ?? (() => undefined)
-    this.output = vscode.window.createOutputChannel("Kilo Diff Panel")
+    this.output = vscode.window.createOutputChannel("BharatCode Diff Panel")
     this.prPolling = createDiffPRPolling({
       createPoller: opts.createPRPoller,
       onStatus: () => this.sendComments(),

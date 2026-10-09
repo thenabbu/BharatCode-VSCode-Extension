@@ -161,7 +161,7 @@ export function buildActionContext(
       // Shared State.dispose() now has a hard per-disposer timeout, so this
       // wait is bounded without needing a client-side timeout here.
       await client.global.dispose().catch((error: unknown) => {
-        console.warn(`[Kilo New] KiloProvider: global.dispose() after ${reason} failed:`, error)
+        console.warn(`[BharatCode] KiloProvider: global.dispose() after ${reason} failed:`, error)
       })
     },
     fetchAndSendProviders: refresh,
@@ -291,7 +291,7 @@ async function removeAuth(ctx: ActionContext, id: string, configured: boolean) {
     await ctx.client.auth.remove({ providerID: id }, { throwOnError: true })
   } catch (err) {
     if (!configured) throw err
-    console.warn(`[Kilo New] auth.remove failed for configured provider ${id} (non-fatal):`, err)
+    console.warn(`[BharatCode] auth.remove failed for configured provider ${id} (non-fatal):`, err)
   }
 }
 

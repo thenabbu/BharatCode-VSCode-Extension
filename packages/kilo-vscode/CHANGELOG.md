@@ -1,4 +1,9 @@
-# kilo-code
+# BharatCode Changelog
+
+Release notes for the BharatCode VS Code extension (bharatcode.ai). Entries up
+to 7.8.8 are inherited from the upstream Kilo Code project; Kilo-Org
+pull-request and commit links point to the original upstream repository and
+are kept as historical references.
 
 ## 7.8.8
 

@@ -3,7 +3,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "Per ulteriori statistiche sull'utilizzo, utilizza ",
-  "provider.connect.kiloGateway.byok.link": "BYOK tramite Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK tramite BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": ".",
 
   // Provider settings translations
@@ -39,19 +39,19 @@ export const dict = {
   "marketplace.install.destination": "Destinazione dell'installazione",
   "marketplace.install.includedSkills": "Skill incluse",
   "marketplace.install.about.mcp":
-    "Un server MCP fornisce a Kilo strumenti aggiuntivi per interagire con servizi esterni o programmi locali.",
+    "Un server MCP fornisce a BharatCode strumenti aggiuntivi per interagire con servizi esterni o programmi locali.",
   "marketplace.install.about.agent":
     "Un agente aggiunge un ruolo riutilizzabile con istruzioni e autorizzazioni proprie.",
   "marketplace.install.about.skill":
-    "Una skill aggiunge istruzioni e risorse specifiche per un'attività che Kilo può caricare quando necessario.",
+    "Una skill aggiunge istruzioni e risorse specifiche per un'attività che BharatCode può caricare quando necessario.",
   "marketplace.install.mcp.warning":
-    "I server MCP possono eseguire comandi locali o connettersi a servizi esterni. Kilo chiederà l'autorizzazione prima di usare i loro strumenti, a meno che le tue autorizzazioni non lo consentano automaticamente.",
+    "I server MCP possono eseguire comandi locali o connettersi a servizi esterni. BharatCode chiederà l'autorizzazione prima di usare i loro strumenti, a meno che le tue autorizzazioni non lo consentano automaticamente.",
   "marketplace.install.project.warning":
     "I file del progetto possono essere aggiunti al controllo versione. Non salvare segreti qui, a meno che la configurazione non faccia riferimento a una variabile di ambiente.",
   "marketplace.install.learnMore": "Scopri come funzionano le installazioni dal Marketplace",
   "marketplace.install.learnMcp": "Scopri di più su MCP",
   "marketplace.install.about.plugin":
-    "Un plugin aggiunge strumenti e integrazioni personalizzati a Kilo. I plugin vengono eseguiti con tutte le autorizzazioni.",
+    "Un plugin aggiunge strumenti e integrazioni personalizzati a BharatCode. I plugin vengono eseguiti con tutte le autorizzazioni.",
   "marketplace.install.plugin.warning":
     "I plugin eseguono codice con tutte le autorizzazioni. Possono leggere e modificare i tuoi file, eseguire comandi e accedere alle tue credenziali e alla tua rete. Installa solo plugin di cui ti fidi.",
   "marketplace.intro": "Installa agenti, skill, strumenti MCP e plugin riutilizzabili per uno o tutti i progetti.",
@@ -63,7 +63,8 @@ export const dict = {
   "marketplace.install.failed": "Installazione non riuscita",
   "marketplace.install.done": "Fatto",
   "marketplace.install.close": "Chiudi",
-  "marketplace.install.mcp.signIn.message": "{{name}} è installato, ma richiede l'accesso prima che i suoi strumenti possano essere usati.",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} è installato, ma richiede l'accesso prima che i suoi strumenti possano essere usati.",
   "marketplace.install.mcp.signIn.button": "Accedi",
   "marketplace.install.mcp.signIn.waiting": "In attesa dell'accesso tramite browser…",
   "marketplace.install.mcp.signIn.cancel": "Annulla",
@@ -125,7 +126,7 @@ export const dict = {
     "Continua ad attendere il completamento dello snapshot. Le iterazioni successive saranno rapide dopo la creazione dello snapshot iniziale.",
   "snapshot.slowRepo.answer.disable": "Disabilita per questo progetto",
   "snapshot.slowRepo.answer.disable.description":
-    "Disattiva gli snapshot di Kilo per questo progetto. Perderai annulla/ripeti sulle modifiche ai file fatte da Kilo, ma git continuerà a tracciare tutto.",
+    "Disattiva gli snapshot di BharatCode per questo progetto. Perderai annulla/ripeti sulle modifiche ai file fatte da BharatCode, ma git continuerà a tracciare tutto.",
 
   "ui.messagePart.openInDiffViewer": "Apri nel visualizzatore diff",
   "ui.messagePart.openInEditor": "Apri nell'editor",

@@ -2,7 +2,7 @@ export const cloudProviderDict = {
   "provider.connect.bedrock.method.accessKeys": "AWS access keys",
   "provider.connect.bedrock.method.apiKey": "Bedrock API key",
   "provider.connect.bedrock.description":
-    "Enter the AWS credentials Kilo should use to access Amazon Bedrock. These credentials are stored securely in Kilo's credential store.",
+    "Enter the AWS credentials BharatCode should use to access Amazon Bedrock. These credentials are stored securely in BharatCode's credential store.",
   "provider.connect.bedrock.accessKeyId.label": "AWS access key ID",
   "provider.connect.bedrock.accessKeyId.placeholder": "AKIA...",
   "provider.connect.bedrock.accessKeyId.required": "AWS access key ID is required",
@@ -14,7 +14,7 @@ export const cloudProviderDict = {
   "provider.connect.bedrock.region.placeholder": "e.g. us-east-1",
   "provider.connect.vertex.method.serviceAccount": "Google Cloud service account",
   "provider.connect.vertex.description":
-    "Paste the complete Google Cloud service-account JSON. Kilo stores it securely in its credential store.",
+    "Paste the complete Google Cloud service-account JSON. BharatCode stores it securely in its credential store.",
   "provider.connect.vertex.credentials.label": "Service-account JSON",
   "provider.connect.vertex.credentials.placeholder": "Paste the complete JSON credentials",
   "provider.connect.vertex.credentials.required": "Service-account JSON is required",

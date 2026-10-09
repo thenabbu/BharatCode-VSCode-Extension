@@ -1209,7 +1209,7 @@ export const SearchPreviews: Story = {
                 <div class="tool-call-lab-example">
                   <span class="tool-call-lab-example-label">CLI startup failure</span>
                   <StartupErrorBanner
-                    errorMessage="Failed to start the Kilo CLI"
+                    errorMessage="Failed to start the BharatCode CLI"
                     errorDetails="spawn /path/to/kilo ENOENT"
                   />
                 </div>

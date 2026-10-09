@@ -76,7 +76,7 @@ export class MarketplacePanelProvider implements vscode.Disposable {
 
     const panel = vscode.window.createWebviewPanel(
       MarketplacePanelProvider.viewType,
-      "Kilo Marketplace",
+      "BharatCode Marketplace",
       vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -218,7 +218,7 @@ export class MarketplacePanelProvider implements vscode.Disposable {
       const client = this.connection.getClient()
       await seedSessionStatuses(client, this.directory(), this.statuses, (msg) => this.post(msg), reconcile)
     } catch (err) {
-      console.warn("[Kilo New] Marketplace session status sync failed:", err)
+      console.warn("[BharatCode] Marketplace session status sync failed:", err)
     }
   }
 
@@ -325,7 +325,7 @@ export class MarketplacePanelProvider implements vscode.Disposable {
     } catch (err) {
       if (generation !== this.generation) return
       const error = err instanceof Error ? err.message : String(err)
-      console.warn("[Kilo New] Marketplace data fetch failed:", err)
+      console.warn("[BharatCode] Marketplace data fetch failed:", err)
       this.post({
         type: "marketplaceData",
         marketplaceItems: [],
@@ -413,7 +413,7 @@ export class MarketplacePanelProvider implements vscode.Disposable {
   private post(msg: unknown): void {
     if (!this.panel || !this.ready) return
     void this.panel.webview.postMessage(msg).then(undefined, (err) => {
-      console.warn("[Kilo New] Marketplace panel postMessage failed:", err)
+      console.warn("[BharatCode] Marketplace panel postMessage failed:", err)
     })
   }
 
@@ -423,7 +423,7 @@ export class MarketplacePanelProvider implements vscode.Disposable {
       styleUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "marketplace.css")),
       iconsBaseUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "assets", "icons")),
       workerUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "shiki-worker.js")),
-      title: "Kilo Marketplace",
+      title: "BharatCode Marketplace",
       port: this.connection.getServerInfo()?.port,
     })
   }

@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "For flere brugsstatistikker, brug ",
-  "provider.connect.kiloGateway.byok.link": "BYOK via Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK via BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": ".",
 
   // Provider settings translations
@@ -36,18 +36,18 @@ export const dict = {
   "marketplace.install.destination": "Installationsplacering",
   "marketplace.install.includedSkills": "Inkluderede færdigheder",
   "marketplace.install.about.mcp":
-    "En MCP-server giver Kilo yderligere værktøjer til at arbejde med eksterne tjenester eller lokale programmer.",
+    "En MCP-server giver BharatCode yderligere værktøjer til at arbejde med eksterne tjenester eller lokale programmer.",
   "marketplace.install.about.agent": "En agent tilføjer en genanvendelig rolle med egne instruktioner og tilladelser.",
   "marketplace.install.about.skill":
-    "En færdighed tilføjer opgavespecifikke instruktioner og ressourcer, som Kilo kan indlæse efter behov.",
+    "En færdighed tilføjer opgavespecifikke instruktioner og ressourcer, som BharatCode kan indlæse efter behov.",
   "marketplace.install.mcp.warning":
-    "MCP-servere kan køre lokale kommandoer eller oprette forbindelse til eksterne tjenester. Kilo beder om tilladelse, før deres værktøjer bruges, medmindre dine tilladelser automatisk tillader det.",
+    "MCP-servere kan køre lokale kommandoer eller oprette forbindelse til eksterne tjenester. BharatCode beder om tilladelse, før deres værktøjer bruges, medmindre dine tilladelser automatisk tillader det.",
   "marketplace.install.project.warning":
     "Projektfiler kan føjes til versionsstyring. Gem ikke hemmeligheder her, medmindre konfigurationen henviser til en miljøvariabel.",
   "marketplace.install.learnMore": "Se, hvordan installationer fra Marketplace fungerer",
   "marketplace.install.learnMcp": "Få mere at vide om MCP",
   "marketplace.install.about.plugin":
-    "Et plugin tilføjer tilpassede værktøjer og integrationer til Kilo. Plugins kører med fulde tilladelser.",
+    "Et plugin tilføjer tilpassede værktøjer og integrationer til BharatCode. Plugins kører med fulde tilladelser.",
   "marketplace.install.plugin.warning":
     "Plugins kører kode med fulde tilladelser. De kan læse og ændre dine filer, køre kommandoer og få adgang til dine legitimationsoplysninger og dit netværk. Installer kun plugins, du har tillid til.",
   "marketplace.intro":
@@ -124,7 +124,7 @@ export const dict = {
     "Vent, indtil snapshot'et er færdigt. Efterfølgende ture er hurtige, når det indledende snapshot er bygget.",
   "snapshot.slowRepo.answer.disable": "Deaktivér for dette projekt",
   "snapshot.slowRepo.answer.disable.description":
-    "Slå Kilos snapshots fra for dette projekt. Du mister fortryd/gentag for Kilo-ændringer, men git sporer stadig alt.",
+    "Slå BharatCodes snapshots fra for dette projekt. Du mister fortryd/gentag for BharatCode-ændringer, men git sporer stadig alt.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "Åbn i Diff-visning",

@@ -5,7 +5,7 @@ export const dict = {
   "mcp.signIn.unsupported": "{{name}} は OAuth サインインに対応していません。",
   "mcp.signIn.notFound": "MCP サーバー {{name}} が見つかりませんでした。",
   "mcp.auth.browserFailed":
-    "Kilo は {{name}} 用のブラウザーを開けませんでした。サインインを完了するには、Kilo を実行しているマシンで認証 URL を開いてください。",
+    "BharatCode は {{name}} 用のブラウザーを開けませんでした。サインインを完了するには、BharatCode を実行しているマシンで認証 URL を開いてください。",
   "mcp.auth.browserFailed.open": "ブラウザーで開く",
   "mcp.auth.browserFailed.copy": "URL をコピー",
   "mcp.auth.resetFailed": "{{name}} の保存済みサインインをクリアできませんでした。",

@@ -556,7 +556,7 @@ function InjectedStory(props: { text: string; title?: string }) {
 }
 
 const REVIEW_TEMPLATE_BODY = [
-  "You are Kilo Code, an expert code reviewer focused on high-confidence security, performance, business logic, deploy safety, duplication, and dead-code findings.",
+  "You are BharatCode, an expert code reviewer focused on high-confidence security, performance, business logic, deploy safety, duplication, and dead-code findings.",
   "",
   "During the initial review phase, your role is advisory: provide clear, actionable feedback but DO NOT modify any files.",
   "",
@@ -1694,9 +1694,9 @@ export const TaskUsageExpanded200: Story = {
 
 const MOCK_NOTIFICATION = {
   id: "notif-1",
-  title: "Try BYOK for Kilo Gateway",
-  message: "Bring your own API key for even more flexibility with Kilo Gateway models.",
-  action: { actionText: "Learn more", actionURL: "https://kilo.ai/docs" },
+  title: "Try BYOK for BharatCode Gateway",
+  message: "Bring your own API key for even more flexibility with BharatCode Gateway models.",
+  action: { actionText: "Learn more", actionURL: "https://bharatcode.ai/docs" },
 }
 
 /** Mock server context with profile data so AccountSwitcher is visible */
@@ -1711,7 +1711,7 @@ const mockServer = {
     profile: {
       email: "dev@kilo.dev",
       name: "Dev User",
-      organizations: [{ id: "org-1", name: "Kilo Org", role: "member" }],
+      organizations: [{ id: "org-1", name: "BharatCode Org", role: "member" }],
     },
     balance: { balance: 5.0 },
     currentOrgId: "org-1",

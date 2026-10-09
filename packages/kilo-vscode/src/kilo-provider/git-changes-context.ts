@@ -18,7 +18,7 @@ export async function captureGitChangesContext(input: Input): Promise<void> {
       truncated: output.truncated,
     })
   } catch (error) {
-    console.error("[Kilo New] Failed to capture git changes context:", error)
+    console.error("[BharatCode] Failed to capture git changes context:", error)
     input.post({
       type: "gitChangesContextError",
       requestId: input.requestId,

@@ -77,7 +77,7 @@ export function feed(opts: {
       promise: Promise.resolve()
         .then<Snapshot>(() => (opts.watching() ? opts.load(dir) : { status: {}, wake: {} }))
         .catch((error: unknown) => {
-          console.warn(`[Kilo New] Keep-awake status refresh failed for ${dir}:`, error)
+          console.warn(`[BharatCode] Keep-awake status refresh failed for ${dir}:`, error)
           // Keep the last known wake set: a transient failure must not release
           // the inhibitor while wakeups may still be pending.
           return { status: {}, wake: undefined }

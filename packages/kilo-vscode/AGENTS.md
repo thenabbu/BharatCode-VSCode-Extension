@@ -16,7 +16,7 @@ Paths below are relative to this package. Start with the relevant implementation
 
 ## Product Context
 
-Kilo Code is an open source AI coding agent platform. It ships as a CLI and editor clients that all build on the same backend. This package (`packages/kilo-vscode/`) is the **VS Code extension**.
+BharatCode is an open source AI coding agent platform. It ships as a CLI and editor clients that all build on the same backend. This package (`packages/kilo-vscode/`) is the **VS Code extension**.
 
 ### Products and How They Relate
 
@@ -40,15 +40,15 @@ The VS Code extension spawns or connects to a `kilo serve` process and communica
 
 | Product | Package | What it is | How it uses the CLI |
 |---|---|---|---|
-| Kilo CLI (TUI) | `packages/opencode/` | Interactive terminal UI (SolidJS + OpenTUI) | In-process — TUI and server run together |
-| Kilo CLI (`kilo run`) | `packages/opencode/` | Non-interactive headless mode for scripting | In-process — no network socket |
-| **Kilo VS Code Extension** | **`packages/kilo-vscode/`** | VS Code extension with sidebar chat + Agent Manager | Bundles CLI binary, spawns `kilo serve --port 0` as child process |
+| BharatCode CLI (TUI) | `packages/opencode/` | Interactive terminal UI (SolidJS + OpenTUI) | In-process — TUI and server run together |
+| BharatCode CLI (`kilo run`) | `packages/opencode/` | Non-interactive headless mode for scripting | In-process — no network socket |
+| **BharatCode VS Code Extension** | **`packages/kilo-vscode/`** | VS Code extension with sidebar chat + Agent Manager | Bundles CLI binary, spawns `kilo serve --port 0` as child process |
 
 ### Kilo-Domain Packages
 
 | Package | Name | Role |
 |---|---|---|
-| `packages/kilo-vscode/` | `kilo-code` | **This package.** VS Code extension. |
+| `packages/kilo-vscode/` | `bharatcode-vscode` | **This package.** VS Code extension. |
 | `packages/kilo-gateway/` | `@kilocode/kilo-gateway` | Auth (device flow), AI provider routing (OpenRouter), Kilo API integration (profile, balance, teams) |
 | `packages/kilo-ui/` | `@kilocode/kilo-ui` | SolidJS component library (40+ components, built on `@kobalte/core`). Shared by this extension's webview and docs screenshot stories |
 | `packages/kilo-telemetry/` | `@kilocode/kilo-telemetry` | PostHog analytics + OpenTelemetry tracing for the CLI |
@@ -69,7 +69,7 @@ The VS Code extension spawns or connects to a `kilo serve` process and communica
 
 ```bash
 bun run extension                  # Build + launch VS Code with the extension in dev mode
-bun run extension:isolated         # Build + launch with persistent isolated IDE + Kilo state
+bun run extension:isolated         # Build + launch with persistent isolated IDE + BharatCode state
 bun run extension:isolated:clean   # Clear isolated state, then build + launch
 bun run compile                    # Type-check + lint + build
 bun run watch                      # Watch mode (esbuild + tsc)
@@ -78,7 +78,7 @@ bun run lint                       # ESLint on src/
 bun run format                     # Run formatter (do this before committing to avoid styling-only changes in commits)
 ```
 
-The `extension` commands also work from the repo root. When a user asks to run an isolated VS Code/Kilo environment, prefer the CLI scripts: `bun run extension:isolated` reuses `.kilo-dev/`, while `bun run extension:isolated:clean` clears `.kilo-dev/` before launching. Pass an optional workspace path after `--`, for example `bun run extension:isolated -- ../sample-project`. Pass `--insiders` to prefer VS Code Insiders, `--workspace PATH` to open a different folder, `--clean` to wipe cached state, or `--wait` to block until VS Code closes. VS Code is auto-detected on macOS, Linux, and Windows; override with `--app-path` or `VSCODE_EXEC_PATH`.
+The `extension` commands also work from the repo root. When a user asks to run an isolated VS Code/BharatCode environment, prefer the CLI scripts: `bun run extension:isolated` reuses `.kilo-dev/`, while `bun run extension:isolated:clean` clears `.kilo-dev/` before launching. Pass an optional workspace path after `--`, for example `bun run extension:isolated -- ../sample-project`. Pass `--insiders` to prefer VS Code Insiders, `--workspace PATH` to open a different folder, `--clean` to wipe cached state, or `--wait` to block until VS Code closes. VS Code is auto-detected on macOS, Linux, and Windows; override with `--app-path` or `VSCODE_EXEC_PATH`.
 
 From this package: `bun run typecheck` checks host and webview types; `bun run test:unit` runs Bun unit tests. For a focused Agent Manager example, use `bun test tests/unit/agent-manager-arch.test.ts`.
 
@@ -120,9 +120,9 @@ Extension (Node.js)                          CLI Backend (child process)
 └──────────────────────────┘
 ```
 
-- **`KiloConnectionService`** (`src/services/cli-backend/connection-service.ts`) is created once during extension activation and shared across the sidebar, Kilo editor tabs, and Agent Manager. It owns the current server process, HTTP client, and SSE connection.
+- **`KiloConnectionService`** (`src/services/cli-backend/connection-service.ts`) is created once during extension activation and shared across the sidebar, BharatCode editor tabs, and Agent Manager. It owns the current server process, HTTP client, and SSE connection.
 - **`ServerManager`** (`src/services/cli-backend/server-manager.ts`) lazily spawns the CLI binary, reuses its current process, and can start a replacement if that process exits.
-- The sidebar, every **Open in Tab** Kilo panel, and the Agent Manager chat provider reuse this connection. Multiple **`KiloProvider`** instances subscribe to it, with SSE events filtered per-webview via a `trackedSessionIds` Set. Agent Manager terminals may use additional PTY/WebSocket channels to the same backend, not separate `kilo serve` processes.
+- The sidebar, every **Open in Tab** BharatCode panel, and the Agent Manager chat provider reuse this connection. Multiple **`KiloProvider`** instances subscribe to it, with SSE events filtered per-webview via a `trackedSessionIds` Set. Agent Manager terminals may use additional PTY/WebSocket channels to the same backend, not separate `kilo serve` processes.
 - Backend state follows where it is allocated, not the worktree shown in a panel. Snapshot repository state uses directory-keyed `InstanceState`, while `trackState` is created once in the active Snapshot service closure. For these shared VS Code session paths, its slow-track `asked` guard spans worktree requests; choosing **Continue with snapshots** resets `asked` only when continued tracking returns a snapshot hash.
 
 ### Builds
@@ -220,7 +220,7 @@ Generated screenshot baselines live under `packages/kilo-docs/public/img/screens
 - Extension logs: "Extension Host" output channel (not Debug Console)
 - Webview logs: Command Palette → "Developer: Open Webview Developer Tools"
 - In Chrome/VS Code performance traces, associate CPU `ProfileChunk` events to their `Profile.id` target before attributing work to a thread. `v8:ProfEvntProc` is a profile delivery thread, not evidence that application work ran off the webview main thread.
-- All debug output must be prepended with `[Kilo New]` for easy filtering
+- All debug output must be prepended with `[BharatCode]` for easy filtering
 
 ## Naming Conventions
 

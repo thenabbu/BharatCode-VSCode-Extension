@@ -21,7 +21,7 @@ async function valid(key: string): Promise<boolean> {
     })
     return res.ok
   } catch (error) {
-    console.warn("[Kilo New] BharatCode key validation failed:", error)
+    console.warn("[BharatCode] BharatCode key validation failed:", error)
     return false
   }
 }
@@ -57,7 +57,7 @@ export async function ensureKey(ctx: vscode.ExtensionContext, client: () => Prom
     await ctx.globalState.update(KEY_SET_FLAG, true)
     void vscode.window.showInformationMessage("BharatCode connected - open the sidebar chat to start.")
   } catch (error) {
-    console.warn("[Kilo New] BharatCode key save failed:", error)
+    console.warn("[BharatCode] BharatCode key save failed:", error)
     void vscode.window.showErrorMessage("Could not save the BharatCode key: " + String(error))
   }
 }
@@ -70,5 +70,5 @@ export function start(ctx: vscode.ExtensionContext, client: () => Promise<KiloCl
       await ensureKey(ctx, client)
     }),
   )
-  void ensureKey(ctx, client).catch((error) => console.warn("[Kilo New] BharatCode onboarding:", error))
+  void ensureKey(ctx, client).catch((error) => console.warn("[BharatCode] BharatCode onboarding:", error))
 }

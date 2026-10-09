@@ -14,14 +14,14 @@ export const anacondaDesktopDict = {
   "provider.anaconda.status.unavailable": "사용할 수 없음",
   "provider.anaconda.state.unsupported": "Anaconda Desktop은 {{platform}}에서 지원되지 않습니다.",
   "provider.anaconda.state.notInstalled":
-    "이 컴퓨터에 Anaconda Desktop을 설치한 후 여기로 돌아오세요. Kilo는 설치 프로그램을 대신 실행하지 않습니다.",
+    "이 컴퓨터에 Anaconda Desktop을 설치한 후 여기로 돌아오세요. BharatCode는 설치 프로그램을 대신 실행하지 않습니다.",
   "provider.anaconda.state.notRunning":
     "Anaconda Desktop을 열고 설정을 완료한 후 로그인한 다음 다시 확인을 선택하세요.",
   "provider.anaconda.state.invalidConfig":
     "Anaconda Desktop 설정이 완료되지 않았습니다. Desktop을 열고 설정을 완료한 후 필요하면 다시 시작하세요.",
-  "provider.anaconda.state.signedOut": "Kilo를 연결하기 전에 Anaconda Desktop을 열고 로그인하세요.",
+  "provider.anaconda.state.signedOut": "BharatCode를 연결하기 전에 Anaconda Desktop을 열고 로그인하세요.",
   "provider.anaconda.state.unauthorized":
-    "Kilo가 Anaconda Desktop에 접근할 수 없습니다. Desktop을 열고 다시 로그인한 후 필요하면 다시 시작하세요.",
+    "BharatCode가 Anaconda Desktop에 접근할 수 없습니다. Desktop을 열고 다시 로그인한 후 필요하면 다시 시작하세요.",
   "provider.anaconda.state.unavailable":
     "Anaconda Desktop이 아직 응답하지 않습니다. 열어서 애플리케이션이 완전히 시작될 때까지 기다리세요.",
   "provider.anaconda.state.noModel":
@@ -33,7 +33,7 @@ export const anacondaDesktopDict = {
   "provider.anaconda.state.unhealthy":
     "활성 추론 서버가 아직 정상이 아닙니다. Anaconda Desktop에서 확인하고 필요하면 서버를 다시 시작하세요.",
   "provider.anaconda.state.ready":
-    "Kilo가 정상적인 로컬 텍스트 생성 서버를 찾았으며 현재 연결 설정을 가져올 수 있습니다.",
+    "BharatCode가 정상적인 로컬 텍스트 생성 서버를 찾았으며 현재 연결 설정을 가져올 수 있습니다.",
   "provider.anaconda.server": "활성 추론 서버",
   "provider.anaconda.context": "컨텍스트 창",
   "provider.anaconda.contextValue": "{{count}} 토큰",
@@ -50,7 +50,7 @@ export const anacondaDesktopDict = {
   "provider.anaconda.action.continue": "계속하기",
   "provider.anaconda.action.manage": "관리 / 새로 고침",
   "provider.anaconda.toast.refreshed.title": "Anaconda Desktop 새로 고침됨",
-  "provider.anaconda.toast.refreshed.description": "활성 로컬 서버와 모델이 Kilo에서 최신 상태입니다.",
+  "provider.anaconda.toast.refreshed.description": "활성 로컬 서버와 모델이 BharatCode에서 최신 상태입니다.",
   "settings.providers.note.anacondaDesktop": "Anaconda Desktop이 로컬에서 제공하는 모델을 실행합니다.",
   "settings.providers.tag.local": "로컬",
 } as const
@@ -100,7 +100,7 @@ export const dict = {
     "대화가 되돌려졌습니다. 이 이전 되돌리기에서는 작업 영역 복원 상태를 확인할 수 없습니다.",
   "revert.banner.workspace.enableSnapshots": "스냅샷 활성화",
   "revert.disabled.agentBusy": "에이전트가 완료될 때까지 기다리세요",
-  "revert.error.body": "저장소가 사용 중일 수 있습니다. 다시 시도하거나 자세한 내용은 Kilo 로그를 확인하세요.",
+  "revert.error.body": "저장소가 사용 중일 수 있습니다. 다시 시도하거나 자세한 내용은 BharatCode 로그를 확인하세요.",
   "command.session.compact": "세션 압축",
   "command.session.export": "세션 기록 내보내기",
 
@@ -125,7 +125,7 @@ export const dict = {
   "provider.connect.status.waiting": "인증 대기 중...",
   "provider.connect.status.failed": "인증 실패: {{error}}",
   "provider.connect.apiKey.description":
-    "{{provider}} API 키를 입력하여 계정을 연결하고 Kilo에서 {{provider}} 모델을 사용하세요.",
+    "{{provider}} API 키를 입력하여 계정을 연결하고 BharatCode에서 {{provider}} 모델을 사용하세요.",
   "provider.connect.apiKey.description.local":
     "Connect to your local {{provider}} server. Leave the API key empty if the server does not require one (default for localhost).",
   "provider.connect.atomicChat.description":
@@ -148,14 +148,14 @@ export const dict = {
   "provider.connect.oauth.code.visit.prefix": "",
   "provider.connect.oauth.code.visit.link": "이 링크",
   "provider.connect.oauth.code.visit.suffix":
-    "를 방문하여 인증 코드를 받아 계정을 연결하고 Kilo에서 {{provider}} 모델을 사용하세요.",
+    "를 방문하여 인증 코드를 받아 계정을 연결하고 BharatCode에서 {{provider}} 모델을 사용하세요.",
   "provider.connect.oauth.code.label": "{{method}} 인증 코드",
   "provider.connect.oauth.code.placeholder": "인증 코드",
   "provider.connect.oauth.code.required": "인증 코드가 필요합니다",
   "provider.connect.oauth.auto.visit.prefix": "",
   "provider.connect.oauth.auto.visit.link": "이 링크",
   "provider.connect.oauth.auto.visit.suffix":
-    "를 방문하고 아래 코드를 입력하여 계정을 연결하고 Kilo에서 {{provider}} 모델을 사용하세요.",
+    "를 방문하고 아래 코드를 입력하여 계정을 연결하고 BharatCode에서 {{provider}} 모델을 사용하세요.",
   "provider.connect.oauth.auto.confirmationCode": "확인 코드",
   "provider.connect.toast.connected.title": "{{provider}} 연결됨",
   "provider.connect.toast.connected.description": "이제 {{provider}} 모델을 사용할 수 있습니다.",
@@ -233,9 +233,9 @@ export const dict = {
   "prompt.action.sandbox.enable": "샌드박스 활성화",
   "prompt.action.sandbox.disable": "샌드박스 비활성화",
   "prompt.action.sandbox.enabled":
-    "샌드박스가 활성화되어 있습니다. 에이전트 셸 명령은 프로젝트 및 Kilo 디렉터리로 제한됩니다.",
+    "샌드박스가 활성화되어 있습니다. 에이전트 셸 명령은 프로젝트 및 BharatCode 디렉터리로 제한됩니다.",
   "prompt.action.sandbox.disabled":
-    "샌드박스가 비활성화되어 있습니다. 클릭하여 에이전트 셸 명령 쓰기를 프로젝트 및 Kilo 디렉터리로 제한합니다.",
+    "샌드박스가 비활성화되어 있습니다. 클릭하여 에이전트 셸 명령 쓰기를 프로젝트 및 BharatCode 디렉터리로 제한합니다.",
   "prompt.action.sandbox.status.enabled": "샌드박스 활성화됨",
   "prompt.action.sandbox.status.disabled": "샌드박스 비활성화됨",
   "prompt.action.sandbox.filesystem": "파일 시스템",
@@ -244,7 +244,7 @@ export const dict = {
   "prompt.action.sandbox.network.blocked": "차단됨",
   "prompt.action.sandbox.network.allowed": "허용됨",
   "prompt.action.sandbox.unrestricted": "제한 없음",
-  "prompt.action.sandbox.description.enabled": "쓰기는 프로젝트 및 Kilo 디렉터리로 제한됩니다.",
+  "prompt.action.sandbox.description.enabled": "쓰기는 프로젝트 및 BharatCode 디렉터리로 제한됩니다.",
   "prompt.action.sandbox.description.escalation":
     "권한 규칙과 자동 승인은 샌드박스 안에서 적용됩니다. 샌드박스를 벗어나야 하는 명령은 항상 확인합니다.",
   "prompt.action.sandbox.description.disabled": "클릭하면 파일 시스템 쓰기와 네트워크 액세스를 제한합니다.",
@@ -259,7 +259,7 @@ export const dict = {
   "speechToText.tooltip.transcribing": "변환 중... 취소하려면 클릭하세요.",
   "speechToText.tooltip.error": "음성 입력에 실패했습니다. 지우려면 클릭하세요.",
   "speechToText.error.title": "음성 입력 실패",
-  "speechToText.error.loginRequired": "음성 입력을 사용하려면 Kilo에 로그인하세요.",
+  "speechToText.error.loginRequired": "음성 입력을 사용하려면 BharatCode에 로그인하세요.",
   "speechToText.error.emptyTranscript": "음성이 감지되지 않았습니다.",
 
   "prompt.toast.promptSendFailed.title": "프롬프트 전송 실패",
@@ -296,7 +296,7 @@ export const dict = {
     "이 명령에만 적용되며, 파일 시스템 및 네트워크 제한을 해제하고 명령 전체를 실행합니다. Git은 .git에 기록해야 하며, 이 경로는 샌드박스에서 읽기 전용이고 연결된 worktree에서는 해당 worktree 밖에 있습니다. Bash 허용 규칙과 자동 승인은 이 프롬프트를 자동으로 승인하지 않습니다.",
   "ui.permission.manageAutoApprove": "자동 승인 규칙 관리",
   "ui.permission.reject": "거부",
-  "ui.permission.feedbackPlaceholder": "Kilo가 다르게 하길 원하는 내용을 알려주세요",
+  "ui.permission.feedbackPlaceholder": "BharatCode가 다르게 하길 원하는 내용을 알려주세요",
   "ui.permission.feedbackHint": "Enter로 거부, Esc로 취소",
   "ui.permission.doomLoop.prompt": "{{tool}} 도구에서 잠재적인 반복 실행이 감지되었습니다. 계속 실행하시겠습니까?",
   "ui.permission.doomLoop.rule": "{{tool}} 호출 계속",
@@ -342,7 +342,7 @@ export const dict = {
   "session.messages.loadEarlier": "이전 메시지 로드",
   "session.messages.loading": "메시지 로드 중...",
 
-  "sidebar.topBar.label": "Kilo Code 탐색",
+  "sidebar.topBar.label": "BharatCode 탐색",
   "sidebar.topBar.newTask": "새 작업",
   "sidebar.topBar.history": "기록",
   "sidebar.topBar.agentManager": "에이전트 관리자",
@@ -452,7 +452,7 @@ export const dict = {
     "task-tool 하위 에이전트의 기본 모델 및 추론 수준입니다. 호출하는 에이전트의 모델을 상속하려면 비워 두세요.",
   "settings.models.hidePromptTraining.title": "프롬프트를 학습에 사용하는 모델 숨기기",
   "settings.models.hidePromptTraining.description":
-    "제공업체가 사용자의 프롬프트를 학습에 사용할 수 있는 Kilo Gateway 모델을 숨깁니다.",
+    "제공업체가 사용자의 프롬프트를 학습에 사용할 수 있는 BharatCode Gateway 모델을 숨깁니다.",
   "settings.providers.modeModels": "모드별 모델",
   "settings.providers.modeModels.description":
     "특정 모드의 기본 모델을 재정의합니다. 설정하지 않으면 전역 기본 모델이 사용됩니다.",
@@ -521,11 +521,11 @@ export const dict = {
   "settings.config.status.loadedLegacy": "레거시 구성 로드됨",
   "settings.config.status.notLoaded": "로드되지 않음",
   "settings.config.status.create": "찾을 수 없음 - 이 파일 만들기",
-  "settings.config.title": "{{scope}} Kilo 구성 파일 열기",
+  "settings.config.title": "{{scope}} BharatCode 구성 파일 열기",
   "settings.config.placeholder":
     "구성 파일은 순서대로 병합됩니다. 로드됨으로 표시된 파일이 현재 설정에 영향을 미칩니다.",
-  "settings.config.noWorkspace": "로컬 Kilo 구성 파일을 편집하려면 작업 영역 폴더를 엽니다.",
-  "settings.config.openFailed": "{{scope}} Kilo 구성 파일을 열지 못했습니다: {{message}}",
+  "settings.config.noWorkspace": "로컬 BharatCode 구성 파일을 편집하려면 작업 영역 폴더를 엽니다.",
+  "settings.config.openFailed": "{{scope}} BharatCode 구성 파일을 열지 못했습니다: {{message}}",
   "settings.config.source.xdg": "XDG 글로벌 구성",
   "settings.config.source.homeKilo": "Home .kilo 구성",
   "settings.config.source.homeKilocode": "Home .kilocode 구성",
@@ -585,7 +585,7 @@ export const dict = {
   "feedback.dialog.github": "GitHub에 이슈 보고하기",
   "feedback.dialog.discord": "Discord 커뮤니티 참여하기",
   "feedback.dialog.support": "고객 지원",
-  "workStyle.onboarding.welcome": "Kilo에 오신 것을 환영합니다",
+  "workStyle.onboarding.welcome": "BharatCode에 오신 것을 환영합니다",
   "workStyle.onboarding.title": "원하는 작업 방식을 선택하세요",
   "workStyle.onboarding.settingsNote": "이 옵션은 언제든지 다음에서 변경할 수 있습니다:",
   "workStyle.onboarding.settings": "설정.",
@@ -595,7 +595,7 @@ export const dict = {
   "workStyle.choice.visibility": "표시",
   "workStyle.choice.human-in-the-loop.eyebrow": "사용자 검토 포함",
   "workStyle.choice.human-in-the-loop.title": "먼저 검토",
-  "workStyle.choice.human-in-the-loop.description": "Kilo가 작업 중에 잠시 멈추고 계획을 보여줍니다.",
+  "workStyle.choice.human-in-the-loop.description": "BharatCode가 작업 중에 잠시 멈추고 계획을 보여줍니다.",
   "workStyle.choice.human-in-the-loop.permissions": "파일을 편집하거나 명령을 실행하기 전에 권한을 요청합니다.",
   "workStyle.choice.human-in-the-loop.bash": "모든 터미널 명령 실행 시 권한 요청",
   "workStyle.choice.human-in-the-loop.visibility": "검토할 수 있도록 추론, 명령, 편집을 펼칩니다.",
@@ -616,7 +616,7 @@ export const dict = {
   "deviceAuth.toast.codeCopied": "코드가 클립보드에 복사되었습니다",
   "deviceAuth.toast.errorCopied": "오류가 클립보드에 복사되었습니다",
   "deviceAuth.status.initiating": "로그인 시작 중...",
-  "deviceAuth.title": "Kilo Code에 로그인",
+  "deviceAuth.title": "BharatCode에 로그인",
   "deviceAuth.step1": "1단계: 이 URL을 여세요",
   "deviceAuth.action.copyUrl": "URL 복사",
   "deviceAuth.action.openBrowser": "브라우저 열기",
@@ -639,7 +639,7 @@ export const dict = {
 
   "profile.title": "프로필",
   "profile.notLoggedIn": "로그인하지 않음",
-  "profile.action.login": "Kilo Code로 로그인",
+  "profile.action.login": "BharatCode로 로그인",
   "profile.balance.title": "잔액",
   "profile.balance.refresh": "잔액 새로고침",
   "profile.usage.title": "요금제 및 사용량",
@@ -655,7 +655,7 @@ export const dict = {
   "profile.usage.plan.unknown": "요금제: 상태 알 수 없음",
   "profile.usage.action.manage": "관리",
   "profile.usage.action.managePlan": "{{plan}} 관리",
-  "profile.usage.routing": "요금제 결제가 활성화되어 있습니다. Kilo Gateway 라우팅은 {{state}}입니다.",
+  "profile.usage.routing": "요금제 결제가 활성화되어 있습니다. BharatCode Gateway 라우팅은 {{state}}입니다.",
   "profile.usage.routingState.disabled": "비활성화 상태",
   "profile.usage.routingState.missing": "누락된 상태",
   "profile.usage.routingState.replaced": "대체된 상태",
@@ -681,11 +681,11 @@ export const dict = {
   "profile.usage.status.exhausted": "소진됨",
   "profile.action.dashboard": "대시보드",
   "profile.action.topUp": "충전",
-  "profile.pass.subscribe": "Kilo Pass를 구독하여 크레딧을 추가하고 보너스를 받으세요",
+  "profile.pass.subscribe": "BharatCode Pass를 구독하여 크레딧을 추가하고 보너스를 받으세요",
   "profile.pass.bonus": "보너스",
   "profile.pass.usage": "이번 달 사용량",
   "profile.pass.paid": "유료",
-  "profile.pass.meter": "Kilo Pass 월간 사용량",
+  "profile.pass.meter": "BharatCode Pass 월간 사용량",
   "profile.pass.renews": "갱신",
   "profile.action.logout": "로그아웃",
 
@@ -707,7 +707,7 @@ export const dict = {
 
   "settings.experimental.title": "실험적",
   "settings.language.title": "언어",
-  "settings.aboutKiloCode.title": "Kilo Code 정보",
+  "settings.aboutKiloCode.title": "BharatCode 정보",
 
   "prompt.action.indexing": "인덱싱 설정",
   "settings.indexing.dimension.description": "비워두면 모델에서 임베딩 차원을 자동으로 감지합니다.",
@@ -729,10 +729,10 @@ export const dict = {
   "settings.indexing.model.description": "선택한 공급자의 기본 임베딩 모델을 재정의합니다.",
   "settings.indexing.model.title": "임베딩 모델",
   "settings.indexing.provider.description": "의미 검색을 위한 임베딩 생성에 사용할 공급자를 선택하세요.",
-  "settings.indexing.kiloModel.title": "Kilo 모델 프리셋",
-  "settings.indexing.kiloModel.description": "지원되는 Kilo 호스팅 임베딩 모델을 선택하세요.",
-  "settings.indexing.kiloSignIn.title": "Kilo 로그인이 필요합니다",
-  "settings.indexing.kiloSignIn.description": "호스팅 임베딩을 사용하려면 Kilo에 로그인하세요.",
+  "settings.indexing.kiloModel.title": "BharatCode 모델 프리셋",
+  "settings.indexing.kiloModel.description": "지원되는 BharatCode 호스팅 임베딩 모델을 선택하세요.",
+  "settings.indexing.kiloSignIn.title": "BharatCode 로그인이 필요합니다",
+  "settings.indexing.kiloSignIn.description": "호스팅 임베딩을 사용하려면 BharatCode에 로그인하세요.",
   "settings.indexing.provider.title": "임베딩 공급자",
   "settings.indexing.providerField.description": "공급자별 연결 설정.",
   "settings.indexing.qdrantApiKey.description": "Qdrant 인스턴스에 대한 선택적 API 키입니다.",
@@ -751,7 +751,7 @@ export const dict = {
   "settings.indexing.vectorStore.title": "벡터 저장소",
 
   "session.messages.welcome":
-    "Kilo Code는 AI 코딩 어시스턴트입니다. 기능 구축, 버그 수정 또는 코드베이스 설명을 요청하세요.",
+    "BharatCode는 AI 코딩 어시스턴트입니다. 기능 구축, 버그 수정 또는 코드베이스 설명을 요청하세요.",
   "session.messages.scrollToBottom": "하단으로 스크롤",
   "session.messages.initializing": "초기화 중...",
   "session.messages.taskStarting": "시작 중...",
@@ -793,7 +793,7 @@ export const dict = {
   "ui.sessionTurn.status.consideringNextSteps": "다음 단계 고려 중...",
 
   "dialog.model.noProviders": "공급자 없음",
-  "dialog.model.unavailable": "Kilo 모델을 사용할 수 없음",
+  "dialog.model.unavailable": "BharatCode 모델을 사용할 수 없음",
 
   "prompt.placeholder.connecting": "서버에 연결 중...",
   "prompt.placeholder.error": "연결에 실패했습니다. 출력 패널을 확인하거나 확장 프로그램을 다시 시작하세요.",
@@ -835,10 +835,10 @@ export const dict = {
   "settings.aboutKiloCode.importSettings": "가져오기",
   "settings.aboutKiloCode.importSettings.invalidJson":
     "유효하지 않은 JSON 파일입니다. 올바른 설정 파일을 선택해 주세요.",
-  "settings.aboutKiloCode.importSettings.invalidConfig": "파일에 유효한 Kilo 설정이 포함되어 있지 않습니다.",
+  "settings.aboutKiloCode.importSettings.invalidConfig": "파일에 유효한 BharatCode 설정이 포함되어 있지 않습니다.",
   "settings.aboutKiloCode.importSettings.tooLarge": "파일이 너무 큽니다. 설정 파일은 1 MB 이하여야 합니다.",
   "settings.aboutKiloCode.importSettings.newerVersion":
-    "이 파일은 더 최신 버전의 Kilo에서 내보낸 것입니다. 일부 설정이 무시될 수 있습니다.",
+    "이 파일은 더 최신 버전의 BharatCode에서 내보낸 것입니다. 일부 설정이 무시될 수 있습니다.",
   "settings.aboutKiloCode.importSettings.success": "설정을 가져왔습니다. 위의 변경 사항을 확인한 후 저장을 클릭하세요.",
 
   "settings.aboutKiloCode.telemetry.title": "원격 측정",
@@ -853,7 +853,7 @@ export const dict = {
   "settings.agentBehaviour.subtab.skills": "스킬",
 
   "settings.browser.description":
-    "Playwright 기반의 내장 브라우저 자동화를 구성합니다. Kilo는 세션에서 웹 페이지를 탐색하고 상호 작용하며 스크린샷을 찍을 수 있습니다.",
+    "Playwright 기반의 내장 브라우저 자동화를 구성합니다. BharatCode는 세션에서 웹 페이지를 탐색하고 상호 작용하며 스크린샷을 찍을 수 있습니다.",
   "settings.browser.enable.title": "브라우저 자동화 활성화",
   "settings.browser.enable.description":
     "로컬 애플리케이션과 공개 HTTPS 페이지를 위한 세션별 Agent Manager 브라우저를 활성화합니다.",
@@ -862,7 +862,7 @@ export const dict = {
   "settings.browser.headless.title": "헤드리스 모드",
   "settings.browser.headless.description": "헤드리스 모드로 실행합니다 (브라우저 창이 표시되지 않음).",
 
-  "settings.language.description": 'Kilo Code UI의 언어를 선택하세요. "자동"은 VS Code 표시 언어를 사용합니다.',
+  "settings.language.description": 'BharatCode UI의 언어를 선택하세요. "자동"은 VS Code 표시 언어를 사용합니다.',
   "settings.language.auto": "자동 (VS Code 언어)",
   "settings.language.current": "현재:",
 
@@ -881,10 +881,10 @@ export const dict = {
     "세션이 완료되거나 오류가 발생하거나 사용자 입력이 필요할 때 소리를 재생합니다",
   "settings.notifications.workbench.title": "VS Code 알림 활성화",
   "settings.notifications.workbench.description":
-    "Kilo가 작업을 완료하거나 사용자 입력이 필요할 때 VS Code 알림을 표시합니다",
+    "BharatCode가 작업을 완료하거나 사용자 입력이 필요할 때 VS Code 알림을 표시합니다",
   "settings.notifications.os.title": "OS 알림 활성화",
   "settings.notifications.os.description":
-    "VS Code가 활성화되어 있지 않을 때 Kilo가 작업을 완료하거나 사용자 입력이 필요하면 기본 운영 체제 알림을 표시합니다.",
+    "VS Code가 활성화되어 있지 않을 때 BharatCode가 작업을 완료하거나 사용자 입력이 필요하면 기본 운영 체제 알림을 표시합니다.",
   "settings.notifications.testSound": "테스트",
   "settings.notifications.testOS": "테스트",
   "settings.notifications.testOS.testing": "테스트 알림을 보내는 중…",
@@ -907,7 +907,7 @@ export const dict = {
   "settings.experimental.batch.description": "여러 도구 호출의 배치 처리 활성화",
   "settings.experimental.imageGeneration.title": "이미지 생성",
   "settings.experimental.imageGeneration.description": "AI 이미지 생성 활성화",
-  "settings.agentBehaviour.sharedAgentBoard.title": "Kilo Swarm",
+  "settings.agentBehaviour.sharedAgentBoard.title": "BharatCode Swarm",
   "settings.agentBehaviour.sharedAgentBoard.description":
     "메인 세션과 해당 세션의 작업을 맡은 하위 에이전트(중첩된 하위 에이전트 포함)가 보드를 공유합니다. 모든 작업에 사용하지 말고, 해결책을 병렬로 시도하거나 서로 보완하는 작업을 수행할 때 사용하세요.",
   "settings.experimental.imageGenerationModel.title": "이미지 모델",
@@ -919,18 +919,18 @@ export const dict = {
   "settings.models.speechToTextModel.customPlaceholder": "whisper-1",
   "settings.models.speechToTextBaseUrl.title": "음성 텍스트 변환 기본 URL",
   "settings.models.speechToTextBaseUrl.description":
-    "Kilo Gateway 대신 OpenAI 호환 변환 API를 사용합니다. 모델은 /models에서 읽고 오디오는 /audio/transcriptions로 전송됩니다. 비워 두면 Kilo Gateway를 사용합니다.",
+    "BharatCode Gateway 대신 OpenAI 호환 변환 API를 사용합니다. 모델은 /models에서 읽고 오디오는 /audio/transcriptions로 전송됩니다. 비워 두면 BharatCode Gateway를 사용합니다.",
   "settings.models.speechToTextBaseUrl.placeholder": "https://api.openai.com/v1",
   "settings.models.speechToTextApiKey.title": "음성 텍스트 변환 API 키",
   "settings.models.speechToTextApiKey.description":
-    "사용자 지정 변환 기본 URL로 전송되는 베어러 토큰입니다. Kilo 설정 파일에 저장됩니다.",
+    "사용자 지정 변환 기본 URL로 전송되는 베어러 토큰입니다. BharatCode 설정 파일에 저장됩니다.",
   "settings.models.speechToTextApiKey.placeholder": "sk-...",
   "settings.models.speechToText.disabledDescription":
-    "Speech to Text를 사용하려면 Kilo 제공자를 활성화하고 로그인하거나, 아래에서 사용자 지정 변환 기본 URL을 설정하세요.",
+    "Speech to Text를 사용하려면 BharatCode 제공자를 활성화하고 로그인하거나, 아래에서 사용자 지정 변환 기본 URL을 설정하세요.",
   "settings.models.speechToText.remoteDescription":
-    "음성 입력은 원격 창에서 사용할 수 없습니다. 마이크를 사용하려면 로컬 창에서 Kilo를 여세요.",
+    "음성 입력은 원격 창에서 사용할 수 없습니다. 마이크를 사용하려면 로컬 창에서 BharatCode를 여세요.",
   "settings.models.speechToTextModel.title": "음성 텍스트 변환 모델",
-  "settings.models.speechToTextModel.description": "음성 입력에 사용할 Kilo Gateway 변환 모델을 선택하세요.",
+  "settings.models.speechToTextModel.description": "음성 입력에 사용할 BharatCode Gateway 변환 모델을 선택하세요.",
   "settings.experimental.nativeNotebookTools.title": "네이티브 노트북 도구",
   "settings.experimental.nativeNotebookTools.description":
     "VS Code 노트북을 읽고, 편집하고, 실행하는 실험적 도구를 활성화합니다",
@@ -957,7 +957,7 @@ export const dict = {
   "settings.experimental.mcpTimeout.description": "MCP 서버 요청의 타임아웃 시간 (밀리초)",
   "settings.experimental.remote.title": "Remote 제어",
   "settings.experimental.remote.description":
-    "Kilo Cloud를 통한 세션의 Remote 제어를 활성화합니다. 이는 이 컴퓨터의 CLI에도 영향을 미칩니다.",
+    "BharatCode Cloud를 통한 세션의 Remote 제어를 활성화합니다. 이는 이 컴퓨터의 CLI에도 영향을 미칩니다.",
   "settings.experimental.remote.current": "현재 상태:",
   "settings.experimental.remote.startup": "시작 시 자동 활성화:",
   "settings.experimental.remote.active": "활성",
@@ -1048,7 +1048,7 @@ export const dict = {
   "settings.agentBehaviour.editMcp.env.help": "MCP 서버 프로세스에 전달되는 변수입니다.",
   "settings.agentBehaviour.editMcp.oauth": "OAuth",
   "settings.agentBehaviour.editMcp.oauth.help":
-    "서버가 사전 등록된 클라이언트를 요구하지 않는 한 자동으로 두세요. 클라이언트 시크릿은 Kilo 설정 파일에 저장됩니다.",
+    "서버가 사전 등록된 클라이언트를 요구하지 않는 한 자동으로 두세요. 클라이언트 시크릿은 BharatCode 설정 파일에 저장됩니다.",
   "settings.agentBehaviour.editMcp.oauth.mode": "모드",
   "settings.agentBehaviour.editMcp.oauth.mode.automatic": "자동",
   "settings.agentBehaviour.editMcp.oauth.mode.disabled": "사용 안 함",
@@ -1088,7 +1088,7 @@ export const dict = {
   "settings.agentBehaviour.claudeCompat.heading": "Claude Code 호환성",
   "settings.agentBehaviour.claudeCompat.title": "Claude Code 파일 로드",
   "settings.agentBehaviour.claudeCompat.description":
-    "Claude Code 설정 디렉터리에서 세션으로 CLAUDE.md 지침 및 스킬을 로드합니다. Kilo가 Claude Code 지침 및 스킬을 사용하게 하려면 활성화하세요. 다시 시작해야 합니다.",
+    "Claude Code 설정 디렉터리에서 세션으로 CLAUDE.md 지침 및 스킬을 로드합니다. BharatCode가 Claude Code 지침 및 스킬을 사용하게 하려면 활성화하세요. 다시 시작해야 합니다.",
   "settings.agentBehaviour.mcpDetail.command": "명령어",
   "settings.agentBehaviour.mcpDetail.args": "인수",
   "settings.agentBehaviour.mcpDetail.env": "환경",
@@ -1115,7 +1115,7 @@ export const dict = {
     "각 MCP 도구를 직접 노출하는 대신 주문형 도구 검색을 지원하는 격리된 JavaScript 런타임을 통해 MCP 도구 호출을 라우팅합니다. 많은 MCP 도구가 연결되어 있을 때 컨텍스트를 절약합니다.",
   "settings.sandboxing.enabled.title": "샌드박스",
   "settings.sandboxing.enabled.description":
-    "에이전트 셸 명령을 프로젝트 및 Kilo 상태 디렉터리에 대한 쓰기를 제한하는 OS 수준의 샌드박스 내에서 실행",
+    "에이전트 셸 명령을 프로젝트 및 BharatCode 상태 디렉터리에 대한 쓰기를 제한하는 OS 수준의 샌드박스 내에서 실행",
 
   "settings.autoApprove.description":
     "도구 실행 허용 방식을 정의합니다. 대부분의 도구 기본값은 '허용'입니다. doom_loop 및 external_directory의 기본값은 '확인'입니다.",
@@ -1153,7 +1153,7 @@ export const dict = {
   "settings.checkpoints.enable.description": "파일 편집 전 체크포인트를 생성하여 이전 상태를 복원할 수 있습니다",
   "settings.autoCleanup.enable.title": "자동 세션 정리 활성화",
   "settings.autoCleanup.enable.description":
-    "정해진 일 수가 지나면 오래된 세션 기록을 자동으로 삭제합니다. 이 컴퓨터의 모든 프로젝트와 모든 Kilo 클라이언트가 대상이며 이 창만이 아닙니다. 실행 중인 세션과 최근 분기가 있는 세션은 절대 삭제되지 않습니다. 삭제는 영구적입니다.",
+    "정해진 일 수가 지나면 오래된 세션 기록을 자동으로 삭제합니다. 이 컴퓨터의 모든 프로젝트와 모든 BharatCode 클라이언트가 대상이며 이 창만이 아닙니다. 실행 중인 세션과 최근 분기가 있는 세션은 절대 삭제되지 않습니다. 삭제는 영구적입니다.",
   "settings.autoCleanup.defaultRetention.title": "세션 보관 기간(일)",
   "settings.autoCleanup.defaultRetention.description": "자동 정리가 세션 기록을 삭제하기 전까지 보관하는 기간입니다.",
   "settings.autoCleanup.lastRun.title": "마지막 정리",
@@ -1170,7 +1170,7 @@ export const dict = {
     "세션 삭제 중: {{processed}}/{{total}}개 처리됨({{deleted}}개 삭제, {{failed}}개 실패)",
   "settings.autoCleanup.runNow": "지금 정리 실행",
   "settings.autoCleanup.runNow.confirm":
-    "이 컴퓨터의 모든 프로젝트와 모든 Kilo 클라이언트에 걸쳐 만료된 세션을 영구적으로 삭제할까요?",
+    "이 컴퓨터의 모든 프로젝트와 모든 BharatCode 클라이언트에 걸쳐 만료된 세션을 영구적으로 삭제할까요?",
   "settings.autoCleanup.stop": "정리 중지",
   "settings.autoCleanup.progress.cancelling": "세션 정리를 중지하는 중...",
   "settings.autoCleanup.lastRun.cancelled": "중단됨",
@@ -1203,7 +1203,8 @@ export const dict = {
   "settings.context.memory.storage.enable": "Enable memory to create project memory files.",
   "settings.context.memory.inspect": "검사",
   "chat.memory.project.disabled": "프로젝트 메모리 비활성화됨",
-  "chat.memory.project.empty": "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+  "chat.memory.project.empty":
+    "This project doesn't have any memory yet. It will start showing after you use BharatCode.",
   "chat.memory.command.failed": "메모리 명령 실패",
   "chat.memory.updated": "Memory updated",
   "chat.memory.rebuild": "Memory index rebuilt",
@@ -1237,7 +1238,7 @@ export const dict = {
   "settings.display.username.title": "사용자 이름",
   "settings.display.username.description": "대화에 표시되는 사용자 정의 사용자 이름",
   "settings.display.fontSize.title": "글꼴 크기",
-  "settings.display.fontSize.description": "VS Code와 독립적으로 Kilo webview UI 글꼴 크기를 조정합니다.",
+  "settings.display.fontSize.description": "VS Code와 독립적으로 BharatCode webview UI 글꼴 크기를 조정합니다.",
   "settings.display.reasoningDisplay.title": "추론 블록",
   "settings.display.reasoningDisplay.description":
     "추론 블록의 시작 표시 방식을 선택합니다. 펼침은 전체 텍스트를 표시하고, 미리보기는 짧은 스크롤 미리보기로 제한하며, 헤드라인은 열기 전까지 제목과 스트리밍 표시기만 표시합니다.",
@@ -1383,7 +1384,7 @@ export const dict = {
     "작업 트리에서 수정되었지만 아직 스테이징되지 않은 파일과 추적되지 않는(새) 파일입니다.",
   "diffViewer.source.session.label": "세션",
   "diffViewer.source.session.tooltip":
-    "현재 세션 동안 Kilo가 변경한 파일로, 턴별 스냅샷을 기반으로 합니다. 새 세션을 시작하면 초기화됩니다.",
+    "현재 세션 동안 BharatCode가 변경한 파일로, 턴별 스냅샷을 기반으로 합니다. 새 세션을 시작하면 초기화됩니다.",
   "diffViewer.group.session": "세션",
   "diffViewer.group.git": "Git",
   "diffViewer.comment.postToGithub": "GitHub에 게시",
@@ -1393,7 +1394,7 @@ export const dict = {
   "diffViewer.comment.openPR": "풀 리퀘스트 열기",
   "diffViewer.comment.localChanges": "로컬 변경 사항",
   "diffViewer.comment.prChanges": "PR 변경 사항",
-  "diffViewer.comment.sendToKilo": "Kilo로 보내기",
+  "diffViewer.comment.sendToKilo": "BharatCode로 보내기",
   "diffViewer.comment.sendToGithub": "GitHub #{{number}}로 보내기",
   "diffViewer.comment.chooseDestination": "대상 선택",
   "diffViewer.notice.snapshotsDisabled":
@@ -1425,10 +1426,10 @@ export const dict = {
     "통합 브라우저에 설치된 Google Chrome을 사용합니다. 호환되는 Playwright Chromium 브라우저가 이미 설치된 경우에만 비활성화하세요.",
   "settings.experimental.browserLinks.title": "링크 열기 위치",
   "settings.experimental.browserLinks.description":
-    "Kilo 채팅에서 웹 링크를 여는 위치를 선택합니다. 통합 브라우저가 필요합니다.",
+    "BharatCode 채팅에서 웹 링크를 여는 위치를 선택합니다. 통합 브라우저가 필요합니다.",
   "settings.experimental.browserLinks.external": "시스템 브라우저",
   "settings.experimental.browserLinks.integrated": "통합 브라우저",
   "chat.search.searchingHistory": "이전 메시지를 검색하는 중…",
   "browserTab.noSession": "세션에서 브라우저를 열어 로컬 애플리케이션이나 공개 HTTPS 페이지를 미리 보세요.",
-  "browserTab.disabled": "통합 브라우저가 비활성화되어 있습니다. Kilo 설정 > 실험에서 활성화하세요.",
+  "browserTab.disabled": "통합 브라우저가 비활성화되어 있습니다. BharatCode 설정 > 실험에서 활성화하세요.",
 }

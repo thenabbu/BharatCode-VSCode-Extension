@@ -14,7 +14,7 @@ export async function executeVscodeTask(config: SetupTaskConfig): Promise<number
     env: config.env,
   })
   const identity = setupTaskIdentity(config)
-  const task = new vscode.Task(identity.definition, vscode.TaskScope.Workspace, identity.name, "Kilo Code", proc, [])
+  const task = new vscode.Task(identity.definition, vscode.TaskScope.Workspace, identity.name, "BharatCode", proc, [])
   task.presentationOptions = {
     reveal: vscode.TaskRevealKind.Always,
     panel: vscode.TaskPanelKind.Dedicated,

@@ -5,7 +5,7 @@ export const dict = {
   "mcp.signIn.unsupported": "{{name}} ไม่รองรับการลงชื่อเข้าใช้ด้วย OAuth",
   "mcp.signIn.notFound": "ไม่พบเซิร์ฟเวอร์ MCP {{name}}",
   "mcp.auth.browserFailed":
-    "Kilo ไม่สามารถเปิดเบราว์เซอร์สำหรับ {{name}} ได้ โปรดเปิด URL การอนุญาตบนเครื่องที่รัน Kilo เพื่อลงชื่อเข้าใช้ให้เสร็จสมบูรณ์",
+    "BharatCode ไม่สามารถเปิดเบราว์เซอร์สำหรับ {{name}} ได้ โปรดเปิด URL การอนุญาตบนเครื่องที่รัน BharatCode เพื่อลงชื่อเข้าใช้ให้เสร็จสมบูรณ์",
   "mcp.auth.browserFailed.open": "เปิดในเบราว์เซอร์",
   "mcp.auth.browserFailed.copy": "คัดลอก URL",
   "mcp.auth.resetFailed": "ไม่สามารถล้างการลงชื่อเข้าใช้ที่บันทึกไว้สำหรับ {{name}} ได้",

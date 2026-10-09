@@ -22,7 +22,9 @@ export async function routeInputToolMessage(message: Msg, ctx: Ctx): Promise<boo
   if (await routeAutocompleteMessage(message, ctx.post)) return true
 
   if (message.type === "speechToTextPrewarm") {
-    void prewarmSpeechCapture().catch((err: unknown) => console.warn("[Kilo New] Speech capture prewarm failed:", err))
+    void prewarmSpeechCapture().catch((err: unknown) =>
+      console.warn("[BharatCode] Speech capture prewarm failed:", err),
+    )
     return true
   }
 

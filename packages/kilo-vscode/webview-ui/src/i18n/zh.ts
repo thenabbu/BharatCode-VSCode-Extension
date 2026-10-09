@@ -16,13 +16,13 @@ export const anacondaDesktopDict = {
   "provider.anaconda.status.unavailable": "不可用",
   "provider.anaconda.state.unsupported": "{{platform}} 不支持 Anaconda Desktop。",
   "provider.anaconda.state.notInstalled":
-    "请在此设备上安装 Anaconda Desktop，然后返回此处。Kilo 不会为你运行安装程序。",
+    "请在此设备上安装 Anaconda Desktop，然后返回此处。BharatCode 不会为你运行安装程序。",
   "provider.anaconda.state.notRunning": "请打开 Anaconda Desktop，完成设置并登录，然后选择“再次检查”。",
   "provider.anaconda.state.invalidConfig":
     "Anaconda Desktop 设置不完整。请打开 Desktop，完成设置，并在需要时重新启动它。",
-  "provider.anaconda.state.signedOut": "请打开 Anaconda Desktop 并登录，然后再连接 Kilo。",
+  "provider.anaconda.state.signedOut": "请打开 Anaconda Desktop 并登录，然后再连接 BharatCode。",
   "provider.anaconda.state.unauthorized":
-    "Kilo 无法访问 Anaconda Desktop。请打开 Desktop，重新登录，并在需要时重新启动它。",
+    "BharatCode 无法访问 Anaconda Desktop。请打开 Desktop，重新登录，并在需要时重新启动它。",
   "provider.anaconda.state.unavailable": "Anaconda Desktop 尚未响应。请打开它并等待应用程序完成启动。",
   "provider.anaconda.state.noModel":
     "请在 Anaconda Desktop 中下载一个文本生成模型。请尽可能选择支持工具调用的模型，然后启动其服务器。",
@@ -32,7 +32,7 @@ export const anacondaDesktopDict = {
     "有 {{count}} 个已下载的文本生成模型可用。请在 Anaconda Desktop 中启动一个模型服务器。强烈建议使用支持工具调用的模型。",
   "provider.anaconda.state.unhealthy":
     "当前推理服务器尚不健康。请在 Anaconda Desktop 中检查它，并在需要时重新启动服务器。",
-  "provider.anaconda.state.ready": "Kilo 找到了一个健康的本地文本生成服务器，可以导入其当前的连接设置。",
+  "provider.anaconda.state.ready": "BharatCode 找到了一个健康的本地文本生成服务器，可以导入其当前的连接设置。",
   "provider.anaconda.server": "当前推理服务器",
   "provider.anaconda.context": "上下文窗口",
   "provider.anaconda.contextValue": "{{count}} 个 token",
@@ -49,7 +49,7 @@ export const anacondaDesktopDict = {
   "provider.anaconda.action.continue": "仍然继续",
   "provider.anaconda.action.manage": "管理 / 刷新",
   "provider.anaconda.toast.refreshed.title": "Anaconda Desktop 已刷新",
-  "provider.anaconda.toast.refreshed.description": "当前本地服务器和模型在 Kilo 中已是最新。",
+  "provider.anaconda.toast.refreshed.description": "当前本地服务器和模型在 BharatCode 中已是最新。",
   "settings.providers.note.anacondaDesktop": "运行由 Anaconda Desktop 在本地提供的模型。",
   "settings.providers.tag.local": "本地",
 } as const
@@ -92,7 +92,7 @@ export const dict = {
   "revert.banner.workspace.legacy": "会话已还原。此次早期还原的工作区恢复状态不可用。",
   "revert.banner.workspace.enableSnapshots": "启用快照",
   "revert.disabled.agentBusy": "等待智能体完成",
-  "revert.error.body": "仓库可能正在使用中。请重试，或查看 Kilo 日志了解详情。",
+  "revert.error.body": "仓库可能正在使用中。请重试，或查看 BharatCode 日志了解详情。",
   "command.session.compact": "精简会话",
   "command.session.export": "导出会话记录",
 
@@ -117,7 +117,7 @@ export const dict = {
   "provider.connect.status.waiting": "等待授权...",
   "provider.connect.status.failed": "授权失败：{{error}}",
   "provider.connect.apiKey.description":
-    "输入你的 {{provider}} API 密钥以连接帐户，并在 Kilo 中使用 {{provider}} 模型。",
+    "输入你的 {{provider}} API 密钥以连接帐户，并在 BharatCode 中使用 {{provider}} 模型。",
   "provider.connect.apiKey.description.local":
     "Connect to your local {{provider}} server. Leave the API key empty if the server does not require one (default for localhost).",
   "provider.connect.atomicChat.description":
@@ -139,13 +139,14 @@ export const dict = {
   "provider.connect.azure.baseURL.placeholder": "例如：https://my-models.openai.azure.com/openai",
   "provider.connect.oauth.code.visit.prefix": "访问 ",
   "provider.connect.oauth.code.visit.link": "此链接",
-  "provider.connect.oauth.code.visit.suffix": " 获取授权码，以连接你的帐户并在 Kilo 中使用 {{provider}} 模型。",
+  "provider.connect.oauth.code.visit.suffix": " 获取授权码，以连接你的帐户并在 BharatCode 中使用 {{provider}} 模型。",
   "provider.connect.oauth.code.label": "{{method}} 授权码",
   "provider.connect.oauth.code.placeholder": "授权码",
   "provider.connect.oauth.code.required": "授权码为必填项",
   "provider.connect.oauth.auto.visit.prefix": "访问 ",
   "provider.connect.oauth.auto.visit.link": "此链接",
-  "provider.connect.oauth.auto.visit.suffix": " 并输入以下代码，以连接你的帐户并在 Kilo 中使用 {{provider}} 模型。",
+  "provider.connect.oauth.auto.visit.suffix":
+    " 并输入以下代码，以连接你的帐户并在 BharatCode 中使用 {{provider}} 模型。",
   "provider.connect.oauth.auto.confirmationCode": "确认码",
   "provider.connect.toast.connected.title": "{{provider}} 已连接",
   "provider.connect.toast.connected.description": "现在可以使用 {{provider}} 模型了。",
@@ -223,8 +224,8 @@ export const dict = {
     "'增强提示'按钮通过提供额外上下文、澄清或重新表述来帮助改进您的请求。尝试在此处输入请求，然后再次点击按钮查看其工作原理。",
   "prompt.action.sandbox.enable": "启用沙盒",
   "prompt.action.sandbox.disable": "禁用沙盒",
-  "prompt.action.sandbox.enabled": "沙盒已启用。代理 shell 命令被限制在项目和 Kilo 目录内。",
-  "prompt.action.sandbox.disabled": "沙盒已禁用。点击以将代理 shell 命令的写入限制在项目和 Kilo 目录内。",
+  "prompt.action.sandbox.enabled": "沙盒已启用。代理 shell 命令被限制在项目和 BharatCode 目录内。",
+  "prompt.action.sandbox.disabled": "沙盒已禁用。点击以将代理 shell 命令的写入限制在项目和 BharatCode 目录内。",
   "prompt.action.sandbox.status.enabled": "沙盒已启用",
   "prompt.action.sandbox.status.disabled": "沙盒已禁用",
   "prompt.action.sandbox.filesystem": "文件系统",
@@ -233,7 +234,7 @@ export const dict = {
   "prompt.action.sandbox.network.blocked": "已阻止",
   "prompt.action.sandbox.network.allowed": "允许",
   "prompt.action.sandbox.unrestricted": "不受限",
-  "prompt.action.sandbox.description.enabled": "写入仅限项目和 Kilo 目录。",
+  "prompt.action.sandbox.description.enabled": "写入仅限项目和 BharatCode 目录。",
   "prompt.action.sandbox.description.escalation": "权限规则和自动审批在沙盒内生效。必须离开沙盒的命令始终会询问。",
   "prompt.action.sandbox.description.disabled": "点击以限制文件系统写入和网络访问。",
   "prompt.action.sandbox.description.disabledNetworkAllowed":
@@ -246,7 +247,7 @@ export const dict = {
   "speechToText.tooltip.transcribing": "正在转录... 点击取消。",
   "speechToText.tooltip.error": "语音输入失败。点击清除。",
   "speechToText.error.title": "语音输入失败",
-  "speechToText.error.loginRequired": "登录 Kilo 以使用语音输入。",
+  "speechToText.error.loginRequired": "登录 BharatCode 以使用语音输入。",
   "speechToText.error.emptyTranscript": "未检测到语音。",
 
   "prompt.toast.promptSendFailed.title": "发送提示失败",
@@ -280,7 +281,7 @@ export const dict = {
     "这会移除文件系统和网络限制，运行整条命令，且仅限此命令。Git 必须写入 .git，该路径在沙盒中为只读，且在链接的 worktree 中位于该 worktree 之外。Bash 允许规则和自动审批永远不会自动批准此提示。",
   "ui.permission.manageAutoApprove": "管理自动审批规则",
   "ui.permission.reject": "拒绝",
-  "ui.permission.feedbackPlaceholder": "告诉 Kilo 应该如何修改",
+  "ui.permission.feedbackPlaceholder": "告诉 BharatCode 应该如何修改",
   "ui.permission.feedbackHint": "按 Enter 拒绝，按 Esc 取消",
   "ui.permission.doomLoop.prompt": "检测到 {{tool}} 工具可能陷入循环。是否继续运行？",
   "ui.permission.doomLoop.rule": "继续调用 {{tool}}",
@@ -326,7 +327,7 @@ export const dict = {
   "session.messages.loadEarlier": "加载更早的消息",
   "session.messages.loading": "正在加载消息...",
 
-  "sidebar.topBar.label": "Kilo Code 导航",
+  "sidebar.topBar.label": "BharatCode 导航",
   "sidebar.topBar.newTask": "新建任务",
   "sidebar.topBar.history": "历史记录",
   "sidebar.topBar.agentManager": "代理管理器",
@@ -427,10 +428,10 @@ export const dict = {
   "settings.indexing.projectEnable.description": "当全局索引关闭时，为此工作区启用索引。",
   "settings.indexing.provider.title": "嵌入提供商",
   "settings.indexing.provider.description": "选择用于生成语义搜索嵌入的提供商。",
-  "settings.indexing.kiloModel.title": "Kilo 模型预设",
-  "settings.indexing.kiloModel.description": "选择受支持的 Kilo 托管嵌入模型。",
-  "settings.indexing.kiloSignIn.title": "需要登录 Kilo",
-  "settings.indexing.kiloSignIn.description": "登录 Kilo 以使用托管嵌入。",
+  "settings.indexing.kiloModel.title": "BharatCode 模型预设",
+  "settings.indexing.kiloModel.description": "选择受支持的 BharatCode 托管嵌入模型。",
+  "settings.indexing.kiloSignIn.title": "需要登录 BharatCode",
+  "settings.indexing.kiloSignIn.description": "登录 BharatCode 以使用托管嵌入。",
   "settings.indexing.model.title": "嵌入模型",
   "settings.indexing.model.description": "覆盖所选提供商的默认嵌入模型。",
   "settings.indexing.vectorStore.title": "向量存储",
@@ -472,7 +473,8 @@ export const dict = {
   "settings.providers.subagentModel.title": "子代理模型",
   "settings.providers.subagentModel.description": "task-tool 子代理的默认模型和推理工作量。留空以继承调用代理的模型。",
   "settings.models.hidePromptTraining.title": "隐藏使用提示词训练的模型",
-  "settings.models.hidePromptTraining.description": "隐藏提供商可能会使用您的提示词进行训练的 Kilo Gateway 模型。",
+  "settings.models.hidePromptTraining.description":
+    "隐藏提供商可能会使用您的提示词进行训练的 BharatCode Gateway 模型。",
   "settings.providers.modeModels": "按模式选择模型",
   "settings.providers.modeModels.description": "为特定模式覆盖默认模型。如果未设置，将使用全局默认模型。",
   "provider.custom.title": "自定义提供商",
@@ -540,10 +542,10 @@ export const dict = {
   "settings.config.status.loadedLegacy": "已加载旧版配置",
   "settings.config.status.notLoaded": "未加载",
   "settings.config.status.create": "未找到 - 创建此文件",
-  "settings.config.title": "打开 {{scope}} Kilo 配置文件",
+  "settings.config.title": "打开 {{scope}} BharatCode 配置文件",
   "settings.config.placeholder": "配置文件按顺序合并；标记为已加载的文件目前会影响设置。",
-  "settings.config.noWorkspace": "打开工作区文件夹以编辑本地 Kilo 配置文件。",
-  "settings.config.openFailed": "无法打开 {{scope}} Kilo 配置文件：{{message}}",
+  "settings.config.noWorkspace": "打开工作区文件夹以编辑本地 BharatCode 配置文件。",
+  "settings.config.openFailed": "无法打开 {{scope}} BharatCode 配置文件：{{message}}",
   "settings.config.source.xdg": "XDG 全局配置",
   "settings.config.source.homeKilo": "主目录 .kilo 配置",
   "settings.config.source.homeKilocode": "主目录 .kilocode 配置",
@@ -603,7 +605,7 @@ export const dict = {
   "feedback.dialog.github": "在 GitHub 上报告问题",
   "feedback.dialog.discord": "加入我们的 Discord 社区",
   "feedback.dialog.support": "客户支持",
-  "workStyle.onboarding.welcome": "欢迎使用 Kilo",
+  "workStyle.onboarding.welcome": "欢迎使用 BharatCode",
   "workStyle.onboarding.title": "选择你想要的工作方式",
   "workStyle.onboarding.settingsNote": "你可以随时在以下位置更改这些选项：",
   "workStyle.onboarding.settings": "设置。",
@@ -613,7 +615,7 @@ export const dict = {
   "workStyle.choice.visibility": "可见性",
   "workStyle.choice.human-in-the-loop.eyebrow": "人工参与",
   "workStyle.choice.human-in-the-loop.title": "先审查",
-  "workStyle.choice.human-in-the-loop.description": "Kilo 会在工作过程中暂停并向你展示其计划。",
+  "workStyle.choice.human-in-the-loop.description": "BharatCode 会在工作过程中暂停并向你展示其计划。",
   "workStyle.choice.human-in-the-loop.permissions": "编辑文件或运行命令前会征求你的许可。",
   "workStyle.choice.human-in-the-loop.bash": "运行所有终端命令时请求权限",
   "workStyle.choice.human-in-the-loop.visibility": "展开推理、命令和编辑以供审查。",
@@ -634,7 +636,7 @@ export const dict = {
   "deviceAuth.toast.codeCopied": "代码已复制到剪贴板",
   "deviceAuth.toast.errorCopied": "错误已复制到剪贴板",
   "deviceAuth.status.initiating": "正在启动登录...",
-  "deviceAuth.title": "登录 Kilo Code",
+  "deviceAuth.title": "登录 BharatCode",
   "deviceAuth.step1": "步骤 1：打开此 URL",
   "deviceAuth.action.copyUrl": "复制 URL",
   "deviceAuth.action.openBrowser": "打开浏览器",
@@ -657,7 +659,7 @@ export const dict = {
 
   "profile.title": "个人资料",
   "profile.notLoggedIn": "未登录",
-  "profile.action.login": "使用 Kilo Code 登录",
+  "profile.action.login": "使用 BharatCode 登录",
   "profile.balance.title": "余额",
   "profile.balance.refresh": "刷新余额",
   "profile.usage.title": "套餐与用量",
@@ -673,7 +675,7 @@ export const dict = {
   "profile.usage.plan.unknown": "套餐：状态未知",
   "profile.usage.action.manage": "管理",
   "profile.usage.action.managePlan": "管理 {{plan}}",
-  "profile.usage.routing": "套餐账单处于有效状态。Kilo Gateway 路由状态为 {{state}}。",
+  "profile.usage.routing": "套餐账单处于有效状态。BharatCode Gateway 路由状态为 {{state}}。",
   "profile.usage.routingState.disabled": "已禁用",
   "profile.usage.routingState.missing": "缺失",
   "profile.usage.routingState.replaced": "已替换",
@@ -699,11 +701,11 @@ export const dict = {
   "profile.usage.status.exhausted": "已用尽",
   "profile.action.dashboard": "控制面板",
   "profile.action.topUp": "充值",
-  "profile.pass.subscribe": "订阅 Kilo Pass 以添加额度并赚取奖励",
+  "profile.pass.subscribe": "订阅 BharatCode Pass 以添加额度并赚取奖励",
   "profile.pass.bonus": "奖励",
   "profile.pass.usage": "本月用量",
   "profile.pass.paid": "付费",
-  "profile.pass.meter": "Kilo Pass 每月用量",
+  "profile.pass.meter": "BharatCode Pass 每月用量",
   "profile.pass.renews": "续订",
   "profile.action.logout": "退出登录",
 
@@ -725,9 +727,9 @@ export const dict = {
 
   "settings.experimental.title": "实验性功能",
   "settings.language.title": "语言",
-  "settings.aboutKiloCode.title": "关于 Kilo Code",
+  "settings.aboutKiloCode.title": "关于 BharatCode",
 
-  "session.messages.welcome": "Kilo Code 是一个 AI 编程助手。让它帮你构建功能、修复 bug 或解释代码库。",
+  "session.messages.welcome": "BharatCode 是一个 AI 编程助手。让它帮你构建功能、修复 bug 或解释代码库。",
   "session.messages.scrollToBottom": "滚动到底部",
   "session.messages.initializing": "初始化中...",
   "session.messages.taskStarting": "启动中...",
@@ -769,7 +771,7 @@ export const dict = {
   "ui.sessionTurn.status.consideringNextSteps": "正在考虑下一步...",
 
   "dialog.model.noProviders": "无供应商",
-  "dialog.model.unavailable": "Kilo 模型不可用",
+  "dialog.model.unavailable": "BharatCode 模型不可用",
 
   "prompt.placeholder.connecting": "正在连接服务器...",
   "prompt.placeholder.error": "连接失败。请检查输出面板或重启扩展。",
@@ -809,9 +811,9 @@ export const dict = {
   "settings.aboutKiloCode.exportSettings": "导出",
   "settings.aboutKiloCode.importSettings": "导入",
   "settings.aboutKiloCode.importSettings.invalidJson": "无效的 JSON 文件。请选择有效的设置文件。",
-  "settings.aboutKiloCode.importSettings.invalidConfig": "文件不包含有效的 Kilo 设置。",
+  "settings.aboutKiloCode.importSettings.invalidConfig": "文件不包含有效的 BharatCode 设置。",
   "settings.aboutKiloCode.importSettings.tooLarge": "文件过大。设置文件必须小于 1 MB。",
-  "settings.aboutKiloCode.importSettings.newerVersion": "此文件由较新版本的 Kilo 导出。部分设置可能会被忽略。",
+  "settings.aboutKiloCode.importSettings.newerVersion": "此文件由较新版本的 BharatCode 导出。部分设置可能会被忽略。",
   "settings.aboutKiloCode.importSettings.success": "设置已导入。请查看上方的更改，然后点击保存。",
 
   "settings.aboutKiloCode.telemetry.title": "遥测",
@@ -826,7 +828,7 @@ export const dict = {
   "settings.agentBehaviour.subtab.skills": "技能",
 
   "settings.browser.description":
-    "配置由 Playwright 提供支持的内置浏览器自动化。Kilo 可在你的会话中浏览网页、与网页交互并截取屏幕截图。",
+    "配置由 Playwright 提供支持的内置浏览器自动化。BharatCode 可在你的会话中浏览网页、与网页交互并截取屏幕截图。",
   "settings.browser.enable.title": "启用浏览器自动化",
   "settings.browser.enable.description": "启用会话专属的 Agent Manager 浏览器，用于本地应用和公开的 HTTPS 页面。",
   "settings.browser.systemChrome.title": "使用系统 Chrome",
@@ -834,7 +836,7 @@ export const dict = {
   "settings.browser.headless.title": "无头模式",
   "settings.browser.headless.description": "以无头模式运行（无可见浏览器窗口）。",
 
-  "settings.language.description": '"自动"将使用 VS Code 的显示语言。选择 Kilo Code 界面的语言。',
+  "settings.language.description": '"自动"将使用 VS Code 的显示语言。选择 BharatCode 界面的语言。',
   "settings.language.auto": "自动（VS Code 语言）",
   "settings.language.current": "当前：",
 
@@ -851,10 +853,10 @@ export const dict = {
   "settings.notifications.enable.title": "启用声音通知",
   "settings.notifications.enable.description": "在会话完成、遇到错误或需要你输入时播放声音",
   "settings.notifications.workbench.title": "启用 VS Code 通知",
-  "settings.notifications.workbench.description": "在 Kilo 完成任务或需要你输入时显示 VS Code 通知",
+  "settings.notifications.workbench.description": "在 BharatCode 完成任务或需要你输入时显示 VS Code 通知",
   "settings.notifications.os.title": "启用操作系统通知",
   "settings.notifications.os.description":
-    "在 VS Code 未处于活动状态时，如果 Kilo 完成任务或需要你输入，则显示原生操作系统通知提醒。",
+    "在 VS Code 未处于活动状态时，如果 BharatCode 完成任务或需要你输入，则显示原生操作系统通知提醒。",
   "settings.notifications.testSound": "测试",
   "settings.notifications.testOS": "测试",
   "settings.notifications.testOS.testing": "正在发送测试通知…",
@@ -877,7 +879,7 @@ export const dict = {
   "settings.experimental.batch.description": "启用多个工具调用的批处理",
   "settings.experimental.imageGeneration.title": "图像生成",
   "settings.experimental.imageGeneration.description": "启用 AI 图像生成",
-  "settings.agentBehaviour.sharedAgentBoard.title": "Kilo Swarm",
+  "settings.agentBehaviour.sharedAgentBoard.title": "BharatCode Swarm",
   "settings.agentBehaviour.sharedAgentBoard.description":
     "让主会话与负责其任务的子智能体共享看板，包括嵌套的子智能体。用于并行尝试解决方案或开展相互补充的工作，而不是用于每一项任务。",
   "settings.experimental.imageGenerationModel.title": "图像模型",
@@ -888,18 +890,18 @@ export const dict = {
   "settings.models.speechToTextModel.customPlaceholder": "whisper-1",
   "settings.models.speechToTextBaseUrl.title": "语音转文本基础 URL",
   "settings.models.speechToTextBaseUrl.description":
-    "使用兼容 OpenAI 的转录 API 代替 Kilo Gateway。模型从 /models 读取，音频发送到 /audio/transcriptions。留空则使用 Kilo Gateway。",
+    "使用兼容 OpenAI 的转录 API 代替 BharatCode Gateway。模型从 /models 读取，音频发送到 /audio/transcriptions。留空则使用 BharatCode Gateway。",
   "settings.models.speechToTextBaseUrl.placeholder": "https://api.openai.com/v1",
   "settings.models.speechToTextApiKey.title": "语音转文本 API 密钥",
   "settings.models.speechToTextApiKey.description":
-    "发送到自定义转录基础 URL 的 Bearer 令牌。保存在你的 Kilo 配置文件中。",
+    "发送到自定义转录基础 URL 的 Bearer 令牌。保存在你的 BharatCode 配置文件中。",
   "settings.models.speechToTextApiKey.placeholder": "sk-...",
   "settings.models.speechToText.disabledDescription":
-    "启用并登录 Kilo 提供商以使用 Speech to Text，或在下方设置自定义转录基础 URL。",
+    "启用并登录 BharatCode 提供商以使用 Speech to Text，或在下方设置自定义转录基础 URL。",
   "settings.models.speechToText.remoteDescription":
-    "远程窗口中无法使用语音输入。请在本地窗口中打开 Kilo 以使用麦克风。",
+    "远程窗口中无法使用语音输入。请在本地窗口中打开 BharatCode 以使用麦克风。",
   "settings.models.speechToTextModel.title": "语音转文本模型",
-  "settings.models.speechToTextModel.description": "选择用于语音输入的 Kilo Gateway 转录模型。",
+  "settings.models.speechToTextModel.description": "选择用于语音输入的 BharatCode Gateway 转录模型。",
   "settings.experimental.nativeNotebookTools.title": "原生笔记本工具",
   "settings.experimental.nativeNotebookTools.description": "启用用于读取、编辑和执行 VS Code 笔记本的实验性工具",
   "settings.experimental.continueOnDeny.title": "拒绝后继续",
@@ -924,7 +926,8 @@ export const dict = {
   "settings.experimental.mcpTimeout.title": "MCP 超时（毫秒）",
   "settings.experimental.mcpTimeout.description": "MCP 服务器请求的超时时间（毫秒）",
   "settings.experimental.remote.title": "Remote 控制",
-  "settings.experimental.remote.description": "通过 Kilo Cloud 启用会话的 Remote 控制。这也会影响此计算机上的 CLI。",
+  "settings.experimental.remote.description":
+    "通过 BharatCode Cloud 启用会话的 Remote 控制。这也会影响此计算机上的 CLI。",
   "settings.experimental.remote.current": "当前状态：",
   "settings.experimental.remote.startup": "启动时自动启用：",
   "settings.experimental.remote.active": "已启用",
@@ -1010,7 +1013,7 @@ export const dict = {
   "settings.agentBehaviour.editMcp.env.help": "传递给 MCP 服务器进程的变量。",
   "settings.agentBehaviour.editMcp.oauth": "OAuth",
   "settings.agentBehaviour.editMcp.oauth.help":
-    "除非服务器需要预先注册的客户端，否则请保留为自动。客户端密钥会存储在您的 Kilo 配置文件中。",
+    "除非服务器需要预先注册的客户端，否则请保留为自动。客户端密钥会存储在您的 BharatCode 配置文件中。",
   "settings.agentBehaviour.editMcp.oauth.mode": "模式",
   "settings.agentBehaviour.editMcp.oauth.mode.automatic": "自动",
   "settings.agentBehaviour.editMcp.oauth.mode.disabled": "已禁用",
@@ -1049,7 +1052,7 @@ export const dict = {
   "settings.agentBehaviour.claudeCompat.heading": "Claude Code 兼容性",
   "settings.agentBehaviour.claudeCompat.title": "加载 Claude Code 文件",
   "settings.agentBehaviour.claudeCompat.description":
-    "将 Claude Code 配置目录中的 CLAUDE.md 指令和技能加载到会话中。如果您希望 Kilo 使用您的 Claude Code 指令和技能，请启用此选项。需要重启。",
+    "将 Claude Code 配置目录中的 CLAUDE.md 指令和技能加载到会话中。如果您希望 BharatCode 使用您的 Claude Code 指令和技能，请启用此选项。需要重启。",
   "settings.agentBehaviour.mcpDetail.command": "命令",
   "settings.agentBehaviour.mcpDetail.args": "参数",
   "settings.agentBehaviour.mcpDetail.env": "环境",
@@ -1073,7 +1076,7 @@ export const dict = {
     "通过受限的 JavaScript 运行时按需发现工具来路由 MCP 工具调用，而不是直接公开每个 MCP 工具。连接大量 MCP 工具时可节省上下文。",
   "settings.sandboxing.enabled.title": "沙盒",
   "settings.sandboxing.enabled.description":
-    "在操作系统级沙盒中运行代理 shell 命令，将写入限制在项目和 Kilo 状态目录内",
+    "在操作系统级沙盒中运行代理 shell 命令，将写入限制在项目和 BharatCode 状态目录内",
 
   "settings.autoApprove.description":
     "定义工具的运行权限。大多数工具默认为「允许」。doom_loop 和 external_directory 默认为「询问」。",
@@ -1107,7 +1110,7 @@ export const dict = {
   "settings.checkpoints.enable.description": "在文件编辑前创建检查点，以便恢复之前的状态",
   "settings.autoCleanup.enable.title": "启用自动会话清理",
   "settings.autoCleanup.enable.description":
-    "在固定天数后自动删除旧会话历史，覆盖这台机器上的所有项目和所有 Kilo 客户端，而不只是这个窗口。正在运行的会话和有近期分支的会话永远不会被删除。删除是不可逆的。",
+    "在固定天数后自动删除旧会话历史，覆盖这台机器上的所有项目和所有 BharatCode 客户端，而不只是这个窗口。正在运行的会话和有近期分支的会话永远不会被删除。删除是不可逆的。",
   "settings.autoCleanup.defaultRetention.title": "会话保留天数（天）",
   "settings.autoCleanup.defaultRetention.description": "自动清理删除会话历史之前保留的时长。",
   "settings.autoCleanup.lastRun.title": "上次清理",
@@ -1122,7 +1125,7 @@ export const dict = {
   "settings.autoCleanup.progress.deleting":
     "正在删除会话：已处理 {{processed}}/{{total}}（已删除 {{deleted}} 个，失败 {{failed}} 个）",
   "settings.autoCleanup.runNow": "立即运行清理",
-  "settings.autoCleanup.runNow.confirm": "永久删除这台机器上所有项目和所有 Kilo 客户端中已过期的会话？",
+  "settings.autoCleanup.runNow.confirm": "永久删除这台机器上所有项目和所有 BharatCode 客户端中已过期的会话？",
   "settings.autoCleanup.stop": "停止清理",
   "settings.autoCleanup.progress.cancelling": "正在停止会话清理...",
   "settings.autoCleanup.lastRun.cancelled": "已中断",
@@ -1153,7 +1156,8 @@ export const dict = {
   "settings.context.memory.storage.enable": "Enable memory to create project memory files.",
   "settings.context.memory.inspect": "检查",
   "chat.memory.project.disabled": "项目记忆已禁用",
-  "chat.memory.project.empty": "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+  "chat.memory.project.empty":
+    "This project doesn't have any memory yet. It will start showing after you use BharatCode.",
   "chat.memory.command.failed": "记忆命令失败",
   "chat.memory.updated": "Memory updated",
   "chat.memory.rebuild": "Memory index rebuilt",
@@ -1187,7 +1191,7 @@ export const dict = {
   "settings.display.username.title": "用户名",
   "settings.display.username.description": "对话中显示的自定义用户名",
   "settings.display.fontSize.title": "字体大小",
-  "settings.display.fontSize.description": "独立于 VS Code 调整 Kilo webview UI 的字体大小。",
+  "settings.display.fontSize.description": "独立于 VS Code 调整 BharatCode webview UI 的字体大小。",
   "settings.display.reasoningDisplay.title": "推理块",
   "settings.display.reasoningDisplay.description":
     "选择推理块的起始显示方式。展开会显示完整文本，预览会将其限制为简短的可滚动预览，标题仅显示标题和流式指示器，直到你打开它。",
@@ -1327,7 +1331,7 @@ export const dict = {
   "diffViewer.source.unstaged.label": "未暂存",
   "diffViewer.source.unstaged.tooltip": "在工作树中已修改但尚未暂存的文件，以及未跟踪（新）的文件。",
   "diffViewer.source.session.label": "会话",
-  "diffViewer.source.session.tooltip": "Kilo 在当前会话中更改的文件，基于每轮快照。开始新会话时重置。",
+  "diffViewer.source.session.tooltip": "BharatCode 在当前会话中更改的文件，基于每轮快照。开始新会话时重置。",
   "diffViewer.group.session": "会话",
   "diffViewer.group.git": "Git",
   "diffViewer.comment.postToGithub": "发布到 GitHub",
@@ -1337,7 +1341,7 @@ export const dict = {
   "diffViewer.comment.openPR": "打开拉取请求",
   "diffViewer.comment.localChanges": "本地更改",
   "diffViewer.comment.prChanges": "PR 更改",
-  "diffViewer.comment.sendToKilo": "发送到 Kilo",
+  "diffViewer.comment.sendToKilo": "发送到 BharatCode",
   "diffViewer.comment.sendToGithub": "发送到 GitHub #{{number}}",
   "diffViewer.comment.chooseDestination": "选择目标",
   "diffViewer.notice.snapshotsDisabled": "此仓库的快照已禁用。请编辑配置文件以显示会话变更。",
@@ -1367,10 +1371,10 @@ export const dict = {
   "settings.experimental.browserAutomation.systemChrome.description":
     "为集成浏览器使用已安装的 Google Chrome。仅在已安装兼容的 Playwright Chromium 浏览器时才禁用。",
   "settings.experimental.browserLinks.title": "在以下位置打开链接",
-  "settings.experimental.browserLinks.description": "选择 Kilo 聊天中的网页链接在何处打开。需要集成浏览器。",
+  "settings.experimental.browserLinks.description": "选择 BharatCode 聊天中的网页链接在何处打开。需要集成浏览器。",
   "settings.experimental.browserLinks.external": "系统浏览器",
   "settings.experimental.browserLinks.integrated": "集成浏览器",
   "chat.search.searchingHistory": "正在搜索更早的消息…",
   "browserTab.noSession": "从会话中打开浏览器以预览本地应用或公共 HTTPS 页面。",
-  "browserTab.disabled": "集成浏览器已禁用。请在 Kilo 设置 > 实验性中启用。",
+  "browserTab.disabled": "集成浏览器已禁用。请在 BharatCode 设置 > 实验性中启用。",
 } satisfies Partial<Record<Keys, string>>

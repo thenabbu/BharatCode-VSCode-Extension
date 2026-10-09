@@ -12,14 +12,14 @@ export const anacondaDesktopDict = {
   "provider.anaconda.status.unavailable": "Nedostupno",
   "provider.anaconda.state.unsupported": "Anaconda Desktop nije podržan na {{platform}}.",
   "provider.anaconda.state.notInstalled":
-    "Instalirajte Anaconda Desktop na ovom računaru, zatim se vratite ovdje. Kilo ne pokreće instalacijski program umjesto vas.",
+    "Instalirajte Anaconda Desktop na ovom računaru, zatim se vratite ovdje. BharatCode ne pokreće instalacijski program umjesto vas.",
   "provider.anaconda.state.notRunning":
     "Otvorite Anaconda Desktop, dovršite postavljanje i prijavite se, zatim odaberite Provjeri ponovo.",
   "provider.anaconda.state.invalidConfig":
     "Postavljanje Anaconda Desktopa nije dovršeno. Otvorite Desktop, dovršite postavljanje i ponovo ga pokrenite ako je potrebno.",
   "provider.anaconda.state.signedOut": "Otvorite Anaconda Desktop i prijavite se prije povezivanja Kila.",
   "provider.anaconda.state.unauthorized":
-    "Kilo nije mogao pristupiti Anaconda Desktopu. Otvorite Desktop, ponovo se prijavite i ponovo ga pokrenite ako je potrebno.",
+    "BharatCode nije mogao pristupiti Anaconda Desktopu. Otvorite Desktop, ponovo se prijavite i ponovo ga pokrenite ako je potrebno.",
   "provider.anaconda.state.unavailable":
     "Anaconda Desktop još ne odgovara. Otvorite ga i sačekajte da se aplikacija u potpunosti pokrene.",
   "provider.anaconda.state.noModel":
@@ -31,7 +31,7 @@ export const anacondaDesktopDict = {
   "provider.anaconda.state.unhealthy":
     "Aktivni server za zaključivanje još nije ispravan. Provjerite ga u Anaconda Desktopu i ponovo pokrenite server ako je potrebno.",
   "provider.anaconda.state.ready":
-    "Kilo je pronašao ispravan lokalni server za generisanje teksta i može uvesti njegove trenutne postavke veze.",
+    "BharatCode je pronašao ispravan lokalni server za generisanje teksta i može uvesti njegove trenutne postavke veze.",
   "provider.anaconda.server": "Aktivni server za zaključivanje",
   "provider.anaconda.context": "Kontekstni prozor",
   "provider.anaconda.contextValue": "{{count}} tokena",
@@ -96,7 +96,7 @@ export const dict = {
     "Razgovor je vraćen. Status vraćanja radnog prostora nije dostupan za ovo ranije vraćanje.",
   "revert.banner.workspace.enableSnapshots": "Omogući snimke stanja",
   "revert.disabled.agentBusy": "Sačekajte da agent završi",
-  "revert.error.body": "Repozitorij je možda u upotrebi. Pokušajte ponovo ili pogledajte Kilo zapise za detalje.",
+  "revert.error.body": "Repozitorij je možda u upotrebi. Pokušajte ponovo ili pogledajte BharatCode zapise za detalje.",
   "command.session.compact": "Sažmi sesiju",
   "command.session.export": "Izvezi transkript sesije",
 
@@ -121,7 +121,7 @@ export const dict = {
   "provider.connect.status.waiting": "Čekanje na autorizaciju...",
   "provider.connect.status.failed": "Autorizacija nije uspjela: {{error}}",
   "provider.connect.apiKey.description":
-    "Unesi svoj {{provider}} API ključ da povežeš račun i koristiš {{provider}} modele u Kilo-u.",
+    "Unesi svoj {{provider}} API ključ da povežeš račun i koristiš {{provider}} modele u BharatCode-u.",
   "provider.connect.apiKey.description.local":
     "Connect to your local {{provider}} server. Leave the API key empty if the server does not require one (default for localhost).",
   "provider.connect.atomicChat.description":
@@ -144,14 +144,14 @@ export const dict = {
   "provider.connect.oauth.code.visit.prefix": "Posjeti ",
   "provider.connect.oauth.code.visit.link": "ovaj link",
   "provider.connect.oauth.code.visit.suffix":
-    " da preuzmeš autorizacijski kod i povežeš račun te koristiš {{provider}} modele u Kilo-u.",
+    " da preuzmeš autorizacijski kod i povežeš račun te koristiš {{provider}} modele u BharatCode-u.",
   "provider.connect.oauth.code.label": "{{method}} autorizacijski kod",
   "provider.connect.oauth.code.placeholder": "Autorizacijski kod",
   "provider.connect.oauth.code.required": "Autorizacijski kod je obavezan",
   "provider.connect.oauth.auto.visit.prefix": "Posjeti ",
   "provider.connect.oauth.auto.visit.link": "ovaj link",
   "provider.connect.oauth.auto.visit.suffix":
-    " i unesi kod ispod da povežeš račun i koristiš {{provider}} modele u Kilo-u.",
+    " i unesi kod ispod da povežeš račun i koristiš {{provider}} modele u BharatCode-u.",
   "provider.connect.oauth.auto.confirmationCode": "Kod za potvrdu",
   "provider.connect.toast.connected.title": "{{provider}} povezan",
   "provider.connect.toast.connected.description": "{{provider}} modeli su sada dostupni za korištenje.",
@@ -233,9 +233,9 @@ export const dict = {
   "prompt.action.sandbox.enable": "Omogući sandbox",
   "prompt.action.sandbox.disable": "Onemogući sandbox",
   "prompt.action.sandbox.enabled":
-    "Sandbox je omogućen. Shell komande agenta su ograničene na direktorije projekta i Kilo.",
+    "Sandbox je omogućen. Shell komande agenta su ograničene na direktorije projekta i BharatCode.",
   "prompt.action.sandbox.disabled":
-    "Sandbox je onemogućen. Kliknite da ograničite pisanje shell komandi agenta na direktorije projekta i Kilo.",
+    "Sandbox je onemogućen. Kliknite da ograničite pisanje shell komandi agenta na direktorije projekta i BharatCode.",
   "prompt.action.sandbox.status.enabled": "Sandbox omogućen",
   "prompt.action.sandbox.status.disabled": "Sandbox onemogućen",
   "prompt.action.sandbox.filesystem": "Datotečni sistem",
@@ -244,7 +244,7 @@ export const dict = {
   "prompt.action.sandbox.network.blocked": "Blokirana",
   "prompt.action.sandbox.network.allowed": "Dozvoljena",
   "prompt.action.sandbox.unrestricted": "Bez ograničenja",
-  "prompt.action.sandbox.description.enabled": "Pisanje je ograničeno na direktorije projekta i Kilo.",
+  "prompt.action.sandbox.description.enabled": "Pisanje je ograničeno na direktorije projekta i BharatCode.",
   "prompt.action.sandbox.description.escalation":
     "Pravila dozvola i automatsko odobravanje primjenjuju se unutar sandboxa. Komande koje ga moraju napustiti uvijek pitaju.",
   "prompt.action.sandbox.description.disabled": "Kliknite da ograničite pisanje u datotečni sistem i pristup mreži.",
@@ -259,7 +259,7 @@ export const dict = {
   "speechToText.tooltip.transcribing": "Prepisivanje... Kliknite da otkažete.",
   "speechToText.tooltip.error": "Glasovni unos nije uspio. Kliknite da očistite.",
   "speechToText.error.title": "Glasovni unos nije uspio",
-  "speechToText.error.loginRequired": "Prijavite se na Kilo da koristite glasovni unos.",
+  "speechToText.error.loginRequired": "Prijavite se na BharatCode da koristite glasovni unos.",
   "speechToText.error.emptyTranscript": "Govor nije otkriven.",
 
   "prompt.toast.promptSendFailed.title": "Neuspješno slanje upita",
@@ -343,7 +343,7 @@ export const dict = {
   "session.messages.loadEarlier": "Učitaj ranije poruke",
   "session.messages.loading": "Učitavanje poruka...",
 
-  "sidebar.topBar.label": "Navigacija Kilo Code",
+  "sidebar.topBar.label": "Navigacija BharatCode",
   "sidebar.topBar.newTask": "Novi Zadatak",
   "sidebar.topBar.history": "Historija",
   "sidebar.topBar.agentManager": "Agent Manager",
@@ -454,10 +454,10 @@ export const dict = {
   "settings.indexing.model.title": "Model embeddinga",
   "settings.indexing.provider.description":
     "Odaberite provajdera koji se koristi za generiranje embeddinga za semantičku pretragu.",
-  "settings.indexing.kiloModel.title": "Preset Kilo modela",
-  "settings.indexing.kiloModel.description": "Odaberite podržani model embeddinga hostovan na Kilo.",
-  "settings.indexing.kiloSignIn.title": "Potrebna je prijava na Kilo",
-  "settings.indexing.kiloSignIn.description": "Prijavite se na Kilo za korištenje hostovanih embeddinga.",
+  "settings.indexing.kiloModel.title": "Preset BharatCode modela",
+  "settings.indexing.kiloModel.description": "Odaberite podržani model embeddinga hostovan na BharatCode.",
+  "settings.indexing.kiloSignIn.title": "Potrebna je prijava na BharatCode",
+  "settings.indexing.kiloSignIn.description": "Prijavite se na BharatCode za korištenje hostovanih embeddinga.",
   "settings.indexing.provider.title": "Provajder embeddinga",
   "settings.indexing.providerField.description": "Postavka veze specifična za provajdera.",
   "settings.indexing.qdrantApiKey.description": "Opcionalni API ključ za Qdrant instancu.",
@@ -496,7 +496,7 @@ export const dict = {
     "Zadani model i napor zaključivanja za podagente task-tool-a. Ostavite nepodešeno da naslijedi model pozivnog agenta.",
   "settings.models.hidePromptTraining.title": "Sakrij modele koji treniraju na promptovima",
   "settings.models.hidePromptTraining.description":
-    "Sakrij Kilo Gateway modele čiji pružaoci mogu koristiti vaše promptove za treniranje.",
+    "Sakrij BharatCode Gateway modele čiji pružaoci mogu koristiti vaše promptove za treniranje.",
   "settings.providers.modeModels": "Model po režimu",
   "settings.providers.modeModels.description":
     "Zamijenite podrazumijevani model za određene režime. Ako nije postavljeno, koristi se globalni podrazumijevani model.",
@@ -567,11 +567,12 @@ export const dict = {
   "settings.config.status.loadedLegacy": "učitana zastarjela konfiguracija",
   "settings.config.status.notLoaded": "nije učitano",
   "settings.config.status.create": "nije pronađeno - kreiraj ovu datoteku",
-  "settings.config.title": "Otvori {{scope}} Kilo konfiguracijsku datoteku",
+  "settings.config.title": "Otvori {{scope}} BharatCode konfiguracijsku datoteku",
   "settings.config.placeholder":
     "Konfiguracijske datoteke se spajaju po redu; datoteke označene kao učitane trenutno utiču na postavke.",
-  "settings.config.noWorkspace": "Otvorite fasciklu radnog prostora da uredite lokalnu Kilo konfiguracijsku datoteku.",
-  "settings.config.openFailed": "Nije uspjelo otvaranje {{scope}} Kilo konfiguracijske datoteke: {{message}}",
+  "settings.config.noWorkspace":
+    "Otvorite fasciklu radnog prostora da uredite lokalnu BharatCode konfiguracijsku datoteku.",
+  "settings.config.openFailed": "Nije uspjelo otvaranje {{scope}} BharatCode konfiguracijske datoteke: {{message}}",
   "settings.config.source.xdg": "XDG globalna konfiguracija",
   "settings.config.source.homeKilo": "Home .kilo konfiguracija",
   "settings.config.source.homeKilocode": "Home .kilocode konfiguracija",
@@ -632,7 +633,7 @@ export const dict = {
   "feedback.dialog.github": "Prijavite problem na GitHubu",
   "feedback.dialog.discord": "Pridružite se našoj Discord zajednici",
   "feedback.dialog.support": "Korisnička podrška",
-  "workStyle.onboarding.welcome": "Dobro došli u Kilo",
+  "workStyle.onboarding.welcome": "Dobro došli u BharatCode",
   "workStyle.onboarding.title": "Odaberite kako želite raditi",
   "workStyle.onboarding.settingsNote": "Ove opcije možete promijeniti bilo kada u",
   "workStyle.onboarding.settings": "Postavkama.",
@@ -642,7 +643,7 @@ export const dict = {
   "workStyle.choice.visibility": "Vidljivost",
   "workStyle.choice.human-in-the-loop.eyebrow": "Čovjek nadzire proces",
   "workStyle.choice.human-in-the-loop.title": "Prvo pregledajte",
-  "workStyle.choice.human-in-the-loop.description": "Kilo zastaje i prikazuje vam svoj plan tokom rada.",
+  "workStyle.choice.human-in-the-loop.description": "BharatCode zastaje i prikazuje vam svoj plan tokom rada.",
   "workStyle.choice.human-in-the-loop.permissions": "Traži dozvolu prije uređivanja datoteka ili pokretanja komandi.",
   "workStyle.choice.human-in-the-loop.bash": "Traži dozvolu za svaku terminalsku komandu.",
   "workStyle.choice.human-in-the-loop.visibility": "Proširuje zaključivanje, naredbe i izmjene radi pregleda.",
@@ -663,7 +664,7 @@ export const dict = {
   "deviceAuth.toast.codeCopied": "Kod kopiran u međuspremnik",
   "deviceAuth.toast.errorCopied": "Greška kopirana u međuspremnik",
   "deviceAuth.status.initiating": "Pokretanje prijave...",
-  "deviceAuth.title": "Prijavite se u Kilo Code",
+  "deviceAuth.title": "Prijavite se u BharatCode",
   "deviceAuth.step1": "Korak 1: Otvorite ovaj URL",
   "deviceAuth.action.copyUrl": "Kopiraj URL",
   "deviceAuth.action.openBrowser": "Otvori preglednik",
@@ -686,7 +687,7 @@ export const dict = {
 
   "profile.title": "Profil",
   "profile.notLoggedIn": "Niste prijavljeni",
-  "profile.action.login": "Prijavite se putem Kilo Code",
+  "profile.action.login": "Prijavite se putem BharatCode",
   "profile.balance.title": "Stanje",
   "profile.balance.refresh": "Osvježi stanje",
   "profile.usage.title": "Planovi i korištenje",
@@ -702,7 +703,7 @@ export const dict = {
   "profile.usage.plan.unknown": "Plan: Status nepoznat",
   "profile.usage.action.manage": "Upravljaj",
   "profile.usage.action.managePlan": "Upravljaj planom {{plan}}",
-  "profile.usage.routing": "Naplata plana je aktivna. Kilo Gateway usmjeravanje je {{state}}.",
+  "profile.usage.routing": "Naplata plana je aktivna. BharatCode Gateway usmjeravanje je {{state}}.",
   "profile.usage.routingState.disabled": "onemogućeno",
   "profile.usage.routingState.missing": "odsutno",
   "profile.usage.routingState.replaced": "zamijenjeno",
@@ -728,11 +729,11 @@ export const dict = {
   "profile.usage.status.exhausted": "Iscrpljeno",
   "profile.action.dashboard": "Kontrolna ploča",
   "profile.action.topUp": "Dopuni",
-  "profile.pass.subscribe": "Nabavite Kilo Pass da dodate kredite i zaradite bonuse",
+  "profile.pass.subscribe": "Nabavite BharatCode Pass da dodate kredite i zaradite bonuse",
   "profile.pass.bonus": "Bonus",
   "profile.pass.usage": "Potrošnja ovog mjeseca",
   "profile.pass.paid": "Plaćeno",
-  "profile.pass.meter": "Mjesečna potrošnja Kilo Passa",
+  "profile.pass.meter": "Mjesečna potrošnja BharatCode Passa",
   "profile.pass.renews": "Obnavlja se",
   "profile.action.logout": "Odjava",
 
@@ -754,10 +755,10 @@ export const dict = {
 
   "settings.experimental.title": "Eksperimentalno",
   "settings.language.title": "Jezik",
-  "settings.aboutKiloCode.title": "O Kilo Code-u",
+  "settings.aboutKiloCode.title": "O BharatCode-u",
 
   "session.messages.welcome":
-    "Kilo Code je AI asistent za programiranje. Zatražite da gradi funkcionalnosti, ispravlja greške ili objasni vašu bazu koda.",
+    "BharatCode je AI asistent za programiranje. Zatražite da gradi funkcionalnosti, ispravlja greške ili objasni vašu bazu koda.",
   "session.messages.scrollToBottom": "Pomakni se na dno",
   "session.messages.initializing": "Inicijalizacija...",
   "session.messages.taskStarting": "Pokretanje...",
@@ -800,7 +801,7 @@ export const dict = {
   "ui.sessionTurn.status.consideringNextSteps": "Razmatram sljedeće korake...",
 
   "dialog.model.noProviders": "Nema pružatelja",
-  "dialog.model.unavailable": "Kilo modeli nisu dostupni",
+  "dialog.model.unavailable": "BharatCode modeli nisu dostupni",
 
   "prompt.placeholder.connecting": "Povezivanje na server...",
   "prompt.placeholder.error": "Povezivanje nije uspjelo. Provjerite panel za izlaz ili ponovo pokrenite ekstenziju.",
@@ -842,10 +843,10 @@ export const dict = {
   "settings.aboutKiloCode.exportSettings": "Izvezi",
   "settings.aboutKiloCode.importSettings": "Uvezi",
   "settings.aboutKiloCode.importSettings.invalidJson": "Nevažeći JSON fajl. Odaberite važeći fajl s postavkama.",
-  "settings.aboutKiloCode.importSettings.invalidConfig": "Fajl ne sadrži važeće Kilo postavke.",
+  "settings.aboutKiloCode.importSettings.invalidConfig": "Fajl ne sadrži važeće BharatCode postavke.",
   "settings.aboutKiloCode.importSettings.tooLarge": "Fajl je prevelik. Fajlovi s postavkama moraju biti manji od 1 MB.",
   "settings.aboutKiloCode.importSettings.newerVersion":
-    "Ovaj fajl je izvezen iz novije verzije Kilo-a. Neke postavke mogu biti zanemarene.",
+    "Ovaj fajl je izvezen iz novije verzije BharatCode-a. Neke postavke mogu biti zanemarene.",
   "settings.aboutKiloCode.importSettings.success":
     "Postavke su uvezene. Pregledajte promjene iznad, a zatim kliknite Sačuvaj.",
 
@@ -861,7 +862,7 @@ export const dict = {
   "settings.agentBehaviour.subtab.skills": "Vještine",
 
   "settings.browser.description":
-    "Konfigurirajte ugrađenu automatizaciju preglednika koju pokreće Playwright. Kilo može navigirati, komunicirati sa web stranicama i snimati ekran u vašim sesijama.",
+    "Konfigurirajte ugrađenu automatizaciju preglednika koju pokreće Playwright. BharatCode može navigirati, komunicirati sa web stranicama i snimati ekran u vašim sesijama.",
   "settings.browser.enable.title": "Omogući automatizaciju preglednika",
   "settings.browser.enable.description":
     "Omogući preglednik vezan za sesiju u aplikaciji Agent Manager za lokalne aplikacije i javne HTTPS stranice.",
@@ -871,7 +872,7 @@ export const dict = {
   "settings.browser.headless.title": "Headless način",
   "settings.browser.headless.description": "Pokreni u headless načinu (bez vidljivog prozora preglednika).",
 
-  "settings.language.description": 'Odaberite jezik za Kilo Code sučelje. "Auto" koristi jezik prikaza VS Code-a.',
+  "settings.language.description": 'Odaberite jezik za BharatCode sučelje. "Auto" koristi jezik prikaza VS Code-a.',
   "settings.language.auto": "Auto (VS Code jezik)",
   "settings.language.current": "Trenutni:",
 
@@ -891,10 +892,10 @@ export const dict = {
     "Reproduciraj zvukove kada se sesije završe, naiđu na grešku ili trebaju vaš unos",
   "settings.notifications.workbench.title": "Omogući VS Code obavijesti",
   "settings.notifications.workbench.description":
-    "Prikaži VS Code obavijesti kada Kilo završi zadatak ili treba vaš unos",
+    "Prikaži VS Code obavijesti kada BharatCode završi zadatak ili treba vaš unos",
   "settings.notifications.os.title": "Omogući obavijesti operativnog sistema",
   "settings.notifications.os.description":
-    "Prikaži izvorna obavještenja operativnog sistema kada Kilo završi zadatak ili treba vaš unos dok VS Code nije aktivan.",
+    "Prikaži izvorna obavještenja operativnog sistema kada BharatCode završi zadatak ili treba vaš unos dok VS Code nije aktivan.",
   "settings.notifications.testSound": "Testiraj",
   "settings.notifications.testOS": "Testiraj",
   "settings.notifications.testOS.testing": "Slanje testnog obavještenja…",
@@ -917,7 +918,7 @@ export const dict = {
   "settings.experimental.batch.description": "Omogući batch obradu poziva alata",
   "settings.experimental.imageGeneration.title": "Generisanje slika",
   "settings.experimental.imageGeneration.description": "Omogući AI generisanje slika",
-  "settings.agentBehaviour.sharedAgentBoard.title": "Kilo Swarm",
+  "settings.agentBehaviour.sharedAgentBoard.title": "BharatCode Swarm",
   "settings.agentBehaviour.sharedAgentBoard.description":
     "Dijelite ploču između glavne sesije i njenih podagenata za zadatke, uključujući ugniježđene podagente. Koristite je za paralelne pokušaje rješavanja problema ili rad na zadacima koji se međusobno nadopunjuju, a ne za svaki zadatak.",
   "settings.experimental.imageGenerationModel.title": "Model slike",
@@ -929,18 +930,19 @@ export const dict = {
   "settings.models.speechToTextModel.customPlaceholder": "whisper-1",
   "settings.models.speechToTextBaseUrl.title": "Osnovni URL za govor u tekst",
   "settings.models.speechToTextBaseUrl.description":
-    "Koristite API za transkripciju kompatibilan s OpenAI umjesto Kilo Gatewaya. Modeli se čitaju s /models, a zvuk se šalje na /audio/transcriptions. Ostavite prazno da biste koristili Kilo Gateway.",
+    "Koristite API za transkripciju kompatibilan s OpenAI umjesto BharatCode Gatewaya. Modeli se čitaju s /models, a zvuk se šalje na /audio/transcriptions. Ostavite prazno da biste koristili BharatCode Gateway.",
   "settings.models.speechToTextBaseUrl.placeholder": "https://api.openai.com/v1",
   "settings.models.speechToTextApiKey.title": "API ključ za govor u tekst",
   "settings.models.speechToTextApiKey.description":
-    "Bearer token koji se šalje na vlastiti osnovni URL za transkripciju. Čuva se u vašoj Kilo konfiguracijskoj datoteci.",
+    "Bearer token koji se šalje na vlastiti osnovni URL za transkripciju. Čuva se u vašoj BharatCode konfiguracijskoj datoteci.",
   "settings.models.speechToTextApiKey.placeholder": "sk-...",
   "settings.models.speechToText.disabledDescription":
-    "Omogućite i prijavite se na Kilo provajder da biste koristili Speech to Text ili ispod postavite vlastiti osnovni URL za transkripciju.",
+    "Omogućite i prijavite se na BharatCode provajder da biste koristili Speech to Text ili ispod postavite vlastiti osnovni URL za transkripciju.",
   "settings.models.speechToText.remoteDescription":
-    "Glasovni unos nije dostupan u udaljenim prozorima. Otvorite Kilo u lokalnom prozoru da biste koristili mikrofon.",
+    "Glasovni unos nije dostupan u udaljenim prozorima. Otvorite BharatCode u lokalnom prozoru da biste koristili mikrofon.",
   "settings.models.speechToTextModel.title": "Model govora u tekst",
-  "settings.models.speechToTextModel.description": "Odaberite Kilo Gateway model za transkripciju za glasovni unos.",
+  "settings.models.speechToTextModel.description":
+    "Odaberite BharatCode Gateway model za transkripciju za glasovni unos.",
   "settings.experimental.nativeNotebookTools.title": "Izvorni alati za bilježnice",
   "settings.experimental.nativeNotebookTools.description":
     "Omogući eksperimentalne alate za čitanje, uređivanje i izvršavanje VS Code bilježnica",
@@ -967,7 +969,7 @@ export const dict = {
   "settings.experimental.mcpTimeout.description": "Istek vremena za MCP server zahtjeve u milisekundama",
   "settings.experimental.remote.title": "Remote kontrola",
   "settings.experimental.remote.description":
-    "Omogućite Remote kontrolu sesija putem Kilo Cloud. Ovo će također utjecati na CLI-jeve na ovoj mašini.",
+    "Omogućite Remote kontrolu sesija putem BharatCode Cloud. Ovo će također utjecati na CLI-jeve na ovoj mašini.",
   "settings.experimental.remote.current": "Trenutno stanje:",
   "settings.experimental.remote.startup": "Automatsko uključivanje pri pokretanju:",
   "settings.experimental.remote.active": "Aktivno",
@@ -1061,7 +1063,7 @@ export const dict = {
   "settings.agentBehaviour.editMcp.env.help": "Varijable proslijeđene procesu MCP servera.",
   "settings.agentBehaviour.editMcp.oauth": "OAuth",
   "settings.agentBehaviour.editMcp.oauth.help":
-    "Ostavite na Automatski osim ako server ne zahtijeva prethodno registrovanog klijenta. Tajni klijent se čuva u vašoj Kilo konfiguracionoj datoteci.",
+    "Ostavite na Automatski osim ako server ne zahtijeva prethodno registrovanog klijenta. Tajni klijent se čuva u vašoj BharatCode konfiguracionoj datoteci.",
   "settings.agentBehaviour.editMcp.oauth.mode": "Način rada",
   "settings.agentBehaviour.editMcp.oauth.mode.automatic": "Automatski",
   "settings.agentBehaviour.editMcp.oauth.mode.disabled": "Onemogućeno",
@@ -1101,7 +1103,7 @@ export const dict = {
   "settings.agentBehaviour.claudeCompat.heading": "Claude Code kompatibilnost",
   "settings.agentBehaviour.claudeCompat.title": "Učitaj Claude Code datoteke",
   "settings.agentBehaviour.claudeCompat.description":
-    "Učitajte CLAUDE.md instrukcije i vještine iz vašeg Claude Code konfiguracijskog direktorija u sesije. Omogućite ovo ako želite da Kilo koristi vaše Claude Code instrukcije i vještine. Zahtijeva ponovno pokretanje.",
+    "Učitajte CLAUDE.md instrukcije i vještine iz vašeg Claude Code konfiguracijskog direktorija u sesije. Omogućite ovo ako želite da BharatCode koristi vaše Claude Code instrukcije i vještine. Zahtijeva ponovno pokretanje.",
   "settings.agentBehaviour.mcpDetail.command": "Naredba",
   "settings.agentBehaviour.mcpDetail.args": "Argumenti",
   "settings.agentBehaviour.mcpDetail.env": "Okruženje",
@@ -1128,7 +1130,7 @@ export const dict = {
     "Usmjerava pozive MCP alata kroz izolirano JavaScript okruženje s otkrivanjem alata na zahtjev umjesto izravnog izlaganja svakog MCP alata. Štedi kontekst kada je povezano mnogo MCP alata.",
   "settings.sandboxing.enabled.title": "Sandbox",
   "settings.sandboxing.enabled.description":
-    "Pokrenite shell komande agenta unutar sandboxa na nivou operativnog sistema koji ograničava pisanje na direktorije stanja projekta i Kilo",
+    "Pokrenite shell komande agenta unutar sandboxa na nivou operativnog sistema koji ograničava pisanje na direktorije stanja projekta i BharatCode",
 
   "settings.autoApprove.description":
     "Definišite kako je dozvoljeno pokretanje alata. Većina alata je podrazumijevano na Dozvoli. doom_loop i external_directory su podrazumijevano na Pitaj.",
@@ -1175,7 +1177,7 @@ export const dict = {
   "settings.checkpoints.enable.description": "Kreiraj kontrolne točke prije uređivanja datoteka",
   "settings.autoCleanup.enable.title": "Omogući automatsko čišćenje sesija",
   "settings.autoCleanup.enable.description":
-    "Automatski briše staru historiju sesija nakon određenog broja dana, u svim projektima i svim Kilo klijentima na ovom računaru, ne samo u ovom prozoru. Sesije koje su trenutno aktivne i sesije sa nedavnim forkom nikad se ne brišu. Brisanje je trajno.",
+    "Automatski briše staru historiju sesija nakon određenog broja dana, u svim projektima i svim BharatCode klijentima na ovom računaru, ne samo u ovom prozoru. Sesije koje su trenutno aktivne i sesije sa nedavnim forkom nikad se ne brišu. Brisanje je trajno.",
   "settings.autoCleanup.defaultRetention.title": "Zadrži sesije (dana)",
   "settings.autoCleanup.defaultRetention.description":
     "Koliko dugo se historija sesija čuva prije automatskog brisanja.",
@@ -1194,7 +1196,7 @@ export const dict = {
     "Brisanje sesija: {{processed}}/{{total}} obrađeno ({{deleted}} obrisano, {{failed}} neuspjelo)",
   "settings.autoCleanup.runNow": "Pokreni čišćenje sada",
   "settings.autoCleanup.runNow.confirm":
-    "Trajno obrisati istekle sesije u svim projektima i svim Kilo klijentima na ovom računaru?",
+    "Trajno obrisati istekle sesije u svim projektima i svim BharatCode klijentima na ovom računaru?",
   "settings.autoCleanup.stop": "Zaustavi čišćenje",
   "settings.autoCleanup.progress.cancelling": "Zaustavljanje čišćenja sesija...",
   "settings.autoCleanup.lastRun.cancelled": "prekinuto",
@@ -1228,7 +1230,8 @@ export const dict = {
   "settings.context.memory.storage.enable": "Enable memory to create project memory files.",
   "settings.context.memory.inspect": "Pregledaj",
   "chat.memory.project.disabled": "Memorija projekta onemogućena",
-  "chat.memory.project.empty": "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+  "chat.memory.project.empty":
+    "This project doesn't have any memory yet. It will start showing after you use BharatCode.",
   "chat.memory.command.failed": "Komanda memorije nije uspjela",
   "chat.memory.updated": "Memory updated",
   "chat.memory.rebuild": "Memory index rebuilt",
@@ -1262,7 +1265,8 @@ export const dict = {
   "settings.display.username.title": "Korisničko ime",
   "settings.display.username.description": "Prilagođeno korisničko ime u razgovorima",
   "settings.display.fontSize.title": "Veličina fonta",
-  "settings.display.fontSize.description": "Prilagodite veličinu fonta za Kilo webview UI nezavisno od VS Code-a.",
+  "settings.display.fontSize.description":
+    "Prilagodite veličinu fonta za BharatCode webview UI nezavisno od VS Code-a.",
   "settings.display.reasoningDisplay.title": "Blokovi razmišljanja",
   "settings.display.reasoningDisplay.description":
     "Odaberite kako blokovi razmišljanja počinju. Prošireni prikazuje cijeli tekst, Pregled ga ograničava na kratak pregled s pomicanjem, a Naslov prikazuje samo naslov i indikator strujanja dok ga ne otvorite.",
@@ -1412,7 +1416,7 @@ export const dict = {
     "Datoteke izmijenjene u radnom stablu ali još nisu pripremljene, plus nepraćene (nove) datoteke.",
   "diffViewer.source.session.label": "Sesija",
   "diffViewer.source.session.tooltip":
-    "Datoteke koje je Kilo promijenio tokom trenutne sesije, na osnovu snapshota po koraku. Resetuje se kada pokrenete novu sesiju.",
+    "Datoteke koje je BharatCode promijenio tokom trenutne sesije, na osnovu snapshota po koraku. Resetuje se kada pokrenete novu sesiju.",
   "diffViewer.group.session": "Sesija",
   "diffViewer.group.git": "Git",
   "diffViewer.comment.postToGithub": "Objavi na GitHubu",
@@ -1454,10 +1458,11 @@ export const dict = {
     "Koristite instalirani Google Chrome za Integrirani preglednik. Onemogućite samo kada je kompatibilni Playwright Chromium preglednik već instaliran.",
   "settings.experimental.browserLinks.title": "Otvori linkove u",
   "settings.experimental.browserLinks.description":
-    "Odaberite gdje se web linkovi otvaraju iz Kilo razgovora. Zahtijeva Integrirani preglednik.",
+    "Odaberite gdje se web linkovi otvaraju iz BharatCode razgovora. Zahtijeva Integrirani preglednik.",
   "settings.experimental.browserLinks.external": "Sistemski preglednik",
   "settings.experimental.browserLinks.integrated": "Integrirani preglednik",
   "chat.search.searchingHistory": "Pretraživanje ranijih poruka…",
   "browserTab.noSession": "Otvorite preglednik iz sesije da pregledate lokalnu aplikaciju ili javnu HTTPS stranicu.",
-  "browserTab.disabled": "Integrirani preglednik je onemogućen. Omogućite ga u Kilo postavkama > Eksperimentalno.",
+  "browserTab.disabled":
+    "Integrirani preglednik je onemogućen. Omogućite ga u BharatCode postavkama > Eksperimentalno.",
 }

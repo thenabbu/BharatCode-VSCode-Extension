@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "Pour plus de statistiques d'utilisation, utilisez ",
-  "provider.connect.kiloGateway.byok.link": "BYOK via Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK via BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": ".",
 
   // Provider settings translations
@@ -37,19 +37,19 @@ export const dict = {
   "marketplace.install.destination": "Destination de l'installation",
   "marketplace.install.includedSkills": "Compétences incluses",
   "marketplace.install.about.mcp":
-    "Un serveur MCP fournit à Kilo des outils supplémentaires pour interagir avec des services externes ou des programmes locaux.",
+    "Un serveur MCP fournit à BharatCode des outils supplémentaires pour interagir avec des services externes ou des programmes locaux.",
   "marketplace.install.about.agent":
     "Un agent ajoute un rôle réutilisable avec ses propres instructions et autorisations.",
   "marketplace.install.about.skill":
-    "Une compétence ajoute des instructions et des ressources propres à une tâche que Kilo peut charger en cas de besoin.",
+    "Une compétence ajoute des instructions et des ressources propres à une tâche que BharatCode peut charger en cas de besoin.",
   "marketplace.install.mcp.warning":
-    "Les serveurs MCP peuvent exécuter des commandes locales ou se connecter à des services externes. Kilo demandera votre autorisation avant d'utiliser leurs outils, sauf si vos autorisations le permettent automatiquement.",
+    "Les serveurs MCP peuvent exécuter des commandes locales ou se connecter à des services externes. BharatCode demandera votre autorisation avant d'utiliser leurs outils, sauf si vos autorisations le permettent automatiquement.",
   "marketplace.install.project.warning":
     "Les fichiers du projet peuvent être ajoutés au contrôle de version. N'y stockez pas de secrets, sauf si la configuration fait référence à une variable d'environnement.",
   "marketplace.install.learnMore": "Découvrir le fonctionnement des installations depuis le Marketplace",
   "marketplace.install.learnMcp": "En savoir plus sur MCP",
   "marketplace.install.about.plugin":
-    "Un plugin ajoute des outils et des intégrations personnalisés à Kilo. Les plugins s'exécutent avec toutes les autorisations.",
+    "Un plugin ajoute des outils et des intégrations personnalisés à BharatCode. Les plugins s'exécutent avec toutes les autorisations.",
   "marketplace.install.plugin.warning":
     "Les plugins exécutent du code avec toutes les autorisations. Ils peuvent lire et modifier vos fichiers, exécuter des commandes et accéder à vos identifiants et à votre réseau. Installez uniquement des plugins auxquels vous faites confiance.",
   "marketplace.intro":
@@ -62,7 +62,8 @@ export const dict = {
   "marketplace.install.failed": "L'installation a échoué",
   "marketplace.install.done": "Terminé",
   "marketplace.install.close": "Fermer",
-  "marketplace.install.mcp.signIn.message": "{{name}} est installé, mais nécessite une connexion avant que ses outils puissent être utilisés.",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} est installé, mais nécessite une connexion avant que ses outils puissent être utilisés.",
   "marketplace.install.mcp.signIn.button": "Se connecter",
   "marketplace.install.mcp.signIn.waiting": "En attente de connexion via le navigateur…",
   "marketplace.install.mcp.signIn.cancel": "Annuler",
@@ -126,7 +127,7 @@ export const dict = {
     "Attendez la fin de l'instantané. Les tours suivants sont rapides une fois l'instantané initial créé.",
   "snapshot.slowRepo.answer.disable": "Désactiver pour ce projet",
   "snapshot.slowRepo.answer.disable.description":
-    "Désactivez les instantanés Kilo pour ce projet. Vous perdez l'annulation/restauration des modifications faites par Kilo, mais git continue de tout suivre.",
+    "Désactivez les instantanés BharatCode pour ce projet. Vous perdez l'annulation/restauration des modifications faites par BharatCode, mais git continue de tout suivre.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "Ouvrir dans le visualiseur de différences",

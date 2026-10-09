@@ -83,7 +83,7 @@ export function readDocument(root: string, file: string): DocumentResult {
     if (content.includes(0)) return { error: "Binary files cannot be previewed." }
     return { file: relative, kind: "text", content: content.toString("utf8") }
   } catch (error) {
-    console.error("[Kilo New] AgentManagerProvider: Cannot read document:", error)
+    console.error("[BharatCode] AgentManagerProvider: Cannot read document:", error)
     return { error: "Document could not be read." }
   }
 }

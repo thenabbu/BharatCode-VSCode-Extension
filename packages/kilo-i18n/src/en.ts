@@ -3,7 +3,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "For more usage stats, ",
-  "provider.connect.kiloGateway.byok.link": "BYOK via Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK via BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": ".",
 
   // Provider settings translations
@@ -38,14 +38,14 @@ export const dict = {
   "marketplace.install.destination": "Installation destination",
   "marketplace.install.includedSkills": "Included skills",
   "marketplace.install.about.mcp":
-    "An MCP server gives Kilo additional tools for working with external services or local programs.",
+    "An MCP server gives BharatCode additional tools for working with external services or local programs.",
   "marketplace.install.about.agent": "An agent adds a reusable role with its own instructions and permissions.",
   "marketplace.install.about.skill":
-    "A skill adds task-specific instructions and resources that Kilo can load when needed.",
+    "A skill adds task-specific instructions and resources that BharatCode can load when needed.",
   "marketplace.install.about.plugin":
-    "A plugin adds custom tools and integrations to Kilo. Plugins run with full permissions.",
+    "A plugin adds custom tools and integrations to BharatCode. Plugins run with full permissions.",
   "marketplace.install.mcp.warning":
-    "MCP servers can run local commands or connect to external services. Kilo will ask for permission before using their tools unless your permissions allow them automatically.",
+    "MCP servers can run local commands or connect to external services. BharatCode will ask for permission before using their tools unless your permissions allow them automatically.",
   "marketplace.install.plugin.warning":
     "Plugins run code with full permissions. They can read and change your files, run commands, and access your credentials and network. Only install plugins you trust.",
   "marketplace.install.project.warning":
@@ -129,7 +129,7 @@ export const dict = {
     "Keep waiting for the snapshot to complete. Subsequent turns are fast once the initial snapshot is built.",
   "snapshot.slowRepo.answer.disable": "Disable for this project",
   "snapshot.slowRepo.answer.disable.description":
-    "Turn off Kilo's snapshots for this project. You will lose undo/redo of Kilo file changes, but git still tracks everything.",
+    "Turn off BharatCode's snapshots for this project. You will lose undo/redo of BharatCode file changes, but git still tracks everything.",
 
   // Edit-tool header: hover-revealed action opening the diff in a full tab.
   "ui.messagePart.openInDiffViewer": "Open in Diff Viewer",

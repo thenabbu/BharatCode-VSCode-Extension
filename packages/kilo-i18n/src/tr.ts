@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "Daha fazla kullanım istatistiği için ",
-  "provider.connect.kiloGateway.byok.link": "Kilo's Gateway üzerinden BYOK",
+  "provider.connect.kiloGateway.byok.link": "BharatCode's Gateway üzerinden BYOK",
   "provider.connect.kiloGateway.byok.suffix": " kullanın.",
 
   // Provider settings translations
@@ -36,19 +36,19 @@ export const dict = {
   "marketplace.install.destination": "Yükleme hedefi",
   "marketplace.install.includedSkills": "Dahil edilen yetenekler",
   "marketplace.install.about.mcp":
-    "Bir MCP sunucusu, harici hizmetler veya yerel programlarla çalışmak için Kilo'ya ek araçlar sağlar.",
+    "Bir MCP sunucusu, harici hizmetler veya yerel programlarla çalışmak için BharatCode'ya ek araçlar sağlar.",
   "marketplace.install.about.agent":
     "Bir ajan, kendi talimatları ve izinleri olan yeniden kullanılabilir bir rol ekler.",
   "marketplace.install.about.skill":
-    "Bir yetenek, Kilo'nun gerektiğinde yükleyebileceği göreve özel talimatlar ve kaynaklar ekler.",
+    "Bir yetenek, BharatCode'nun gerektiğinde yükleyebileceği göreve özel talimatlar ve kaynaklar ekler.",
   "marketplace.install.mcp.warning":
-    "MCP sunucuları yerel komutları çalıştırabilir veya harici hizmetlere bağlanabilir. İzinleriniz otomatik olarak izin vermediği sürece Kilo, araçlarını kullanmadan önce izin ister.",
+    "MCP sunucuları yerel komutları çalıştırabilir veya harici hizmetlere bağlanabilir. İzinleriniz otomatik olarak izin vermediği sürece BharatCode, araçlarını kullanmadan önce izin ister.",
   "marketplace.install.project.warning":
     "Proje dosyaları sürüm kontrolüne eklenebilir. Yapılandırma bir ortam değişkenine başvurmuyorsa gizli bilgileri burada saklamayın.",
   "marketplace.install.learnMore": "Marketplace yüklemelerinin nasıl çalıştığını öğrenin",
   "marketplace.install.learnMcp": "MCP hakkında daha fazla bilgi edinin",
   "marketplace.install.about.plugin":
-    "Bir eklenti, Kilo'ya özel araçlar ve entegrasyonlar ekler. Eklentiler tam izinlerle çalışır.",
+    "Bir eklenti, BharatCode'ya özel araçlar ve entegrasyonlar ekler. Eklentiler tam izinlerle çalışır.",
   "marketplace.install.plugin.warning":
     "Eklentiler tam izinlerle kod çalıştırır. Dosyalarınızı okuyup değiştirebilir, komut çalıştırabilir ve kimlik bilgilerinize ve ağınıza erişebilirler. Yalnızca güvendiğiniz eklentileri yükleyin.",
   "marketplace.intro":
@@ -61,7 +61,8 @@ export const dict = {
   "marketplace.install.failed": "Yükleme başarısız oldu",
   "marketplace.install.done": "Bitti",
   "marketplace.install.close": "Kapat",
-  "marketplace.install.mcp.signIn.message": "{{name}} yüklendi, ancak araçlarının kullanılabilmesi için önce oturum açılması gerekiyor.",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} yüklendi, ancak araçlarının kullanılabilmesi için önce oturum açılması gerekiyor.",
   "marketplace.install.mcp.signIn.button": "Giriş Yap",
   "marketplace.install.mcp.signIn.waiting": "Tarayıcıda oturum açma bekleniyor…",
   "marketplace.install.mcp.signIn.cancel": "İptal",
@@ -125,7 +126,7 @@ export const dict = {
     "Anlık görüntü tamamlanana kadar bekleyin. İlk anlık görüntü oluşturulduktan sonra sonraki turlar hızlıdır.",
   "snapshot.slowRepo.answer.disable": "Bu proje için devre dışı bırak",
   "snapshot.slowRepo.answer.disable.description":
-    "Bu proje için Kilo anlık görüntülerini kapat. Kilo değişiklikleri için geri alma/yeniden yapmayı kaybedersiniz, ancak git her şeyi izlemeye devam eder.",
+    "Bu proje için BharatCode anlık görüntülerini kapat. BharatCode değişiklikleri için geri alma/yeniden yapmayı kaybedersiniz, ancak git her şeyi izlemeye devam eder.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "Fark Görüntüleyicide Aç",

@@ -60,7 +60,7 @@ export interface UnstagedDiffSourceOptions {
  * polls on the standard interval.
  */
 export function createUnstagedDiffSource(opts: UnstagedDiffSourceOptions = {}): DiffSource {
-  const output = opts.git ? undefined : vscode.window.createOutputChannel("Kilo Diff: Unstaged")
+  const output = opts.git ? undefined : vscode.window.createOutputChannel("BharatCode Diff: Unstaged")
   const log = opts.log ?? ((...args: unknown[]) => appendOutput(output!, "UnstagedDiffSource", ...args))
   const git = opts.git ?? new GitOps({ log })
 

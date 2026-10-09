@@ -41,7 +41,7 @@ export async function transcribeSpeech(
   if (hasCustomSource(source)) return await transcribeWithSource(source, input, signal)
 
   const cfg = connection.getServerConfig()
-  if (!cfg) return { ok: false, error: "Not connected to the Kilo backend", code: "not_connected" }
+  if (!cfg) return { ok: false, error: "Not connected to the BharatCode backend", code: "not_connected" }
 
   const auth = Buffer.from(`kilo:${cfg.password}`).toString("base64")
   const url = new URL(PATH, cfg.baseUrl)

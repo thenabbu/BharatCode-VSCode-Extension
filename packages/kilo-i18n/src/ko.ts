@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "더 많은 사용 통계를 보려면 ",
-  "provider.connect.kiloGateway.byok.link": "Kilo's Gateway를 통해 BYOK",
+  "provider.connect.kiloGateway.byok.link": "BharatCode's Gateway를 통해 BYOK",
   "provider.connect.kiloGateway.byok.suffix": "를 사용하세요.",
 
   // Provider settings translations
@@ -36,17 +36,17 @@ export const dict = {
   "marketplace.install.destination": "설치 위치",
   "marketplace.install.includedSkills": "포함된 스킬",
   "marketplace.install.about.mcp":
-    "MCP 서버는 외부 서비스나 로컬 프로그램과 작업할 수 있는 추가 도구를 Kilo에 제공합니다.",
+    "MCP 서버는 외부 서비스나 로컬 프로그램과 작업할 수 있는 추가 도구를 BharatCode에 제공합니다.",
   "marketplace.install.about.agent": "에이전트는 자체 지침과 권한을 가진 재사용 가능한 역할을 추가합니다.",
-  "marketplace.install.about.skill": "스킬은 필요할 때 Kilo가 불러올 수 있는 작업별 지침과 리소스를 추가합니다.",
+  "marketplace.install.about.skill": "스킬은 필요할 때 BharatCode가 불러올 수 있는 작업별 지침과 리소스를 추가합니다.",
   "marketplace.install.mcp.warning":
-    "MCP 서버는 로컬 명령을 실행하거나 외부 서비스에 연결할 수 있습니다. 권한 설정에서 자동으로 허용하지 않는 한 Kilo는 도구를 사용하기 전에 권한을 요청합니다.",
+    "MCP 서버는 로컬 명령을 실행하거나 외부 서비스에 연결할 수 있습니다. 권한 설정에서 자동으로 허용하지 않는 한 BharatCode는 도구를 사용하기 전에 권한을 요청합니다.",
   "marketplace.install.project.warning":
     "프로젝트 파일이 버전 관리에 추가될 수 있습니다. 구성에서 환경 변수를 참조하는 경우가 아니면 여기에 비밀 정보를 저장하지 마세요.",
   "marketplace.install.learnMore": "Marketplace 설치 방식 알아보기",
   "marketplace.install.learnMcp": "MCP 자세히 알아보기",
   "marketplace.install.about.plugin":
-    "플러그인은 Kilo에 사용자 정의 도구와 통합 기능을 추가합니다. 플러그인은 모든 권한으로 실행됩니다.",
+    "플러그인은 BharatCode에 사용자 정의 도구와 통합 기능을 추가합니다. 플러그인은 모든 권한으로 실행됩니다.",
   "marketplace.install.plugin.warning":
     "플러그인은 모든 권한으로 코드를 실행합니다. 사용자의 파일을 읽고 변경하고, 명령을 실행하며, 사용자의 인증 정보와 네트워크에 접근할 수 있습니다. 신뢰할 수 있는 플러그인만 설치하세요.",
   "marketplace.intro":
@@ -121,7 +121,7 @@ export const dict = {
     "스냅샷이 완료될 때까지 기다리세요. 초기 스냅샷이 만들어지면 이후 턴은 빠릅니다.",
   "snapshot.slowRepo.answer.disable": "이 프로젝트에서 비활성화",
   "snapshot.slowRepo.answer.disable.description":
-    "이 프로젝트의 Kilo 스냅샷을 끕니다. Kilo 변경에 대한 실행 취소/다시 실행은 사용할 수 없지만 git은 여전히 모든 것을 추적합니다.",
+    "이 프로젝트의 BharatCode 스냅샷을 끕니다. BharatCode 변경에 대한 실행 취소/다시 실행은 사용할 수 없지만 git은 여전히 모든 것을 추적합니다.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "차이점 뷰어에서 열기",

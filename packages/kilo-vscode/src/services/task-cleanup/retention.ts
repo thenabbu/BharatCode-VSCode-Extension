@@ -78,7 +78,7 @@ export class RetentionService {
     try {
       await this.run(false)
     } catch (err) {
-      console.warn("[Kilo New] Scheduled retention pass failed:", err)
+      console.warn("[BharatCode] Scheduled retention pass failed:", err)
     } finally {
       if (!this.disposed) this.schedule(DAY_MS)
     }

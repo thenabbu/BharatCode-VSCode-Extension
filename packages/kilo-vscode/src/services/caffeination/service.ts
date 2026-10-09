@@ -61,7 +61,7 @@ export class CaffeinationService {
             .catch((error: unknown) => {
               // Do not turn a transient failure into "no pending wakeups": the
               // feed keeps the previous wake set and releases it on the next sync.
-              console.warn(`[Kilo New] Keep-awake wakeup refresh failed for ${dir}:`, error)
+              console.warn(`[BharatCode] Keep-awake wakeup refresh failed for ${dir}:`, error)
               return undefined
             }),
         ])

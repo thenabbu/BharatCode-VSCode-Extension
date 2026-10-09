@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "Za više statistika korištenja, koristite ",
-  "provider.connect.kiloGateway.byok.link": "BYOK putem Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK putem BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": ".",
 
   // Provider settings translations
@@ -45,15 +45,15 @@ export const dict = {
     "MCP server pruža Kilu dodatne alate za rad s vanjskim servisima ili lokalnim programima.",
   "marketplace.install.about.agent": "Agent dodaje višekratnu ulogu s vlastitim uputama i dozvolama.",
   "marketplace.install.about.skill":
-    "Vještina dodaje upute i resurse za određene zadatke koje Kilo može učitati kada su potrebni.",
+    "Vještina dodaje upute i resurse za određene zadatke koje BharatCode može učitati kada su potrebni.",
   "marketplace.install.mcp.warning":
-    "MCP serveri mogu pokretati lokalne naredbe ili se povezivati s vanjskim servisima. Kilo će zatražiti dozvolu prije korištenja njihovih alata, osim ako vaše dozvole to automatski dopuštaju.",
+    "MCP serveri mogu pokretati lokalne naredbe ili se povezivati s vanjskim servisima. BharatCode će zatražiti dozvolu prije korištenja njihovih alata, osim ako vaše dozvole to automatski dopuštaju.",
   "marketplace.install.project.warning":
     "Datoteke projekta mogu se dodati u kontrolu verzija. Ne čuvajte tajne ovdje osim ako konfiguracija upućuje na varijablu okruženja.",
   "marketplace.install.learnMore": "Saznajte kako funkcionišu instalacije s Marketplacea",
   "marketplace.install.learnMcp": "Saznajte više o MCP-u",
   "marketplace.install.about.plugin":
-    "Dodatak dodaje prilagođene alate i integracije u Kilo. Dodaci se izvršavaju sa svim dozvolama.",
+    "Dodatak dodaje prilagođene alate i integracije u BharatCode. Dodaci se izvršavaju sa svim dozvolama.",
   "marketplace.install.plugin.warning":
     "Dodaci izvršavaju kod sa svim dozvolama. Mogu čitati i mijenjati vaše datoteke, pokretati naredbe i pristupati vašim pristupnim podacima i mreži. Instalirajte samo dodatke kojima vjerujete.",
   "marketplace.intro": "Instalirajte višekratne agente, vještine, MCP alate i dodatke za jedan ili sve projekte.",
@@ -65,7 +65,8 @@ export const dict = {
   "marketplace.install.failed": "Instalacija nije uspjela",
   "marketplace.install.done": "Završeno",
   "marketplace.install.close": "Zatvori",
-  "marketplace.install.mcp.signIn.message": "{{name}} je instaliran, ali zahtijeva prijavu prije nego što se njegovi alati mogu koristiti.",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} je instaliran, ali zahtijeva prijavu prije nego što se njegovi alati mogu koristiti.",
   "marketplace.install.mcp.signIn.button": "Prijava",
   "marketplace.install.mcp.signIn.waiting": "Čekanje na prijavu putem preglednika…",
   "marketplace.install.mcp.signIn.cancel": "Otkaži",
@@ -129,7 +130,7 @@ export const dict = {
     "Sačekaj da se snapshot završi. Naredni potezi su brzi kada se početni snapshot jednom napravi.",
   "snapshot.slowRepo.answer.disable": "Onemogući za ovaj projekat",
   "snapshot.slowRepo.answer.disable.description":
-    "Isključi Kilo snapshotove za ovaj projekat. Izgubićete poništi/vrati za izmjene koje napravi Kilo, ali git i dalje prati sve.",
+    "Isključi BharatCode snapshotove za ovaj projekat. Izgubićete poništi/vrati za izmjene koje napravi BharatCode, ali git i dalje prati sve.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "Otvori u pregledniku razlika",

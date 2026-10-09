@@ -57,7 +57,7 @@ export async function handleSessionSearch(input: Input): Promise<void> {
       }))
     input.post({ type: "sessionSearchResult", sessions, requestId: input.message.requestId })
   } catch (err) {
-    console.error("[Kilo New] Session search failed:", err)
+    console.error("[BharatCode] Session search failed:", err)
     input.post({ type: "sessionSearchResult", sessions: [], requestId: input.message.requestId })
   }
 }

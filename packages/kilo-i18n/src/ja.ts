@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "詳細な使用統計については、",
-  "provider.connect.kiloGateway.byok.link": "Kilo's Gateway経由でBYOK",
+  "provider.connect.kiloGateway.byok.link": "BharatCode's Gateway経由でBYOK",
   "provider.connect.kiloGateway.byok.suffix": "をご利用ください。",
 
   // Provider settings translations
@@ -36,17 +36,18 @@ export const dict = {
   "marketplace.install.destination": "インストール先",
   "marketplace.install.includedSkills": "同梱スキル",
   "marketplace.install.about.mcp":
-    "MCPサーバーは、外部サービスやローカルプログラムを操作するための追加ツールをKiloに提供します。",
+    "MCPサーバーは、外部サービスやローカルプログラムを操作するための追加ツールをBharatCodeに提供します。",
   "marketplace.install.about.agent": "エージェントは、独自の指示と権限を持つ再利用可能な役割を追加します。",
-  "marketplace.install.about.skill": "スキルは、必要に応じてKiloが読み込めるタスク固有の指示とリソースを追加します。",
+  "marketplace.install.about.skill":
+    "スキルは、必要に応じてBharatCodeが読み込めるタスク固有の指示とリソースを追加します。",
   "marketplace.install.mcp.warning":
-    "MCPサーバーはローカルコマンドを実行したり、外部サービスに接続したりできます。権限で自動的に許可されていない限り、Kiloはツールを使用する前に許可を求めます。",
+    "MCPサーバーはローカルコマンドを実行したり、外部サービスに接続したりできます。権限で自動的に許可されていない限り、BharatCodeはツールを使用する前に許可を求めます。",
   "marketplace.install.project.warning":
     "プロジェクトファイルはバージョン管理に追加される場合があります。設定で環境変数を参照している場合を除き、ここにシークレットを保存しないでください。",
   "marketplace.install.learnMore": "Marketplaceからのインストールの仕組みを見る",
   "marketplace.install.learnMcp": "MCPについて詳しく見る",
   "marketplace.install.about.plugin":
-    "プラグインは、カスタムツールや連携機能をKiloに追加します。プラグインはすべての権限を持って実行されます。",
+    "プラグインは、カスタムツールや連携機能をBharatCodeに追加します。プラグインはすべての権限を持って実行されます。",
   "marketplace.install.plugin.warning":
     "プラグインはすべての権限を持ってコードを実行します。ファイルの読み取りや変更、コマンドの実行、認証情報やネットワークへのアクセスが可能です。信頼できるプラグインのみをインストールしてください。",
   "marketplace.intro":
@@ -59,7 +60,8 @@ export const dict = {
   "marketplace.install.failed": "インストールに失敗しました",
   "marketplace.install.done": "完了",
   "marketplace.install.close": "閉じる",
-  "marketplace.install.mcp.signIn.message": "{{name}} はインストールされていますが、ツールを使用する前にサインインが必要です。",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} はインストールされていますが、ツールを使用する前にサインインが必要です。",
   "marketplace.install.mcp.signIn.button": "サインイン",
   "marketplace.install.mcp.signIn.waiting": "ブラウザでのサインインを待っています…",
   "marketplace.install.mcp.signIn.cancel": "キャンセル",
@@ -122,7 +124,7 @@ export const dict = {
     "スナップショットが完了するまで待機します。初回のスナップショットが作成された後は、以降のターンは高速になります。",
   "snapshot.slowRepo.answer.disable": "このプロジェクトで無効化",
   "snapshot.slowRepo.answer.disable.description":
-    "このプロジェクトでは Kilo のスナップショットを無効にします。Kilo による変更の取り消し/やり直しはできなくなりますが、git は引き続きすべてを追跡します。",
+    "このプロジェクトでは BharatCode のスナップショットを無効にします。BharatCode による変更の取り消し/やり直しはできなくなりますが、git は引き続きすべてを追跡します。",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "差分ビューアーで開く",

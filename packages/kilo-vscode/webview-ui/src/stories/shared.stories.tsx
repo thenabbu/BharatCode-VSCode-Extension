@@ -62,7 +62,7 @@ export const ModelSelectorNoProviders: Story = {
 const ACCESSIBLE_MODELS: EnrichedModel[] = [
   {
     id: "kilo-auto/efficient",
-    name: "Kilo Auto Efficient",
+    name: "BharatCode Auto Efficient",
     providerID: "kilo",
     providerName: "Kilo",
     recommendedIndex: 0,
@@ -74,7 +74,7 @@ const ACCESSIBLE_MODELS: EnrichedModel[] = [
   },
   {
     id: "kilo-auto/frontier",
-    name: "Kilo Auto Frontier",
+    name: "BharatCode Auto Frontier",
     providerID: "kilo",
     providerName: "Kilo",
     recommendedIndex: 1,
@@ -85,7 +85,7 @@ const ACCESSIBLE_MODELS: EnrichedModel[] = [
   },
   {
     id: "kilo-auto/legacy",
-    name: "Kilo Auto Legacy",
+    name: "BharatCode Auto Legacy",
     providerID: "kilo",
     providerName: "Kilo",
   },

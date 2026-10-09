@@ -63,7 +63,7 @@ export async function seedSessionStatuses(
       }
     }
   } catch (error) {
-    console.error("[Kilo New] KiloProvider: Failed to seed session statuses:", error)
+    console.error("[BharatCode] KiloProvider: Failed to seed session statuses:", error)
   }
 }
 
@@ -94,7 +94,7 @@ export async function seedSessionWakeups(
         }
       } catch (error) {
         complete = false
-        console.error(`[Kilo New] KiloProvider: Failed to seed session wakeups for ${dir}:`, error)
+        console.error(`[BharatCode] KiloProvider: Failed to seed session wakeups for ${dir}:`, error)
       }
     }),
   )

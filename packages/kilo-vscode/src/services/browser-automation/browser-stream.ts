@@ -470,7 +470,7 @@ export class BrowserStream {
   }
 
   private report(message: string): void {
-    this.log(`[Kilo New] Browser stream ${message}`)
+    this.log(`[BharatCode] Browser stream ${message}`)
   }
 
   private reset(): void {

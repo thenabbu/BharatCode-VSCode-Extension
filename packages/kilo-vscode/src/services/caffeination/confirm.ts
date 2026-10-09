@@ -27,7 +27,7 @@ export function confirmCaffeination(
         return service.setEnabled(true)
       })
       .catch((error: unknown) => {
-        console.warn("[Kilo New] Keep-awake confirmation failed:", error)
+        console.warn("[BharatCode] Keep-awake confirmation failed:", error)
       })
       .finally(() => {
         pending = undefined

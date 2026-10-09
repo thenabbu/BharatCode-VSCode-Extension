@@ -278,7 +278,7 @@ export const dict = {
   "agentManager.review.sendToChat": "Invia alla chat",
   "agentManager.pr.comment.title": "Commenti",
   "agentManager.pr.copyLink": "Copia link PR",
-  "agentManager.pr.checks.fix": "Correggi con Kilo",
+  "agentManager.pr.checks.fix": "Correggi con BharatCode",
   "agentManager.pr.checks.terminal": "Invia gli errori al terminale",
   "agentManager.pr.checks.feedback": "Feedback CI",
   "agentManager.pr.checks.title": "Controlli",
@@ -309,8 +309,8 @@ export const dict = {
   "agentManager.pr.checks.tally.skipped.other": "{{count}} ignorati",
   "agentManager.pr.checks.tally.success.one": "{{count}} superato",
   "agentManager.pr.checks.tally.success.other": "{{count}} superati",
-  "agentManager.pr.fixWithKilo": "Correggi con Kilo",
-  "agentManager.pr.fixWithKiloCount": "Correggi {{count}} con Kilo",
+  "agentManager.pr.fixWithKilo": "Correggi con BharatCode",
+  "agentManager.pr.fixWithKiloCount": "Correggi {{count}} con BharatCode",
   "agentManager.pr.comment.unresolvedCount": "{{count}} non risolti",
   "agentManager.pr.comment.unresolvedThread": "{{count}} discussione di revisione non risolta",
   "agentManager.pr.comment.unresolvedThreads": "{{count}} discussioni di revisione non risolte",
@@ -364,7 +364,7 @@ export const dict = {
   "agentManager.pr.timeline.earlier": "Show earlier activity",
   "agentManager.pr.conversation.dismiss": "Ignora",
   "agentManager.pr.conversation.restore": "Ripristina",
-  "agentManager.pr.conversation.sendAll": "Correggi {{count}} con Kilo",
+  "agentManager.pr.conversation.sendAll": "Correggi {{count}} con BharatCode",
   "agentManager.pr.conversation.sendAllToTerminal": "Invia {{count}} al terminale",
   "agentManager.pr.summary.title": "PR Summary",
   "agentManager.pr.summary.checksPassing": "All checks passing",
@@ -381,7 +381,7 @@ export const dict = {
   "agentManager.pr.merge.draft": "Pull request in bozza",
   "agentManager.pr.merge.checking": "Verifica della possibilità di merge",
   "agentManager.pr.merge.ready": "Pronta per il merge",
-  "agentManager.pr.merge.fix": "Correggi con Kilo",
+  "agentManager.pr.merge.fix": "Correggi con BharatCode",
   "agentManager.pr.merge.update": "Aggiorna il branch",
   "agentManager.pr.merge.button": "{{method}}",
   "agentManager.pr.merge.autoButton": "Abilita auto-merge",
@@ -450,10 +450,10 @@ export const dict = {
   "agentManager.import.noBranchesFound": "Nessun branch trovato.",
   "agentManager.import.noBranchesHint": "Incolla un URL PR sopra o crea un nuovo worktree.",
   "agentManager.import.failed": "Importazione non riuscita",
-  "agentManager.caffeination.toggle": "Mantieni il computer attivo mentre gli agenti Kilo lavorano",
+  "agentManager.caffeination.toggle": "Mantieni il computer attivo mentre gli agenti BharatCode lavorano",
   "agentManager.caffeination.armed":
     "Modalità per mantenere il computer attivo abilitata per gli agenti Kilo; fai clic per disabilitare",
-  "agentManager.caffeination.active": "Computer mantenuto attivo mentre gli agenti Kilo lavorano",
+  "agentManager.caffeination.active": "Computer mantenuto attivo mentre gli agenti BharatCode lavorano",
   "agentManager.caffeination.unavailable":
     "La modalità per mantenere il computer attivo non è disponibile su questa piattaforma",
   "agentManager.browser.title": "Browser integrato",
@@ -492,7 +492,7 @@ export const dict = {
   "agentManager.intro.title": "Attività parallele. Worktree separati.",
   "agentManager.intro.subtitle":
     "Un worktree è una cartella e un branch separati per un'attività. I tuoi agenti possono lavorare fianco a fianco senza modificare gli stessi file.",
-  "agentManager.intro.graph.agent": "Agente Kilo",
+  "agentManager.intro.graph.agent": "Agente BharatCode",
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.stage1.title": "Il tuo repository",
   "agentManager.intro.stage1.text": "I file locali restano invariati",
@@ -504,7 +504,7 @@ export const dict = {
   "agentManager.intro.stage4.title": "Riporta le modifiche quando sei pronto",
   "agentManager.intro.stage4.text":
     "Chiedi all'agente di ogni worktree di aprire una pull request. Oppure usa Apply nel pannello diff per copiare le modifiche in Local.",
-  "agentManager.intro.updateTitle": "Risolvi i conflitti con Kilo",
+  "agentManager.intro.updateTitle": "Risolvi i conflitti con BharatCode",
   "agentManager.intro.updateText":
     "Prima di applicare le modifiche a Local o fare il merge di una pull request, esegui /update-from-base nella sessione di quel worktree. Kilo unisce le ultime modifiche del branch di base e risolve prima i conflitti all'interno di quel worktree.",
   "agentManager.intro.prDetection":

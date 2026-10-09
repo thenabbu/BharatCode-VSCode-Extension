@@ -12,14 +12,14 @@ export const anacondaDesktopDict = {
   "provider.anaconda.status.unavailable": "Non disponibile",
   "provider.anaconda.state.unsupported": "Anaconda Desktop non è supportato su {{platform}}.",
   "provider.anaconda.state.notInstalled":
-    "Installa Anaconda Desktop su questo computer, poi torna qui. Kilo non esegue il programma di installazione per te.",
+    "Installa Anaconda Desktop su questo computer, poi torna qui. BharatCode non esegue il programma di installazione per te.",
   "provider.anaconda.state.notRunning":
     "Apri Anaconda Desktop, completa la configurazione e accedi, poi scegli Controlla di nuovo.",
   "provider.anaconda.state.invalidConfig":
     "La configurazione di Anaconda Desktop è incompleta. Apri Desktop, completa la configurazione e riavvialo se necessario.",
-  "provider.anaconda.state.signedOut": "Apri Anaconda Desktop e accedi prima di connettere Kilo.",
+  "provider.anaconda.state.signedOut": "Apri Anaconda Desktop e accedi prima di connettere BharatCode.",
   "provider.anaconda.state.unauthorized":
-    "Kilo non è riuscito ad accedere ad Anaconda Desktop. Apri Desktop, accedi di nuovo e riavvialo se necessario.",
+    "BharatCode non è riuscito ad accedere ad Anaconda Desktop. Apri Desktop, accedi di nuovo e riavvialo se necessario.",
   "provider.anaconda.state.unavailable":
     "Anaconda Desktop non risponde ancora. Aprilo e attendi che l'applicazione finisca di avviarsi.",
   "provider.anaconda.state.noModel":
@@ -31,7 +31,7 @@ export const anacondaDesktopDict = {
   "provider.anaconda.state.unhealthy":
     "Il server di inferenza attivo non è ancora integro. Controllalo in Anaconda Desktop e riavvia il server se necessario.",
   "provider.anaconda.state.ready":
-    "Kilo ha trovato un server locale di generazione del testo integro e può importare le sue attuali impostazioni di connessione.",
+    "BharatCode ha trovato un server locale di generazione del testo integro e può importare le sue attuali impostazioni di connessione.",
   "provider.anaconda.server": "Server di inferenza attivo",
   "provider.anaconda.context": "Finestra di contesto",
   "provider.anaconda.contextValue": "{{count}} token",
@@ -48,7 +48,7 @@ export const anacondaDesktopDict = {
   "provider.anaconda.action.continue": "Continua comunque",
   "provider.anaconda.action.manage": "Gestisci / Aggiorna",
   "provider.anaconda.toast.refreshed.title": "Anaconda Desktop aggiornato",
-  "provider.anaconda.toast.refreshed.description": "Il server locale attivo e i modelli sono aggiornati in Kilo.",
+  "provider.anaconda.toast.refreshed.description": "Il server locale attivo e i modelli sono aggiornati in BharatCode.",
   "settings.providers.note.anacondaDesktop": "Esegui un modello servito localmente da Anaconda Desktop.",
   "settings.providers.tag.local": "Locale",
 } as const
@@ -93,7 +93,7 @@ export const dict = {
     "Conversazione ripristinata. Lo stato del ripristino dell'area di lavoro non è disponibile per questo ripristino precedente.",
   "revert.banner.workspace.enableSnapshots": "Abilita snapshot",
   "revert.disabled.agentBusy": "Attendi che l'agente finisca",
-  "revert.error.body": "Il repository potrebbe essere in uso. Riprova o controlla i log di Kilo per i dettagli.",
+  "revert.error.body": "Il repository potrebbe essere in uso. Riprova o controlla i log di BharatCode per i dettagli.",
   "command.session.compact": "Compatta sessione",
   "dialog.provider.search.placeholder": "Cerca provider",
   "dialog.provider.empty": "Nessun provider trovato",
@@ -113,7 +113,7 @@ export const dict = {
   "provider.connect.status.waiting": "In attesa di autorizzazione...",
   "provider.connect.status.failed": "Autorizzazione non riuscita: {{error}}",
   "provider.connect.apiKey.description":
-    "Inserisci la tua API key {{provider}} per connettere l'account e usare i modelli {{provider}} in Kilo.",
+    "Inserisci la tua API key {{provider}} per connettere l'account e usare i modelli {{provider}} in BharatCode.",
   "provider.connect.apiKey.description.local":
     "Connect to your local {{provider}} server. Leave the API key empty if the server does not require one (default for localhost).",
   "provider.connect.atomicChat.description":
@@ -126,14 +126,14 @@ export const dict = {
   "provider.connect.oauth.code.visit.prefix": "Visita ",
   "provider.connect.oauth.code.visit.link": "questo link",
   "provider.connect.oauth.code.visit.suffix":
-    " per ottenere il codice di autorizzazione, connettere l'account e usare i modelli {{provider}} in Kilo.",
+    " per ottenere il codice di autorizzazione, connettere l'account e usare i modelli {{provider}} in BharatCode.",
   "provider.connect.oauth.code.label": "Codice di autorizzazione {{method}}",
   "provider.connect.oauth.code.placeholder": "Codice di autorizzazione",
   "provider.connect.oauth.code.required": "Codice di autorizzazione obbligatorio",
   "provider.connect.oauth.auto.visit.prefix": "Visita ",
   "provider.connect.oauth.auto.visit.link": "questo link",
   "provider.connect.oauth.auto.visit.suffix":
-    " e inserisci il codice qui sotto per connettere l'account e usare i modelli {{provider}} in Kilo.",
+    " e inserisci il codice qui sotto per connettere l'account e usare i modelli {{provider}} in BharatCode.",
   "provider.connect.oauth.auto.confirmationCode": "Codice di conferma",
   "provider.connect.toast.connected.title": "{{provider}} connesso",
   "provider.connect.toast.connected.description": "I modelli {{provider}} sono ora disponibili.",
@@ -231,7 +231,7 @@ export const dict = {
     "Questo esegue l'intero comando senza le restrizioni di filesystem e rete, solo per questo comando. Git deve scrivere in .git, che è di sola lettura nella sandbox e si trova fuori dall'albero di lavoro in un worktree collegato. Le regole di autorizzazione Bash e l'approvazione automatica non approvano mai automaticamente questa richiesta.",
   "ui.permission.manageAutoApprove": "Gestisci regole approvazione automatica",
   "ui.permission.reject": "Rifiuta",
-  "ui.permission.feedbackPlaceholder": "Di' a Kilo cosa fare diversamente",
+  "ui.permission.feedbackPlaceholder": "Di' a BharatCode cosa fare diversamente",
   "ui.permission.feedbackHint": "Enter per rifiutare, Esc per annullare",
   "ui.permission.doomLoop.prompt": "Rilevato un potenziale ciclo nello strumento {{tool}}. Continuare l'esecuzione?",
   "ui.permission.doomLoop.rule": "Continua le chiamate a {{tool}}",
@@ -410,11 +410,11 @@ export const dict = {
   "settings.config.status.loadedLegacy": "config legacy caricata",
   "settings.config.status.notLoaded": "non caricata",
   "settings.config.status.create": "non trovata - crea questo file",
-  "settings.config.title": "Apri file config Kilo {{scope}}",
+  "settings.config.title": "Apri file config BharatCode {{scope}}",
   "settings.config.placeholder":
     "I file config vengono uniti in ordine; i file marcati come caricati influenzano attualmente le impostazioni.",
-  "settings.config.noWorkspace": "Apri una cartella workspace per modificare il file config Kilo locale.",
-  "settings.config.openFailed": "Apertura file config Kilo {{scope}} non riuscita: {{message}}",
+  "settings.config.noWorkspace": "Apri una cartella workspace per modificare il file config BharatCode locale.",
+  "settings.config.openFailed": "Apertura file config BharatCode {{scope}} non riuscita: {{message}}",
   "settings.config.source.xdg": "Config globale XDG",
   "settings.config.source.homeKilo": "Config home .kilo",
   "settings.config.source.homeKilocode": "Config home .kilocode",
@@ -471,7 +471,7 @@ export const dict = {
   "feedback.dialog.github": "Segnala un problema su GitHub",
   "feedback.dialog.discord": "Entra nella community Discord",
   "feedback.dialog.support": "Supporto clienti",
-  "workStyle.onboarding.welcome": "Ti diamo il benvenuto in Kilo",
+  "workStyle.onboarding.welcome": "Ti diamo il benvenuto in BharatCode",
   "workStyle.onboarding.title": "Scegli come vuoi lavorare",
   "workStyle.onboarding.settingsNote": "Puoi modificare queste opzioni in qualsiasi momento in",
   "workStyle.onboarding.settings": "Impostazioni.",
@@ -481,7 +481,8 @@ export const dict = {
   "workStyle.choice.visibility": "Visibilità",
   "workStyle.choice.human-in-the-loop.eyebrow": "Supervisione umana",
   "workStyle.choice.human-in-the-loop.title": "Prima la revisione",
-  "workStyle.choice.human-in-the-loop.description": "Kilo si mette in pausa e ti mostra il suo piano mentre lavora.",
+  "workStyle.choice.human-in-the-loop.description":
+    "BharatCode si mette in pausa e ti mostra il suo piano mentre lavora.",
   "workStyle.choice.human-in-the-loop.permissions": "Chiede conferma prima di modificare file o eseguire comandi.",
   "workStyle.choice.human-in-the-loop.bash": "Chiede l'autorizzazione per ogni comando del terminale.",
   "workStyle.choice.human-in-the-loop.visibility": "Espande ragionamento, comandi e modifiche per la revisione.",
@@ -502,7 +503,7 @@ export const dict = {
   "deviceAuth.toast.codeCopied": "Codice copiato negli appunti",
   "deviceAuth.toast.errorCopied": "Errore copiato negli appunti",
   "deviceAuth.status.initiating": "Avvio accesso...",
-  "deviceAuth.title": "Accedi a Kilo Code",
+  "deviceAuth.title": "Accedi a BharatCode",
   "deviceAuth.step1": "Passaggio 1: apri questo URL",
   "deviceAuth.action.copyUrl": "Copia URL",
   "deviceAuth.action.openBrowser": "Apri browser",
@@ -523,7 +524,7 @@ export const dict = {
   "common.reloadDescription": "Ricarica configurazione, competenze, agenti e comandi dal disco",
   "profile.title": "Profilo",
   "profile.notLoggedIn": "Accesso non effettuato",
-  "profile.action.login": "Accedi con Kilo Code",
+  "profile.action.login": "Accedi con BharatCode",
   "profile.balance.title": "Saldo",
   "profile.balance.refresh": "Aggiorna saldo",
   "profile.usage.title": "Piani e utilizzo",
@@ -539,7 +540,8 @@ export const dict = {
   "profile.usage.plan.unknown": "Piano: Stato sconosciuto",
   "profile.usage.action.manage": "Gestisci",
   "profile.usage.action.managePlan": "Gestisci {{plan}}",
-  "profile.usage.routing": "La fatturazione del piano è attiva. L'instradamento tramite Kilo Gateway è {{state}}.",
+  "profile.usage.routing":
+    "La fatturazione del piano è attiva. L'instradamento tramite BharatCode Gateway è {{state}}.",
   "profile.usage.routingState.disabled": "disabilitato",
   "profile.usage.routingState.missing": "mancante",
   "profile.usage.routingState.replaced": "sostituito",
@@ -565,11 +567,11 @@ export const dict = {
   "profile.usage.status.exhausted": "Esaurito",
   "profile.action.dashboard": "Dashboard",
   "profile.action.topUp": "Ricarica",
-  "profile.pass.subscribe": "Ottieni Kilo Pass per aggiungere crediti e guadagnare bonus",
+  "profile.pass.subscribe": "Ottieni BharatCode Pass per aggiungere crediti e guadagnare bonus",
   "profile.pass.bonus": "Bonus",
   "profile.pass.usage": "Utilizzo di questo mese",
   "profile.pass.paid": "Pagato",
-  "profile.pass.meter": "Utilizzo mensile di Kilo Pass",
+  "profile.pass.meter": "Utilizzo mensile di BharatCode Pass",
   "profile.pass.renews": "Si rinnova",
   "profile.action.logout": "Esci",
   "settings.agentBehaviour.title": "Comportamento agente",
@@ -618,9 +620,9 @@ export const dict = {
   "settings.indexing.tuning.description": "Parametro avanzato per ricerca e batching.",
   "settings.experimental.title": "Sperimentale",
   "settings.language.title": "Lingua",
-  "settings.aboutKiloCode.title": "Informazioni su Kilo Code",
+  "settings.aboutKiloCode.title": "Informazioni su BharatCode",
   "session.messages.welcome":
-    "Kilo Code è un assistente AI per il coding. Chiedigli di creare feature, correggere bug o spiegare il codebase.",
+    "BharatCode è un assistente AI per il coding. Chiedigli di creare feature, correggere bug o spiegare il codebase.",
   "session.messages.scrollToBottom": "Scorri in fondo",
   "session.messages.initializing": "Inizializzazione...",
   "session.messages.taskStarting": "Avvio...",
@@ -635,7 +637,7 @@ export const dict = {
   "session.status.retry": "Riprovo...",
   "session.status.working": "Al lavoro...",
   "session.status.offline": "Rete disconnessa - riconnessione...",
-  "sidebar.topBar.label": "Navigazione Kilo Code",
+  "sidebar.topBar.label": "Navigazione BharatCode",
   "sidebar.topBar.newTask": "Nuova Attività",
   "sidebar.topBar.history": "Cronologia",
   "sidebar.topBar.agentManager": "Agent Manager",
@@ -669,7 +671,7 @@ export const dict = {
   "ui.sessionTurn.status.thinking": "Sto pensando...",
   "ui.sessionTurn.status.consideringNextSteps": "Valutazione prossimi passi...",
   "dialog.model.noProviders": "Nessun provider",
-  "dialog.model.unavailable": "Modelli Kilo non disponibili",
+  "dialog.model.unavailable": "Modelli BharatCode non disponibili",
   "prompt.placeholder.connecting": "Connessione al server...",
   "prompt.placeholder.default":
     "Scrivi un messaggio, @ per menzionare i file... (Invio per inviare, Maiusc+Invio per nuova riga)",
@@ -707,10 +709,10 @@ export const dict = {
   "settings.aboutKiloCode.exportSettings": "Esporta",
   "settings.aboutKiloCode.importSettings": "Importa",
   "settings.aboutKiloCode.importSettings.invalidJson": "File JSON non valido. Seleziona un file impostazioni valido.",
-  "settings.aboutKiloCode.importSettings.invalidConfig": "Il file non contiene impostazioni Kilo valide.",
+  "settings.aboutKiloCode.importSettings.invalidConfig": "Il file non contiene impostazioni BharatCode valide.",
   "settings.aboutKiloCode.importSettings.tooLarge": "File troppo grande. I file impostazioni devono essere sotto 1 MB.",
   "settings.aboutKiloCode.importSettings.newerVersion":
-    "Questo file è stato esportato da una versione più recente di Kilo. Alcune impostazioni potrebbero essere ignorate.",
+    "Questo file è stato esportato da una versione più recente di BharatCode. Alcune impostazioni potrebbero essere ignorate.",
   "settings.aboutKiloCode.importSettings.success":
     "Impostazioni importate. Controlla le modifiche sopra, poi fai clic su Salva.",
   "settings.aboutKiloCode.telemetry.title": "Telemetria",
@@ -723,7 +725,7 @@ export const dict = {
   "settings.agentBehaviour.subtab.workflows": "Workflow",
   "settings.agentBehaviour.subtab.skills": "Skill",
   "settings.browser.description":
-    "Configura l'automazione del browser integrata basata su Playwright. Kilo può navigare, interagire e acquisire screenshot delle pagine web nelle tue sessioni.",
+    "Configura l'automazione del browser integrata basata su Playwright. BharatCode può navigare, interagire e acquisire screenshot delle pagine web nelle tue sessioni.",
   "settings.browser.enable.title": "Abilita automazione browser",
   "settings.browser.enable.description":
     "Abilita il browser di Agent Manager dedicato a ciascuna sessione per le applicazioni locali e le pagine HTTPS pubbliche.",
@@ -732,7 +734,7 @@ export const dict = {
     "Usa il browser Chrome installato invece di un'istanza Chromium separata.",
   "settings.browser.headless.title": "Modalità headless",
   "settings.browser.headless.description": "Esegui in modalità headless (senza finestra browser visibile).",
-  "settings.language.description": 'Scegli la lingua dell\'interfaccia Kilo Code. "Auto" usa la lingua di VS Code.',
+  "settings.language.description": 'Scegli la lingua dell\'interfaccia BharatCode. "Auto" usa la lingua di VS Code.',
   "settings.language.auto": "Auto (lingua VS Code)",
   "settings.language.current": "Corrente:",
   "common.add": "Aggiungi",
@@ -752,10 +754,10 @@ export const dict = {
     "Riproduci suoni quando le sessioni si concludono, si verifica un errore o è richiesto il tuo intervento",
   "settings.notifications.workbench.title": "Abilita le notifiche di VS Code",
   "settings.notifications.workbench.description":
-    "Mostra notifiche di VS Code quando Kilo completa un'attività o richiede il tuo intervento",
+    "Mostra notifiche di VS Code quando BharatCode completa un'attività o richiede il tuo intervento",
   "settings.notifications.os.title": "Abilita le notifiche del sistema operativo",
   "settings.notifications.os.description":
-    "Mostra avvisi di notifica nativi del sistema operativo quando Kilo completa un'attività o richiede il tuo intervento mentre VS Code non è attivo.",
+    "Mostra avvisi di notifica nativi del sistema operativo quando BharatCode completa un'attività o richiede il tuo intervento mentre VS Code non è attivo.",
   "settings.notifications.testSound": "Prova",
   "settings.notifications.testOS": "Prova",
   "settings.notifications.testOS.testing": "Invio della notifica di prova…",
@@ -781,7 +783,7 @@ export const dict = {
     "Abilita l'indicizzazione semantica del codebase e il tool semantic_search. Richiede configurazione indicizzazione.",
   "settings.experimental.imageGeneration.title": "Generazione di immagini",
   "settings.experimental.imageGeneration.description": "Abilita la generazione di immagini con AI",
-  "settings.agentBehaviour.sharedAgentBoard.title": "Kilo Swarm",
+  "settings.agentBehaviour.sharedAgentBoard.title": "BharatCode Swarm",
   "settings.agentBehaviour.sharedAgentBoard.description":
     "Condividi una board tra una sessione principale e i suoi sotto-agenti incaricati dei task, inclusi quelli annidati. Usala per tentativi di soluzione in parallelo o attività complementari, non per ogni task.",
   "settings.experimental.imageGenerationModel.title": "Modello di immagine",
@@ -814,7 +816,7 @@ export const dict = {
   "settings.experimental.mcpTimeout.description": "Timeout per richieste server MCP in millisecondi",
   "settings.experimental.remote.title": "Controllo remoto",
   "settings.experimental.remote.description":
-    "Abilita controllo remoto delle sessioni tramite Kilo Cloud. Influenzerà anche le CLI su questa macchina.",
+    "Abilita controllo remoto delle sessioni tramite BharatCode Cloud. Influenzerà anche le CLI su questa macchina.",
   "settings.experimental.remote.current": "Stato corrente:",
   "settings.experimental.remote.startup": "Abilita automaticamente all'avvio:",
   "settings.experimental.remote.active": "Attivo",
@@ -849,9 +851,9 @@ export const dict = {
   "prompt.action.sandbox.enable": "Abilita sandbox",
   "prompt.action.sandbox.disable": "Disabilita sandbox",
   "prompt.action.sandbox.enabled":
-    "Sandbox abilitata. I comandi shell dell'agente sono limitati alle directory del progetto e di Kilo.",
+    "Sandbox abilitata. I comandi shell dell'agente sono limitati alle directory del progetto e di BharatCode.",
   "prompt.action.sandbox.disabled":
-    "Sandbox disabilitata. Fai clic per limitare le scritture dei comandi shell dell'agente alle directory del progetto e di Kilo.",
+    "Sandbox disabilitata. Fai clic per limitare le scritture dei comandi shell dell'agente alle directory del progetto e di BharatCode.",
   "prompt.action.sandbox.status.enabled": "Sandbox abilitata",
   "prompt.action.sandbox.status.disabled": "Sandbox disabilitata",
   "prompt.action.sandbox.filesystem": "File system",
@@ -860,7 +862,8 @@ export const dict = {
   "prompt.action.sandbox.network.blocked": "Bloccata",
   "prompt.action.sandbox.network.allowed": "Consentita",
   "prompt.action.sandbox.unrestricted": "Senza restrizioni",
-  "prompt.action.sandbox.description.enabled": "Le scritture sono limitate alle directory del progetto e di Kilo.",
+  "prompt.action.sandbox.description.enabled":
+    "Le scritture sono limitate alle directory del progetto e di BharatCode.",
   "prompt.action.sandbox.description.escalation":
     "Le regole di autorizzazione e l'approvazione automatica si applicano all'interno della sandbox. I comandi che devono uscirne chiedono sempre.",
   "prompt.action.sandbox.description.disabled":
@@ -872,7 +875,7 @@ export const dict = {
     "Instrada le chiamate agli strumenti MCP attraverso un runtime JavaScript confinato con rilevamento degli strumenti su richiesta, invece di esporre direttamente ogni strumento MCP. Risparmia contesto quando sono connessi molti strumenti MCP.",
   "settings.sandboxing.enabled.title": "Sandbox",
   "settings.sandboxing.enabled.description":
-    "Esegui i comandi shell dell'agente all'interno di un sandbox a livello di sistema operativo che limita le scritture alle directory di stato del progetto e di Kilo",
+    "Esegui i comandi shell dell'agente all'interno di un sandbox a livello di sistema operativo che limita le scritture alle directory di stato del progetto e di BharatCode",
 
   "settings.agentBehaviour.skillPaths": "Percorsi cartelle skill",
   "settings.agentBehaviour.skillUrls": "URL skill",
@@ -893,7 +896,7 @@ export const dict = {
   "settings.agentBehaviour.claudeCompat.heading": "Compatibilità Claude Code",
   "settings.agentBehaviour.claudeCompat.title": "Carica file Claude Code",
   "settings.agentBehaviour.claudeCompat.description":
-    "Carica istruzioni CLAUDE.md e skill dalla directory di configurazione Claude Code nelle sessioni. Abilitalo se vuoi che Kilo usi istruzioni e skill di Claude Code. Richiede riavvio.",
+    "Carica istruzioni CLAUDE.md e skill dalla directory di configurazione Claude Code nelle sessioni. Abilitalo se vuoi che BharatCode usi istruzioni e skill di Claude Code. Richiede riavvio.",
   "settings.agentBehaviour.removeMcp.title": "Rimuovi server MCP",
   "settings.agentBehaviour.removeMcp.confirm":
     'Rimuovere il server MCP "{{name}}"? Questo lo rimuoverà dalla configurazione.',
@@ -916,7 +919,7 @@ export const dict = {
   "settings.agentBehaviour.editMcp.env.help": "Variabili passate al processo del server MCP.",
   "settings.agentBehaviour.editMcp.oauth": "OAuth",
   "settings.agentBehaviour.editMcp.oauth.help":
-    "Lasciare su Automatico a meno che il server non richieda un client pre-registrato. Un client secret viene memorizzato nel file di configurazione di Kilo.",
+    "Lasciare su Automatico a meno che il server non richieda un client pre-registrato. Un client secret viene memorizzato nel file di configurazione di BharatCode.",
   "settings.agentBehaviour.editMcp.oauth.mode": "Modalità",
   "settings.agentBehaviour.editMcp.oauth.mode.automatic": "Automatica",
   "settings.agentBehaviour.editMcp.oauth.mode.disabled": "Disabilitata",
@@ -1036,7 +1039,7 @@ export const dict = {
     "Crea checkpoint prima delle modifiche ai file così puoi ripristinare stati precedenti",
   "settings.autoCleanup.enable.title": "Abilita pulizia automatica delle sessioni",
   "settings.autoCleanup.enable.description":
-    "Elimina automaticamente la vecchia cronologia delle sessioni dopo un numero fisso di giorni, in tutti i progetti e in tutti i client Kilo di questo computer, non solo in questa finestra. Le sessioni in esecuzione e quelle con un fork recente non vengono mai eliminate. L'eliminazione è permanente.",
+    "Elimina automaticamente la vecchia cronologia delle sessioni dopo un numero fisso di giorni, in tutti i progetti e in tutti i client BharatCode di questo computer, non solo in questa finestra. Le sessioni in esecuzione e quelle con un fork recente non vengono mai eliminate. L'eliminazione è permanente.",
   "settings.autoCleanup.defaultRetention.title": "Conserva sessioni per (giorni)",
   "settings.autoCleanup.defaultRetention.description":
     "Per quanto tempo viene conservata la cronologia delle sessioni prima che la pulizia automatica la elimini.",
@@ -1056,7 +1059,7 @@ export const dict = {
     "Eliminazione delle sessioni: {{processed}}/{{total}} elaborate ({{deleted}} eliminate, {{failed}} non riuscite)",
   "settings.autoCleanup.runNow": "Esegui pulizia ora",
   "settings.autoCleanup.runNow.confirm":
-    "Eliminare definitivamente le sessioni scadute in tutti i progetti e in tutti i client Kilo di questo computer?",
+    "Eliminare definitivamente le sessioni scadute in tutti i progetti e in tutti i client BharatCode di questo computer?",
   "settings.autoCleanup.stop": "Interrompi pulizia",
   "settings.autoCleanup.progress.cancelling": "Interruzione della pulizia delle sessioni...",
   "settings.autoCleanup.lastRun.cancelled": "interrotta",
@@ -1086,7 +1089,8 @@ export const dict = {
   "settings.context.memory.storage.enable": "Enable memory to create project memory files.",
   "settings.context.memory.inspect": "Ispeziona",
   "chat.memory.project.disabled": "Memoria del progetto disattivata",
-  "chat.memory.project.empty": "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+  "chat.memory.project.empty":
+    "This project doesn't have any memory yet. It will start showing after you use BharatCode.",
   "chat.memory.command.failed": "Comando memoria non riuscito",
   "chat.memory.updated": "Memory updated",
   "chat.memory.rebuild": "Memory index rebuilt",
@@ -1123,7 +1127,7 @@ export const dict = {
   "settings.display.username.description": "Nome utente personalizzato mostrato nelle conversazioni",
   "settings.display.fontSize.title": "Dimensione font",
   "settings.display.fontSize.description":
-    "Regola la dimensione del font della webview Kilo indipendentemente da VS Code.",
+    "Regola la dimensione del font della webview BharatCode indipendentemente da VS Code.",
   "settings.display.reasoningDisplay.title": "Blocchi di ragionamento",
   "settings.display.reasoningDisplay.description":
     "Scegli come iniziano i blocchi di ragionamento. Espansi mostra il testo completo, Anteprima lo limita a una breve anteprima scorrevole, e Intestazione mostra solo il titolo e l'indicatore di streaming finché non lo apri.",
@@ -1277,7 +1281,7 @@ export const dict = {
     "File modificati nel working tree ma non ancora sottoposti a staging, più file non tracciati (nuovi).",
   "diffViewer.source.session.label": "Sessione",
   "diffViewer.source.session.tooltip":
-    "File modificati da Kilo durante la sessione corrente, basati su snapshot per turno. Si resetta quando inizi una nuova sessione.",
+    "File modificati da BharatCode durante la sessione corrente, basati su snapshot per turno. Si resetta quando inizi una nuova sessione.",
   "diffViewer.group.session": "Sessione",
   "diffViewer.group.git": "Git",
   "diffViewer.comment.postToGithub": "Pubblica su GitHub",
@@ -1287,7 +1291,7 @@ export const dict = {
   "diffViewer.comment.openPR": "Apri pull request",
   "diffViewer.comment.localChanges": "Modifiche locali",
   "diffViewer.comment.prChanges": "Modifiche della PR",
-  "diffViewer.comment.sendToKilo": "Invia a Kilo",
+  "diffViewer.comment.sendToKilo": "Invia a BharatCode",
   "diffViewer.comment.sendToGithub": "Invia a GitHub #{{number}}",
   "diffViewer.comment.chooseDestination": "Scegli destinazione",
   "diffViewer.notice.snapshotsDisabled":
@@ -1330,18 +1334,19 @@ export const dict = {
   "settings.models.speechToTextModel.customPlaceholder": "whisper-1",
   "settings.models.speechToTextBaseUrl.title": "URL di base Da voce a testo",
   "settings.models.speechToTextBaseUrl.description":
-    "Usa un'API di trascrizione compatibile con OpenAI al posto di Kilo Gateway. I modelli vengono letti da /models e l'audio viene inviato a /audio/transcriptions. Lascia vuoto per usare Kilo Gateway.",
+    "Usa un'API di trascrizione compatibile con OpenAI al posto di BharatCode Gateway. I modelli vengono letti da /models e l'audio viene inviato a /audio/transcriptions. Lascia vuoto per usare BharatCode Gateway.",
   "settings.models.speechToTextBaseUrl.placeholder": "https://api.openai.com/v1",
   "settings.models.speechToTextApiKey.title": "Chiave API Da voce a testo",
   "settings.models.speechToTextApiKey.description":
-    "Token bearer inviato all'URL di base di trascrizione personalizzato. Salvato nel tuo file di configurazione Kilo.",
+    "Token bearer inviato all'URL di base di trascrizione personalizzato. Salvato nel tuo file di configurazione BharatCode.",
   "settings.models.speechToTextApiKey.placeholder": "sk-...",
   "settings.models.speechToText.disabledDescription":
-    "Abilita e accedi al provider Kilo per usare Da voce a testo, oppure imposta di seguito un URL di base di trascrizione personalizzato.",
+    "Abilita e accedi al provider BharatCode per usare Da voce a testo, oppure imposta di seguito un URL di base di trascrizione personalizzato.",
   "settings.models.speechToText.remoteDescription":
-    "L'input vocale non è disponibile nelle finestre remote. Apri Kilo in una finestra locale per usare il microfono.",
+    "L'input vocale non è disponibile nelle finestre remote. Apri BharatCode in una finestra locale per usare il microfono.",
   "settings.models.speechToTextModel.title": "Modello Da voce a testo",
-  "settings.models.speechToTextModel.description": "Scegli il modello di trascrizione Kilo Gateway per l'input vocale.",
+  "settings.models.speechToTextModel.description":
+    "Scegli il modello di trascrizione BharatCode Gateway per l'input vocale.",
 
   // Compaction limit
   "settings.context.compactionLimit.title": "Limite compattazione automatica",
@@ -1354,7 +1359,7 @@ export const dict = {
     "Modello e sforzo di ragionamento predefiniti per i sub-agent del tool task. Lascia non impostato per ereditare il modello dell'agente chiamante.",
   "settings.models.hidePromptTraining.title": "Nascondi i modelli che usano i prompt per l'addestramento",
   "settings.models.hidePromptTraining.description":
-    "Nascondi i modelli Kilo Gateway i cui provider potrebbero usare i tuoi prompt per l'addestramento.",
+    "Nascondi i modelli BharatCode Gateway i cui provider potrebbero usare i tuoi prompt per l'addestramento.",
 
   // Autocomplete hint
   "settings.autocomplete.modelsHint":
@@ -1366,10 +1371,10 @@ export const dict = {
   "settings.indexing.projectEnable.title": "Abilita per questo progetto",
   "settings.indexing.projectEnable.description":
     "Abilita l'indicizzazione per questo workspace quando l'indicizzazione globale è disattivata.",
-  "settings.indexing.kiloModel.title": "Preset modello Kilo",
-  "settings.indexing.kiloModel.description": "Scegli un modello embedding ospitato da Kilo.",
-  "settings.indexing.kiloSignIn.title": "Accesso Kilo richiesto",
-  "settings.indexing.kiloSignIn.description": "Accedi a Kilo per usare gli embedding ospitati.",
+  "settings.indexing.kiloModel.title": "Preset modello BharatCode",
+  "settings.indexing.kiloModel.description": "Scegli un modello embedding ospitato da BharatCode.",
+  "settings.indexing.kiloSignIn.title": "Accesso BharatCode richiesto",
+  "settings.indexing.kiloSignIn.description": "Accedi a BharatCode per usare gli embedding ospitati.",
 
   // Azure provider
   "provider.connect.azure.endpointType.label": "Seleziona configurazione endpoint Azure",
@@ -1413,7 +1418,7 @@ export const dict = {
   "speechToText.tooltip.transcribing": "Trascrizione... Fai clic per annullare.",
   "speechToText.tooltip.error": "Input vocale fallito. Fai clic per cancellare.",
   "speechToText.error.title": "Input vocale fallito",
-  "speechToText.error.loginRequired": "Accedi a Kilo per usare l'input vocale.",
+  "speechToText.error.loginRequired": "Accedi a BharatCode per usare l'input vocale.",
   "speechToText.error.emptyTranscript": "Nessun parlato rilevato.",
   "chat.search.placeholder": "Cerca nella chat…",
   "chat.search.toggle": "Cerca nella chat",
@@ -1433,11 +1438,11 @@ export const dict = {
     "Usa il Google Chrome installato per il Browser integrato. Disattivalo solo se è già installato un browser Playwright Chromium compatibile.",
   "settings.experimental.browserLinks.title": "Apri i link in",
   "settings.experimental.browserLinks.description":
-    "Scegli dove aprire i link web dalle chat di Kilo. Richiede il Browser integrato.",
+    "Scegli dove aprire i link web dalle chat di BharatCode. Richiede il Browser integrato.",
   "settings.experimental.browserLinks.external": "Browser di sistema",
   "settings.experimental.browserLinks.integrated": "Browser integrato",
   "chat.search.searchingHistory": "Ricerca nei messaggi precedenti…",
   "browserTab.noSession":
     "Apri il browser da una sessione per visualizzare in anteprima un'applicazione locale o una pagina HTTPS pubblica.",
-  "browserTab.disabled": "Il browser integrato è disabilitato. Abilitalo in Impostazioni Kilo > Sperimentale.",
+  "browserTab.disabled": "Il browser integrato è disabilitato. Abilitalo in Impostazioni BharatCode > Sperimentale.",
 } as const

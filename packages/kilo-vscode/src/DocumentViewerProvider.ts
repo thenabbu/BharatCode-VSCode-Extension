@@ -114,7 +114,7 @@ export class DocumentViewerProvider implements vscode.Disposable {
       if (resolved)
         vscode.env.clipboard
           .writeText(resolved)
-          .then(undefined, (err) => console.error("[Kilo New] DocumentViewerProvider: Failed to copy path:", err))
+          .then(undefined, (err) => console.error("[BharatCode] DocumentViewerProvider: Failed to copy path:", err))
       return
     }
     if (message.type === "document.close") this.panel?.dispose()

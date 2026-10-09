@@ -437,9 +437,9 @@ export const dict = {
   "agentManager.import.noBranchesFound": "브랜치를 찾을 수 없습니다.",
   "agentManager.import.noBranchesHint": "위에 PR URL을 붙여넣거나 새 Worktree를 만드세요.",
   "agentManager.import.failed": "가져오기 실패",
-  "agentManager.caffeination.toggle": "Kilo 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않기",
-  "agentManager.caffeination.armed": "Kilo 에이전트용 절전 방지 모드가 활성화되었습니다. 클릭하여 비활성화",
-  "agentManager.caffeination.active": "Kilo 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않습니다",
+  "agentManager.caffeination.toggle": "BharatCode 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않기",
+  "agentManager.caffeination.armed": "BharatCode 에이전트용 절전 방지 모드가 활성화되었습니다. 클릭하여 비활성화",
+  "agentManager.caffeination.active": "BharatCode 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않습니다",
   "agentManager.caffeination.unavailable": "이 플랫폼에서는 절전 방지 모드를 사용할 수 없습니다",
   "agentManager.browser.title": "통합 브라우저",
   "agentManager.browser.url": "주소",
@@ -474,7 +474,7 @@ export const dict = {
   "agentManager.intro.title": "병렬 작업. 별도의 worktree.",
   "agentManager.intro.subtitle":
     "worktree는 작업을 위한 별도 폴더와 브랜치입니다. 에이전트가 같은 파일을 편집하지 않고 나란히 작업할 수 있습니다.",
-  "agentManager.intro.graph.agent": "Kilo 에이전트",
+  "agentManager.intro.graph.agent": "BharatCode 에이전트",
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Kilo로 충돌 해결",
   "agentManager.intro.updateText":

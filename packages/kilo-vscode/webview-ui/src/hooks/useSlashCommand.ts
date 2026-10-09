@@ -135,7 +135,7 @@ export function useSlashCommand(
       description: "Open help documentation",
       hints: [],
       action: () => {
-        vscode.postMessage({ type: "openExternal", url: "https://kilo.ai/docs" })
+        vscode.postMessage({ type: "openExternal", url: "https://bharatcode.ai/docs" })
       },
     },
     {

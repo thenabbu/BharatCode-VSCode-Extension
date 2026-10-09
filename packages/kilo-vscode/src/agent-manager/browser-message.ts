@@ -111,7 +111,7 @@ export function handleBrowserMessage(message: AgentManagerInMessage, deps: Depen
     controlBrowserFailure(
       controlMessage,
       surface(deps, m, m.projectId),
-      "Browser automation is disabled. Enable it in Kilo Settings > Experimental.",
+      "Browser automation is disabled. Enable it in BharatCode Settings > Experimental.",
     )
     return true
   }

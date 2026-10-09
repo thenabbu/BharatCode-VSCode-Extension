@@ -90,7 +90,7 @@ export async function copySandboxResources(source: string, target: string): Prom
 export async function copyKiloSandboxWorker(source: string, target: string): Promise<void> {
   const from = kiloSandboxWorkerForBinary(source)
   const to = kiloSandboxWorkerForBinary(target)
-  if (!fs.existsSync(from)) throw new Error(`Kilo sandbox mutation worker not found at ${from}`)
+  if (!fs.existsSync(from)) throw new Error(`BharatCode sandbox mutation worker not found at ${from}`)
   await fs.promises.copyFile(from, to)
 }
 

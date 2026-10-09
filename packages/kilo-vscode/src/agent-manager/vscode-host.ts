@@ -268,7 +268,7 @@ export class VscodeHost implements Host {
       const res = await client.session.list({ directory: dir, roots: true }, { throwOnError: true })
       return res.data
     } catch (err) {
-      console.warn(`[Kilo New] Agent Manager: failed to list project sessions for ${dir}:`, err)
+      console.warn(`[BharatCode] Agent Manager: failed to list project sessions for ${dir}:`, err)
       return []
     }
   }
@@ -481,7 +481,7 @@ export class VscodeHost implements Host {
 
   revealInOS(path: string): void {
     if (vscode.env.remoteName) {
-      console.warn(`[Kilo New] Cannot reveal ${path} in the OS file manager on a remote workspace`)
+      console.warn(`[BharatCode] Cannot reveal ${path} in the OS file manager on a remote workspace`)
       return
     }
     void vscode.commands.executeCommand("revealFileInOS", vscode.Uri.file(path))

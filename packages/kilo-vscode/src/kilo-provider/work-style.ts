@@ -68,7 +68,7 @@ export async function handleWorkStyleMessage(input: {
     const initialized = await initializeWorkStyle(input.connection, input.directory)
       .then(() => true)
       .catch((err: unknown) => {
-        console.error("[Kilo New] Failed to initialize work style:", err)
+        console.error("[BharatCode] Failed to initialize work style:", err)
         return false
       })
     const payload = getWorkStylePayload()
@@ -78,7 +78,7 @@ export async function handleWorkStyleMessage(input: {
   if (await handleWorkStyleApplyMessage(input)) return true
   if (input.message.type !== "setWorkStyle") return false
   if (!input.message.style) {
-    console.error("[Kilo New] Missing style in setWorkStyle message")
+    console.error("[BharatCode] Missing style in setWorkStyle message")
     return true
   }
   await setWorkStyle(input.message.style)

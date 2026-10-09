@@ -56,7 +56,7 @@ export interface WorktreeDiffSourceOptions {
  * extension host — no `kilo serve` round-trip.
  */
 export function createWorktreeDiffSource(opts: WorktreeDiffSourceOptions = {}): DiffSource {
-  const output = opts.git ? undefined : vscode.window.createOutputChannel("Kilo Diff: Workspace")
+  const output = opts.git ? undefined : vscode.window.createOutputChannel("BharatCode Diff: Workspace")
   const log = opts.log ?? ((...args: unknown[]) => appendOutput(output!, "WorktreeDiffSource", ...args))
   const git = opts.git ?? new GitOps({ log })
   const controller = new AbortController()

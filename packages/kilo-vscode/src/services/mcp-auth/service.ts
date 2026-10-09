@@ -322,7 +322,7 @@ export class McpAuthService {
     try {
       return await block()
     } catch (error) {
-      console.error(`[Kilo New] McpAuthService: ${message} failed:`, error)
+      console.error(`[BharatCode] McpAuthService: ${message} failed:`, error)
       return fallback
     }
   }

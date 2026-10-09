@@ -1,13 +1,13 @@
 /** Default POSIX template for worktree setup scripts. */
 export const SETUP_SCRIPT_TEMPLATE = `#!/bin/sh
-# Kilo Code Worktree Setup Script
+# BharatCode Worktree Setup Script
 # This script runs before the agent starts in a worktree (new sessions only).
 #
 # Available environment variables:
 #   WORKTREE_PATH  - Absolute path to the worktree directory
 #   REPO_PATH      - Absolute path to the main repository
 #
-# Kilo already copies root-level .env and .env.* files before this script runs.
+# BharatCode already copies root-level .env and .env.* files before this script runs.
 # Use this script for dependencies, nested env files, local config, databases,
 # certificates, or other project-specific setup that is not committed to git.
 #
@@ -45,14 +45,14 @@ echo "Setup complete!"
 `
 
 /** Default PowerShell template for worktree setup scripts on Windows. */
-export const SETUP_SCRIPT_TEMPLATE_POWERSHELL = `# Kilo Code Worktree Setup Script
+export const SETUP_SCRIPT_TEMPLATE_POWERSHELL = `# BharatCode Worktree Setup Script
 # This script runs before the agent starts in a worktree (new sessions only).
 #
 # Available environment variables:
 #   $env:WORKTREE_PATH  - Absolute path to the worktree directory
 #   $env:REPO_PATH      - Absolute path to the main repository
 #
-# Kilo already copies root-level .env and .env.* files before this script runs.
+# BharatCode already copies root-level .env and .env.* files before this script runs.
 # Use this script for dependencies, nested env files, local config, databases,
 # certificates, or other project-specific setup that is not committed to git.
 #

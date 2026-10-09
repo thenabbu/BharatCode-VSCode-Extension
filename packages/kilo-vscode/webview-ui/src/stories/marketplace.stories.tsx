@@ -279,7 +279,7 @@ const MOCK_PLUGINS: PluginMarketplaceItem[] = [
     type: "plugin",
     id: "@acme/kilo-deploy",
     name: "Deploy Toolkit",
-    description: "Adds deployment commands and cloud provider integrations to Kilo.",
+    description: "Adds deployment commands and cloud provider integrations to BharatCode.",
     url: "https://github.com/acme/kilo-deploy",
     content: "@acme/kilo-deploy",
     author: "Acme",

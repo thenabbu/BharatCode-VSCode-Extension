@@ -1,6 +1,6 @@
 import { type Component, type JSX, createSignal, For, Show } from "solid-js"
 import { Icon } from "@kilocode/kilo-ui/icon"
-import { AnimatedKiloLogo, reduced } from "../brand/AnimatedKiloLogo"
+import { BharatCodeMark } from "../brand/BharatCodeMark"
 import { useDialog } from "@kilocode/kilo-ui/context/dialog"
 import { useSession } from "../../context/session"
 import { useLanguage } from "../../context/language"
@@ -17,38 +17,20 @@ interface WelcomeEmptyStateProps {
 }
 
 /**
- * Square Kilo mark. Hover rotates the mark and crossfades to the yellow Lottie animation,
- * matching Kilo Cloud's header logo. The player mounts on first hover so the WASM renderer
- * never delays the empty state; the static mark stays visible until the player can draw, so a
- * slow or failed load never leaves an empty square.
+ * Square BharatCode mark. Hover rotates the mark 90°.
  */
 export const KiloLogo = () => {
-  const icons = (window as { ICONS_BASE_URI?: string }).ICONS_BASE_URI || ""
-  const light =
-    document.body.classList.contains("vscode-light") || document.body.classList.contains("vscode-high-contrast-light")
-  const file = light ? "kilo-light.svg" : "kilo-dark.svg"
   const [hover, setHover] = createSignal(false)
-  const [ready, setReady] = createSignal(false)
-  const [mounted, setMounted] = createSignal(false)
 
   return (
     <div
       class="kilo-logo"
-      classList={{ "kilo-logo-hover": hover(), "kilo-logo-ready": hover() && ready() }}
-      onMouseEnter={() => {
-        if (reduced()) return
-        setMounted(true)
-        setHover(true)
-      }}
+      classList={{ "kilo-logo-hover": hover() }}
+      onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Show when={mounted()}>
-        <div class="kilo-logo-layer kilo-logo-animated">
-          <AnimatedKiloLogo playing={hover() && ready()} onReady={setReady} />
-        </div>
-      </Show>
       <div class="kilo-logo-layer kilo-logo-static">
-        <img src={`${icons}/${file}`} alt="Kilo Code" />
+        <BharatCodeMark />
       </div>
     </div>
   )

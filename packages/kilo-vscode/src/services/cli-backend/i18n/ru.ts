@@ -3,6 +3,6 @@ export const dict = {
   "server.processSignaled": "Процесс CLI был завершен сигналом {{signal}} до запуска сервера",
   "server.spawnFailed": "Не удалось запустить исполняемый файл CLI ({{code}})",
   "server.startupTimeout": "Время ожидания запуска сервера истекло через {{seconds}} секунд",
-  "remote.connected": "Kilo Remote: Подключено",
-  "remote.connecting": "Kilo Remote: Подключение\u2026",
+  "remote.connected": "BharatCode Remote: Подключено",
+  "remote.connecting": "BharatCode Remote: Подключение\u2026",
 } as const

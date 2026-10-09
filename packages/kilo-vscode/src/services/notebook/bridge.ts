@@ -115,7 +115,7 @@ export class NotebookBridge {
       this.backend = backend
       const revision = ++this.revision
       void this.recover(revision).catch((error: unknown) => {
-        console.error("[Kilo New] NotebookBridge: pending request recovery failed:", error)
+        console.error("[BharatCode] NotebookBridge: pending request recovery failed:", error)
       })
     })
   }
@@ -135,7 +135,7 @@ export class NotebookBridge {
     for (const context of this.contexts.values()) {
       void context
         .then((value) => value.dispose())
-        .catch((error: unknown) => console.error("[Kilo New] NotebookBridge: context disposal failed:", error))
+        .catch((error: unknown) => console.error("[BharatCode] NotebookBridge: context disposal failed:", error))
     }
     this.contexts.clear()
     this.origins.clear()
@@ -199,7 +199,7 @@ export class NotebookBridge {
     const active = { controller: new AbortController(), cancelled: false }
     this.active.set(request.id, active)
     void this.run(request, origin, active).catch((error: unknown) => {
-      console.error(`[Kilo New] NotebookBridge: request ${request.id} failed:`, error)
+      console.error(`[BharatCode] NotebookBridge: request ${request.id} failed:`, error)
     })
   }
 
@@ -302,10 +302,10 @@ export class NotebookBridge {
     try {
       const response = await this.connection.getClient().kilocode.notebook.reply({ requestID, directory, result })
       if (!response.error) return true
-      console.error(`[Kilo New] NotebookBridge: reply ${requestID} failed:`, response.error)
+      console.error(`[BharatCode] NotebookBridge: reply ${requestID} failed:`, response.error)
       return false
     } catch (error) {
-      console.error(`[Kilo New] NotebookBridge: reply ${requestID} failed:`, error)
+      console.error(`[BharatCode] NotebookBridge: reply ${requestID} failed:`, error)
       return false
     }
   }
@@ -314,10 +314,10 @@ export class NotebookBridge {
     try {
       const response = await this.connection.getClient().kilocode.notebook.reject({ requestID, directory, error })
       if (!response.error) return true
-      console.error(`[Kilo New] NotebookBridge: rejection ${requestID} failed:`, response.error)
+      console.error(`[BharatCode] NotebookBridge: rejection ${requestID} failed:`, response.error)
       return false
     } catch (cause) {
-      console.error(`[Kilo New] NotebookBridge: rejection ${requestID} failed:`, cause)
+      console.error(`[BharatCode] NotebookBridge: rejection ${requestID} failed:`, cause)
       return false
     }
   }
@@ -329,14 +329,14 @@ export class NotebookBridge {
         const response = await client.kilocode.notebook.list({ directory })
         if (this.disposed || revision !== this.revision) return
         if (response.error) {
-          console.error(`[Kilo New] NotebookBridge: could not list requests for ${directory}:`, response.error)
+          console.error(`[BharatCode] NotebookBridge: could not list requests for ${directory}:`, response.error)
           continue
         }
         for (const request of response.data ?? []) {
           this.request({ id: request.id, type: "kilocode.notebook.requested", properties: request }, directory)
         }
       } catch (error) {
-        console.error(`[Kilo New] NotebookBridge: could not list requests for ${directory}:`, error)
+        console.error(`[BharatCode] NotebookBridge: could not list requests for ${directory}:`, error)
       }
     }
   }

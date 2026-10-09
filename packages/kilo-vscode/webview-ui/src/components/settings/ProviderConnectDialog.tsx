@@ -586,11 +586,11 @@ const ProviderConnectDialog: Component<ProviderConnectDialogProps> = (props) => 
           <div class="provider-connect-byok">
             {language.t("provider.connect.kiloGateway.byok.prefix")}
             <a
-              href="https://blog.kilo.ai/p/kilo-gateway-now-supports-byok-20-providers"
+              href="https://bharatcode.ai"
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                openExternal("https://blog.kilo.ai/p/kilo-gateway-now-supports-byok-20-providers")
+                openExternal("https://bharatcode.ai")
               }}
               class="provider-connect-byok-link"
             >

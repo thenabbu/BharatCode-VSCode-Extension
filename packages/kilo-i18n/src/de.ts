@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "Für weitere Nutzungsstatistiken ",
-  "provider.connect.kiloGateway.byok.link": "BYOK via Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK via BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": " nutzen.",
 
   // Provider settings translations
@@ -37,19 +37,19 @@ export const dict = {
   "marketplace.install.destination": "Installationsziel",
   "marketplace.install.includedSkills": "Enthaltene Skills",
   "marketplace.install.about.mcp":
-    "Ein MCP-Server stellt Kilo zusätzliche Werkzeuge für die Arbeit mit externen Diensten oder lokalen Programmen bereit.",
+    "Ein MCP-Server stellt BharatCode zusätzliche Werkzeuge für die Arbeit mit externen Diensten oder lokalen Programmen bereit.",
   "marketplace.install.about.agent":
     "Ein Agent fügt eine wiederverwendbare Rolle mit eigenen Anweisungen und Berechtigungen hinzu.",
   "marketplace.install.about.skill":
-    "Ein Skill fügt aufgabenspezifische Anweisungen und Ressourcen hinzu, die Kilo bei Bedarf laden kann.",
+    "Ein Skill fügt aufgabenspezifische Anweisungen und Ressourcen hinzu, die BharatCode bei Bedarf laden kann.",
   "marketplace.install.mcp.warning":
-    "MCP-Server können lokale Befehle ausführen oder eine Verbindung zu externen Diensten herstellen. Kilo fragt vor der Verwendung ihrer Werkzeuge um Erlaubnis, sofern Ihre Berechtigungen dies nicht automatisch erlauben.",
+    "MCP-Server können lokale Befehle ausführen oder eine Verbindung zu externen Diensten herstellen. BharatCode fragt vor der Verwendung ihrer Werkzeuge um Erlaubnis, sofern Ihre Berechtigungen dies nicht automatisch erlauben.",
   "marketplace.install.project.warning":
     "Projektdateien können in die Versionsverwaltung aufgenommen werden. Speichern Sie hier keine Geheimnisse, es sei denn, die Konfiguration verweist auf eine Umgebungsvariable.",
   "marketplace.install.learnMore": "Erfahren Sie, wie Installationen aus dem Marketplace funktionieren",
   "marketplace.install.learnMcp": "Mehr über MCP erfahren",
   "marketplace.install.about.plugin":
-    "Ein Plugin fügt Kilo benutzerdefinierte Werkzeuge und Integrationen hinzu. Plugins werden mit vollständigen Berechtigungen ausgeführt.",
+    "Ein Plugin fügt BharatCode benutzerdefinierte Werkzeuge und Integrationen hinzu. Plugins werden mit vollständigen Berechtigungen ausgeführt.",
   "marketplace.install.plugin.warning":
     "Plugins führen Code mit vollständigen Berechtigungen aus. Sie können Ihre Dateien lesen und ändern, Befehle ausführen und auf Ihre Zugangsdaten und Ihr Netzwerk zugreifen. Installieren Sie nur Plugins, denen Sie vertrauen.",
   "marketplace.intro":
@@ -62,7 +62,8 @@ export const dict = {
   "marketplace.install.failed": "Installation fehlgeschlagen",
   "marketplace.install.done": "Fertig",
   "marketplace.install.close": "Schließen",
-  "marketplace.install.mcp.signIn.message": "{{name}} ist installiert, benötigt aber eine Anmeldung, bevor die Tools verwendet werden können.",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} ist installiert, benötigt aber eine Anmeldung, bevor die Tools verwendet werden können.",
   "marketplace.install.mcp.signIn.button": "Anmelden",
   "marketplace.install.mcp.signIn.waiting": "Warten auf Anmeldung im Browser…",
   "marketplace.install.mcp.signIn.cancel": "Abbrechen",
@@ -126,7 +127,7 @@ export const dict = {
     "Auf den Abschluss des Snapshots warten. Nachfolgende Runden sind schnell, sobald der initiale Snapshot erstellt ist.",
   "snapshot.slowRepo.answer.disable": "Für dieses Projekt deaktivieren",
   "snapshot.slowRepo.answer.disable.description":
-    "Kilo-Snapshots für dieses Projekt ausschalten. Rückgängig/Wiederherstellen für Kilo-Änderungen ist nicht mehr möglich, aber git verfolgt weiterhin alles.",
+    "BharatCode-Snapshots für dieses Projekt ausschalten. Rückgängig/Wiederherstellen für BharatCode-Änderungen ist nicht mehr möglich, aber git verfolgt weiterhin alles.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "Im Diff-Viewer öffnen",

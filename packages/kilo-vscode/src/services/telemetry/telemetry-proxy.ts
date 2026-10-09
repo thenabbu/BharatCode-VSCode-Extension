@@ -59,7 +59,7 @@ export class TelemetryProxy {
         "Content-Type": "application/json",
       },
       body: payload,
-    }).catch((err) => console.error("[Kilo New] Telemetry capture failed:", err))
+    }).catch((err) => console.error("[BharatCode] Telemetry capture failed:", err))
   }
 
   /**
@@ -79,7 +79,7 @@ export class TelemetryProxy {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ enabled }),
-    }).catch((err) => console.error("[Kilo New] Telemetry setEnabled failed:", err))
+    }).catch((err) => console.error("[BharatCode] Telemetry setEnabled failed:", err))
   }
 
   /**

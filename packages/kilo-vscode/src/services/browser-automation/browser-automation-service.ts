@@ -95,7 +95,7 @@ export class BrowserAutomationService implements vscode.Disposable {
     const outcome = task.then(
       () => undefined,
       (error) => {
-        console.warn("[Kilo New] BrowserAutomationService: readiness failed:", error)
+        console.warn("[BharatCode] BrowserAutomationService: readiness failed:", error)
         return { error }
       },
     )
@@ -103,7 +103,7 @@ export class BrowserAutomationService implements vscode.Disposable {
     const result = await Promise.race([outcome, limit.promise])
     if (result === "timeout") {
       console.warn(
-        "[Kilo New] BrowserAutomationService: readiness timed out, submitting without waiting for Playwright MCP",
+        "[BharatCode] BrowserAutomationService: readiness timed out, submitting without waiting for Playwright MCP",
       )
       return
     }
@@ -136,7 +136,7 @@ export class BrowserAutomationService implements vscode.Disposable {
       return
     }
     if (!vscode.workspace.isTrusted) {
-      console.warn("[Kilo New] BrowserAutomationService: Workspace is not trusted, skipping Playwright MCP")
+      console.warn("[BharatCode] BrowserAutomationService: Workspace is not trusted, skipping Playwright MCP")
       return
     }
     const dirs = this.directories()
@@ -199,7 +199,7 @@ export class BrowserAutomationService implements vscode.Disposable {
       }
     }
     if (this.registered.size > 0) return
-    if (failure) console.error("[Kilo New] BrowserAutomationService: Failed to register MCP server:", failure)
+    if (failure) console.error("[BharatCode] BrowserAutomationService: Failed to register MCP server:", failure)
   }
 
   private async unregister(dirs = [...this.registered]): Promise<void> {
@@ -213,7 +213,7 @@ export class BrowserAutomationService implements vscode.Disposable {
           )
           this.registered.delete(directory)
         } catch (error) {
-          console.error("[Kilo New] BrowserAutomationService: Failed to disconnect MCP server:", error)
+          console.error("[BharatCode] BrowserAutomationService: Failed to disconnect MCP server:", error)
         }
       }
     }

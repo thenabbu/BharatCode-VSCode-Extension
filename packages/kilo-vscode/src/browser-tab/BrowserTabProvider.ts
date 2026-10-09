@@ -303,7 +303,7 @@ export class BrowserTabProvider {
       controlBrowserFailure(
         control,
         this.surface(entry),
-        "Browser automation is disabled. Enable it in Kilo Settings > Experimental.",
+        "Browser automation is disabled. Enable it in BharatCode Settings > Experimental.",
       )
       return
     }

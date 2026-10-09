@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "如需更多使用統計資訊，請",
-  "provider.connect.kiloGateway.byok.link": "透過 Kilo's Gateway 進行 BYOK",
+  "provider.connect.kiloGateway.byok.link": "透過 BharatCode's Gateway 進行 BYOK",
   "provider.connect.kiloGateway.byok.suffix": "。",
 
   // Provider settings translations
@@ -34,15 +34,15 @@ export const dict = {
   "marketplace.install.scope.global.description": "此電腦上的所有專案。儲存在你的使用者設定中。",
   "marketplace.install.destination": "安裝位置",
   "marketplace.install.includedSkills": "包含的技能",
-  "marketplace.install.about.mcp": "MCP 伺服器為 Kilo 提供用於處理外部服務或本機程式的額外工具。",
+  "marketplace.install.about.mcp": "MCP 伺服器為 BharatCode 提供用於處理外部服務或本機程式的額外工具。",
   "marketplace.install.about.agent": "智能體會新增一個具有專屬指示和權限的可重複使用角色。",
-  "marketplace.install.about.skill": "技能會新增特定任務的指示和資源，Kilo 可在需要時載入它們。",
+  "marketplace.install.about.skill": "技能會新增特定任務的指示和資源，BharatCode 可在需要時載入它們。",
   "marketplace.install.mcp.warning":
-    "MCP 伺服器可以執行本機命令或連線至外部服務。除非你的權限允許自動使用，否則 Kilo 會在使用其工具前請求許可。",
+    "MCP 伺服器可以執行本機命令或連線至外部服務。除非你的權限允許自動使用，否則 BharatCode 會在使用其工具前請求許可。",
   "marketplace.install.project.warning": "專案檔案可能會提交至版本控制。除非設定引用了環境變數，否則請勿在此儲存密鑰。",
   "marketplace.install.learnMore": "瞭解 Marketplace 安裝的運作方式",
   "marketplace.install.learnMcp": "深入瞭解 MCP",
-  "marketplace.install.about.plugin": "外掛可為 Kilo 新增自訂工具和整合功能。外掛以完整權限執行。",
+  "marketplace.install.about.plugin": "外掛可為 BharatCode 新增自訂工具和整合功能。外掛以完整權限執行。",
   "marketplace.install.plugin.warning":
     "外掛以完整權限執行程式碼。它們可以讀取和修改你的檔案、執行命令，以及存取你的憑證和網路。請僅安裝你信任的外掛。",
   "marketplace.intro": "為一個專案或所有專案安裝可重複使用的智能體、技能、MCP 工具和外掛。",
@@ -114,7 +114,7 @@ export const dict = {
   "snapshot.slowRepo.answer.continue.description": "等待快照完成。初始快照建立後，後續回合會很快。",
   "snapshot.slowRepo.answer.disable": "為此專案停用",
   "snapshot.slowRepo.answer.disable.description":
-    "關閉本專案的 Kilo 快照。你將失去對 Kilo 變更的撤銷/重做，但 git 仍會追蹤所有內容。",
+    "關閉本專案的 BharatCode 快照。你將失去對 BharatCode 變更的撤銷/重做，但 git 仍會追蹤所有內容。",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "在差異檢視器中開啟",

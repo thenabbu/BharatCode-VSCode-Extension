@@ -21,7 +21,7 @@ export async function fetchSpeechToTextModels(
   if (hasCustomSource(source)) return await fetchCustomModels(source, signal)
 
   const cfg = connection.getServerConfig()
-  if (!cfg) return fail("Not connected to the Kilo backend")
+  if (!cfg) return fail("Not connected to the BharatCode backend")
 
   const auth = Buffer.from(`kilo:${cfg.password}`).toString("base64")
   const url = new URL(PATH, cfg.baseUrl)
@@ -97,7 +97,7 @@ function isCatalogModel(value: unknown): value is CatalogModel {
 
 function toModel(model: CatalogModel): SpeechToTextModelDef {
   const index = model.name.indexOf(":")
-  const provider = index === -1 ? model.id.split("/", 1)[0] || "Kilo Gateway" : model.name.slice(0, index).trim()
+  const provider = index === -1 ? model.id.split("/", 1)[0] || "BharatCode Gateway" : model.name.slice(0, index).trim()
   return {
     id: model.id,
     label: index === -1 ? model.name : model.name.slice(index + 1).trim(),

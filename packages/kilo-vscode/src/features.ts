@@ -34,7 +34,7 @@ export async function serverFeatures(client: Pick<KiloClient, "experimental">, d
     const { data } = await client.experimental.capabilities.get({ directory: dir }, { throwOnError: true })
     return data?.backgroundSubagents === true
   } catch (error) {
-    console.warn("[Kilo New] Failed to fetch server capabilities:", error)
+    console.warn("[BharatCode] Failed to fetch server capabilities:", error)
     return false
   }
 }

@@ -17,7 +17,7 @@ export async function fetchImageModels(
   signal?: AbortSignal,
 ): Promise<ImageModelsResult> {
   const cfg = connection.getServerConfig()
-  if (!cfg) return { ok: false, error: "Not connected to the Kilo backend" }
+  if (!cfg) return { ok: false, error: "Not connected to the BharatCode backend" }
 
   const auth = Buffer.from(`kilo:${cfg.password}`).toString("base64")
   const url = new URL(PATH, cfg.baseUrl)

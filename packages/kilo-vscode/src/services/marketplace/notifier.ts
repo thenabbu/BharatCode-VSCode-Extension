@@ -112,7 +112,7 @@ export class MarketplaceNotifier implements vscode.Disposable {
   private async scan(): Promise<void> {
     const generation = ++this.generation
     const data = await fetchMarketplaceData(this.ctx, this.project(), this.directory()).catch((err: unknown) => {
-      console.warn("[Kilo New] Marketplace suggestion scan failed:", err)
+      console.warn("[BharatCode] Marketplace suggestion scan failed:", err)
       return undefined
     })
     if (!data || generation !== this.generation) return

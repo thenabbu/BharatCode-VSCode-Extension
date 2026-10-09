@@ -1,7 +1,7 @@
 export const dict = {
   // Kilo Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "Para mais estatísticas de uso, utilize ",
-  "provider.connect.kiloGateway.byok.link": "BYOK via Kilo's Gateway",
+  "provider.connect.kiloGateway.byok.link": "BYOK via BharatCode's Gateway",
   "provider.connect.kiloGateway.byok.suffix": ".",
 
   // Provider settings translations
@@ -37,18 +37,18 @@ export const dict = {
   "marketplace.install.destination": "Destino da instalação",
   "marketplace.install.includedSkills": "Habilidades incluídas",
   "marketplace.install.about.mcp":
-    "Um servidor MCP fornece ao Kilo ferramentas adicionais para trabalhar com serviços externos ou programas locais.",
+    "Um servidor MCP fornece ao BharatCode ferramentas adicionais para trabalhar com serviços externos ou programas locais.",
   "marketplace.install.about.agent": "Um agente adiciona uma função reutilizável com instruções e permissões próprias.",
   "marketplace.install.about.skill":
-    "Uma habilidade adiciona instruções e recursos específicos para tarefas que o Kilo pode carregar quando necessário.",
+    "Uma habilidade adiciona instruções e recursos específicos para tarefas que o BharatCode pode carregar quando necessário.",
   "marketplace.install.mcp.warning":
-    "Servidores MCP podem executar comandos locais ou se conectar a serviços externos. O Kilo solicitará permissão antes de usar suas ferramentas, a menos que suas permissões permitam isso automaticamente.",
+    "Servidores MCP podem executar comandos locais ou se conectar a serviços externos. O BharatCode solicitará permissão antes de usar suas ferramentas, a menos que suas permissões permitam isso automaticamente.",
   "marketplace.install.project.warning":
     "Os arquivos do projeto podem ser adicionados ao controle de versão. Não armazene segredos aqui, a menos que a configuração faça referência a uma variável de ambiente.",
   "marketplace.install.learnMore": "Saiba como funcionam as instalações do Marketplace",
   "marketplace.install.learnMcp": "Saiba mais sobre MCP",
   "marketplace.install.about.plugin":
-    "Um plugin adiciona ferramentas e integrações personalizadas ao Kilo. Os plugins são executados com permissões totais.",
+    "Um plugin adiciona ferramentas e integrações personalizadas ao BharatCode. Os plugins são executados com permissões totais.",
   "marketplace.install.plugin.warning":
     "Os plugins executam código com permissões totais. Eles podem ler e alterar seus arquivos, executar comandos e acessar suas credenciais e sua rede. Instale apenas plugins em que você confia.",
   "marketplace.intro":
@@ -61,7 +61,8 @@ export const dict = {
   "marketplace.install.failed": "Falha na instalação",
   "marketplace.install.done": "Concluído",
   "marketplace.install.close": "Fechar",
-  "marketplace.install.mcp.signIn.message": "{{name}} está instalado, mas precisa de login antes que suas ferramentas possam ser usadas.",
+  "marketplace.install.mcp.signIn.message":
+    "{{name}} está instalado, mas precisa de login antes que suas ferramentas possam ser usadas.",
   "marketplace.install.mcp.signIn.button": "Entrar",
   "marketplace.install.mcp.signIn.waiting": "Aguardando login pelo navegador…",
   "marketplace.install.mcp.signIn.cancel": "Cancelar",
@@ -125,7 +126,7 @@ export const dict = {
     "Aguarde a conclusão do snapshot. Os próximos turnos serão rápidos depois que o snapshot inicial for criado.",
   "snapshot.slowRepo.answer.disable": "Desativar para este projeto",
   "snapshot.slowRepo.answer.disable.description":
-    "Desligue os snapshots do Kilo para este projeto. Você perde desfazer/refazer das mudanças feitas pelo Kilo, mas o git continua rastreando tudo.",
+    "Desligue os snapshots do BharatCode para este projeto. Você perde desfazer/refazer das mudanças feitas pelo BharatCode, mas o git continua rastreando tudo.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "Abrir no Visualizador de Diferenças",

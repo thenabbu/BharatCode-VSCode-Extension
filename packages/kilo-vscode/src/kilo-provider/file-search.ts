@@ -127,7 +127,7 @@ async function gather(
       relative: new Map(),
     }
   } catch (err) {
-    console.error(`[Kilo New] File search failed for ${root}:`, err)
+    console.error(`[BharatCode] File search failed for ${root}:`, err)
     return empty()
   }
 }
@@ -272,7 +272,7 @@ async function gatherExternal(
       relative,
     }
   } catch (err) {
-    console.error(`[Kilo New] File search failed for ${root.path}:`, err)
+    console.error(`[BharatCode] File search failed for ${root.path}:`, err)
     return empty()
   }
 }
@@ -293,7 +293,7 @@ export async function handleFileSearch(input: Input): Promise<void> {
     try {
       return splitRoots(input.roots?.() ?? [], dir)
     } catch (err) {
-      console.error("[Kilo New] Failed to read workspace folders:", err)
+      console.error("[BharatCode] Failed to read workspace folders:", err)
       return { secondary: [] as SearchRoot[] }
     }
   })()
@@ -376,6 +376,6 @@ function capFolders(items: FileSearchItem[], limit: number): FileSearchItem[] {
 
 function settled(result: PromiseSettledResult<{ data: string[] }>, kind: "file" | "folder"): string[] {
   if (result.status === "fulfilled") return result.value.data
-  console.error(`[Kilo New] File search (${kind}) failed:`, result.reason)
+  console.error(`[BharatCode] File search (${kind}) failed:`, result.reason)
   return []
 }

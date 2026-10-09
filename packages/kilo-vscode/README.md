@@ -1,58 +1,27 @@
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code"><img src="https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace" height="20"></a>
-  <a href="https://x.com/kilocode"><img src="https://raster.shields.io/badge/kilocode-000000?style=flat&logo=x&logoColor=white" alt="X (Twitter)" height="20"></a>
-  <a href="https://blog.kilo.ai"><img src="https://raster.shields.io/badge/Blog-555?style=flat&logo=substack&logoColor=white" alt="Substack Blog" height="20"></a>
-  <a href="https://kilo.ai/discord"><img src="https://raster.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord" height="20"></a>
-  <a href="https://www.reddit.com/r/kilocode/"><img src="https://raster.shields.io/badge/Join%20r%2Fkilocode-D84315?style=flat&logo=reddit&logoColor=white" alt="Reddit" height="20"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=bharatcode.bharatcode-vscode"><img src="https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace" height="20"></a>
+  <a href="https://bharatcode.ai"><img src="https://raster.shields.io/badge/bharatcode.ai-ff6b35?style=flat&logoColor=white" alt="bharatcode.ai" height="20"></a>
 </p>
 
 <p align="center">
-  <a href="https://kilo.ai"><img width="250" alt="kilo-code-logo" src="https://github.com/user-attachments/assets/bdb0c174-b9fd-40ad-a47b-f3aab9b54e8d" /></a>
+  <strong>BharatCode is an AI coding agent for VS Code.</strong><br>
+  Generate code, automate tasks, and run terminal commands with 500+ AI models.
 </p>
-
-<p align="center">
-  <strong>Kilo is the all-in-one agentic engineering platform.</strong><br>
-  Build, ship, and iterate faster with the most popular open source coding agent.
-</p>
-
-<p align="center">
-  <img width="100%" alt="Kilo Code running inside VS Code" src="https://kilo.ai/_next/image?url=%2Fscreenshots%2Fvs-code%2Fvs-code-home-page-screenshot.png&w=3840&q=75">
-</p>
-
-<p align="center">
-  <a href="https://kilo.ai">Website</a> ·
-  <a href="https://kilo.ai/install">Install</a> ·
-  <a href="https://kilo.ai/landing/vs-code">IDE</a> ·
-  <a href="https://kilo.ai/cli">CLI</a> ·
-  <a href="https://kilo.ai/docs">Docs</a> ·
-  <a href="https://kilo.ai/leaderboard">Models</a> ·
-  <a href="https://kilo.ai/gateway">Gateway</a> ·
-  <a href="https://kilo.ai/pricing">Pricing</a> ·
-  <a href="https://kilo.ai/pricing/kilo-pass">Kilo Pass</a>
-</p>
-
-<p align="center">
-  500+ models. One open source agent in <a href="https://kilo.ai/install">VS Code</a>, <a href="https://kilo.ai/features/jetbrains-native">JetBrains</a>, <a href="https://kilo.ai/cli">CLI</a>, <a href="https://kilo.ai/slack">Slack</a>, and <a href="https://kilo.ai/cloud">Cloud</a>.
-</p>
-
-> 🚀 **Coming from Roo Code?** Switch to Kilo and check out our [migration guide](https://kilo.ai/articles/roo-to-kilo-migration-guide)!
 
 ## Key Features
 
-- **Code Generation:** Kilo can generate code using natural language.
+- **Code Generation:** BharatCode can generate code using natural language.
 - **Inline Autocomplete:** Get intelligent code completions as you type, powered by AI.
-- **Task Automation:** Kilo can automate repetitive coding tasks to save time..
-- **Automated Refactoring:** Kilo can refactor and improve existing code efficiently.
-- **MCP Server Marketplace**: Kilo can easily find, and use MCP servers to extend the agent capabilities.
+- **Task Automation:** BharatCode can automate repetitive coding tasks to save time.
+- **Automated Refactoring:** BharatCode can refactor and improve existing code efficiently.
+- **MCP Server Marketplace:** BharatCode can find and use MCP servers to extend the agent's capabilities.
 - **Multi Mode**: Plan with Architect, Code with Coder, and Debug with Debugger, and make your own custom modes.
 
 ## Get Started
 
-1. Install the Kilo Code extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code).
-2. Create your account to access 500+ cutting-edge AI models including GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, and Gemini 3.1 Pro Preview, with transparent pricing that matches provider rates exactly.
-3. Start coding with AI that adapts to your workflow. Watch our quick-start guide to see Kilo in action:
-
-<a href="https://youtu.be/pqGfYXgrhig"><img src="https://img.youtube.com/vi/pqGfYXgrhig/maxresdefault.jpg" alt="Watch the video" width="640" height="360"></a>
+1. Install the BharatCode extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=bharatcode.bharatcode-vscode).
+2. On first launch, BharatCode prompts you for your API key. Create one at [bharatcode.ai](https://bharatcode.ai) — all model requests go through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
+3. Start coding with AI that adapts to your workflow.
 
 ## Developer Setup
 
@@ -85,14 +54,10 @@ Our community is built on respect, inclusivity, and collaboration. Please review
 
 ## License
 
-This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-You’re free to use, modify, and distribute this code, including for commercial purposes as long as you include proper attribution and license notices. See [License](/LICENSE).
+This project is licensed under the [MIT License](/LICENSE).
+You're free to use, modify, and distribute this code, including for commercial purposes as long as you include proper attribution and license notices. See [License](/LICENSE).
 
-## Contributing
-
-Contributions are welcome, and they are greatly appreciated! Get started by reading our [Contributing Guide](CONTRIBUTING.md). Or join our [Discord](https://kilo.ai/discord) to chat with the team and community.
-
-Thanks to all the contributors who help make Kilo better!
+Thanks to all the contributors who help make BharatCode better!
 
 <table>
   <tr>
@@ -144,7 +109,7 @@ Thanks to all the contributors who help make Kilo better!
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/Kilo-Org/kilocode/graphs/contributors">
+      <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension/graphs/contributors">
         <b>more ...</b>
       </a>
     </td>

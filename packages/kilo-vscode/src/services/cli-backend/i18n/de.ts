@@ -4,6 +4,6 @@ export const dict = {
     "Der CLI-Prozess wurde durch das Signal {{signal}} beendet, bevor der Server gestartet wurde",
   "server.spawnFailed": "Fehler beim Starten der CLI-Binärdatei ({{code}})",
   "server.startupTimeout": "Zeitüberschreitung beim Serverstart nach {{seconds}} Sekunden",
-  "remote.connected": "Kilo Remote: Verbunden",
-  "remote.connecting": "Kilo Remote: Verbindung wird hergestellt\u2026",
+  "remote.connected": "BharatCode Remote: Verbunden",
+  "remote.connecting": "BharatCode Remote: Verbindung wird hergestellt\u2026",
 } as const

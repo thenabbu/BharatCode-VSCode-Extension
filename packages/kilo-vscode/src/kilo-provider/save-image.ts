@@ -8,7 +8,7 @@ type ImageMessage = {
 }
 
 export function saveImage(dir: string, msg: ImageMessage) {
-  void save(dir, msg).catch((err) => console.error("[Kilo New] KiloProvider: Failed to save image:", err))
+  void save(dir, msg).catch((err) => console.error("[BharatCode] KiloProvider: Failed to save image:", err))
 }
 
 async function save(dir: string, msg: ImageMessage) {

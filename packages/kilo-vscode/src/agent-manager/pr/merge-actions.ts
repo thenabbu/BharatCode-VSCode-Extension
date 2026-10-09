@@ -177,14 +177,14 @@ export class PRMergeActions {
   private async save(repo: string, method: PRMergeMethod): Promise<void> {
     const save = this.host.savePRMergeMethod
     if (!save) return
-    await save(repo, method).catch((error) => console.error("[Kilo New] Failed to save PR merge method", error))
+    await save(repo, method).catch((error) => console.error("[BharatCode] Failed to save PR merge method", error))
   }
 
   private refresh(context: PRReviewContext, settle = false): void {
     try {
       this.host.refresh(context, settle)
     } catch (error) {
-      console.error("[Kilo New] Failed to refresh pull request after merge action", error)
+      console.error("[BharatCode] Failed to refresh pull request after merge action", error)
     }
   }
 }

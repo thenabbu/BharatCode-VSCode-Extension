@@ -11,6 +11,6 @@ export function ensureBackendForAutocomplete(connection: KiloConnectionService):
   const dir = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
   if (!enabled || !dir) return
   connection.connect(dir).catch((err) => {
-    console.error("[Kilo New] Autocomplete: Failed to start CLI backend:", err)
+    console.error("[BharatCode] Autocomplete: Failed to start CLI backend:", err)
   })
 }

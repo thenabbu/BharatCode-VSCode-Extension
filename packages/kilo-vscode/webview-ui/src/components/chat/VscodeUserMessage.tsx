@@ -43,7 +43,7 @@ export const VscodeUserMessage: Component<VscodeUserMessageProps> = (props) => {
   const view = createMemo(() => {
     const value = full()
     if (value == null) return undefined
-    if (attribution()) return { label: "Sent by Kilo from another session" }
+    if (attribution()) return { label: "Sent by BharatCode from another session" }
     return injectedView(text()?.metadata, value)
   })
   const [open, setOpen] = createSignal(false)

@@ -177,7 +177,7 @@ export class PRReviewActions {
       this.host.refresh(context)
     } catch (error) {
       // A refresh failure must not report an already-confirmed write as failed.
-      console.error("[Kilo New] Failed to refresh pull request after review action", error)
+      console.error("[BharatCode] Failed to refresh pull request after review action", error)
     }
   }
 

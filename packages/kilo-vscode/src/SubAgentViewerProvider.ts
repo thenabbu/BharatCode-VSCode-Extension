@@ -70,10 +70,10 @@ export class SubAgentViewerProvider implements vscode.Disposable {
           .get({ sessionID, directory }, { throwOnError: true })
           .then(({ data: session }) => provider.registerSession(session))
           .catch((err: unknown) => {
-            console.error("[Kilo New] SubAgentViewerProvider: Failed to load session metadata:", err)
+            console.error("[BharatCode] SubAgentViewerProvider: Failed to load session metadata:", err)
           })
       } catch (err) {
-        console.error("[Kilo New] SubAgentViewerProvider: Failed to load session metadata:", err)
+        console.error("[BharatCode] SubAgentViewerProvider: Failed to load session metadata:", err)
       }
     })
 
@@ -88,7 +88,7 @@ export class SubAgentViewerProvider implements vscode.Disposable {
     this.providers.set(sessionID, provider)
 
     panel.onDidDispose(() => {
-      console.log("[Kilo New] Sub-agent viewer panel disposed:", sessionID)
+      console.log("[BharatCode] Sub-agent viewer panel disposed:", sessionID)
       closeDisposable.dispose()
       provider.dispose()
       this.panels.delete(sessionID)

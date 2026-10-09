@@ -439,9 +439,10 @@ export const dict = {
   "agentManager.import.noBranchesFound": "ブランチが見つかりません。",
   "agentManager.import.noBranchesHint": "上にPR URLを貼り付けるか、新しいWorktreeを作成してください。",
   "agentManager.import.failed": "インポートに失敗しました",
-  "agentManager.caffeination.toggle": "Kilo エージェントの作業中もコンピューターをスリープさせない",
-  "agentManager.caffeination.armed": "Kilo エージェント用のスリープ防止モードが有効です。クリックして無効にします",
-  "agentManager.caffeination.active": "Kilo エージェントの作業中もコンピューターをスリープさせません",
+  "agentManager.caffeination.toggle": "BharatCode エージェントの作業中もコンピューターをスリープさせない",
+  "agentManager.caffeination.armed":
+    "BharatCode エージェント用のスリープ防止モードが有効です。クリックして無効にします",
+  "agentManager.caffeination.active": "BharatCode エージェントの作業中もコンピューターをスリープさせません",
   "agentManager.caffeination.unavailable": "このプラットフォームではスリープ防止モードを利用できません",
   "agentManager.browser.title": "統合ブラウザー",
   "agentManager.browser.url": "アドレス",
@@ -479,7 +480,7 @@ export const dict = {
   "agentManager.intro.title": "並行タスク。分離された worktree。",
   "agentManager.intro.subtitle":
     "worktree はタスク用の分離されたフォルダとブランチです。エージェントは同じファイルを編集せず、並行して作業できます。",
-  "agentManager.intro.graph.agent": "Kilo エージェント",
+  "agentManager.intro.graph.agent": "BharatCode エージェント",
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.stage1.title": "あなたのリポジトリ",
   "agentManager.intro.stage1.text": "ローカルファイルは変更されません",
@@ -491,7 +492,7 @@ export const dict = {
   "agentManager.intro.stage4.title": "準備ができたら変更を戻す",
   "agentManager.intro.stage4.text":
     "各 worktree のエージェントに pull request を開くよう依頼します。または差分パネルで Apply を使い、変更を Local にコピーします。",
-  "agentManager.intro.updateTitle": "Kilo で競合を解決",
+  "agentManager.intro.updateTitle": "BharatCode で競合を解決",
   "agentManager.intro.updateText":
     "Local に変更を適用するか、pull request をマージする前に、その worktree のセッションで /update-from-base を実行してください。Kilo がベースブランチの最新変更をマージし、まずその worktree 内で競合を解決します。",
   "agentManager.intro.prDetection":

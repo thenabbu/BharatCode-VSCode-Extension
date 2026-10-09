@@ -62,7 +62,7 @@ function safeStringify(value: unknown): string | undefined {
     const json = JSON.stringify(value)
     if (json !== "{}" && json.length < 500) return json
   } catch (err) {
-    console.warn("[Kilo New] getErrorMessage: JSON.stringify failed", err)
+    console.warn("[BharatCode] getErrorMessage: JSON.stringify failed", err)
   }
   return undefined
 }
@@ -189,7 +189,7 @@ export async function runWithMessageConfirmation<T>(
     return await run()
   } catch (error) {
     if (await state.wait(id)) {
-      console.warn(`[Kilo New] ${label} ended after server accepted it; ignoring transport error`, {
+      console.warn(`[BharatCode] ${label} ended after server accepted it; ignoring transport error`, {
         error: getErrorMessage(error),
       })
       return undefined
@@ -308,7 +308,7 @@ async function listPages(
   const results = await Promise.all(
     targets.map((target) =>
       list(target.dir, target.cursor).catch((err: unknown) => {
-        console.error(`[Kilo] Failed to list sessions for ${target.dir}:`, err)
+        console.error(`[BharatCode] Failed to list sessions for ${target.dir}:`, err)
         failed.add(target.dir)
         if (target.dir === fatal) cause = err
         return undefined

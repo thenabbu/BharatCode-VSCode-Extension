@@ -40,7 +40,7 @@ export async function handleWorkStyleApplyMessage(input: {
 }): Promise<boolean> {
   if (input.message.type !== "applyWorkStyle") return false
   if (input.message.style !== "human-in-the-loop" && input.message.style !== "autonomous") {
-    console.error("[Kilo New] Invalid style in applyWorkStyle message")
+    console.error("[BharatCode] Invalid style in applyWorkStyle message")
     input.post({ type: "workStyleApplyFailed", message: "Invalid work style", rollbackFailed: false })
     return true
   }

@@ -66,7 +66,7 @@ async function open(file: string, labels: Labels) {
     await vscode.window.showTextDocument(doc, { preview: false })
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
-    console.error("[Kilo New] Failed to open config file:", file, err)
+    console.error("[BharatCode] Failed to open config file:", file, err)
     void vscode.window.showErrorMessage(labels.openFailed.replace("{{message}}", () => msg))
   }
 }

@@ -241,7 +241,7 @@ export async function collectProjectSessions(
   const byDir = await Promise.all(
     dirs.map(async (entry) => {
       const items = await list(entry.dir).catch((err) => {
-        console.warn(`[Kilo New] Agent Manager: listing sessions for ${entry.dir} failed:`, err)
+        console.warn(`[BharatCode] Agent Manager: listing sessions for ${entry.dir} failed:`, err)
         return [] as Session[]
       })
       return { ...entry, items }

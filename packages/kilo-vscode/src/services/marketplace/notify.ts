@@ -45,7 +45,7 @@ export async function showSuggestionNotification(item: MarketplaceItem): Promise
   const details = "View details"
   const dismiss = "Don't show again"
   const picked = await vscode.window.showInformationMessage(
-    `Kilo found ${describe(item)} that matches this workspace. Install it?`,
+    `BharatCode found ${describe(item)} that matches this workspace. Install it?`,
     install,
     details,
     dismiss,

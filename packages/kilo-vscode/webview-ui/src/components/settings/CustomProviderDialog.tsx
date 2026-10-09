@@ -574,13 +574,13 @@ const CustomProviderDialog = (props: CustomProviderDialogProps) => {
             <div style={{ "font-size": "var(--kilo-font-size-14)", color: "var(--text-base)" }}>
               {language.t("provider.custom.description.prefix")}
               <a
-                href="https://kilo.ai/docs/ai-providers#custom-provider"
+                href="https://bharatcode.ai/docs"
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
                   vscode.postMessage({
                     type: "openExternal",
-                    url: "https://kilo.ai/docs/ai-providers#custom-provider",
+                    url: "https://bharatcode.ai/docs",
                   })
                 }}
               >

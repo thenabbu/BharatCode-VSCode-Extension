@@ -50,7 +50,7 @@ export async function detectRooCodeSessions(
   }
 
   for (const diagnostic of diagnostics) {
-    console.warn(`[Kilo New] Roo import skipped ${diagnostic.reason} task ${diagnostic.id} in ${diagnostic.dir}`)
+    console.warn(`[BharatCode] Roo import skipped ${diagnostic.reason} task ${diagnostic.id} in ${diagnostic.dir}`)
   }
 
   const sessions = listSessions(catalog)

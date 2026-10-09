@@ -5,7 +5,7 @@ export const dict = {
   "mcp.signIn.unsupported": "{{name}} støtter ikke OAuth-innlogging.",
   "mcp.signIn.notFound": "Fant ikke MCP-serveren {{name}}.",
   "mcp.auth.browserFailed":
-    "Kilo kunne ikke åpne en nettleser for {{name}}. Åpne autorisasjons-URL-en på maskinen som kjører Kilo for å fullføre innloggingen.",
+    "BharatCode kunne ikke åpne en nettleser for {{name}}. Åpne autorisasjons-URL-en på maskinen som kjører BharatCode for å fullføre innloggingen.",
   "mcp.auth.browserFailed.open": "Åpne i nettleser",
   "mcp.auth.browserFailed.copy": "Kopiér URL",
   "mcp.auth.resetFailed": "Kunne ikke fjerne den lagrede innloggingen for {{name}}.",

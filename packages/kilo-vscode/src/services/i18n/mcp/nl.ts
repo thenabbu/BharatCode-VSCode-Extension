@@ -5,7 +5,7 @@ export const dict = {
   "mcp.signIn.unsupported": "{{name}} ondersteunt geen OAuth-aanmelding.",
   "mcp.signIn.notFound": "MCP-server {{name}} is niet gevonden.",
   "mcp.auth.browserFailed":
-    "Kilo kon geen browser openen voor {{name}}. Open de autorisatie-URL op de machine waarop Kilo draait om het aanmelden te voltooien.",
+    "BharatCode kon geen browser openen voor {{name}}. Open de autorisatie-URL op de machine waarop BharatCode draait om het aanmelden te voltooien.",
   "mcp.auth.browserFailed.open": "Openen in browser",
   "mcp.auth.browserFailed.copy": "URL kopiëren",
   "mcp.auth.resetFailed": "De opgeslagen aanmelding voor {{name}} kon niet worden gewist.",

@@ -65,7 +65,7 @@ export async function connectMcpServer(
     await client.mcp.connect({ name, directory })
     await refreshStatus()
   } catch (error) {
-    console.error("[Kilo New] Failed to connect MCP:", name, error)
+    console.error("[BharatCode] Failed to connect MCP:", name, error)
     await refreshStatus()
   }
 }
@@ -80,7 +80,7 @@ export async function disconnectMcpServer(
     await client.mcp.disconnect({ name, directory })
     await refreshStatus()
   } catch (error) {
-    console.error("[Kilo New] Failed to disconnect MCP:", name, error)
+    console.error("[BharatCode] Failed to disconnect MCP:", name, error)
     await refreshStatus()
   }
 }

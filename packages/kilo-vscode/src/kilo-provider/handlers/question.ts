@@ -72,7 +72,7 @@ export async function fetchAndSendPendingQuestions(
         const { data, error } = await ctx.client.question.list({ directory: dir })
         if (error) {
           failed.add(dir)
-          console.error(`[Kilo New] KiloProvider: Failed to fetch pending questions for ${dir}:`, error)
+          console.error(`[BharatCode] KiloProvider: Failed to fetch pending questions for ${dir}:`, error)
           continue
         }
         scanned.add(dir)
@@ -105,7 +105,7 @@ export async function fetchAndSendPendingQuestions(
       return { seen, complete: failed.size === 0 }
     }
   } catch (error) {
-    console.error("[Kilo New] KiloProvider: Failed to fetch pending questions:", error)
+    console.error("[BharatCode] KiloProvider: Failed to fetch pending questions:", error)
   }
 }
 
@@ -137,12 +137,12 @@ async function resolve(
         ctx.clearQuestionDirectory(requestID)
         return true
       } catch (retry) {
-        console.error(`[Kilo New] KiloProvider: Failed to ${operation} recovered question:`, retry)
+        console.error(`[BharatCode] KiloProvider: Failed to ${operation} recovered question:`, retry)
         ctx.postMessage({ type: "questionError", requestID })
         return false
       }
     }
-    console.error(`[Kilo New] KiloProvider: Failed to ${operation} question:`, error)
+    console.error(`[BharatCode] KiloProvider: Failed to ${operation} question:`, error)
     ctx.postMessage({ type: "questionError", requestID })
     return false
   }

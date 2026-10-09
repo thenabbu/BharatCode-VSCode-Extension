@@ -41,7 +41,7 @@ async function parallel(items: string[], fn: (item: string) => Promise<void>): P
   if (errors.size === 0) return
   const failures = [...errors].sort((a, b) => a[0] - b[0])
   for (const [index, error] of failures.slice(1)) {
-    console.warn(`[Kilo New] ConnectionService: Additional prompt drain failed for ${items[index]}:`, error)
+    console.warn(`[BharatCode] ConnectionService: Additional prompt drain failed for ${items[index]}:`, error)
   }
   throw failures[0]![1]
 }
@@ -815,7 +815,7 @@ export class KiloConnectionService {
     this.viewedDirty = false
     void this.client.session
       .viewed({ viewer: { id: this.viewerId, active: this.active }, attached: [...attached], visible: [...visible] })
-      .catch((err) => console.warn("[Kilo New] ConnectionService: viewed flush failed:", err))
+      .catch((err) => console.warn("[BharatCode] ConnectionService: viewed flush failed:", err))
       .finally(() => {
         this.viewedSending = false
         if (this.viewedDirty) this.sendViewed()
@@ -900,7 +900,7 @@ export class KiloConnectionService {
       }
       const healthy = await this.checkHealth(baseUrl, password)
       if (!healthy && this.state === "connected") {
-        console.warn("[Kilo New] ConnectionService: ❤️‍🩹 Health check failed — forcing SSE reconnect")
+        console.warn("[BharatCode] ConnectionService: ❤️‍🩹 Health check failed — forcing SSE reconnect")
         this.sseClient?.reconnect()
       }
     }, HEALTH_POLL_INTERVAL_MS)
@@ -951,7 +951,7 @@ export class KiloConnectionService {
 
   private handleServerExit(code: number | null, signal: NodeJS.Signals | null): void {
     const reason = signal ? `signal ${signal}` : `code ${code ?? "unknown"}`
-    console.warn(`[Kilo New] ConnectionService: CLI background process exited with ${reason}`)
+    console.warn(`[BharatCode] ConnectionService: CLI background process exited with ${reason}`)
     this.resetConnection()
     this.setState("error", new Error(`CLI background process exited with ${reason}. Retry to reconnect.`))
   }

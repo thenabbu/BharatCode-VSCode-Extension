@@ -38,7 +38,7 @@ const ORDER: WorktreeHealth[] = ["ok", "absent-restorable", "absent-gone", "unre
 /** Render the report. Pure string building so it can be asserted in tests. */
 export function diagnostics(input: DiagnosticsInput): string {
   const lines: string[] = []
-  lines.push("Kilo Agent Manager — worktree health")
+  lines.push("BharatCode Agent Manager — worktree health")
   lines.push(`repository: ${input.root}`)
   lines.push(`worktrees:  ${input.worktreesDir}`)
   lines.push("")

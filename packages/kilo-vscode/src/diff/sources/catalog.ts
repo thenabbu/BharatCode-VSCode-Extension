@@ -181,14 +181,14 @@ export class DiffSourceCatalog implements vscode.Disposable {
 
   private ensureBranchGit(): GitOps {
     if (this.branchGit) return this.branchGit
-    this.branchOutput = vscode.window.createOutputChannel("Kilo Diff: Branches")
+    this.branchOutput = vscode.window.createOutputChannel("BharatCode Diff: Branches")
     this.branchGit = new GitOps({ log: this.branchLog })
     return this.branchGit
   }
 
   private ensureAttributeGit(): GitOps {
     if (this.attributeGit) return this.attributeGit
-    this.attributeOutput = vscode.window.createOutputChannel("Kilo Diff: Attributes")
+    this.attributeOutput = vscode.window.createOutputChannel("BharatCode Diff: Attributes")
     this.attributeGit = new GitOps({
       log: (...args) => appendOutput(this.attributeOutput!, "DiffSourceCatalog", ...args),
     })

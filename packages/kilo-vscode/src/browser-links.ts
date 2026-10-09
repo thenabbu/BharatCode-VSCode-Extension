@@ -43,7 +43,7 @@ function openerAccepted(openIntegrated?: () => boolean): boolean {
   try {
     return openIntegrated()
   } catch (error) {
-    console.warn("[Kilo New] Integrated Browser open failed, opening externally:", error)
+    console.warn("[BharatCode] Integrated Browser open failed, opening externally:", error)
     return false
   }
 }
