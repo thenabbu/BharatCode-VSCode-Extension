@@ -39,7 +39,7 @@ function read(key: string): unknown {
     const raw = localStorage.getItem(key)
     return raw ? JSON.parse(raw) : undefined
   } catch (err) {
-    console.warn("[Kilo New] prompt history load failed", err)
+    console.warn("[BharatCode] prompt history load failed", err)
     return undefined
   }
 }
@@ -83,14 +83,14 @@ function evict(): boolean {
  */
 function persist(key: string) {
   if (key === GLOBAL_KEY) {
-    if (!write(SHARED_STORAGE_KEY, store.get(GLOBAL_KEY) ?? [])) console.warn("[Kilo New] prompt history save failed")
+    if (!write(SHARED_STORAGE_KEY, store.get(GLOBAL_KEY) ?? [])) console.warn("[BharatCode] prompt history save failed")
     return
   }
   const copy = new Map(store)
   copy.delete(GLOBAL_KEY)
   while (!write(SCOPED_STORAGE_KEY, Object.fromEntries(copy))) {
     const oldest = copy.keys().next().value
-    if (oldest === undefined) return console.warn("[Kilo New] prompt history save failed")
+    if (oldest === undefined) return console.warn("[BharatCode] prompt history save failed")
     copy.delete(oldest)
   }
 }

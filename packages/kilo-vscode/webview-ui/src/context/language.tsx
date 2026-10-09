@@ -57,7 +57,7 @@ function load(locale: Locale) {
     .then((module) => (cache[locale] ??= module.default(base)))
     .catch((err) => {
       delete loads[locale]
-      console.error("[Kilo New] Failed to load language", { locale, err })
+      console.error("[BharatCode] Failed to load language", { locale, err })
       return undefined
     }))
 }
