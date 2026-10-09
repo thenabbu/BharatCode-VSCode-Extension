@@ -39,7 +39,9 @@ const targets = [
   { target: "darwin-arm64", cliDir: "@kilocode/cli-darwin-arm64", binary: "kilo" },
   { target: "win32-x64", cliDir: "@kilocode/cli-windows-x64", binary: "kilo.exe" },
   { target: "win32-arm64", cliDir: "@kilocode/cli-windows-arm64", binary: "kilo.exe" },
-]
+  // ponytail: KILO_VSIX_TARGETS=linux-x64 builds a single platform on low-RAM
+  // boxes; unset = all eight (upstream behavior). Upgrade path: none needed.
+].filter((config) => !process.env.KILO_VSIX_TARGETS || process.env.KILO_VSIX_TARGETS.split(",").includes(config.target))
 
 const binDir = join(import.meta.dir, "..", "bin")
 const distDir = join(import.meta.dir, "..", "dist")
@@ -60,8 +62,13 @@ console.log("\n🔄 Rebuilding SDK types (ensures dist/ is in sync with server A
 await $`bun run --cwd ${join(import.meta.dir, "..", "..", "sdk", "js")} build`
 
 console.log("\n📦 Compiling extension...")
-await $`bun run check-types`
-await $`bun run lint`
+// ponytail: KILO_SKIP_HEAVY=1 skips typecheck+lint for vsix builds on low-RAM
+// boxes (esbuild still runs = resolution gate); CI/release builds must NOT set
+// it. Upgrade path: a tsgo --noEmit here once the box has headroom.
+if (!process.env.KILO_SKIP_HEAVY) {
+  await $`bun run check-types`
+  await $`bun run lint`
+}
 await $`node ${join(import.meta.dir, "..", "esbuild.js")} --production`
 
 for (const config of targets) {

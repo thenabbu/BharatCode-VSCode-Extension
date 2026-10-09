@@ -120,7 +120,9 @@ export const layer: Layer.Layer<
 
     const fetchApertisModels = Effect.fn("ModelCache.fetchApertisModels")(function* (options: Options) {
       const baseURL = options.baseURL ?? APERTIS_BASE_URL
-      if (!options.apiKey) {
+      // bharatcode.ai serves GET /models without auth; apertis requires a key.
+      const anon = baseURL === BHARATCODE_BASE_URL
+      if (!options.apiKey && !anon) {
         log.debug("no API key for apertis, skipping model fetch")
         return {}
       }
@@ -128,7 +130,7 @@ export const layer: Layer.Layer<
       const url = `${baseURL.replace(/\/+$/, "")}/models`
       const response = yield* HttpClientRequest.get(url).pipe(
         HttpClientRequest.acceptJson,
-        HttpClientRequest.bearerToken(options.apiKey),
+        options.apiKey ? HttpClientRequest.bearerToken(options.apiKey) : (req: HttpClientRequest) => req,
         http.execute,
         Effect.timeout("10 seconds"),
       )
