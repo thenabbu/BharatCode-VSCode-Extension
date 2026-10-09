@@ -154,7 +154,23 @@ export class ServerManager {
           KILO_ENABLE_QUESTION_TOOL: "true",
           KILOCODE_FEATURE: "vscode-extension",
           ...indexingEnv,
-          KILO_TELEMETRY_LEVEL: vscode.env.isTelemetryEnabled ? "all" : "off",
+          // BharatCode rebrand: no telemetry — the Kilo/PostHog pipeline is stripped
+          // (kilo-telemetry client.ts gate honors this env first, so later
+          // setEnabled syncs from the extension cannot re-enable it).
+          KILO_TELEMETRY_LEVEL: "off",
+          // BharatCode rebrand: dead-end every Kilo cloud endpoint at the root
+          // (gateway base, events WS, marketplace catalog) — localhost-refused
+          // fails fast, benign fallbacks in each consumer (NOTES/05 rows 1,4,5,9).
+          KILO_API_URL: "http://127.0.0.1:9",
+          EVENT_SERVICE_URL: "ws://127.0.0.1:9",
+          KILO_MARKETPLACE_BASE_URL: "http://127.0.0.1:9",
+          KILO_DISABLE_PRESENCE: "1",
+          KILO_DISABLE_SHARE: "true",
+          // No models.dev egress: the catalog is empty, BharatCode's own
+          // GET /models feeds the picker via provider/models.ts registration.
+          KILO_DISABLE_MODELS_FETCH: "true",
+          // Sole provider, merged into config (per-key) regardless of merge order.
+          KILO_CONFIG_CONTENT: '{"enabled_providers":["bharatcode"]}',
           KILO_APP_NAME: "kilo-code",
           KILO_EDITOR_NAME: vscode.env.appName,
           KILO_PLATFORM: "vscode",

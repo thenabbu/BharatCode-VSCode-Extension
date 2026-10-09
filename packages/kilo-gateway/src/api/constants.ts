@@ -6,8 +6,11 @@
 /** Environment variable for custom Kilo API URL */
 export const ENV_KILO_API_URL = "KILO_API_URL"
 
-/** Default Kilo API URL */
-export const DEFAULT_KILO_API_URL = "https://api.kilo.ai"
+/** Default Kilo API URL — dead-ended in the BharatCode fork: every gateway call
+ *  (profile/balance/notifications/models/device-auth) must never reach Kilo infra.
+ *  The extension overrides this per-spawn via KILO_API_URL; this hard default
+ *  covers any other entry point. Localhost:9 refuses instantly (NOTES/05 row 1). */
+export const DEFAULT_KILO_API_URL = "http://127.0.0.1:9"
 
 /** Base URL for Kilo API - can be overridden by KILO_API_URL env var */
 export const KILO_API_BASE = process.env[ENV_KILO_API_URL] || DEFAULT_KILO_API_URL
@@ -15,8 +18,8 @@ export const KILO_API_BASE = process.env[ENV_KILO_API_URL] || DEFAULT_KILO_API_U
 /** Environment variable for custom Event Service URL */
 export const KILO_EVENT_SERVICE_URL_ENV = "EVENT_SERVICE_URL"
 
-/** Default Event Service URL (WebSocket endpoint for kilo-chat events) */
-export const KILO_DEFAULT_EVENT_SERVICE_URL = "wss://events.kiloapps.io"
+/** Default Event Service URL — dead-ended with the gateway base (NOTES/05 row 1). */
+export const KILO_DEFAULT_EVENT_SERVICE_URL = "ws://127.0.0.1:9"
 
 /** Base URL for Event Service - can be overridden by EVENT_SERVICE_URL env var */
 export const KILO_EVENT_SERVICE_URL = process.env[KILO_EVENT_SERVICE_URL_ENV] || KILO_DEFAULT_EVENT_SERVICE_URL
@@ -91,9 +94,4 @@ export const PROMPTS = [
   "gpt55",
 ] as const
 
-export const AI_SDK_PROVIDERS = [
-  "anthropic",
-  "openai",
-  "openai-compatible",
-  "openrouter",
-] as const
+export const AI_SDK_PROVIDERS = ["anthropic", "openai", "openai-compatible", "openrouter"] as const

@@ -58,6 +58,27 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
         const aptURL = apt?.baseURL ?? "https://api.apertis.ai/v1"
         const aptOpts = apt?.baseURL ? { baseURL: apt.baseURL } : {}
 
+        // BharatCode: sole provider for this fork. Same injection pattern as apertis —
+        // models come from GET {baseURL}/models (model-cache, OpenAI list shape).
+        const bh = cfg.provider?.bharatcode?.options
+        const bhURL = bh?.baseURL ?? "https://bharatcode.ai/api/model/v1"
+        const bhOpts = bh?.baseURL ? { baseURL: bh.baseURL } : {}
+
+        const addBharatcode = Effect.fnUntraced(function* () {
+          if (providers.bharatcode) return
+          const models = yield* cache.fetch("bharatcode", bhOpts).pipe(Effect.catch(() => Effect.succeed({})))
+          providers.bharatcode = {
+            id: "bharatcode",
+            name: "BharatCode",
+            env: ["BHARATCODE_API_KEY"],
+            api: bhURL,
+            npm: "@ai-sdk/openai-compatible",
+            models,
+          }
+          if (Object.keys(models).length === 0)
+            yield* cache.refresh("bharatcode", bhOpts).pipe(Effect.ignore, Effect.forkDetach)
+        })
+
         const addApertis = Effect.fnUntraced(function* () {
           if (providers.apertis) return
           const models = yield* cache.fetch("apertis", aptOpts).pipe(Effect.catch(() => Effect.succeed({})))
@@ -74,6 +95,7 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
         })
 
         if (!allowed) {
+          yield* addBharatcode()
           yield* addApertis()
           return providers
         }
@@ -99,6 +121,7 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
         }
         if (valid && !org && Object.keys(fetched).length === 0)
           yield* cache.refresh("kilo", fetch).pipe(Effect.ignore, Effect.forkDetach)
+        yield* addBharatcode()
         yield* addApertis()
         return providers
       })
