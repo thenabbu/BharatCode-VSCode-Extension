@@ -1,7 +1,7 @@
 {
   "name": "bharatcode-vscode",
   "displayName": "BharatCode: AI Coding Agent, Copilot, and Autocomplete",
-  "description": "BharatCode is an open source AI coding agent that generates code from natural language, automates tasks, and runs terminal commands. Features inline autocomplete, browser automation, automated refactoring, and custom modes for planning, coding, and debugging. Supports 500+ AI models via bharatcode.ai including Claude (Anthropic), Gemini, Grok, GPT, Codex and GLM.",
+  "description": "BharatCode is an open source AI coding agent for VS Code: inline autocomplete, browser automation, automated refactoring, an agent manager, and custom modes for planning, coding, and debugging. Powered by bharatcode.ai with two models: qwen-3.8-27b (262k context) and deepseek-v4.1-flash (1M context).",
   "version": "7.8.8",
   "icon": "assets/icons/logo-outline-black.png",
   "galleryBanner": {
@@ -35,27 +35,15 @@
   ],
   "keywords": [
     "bharatcode",
-    "BharatCode",
     "bharatcode.ai",
     "ai",
-    "agent",
-    "agentic",
-    "coding",
     "coding agent",
     "coding assistant",
     "autocomplete",
     "code completion",
     "pair programming",
     "chat",
-    "terminal",
-    "chatgpt",
-    "claude",
-    "sonnet",
-    "anthropic",
-    "openai",
-    "zoo code",
-    "opencode",
-    "open code"
+    "terminal"
   ],
   "activationEvents": [
     "onStartupFinished",
@@ -1037,14 +1025,14 @@
             "mercury-next-edit"
           ],
           "enumDescriptions": [
-            "Codestral via BharatCode",
-            "Mercury Edit 2 (FIM) via BharatCode",
-            "Mercury Edit 2 (Next Edit), multi-line edit predictions with jump-to-edit UX, via BharatCode",
-            "Codestral via your connected Mistral provider API key",
-            "Mercury Edit 2 (FIM) via your connected Inception provider API key",
-            "Mercury Edit 2 (Next Edit), multi-line edit predictions with jump-to-edit UX, via your connected Inception provider API key"
+            "Codestral (FIM) through the bundled gateway. The gateway endpoint is disabled in this build, so this selection cannot serve completions.",
+            "Mercury Edit 2 (FIM) through the bundled gateway. The gateway endpoint is disabled in this build, so this selection cannot serve completions.",
+            "Mercury Edit 2 (Next Edit) through the bundled gateway. The gateway endpoint is disabled in this build, so this selection cannot serve completions.",
+            "Codestral (FIM) with your own Mistral API key (MISTRAL_API_KEY or a stored key).",
+            "Mercury Edit 2 (FIM) with your own Inception API key (INCEPTION_API_KEY or a stored key).",
+            "Mercury Edit 2 (Next Edit), multi-line edit predictions with jump-to-edit UX, with your own Inception API key (INCEPTION_API_KEY or a stored key)."
           ],
-          "description": "Model to use for inline autocomplete suggestions. If unset, the recommended default is used."
+          "description": "Model for inline autocomplete. BharatCode's two chat models (qwen-3.8-27b, deepseek-v4.1-flash) expose only /v1/chat/completions and no fill-in-the-middle endpoint, so completions cannot be served by bharatcode.ai; they are not offered here. Use a Mistral or Inception API key of your own, or leave unset."
         },
         "kilo-code.new.autocomplete.provider": {
           "type": "string",
@@ -1054,11 +1042,11 @@
             "inception"
           ],
           "enumDescriptions": [
-            "Use autocomplete models through BharatCode",
-            "Use autocomplete models through your connected Mistral provider API key",
-            "Use autocomplete models through your connected Inception provider API key"
+            "Bundled gateway, stored under its legacy protocol value \"kilo\" (required by the local backend; not a Kilo Code feature). The gateway endpoint is disabled in this build, so it cannot serve completions.",
+            "Direct fill-in-the-middle requests to Mistral with your own API key.",
+            "Direct fill-in-the-middle requests to Inception with your own API key."
           ],
-          "description": "Provider to use for inline autocomplete suggestions. If unset, BharatCode is used."
+          "description": "Provider for inline autocomplete. There is no \"bharatcode\" value: bharatcode.ai serves no fill-in-the-middle endpoint, so server-side autocomplete is unavailable in this build."
         },
         "kilo-code.new.autocomplete.enableAutoTrigger": {
           "type": "boolean",

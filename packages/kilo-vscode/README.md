@@ -5,7 +5,7 @@
 
 <p align="center">
   <strong>BharatCode is an AI coding agent for VS Code.</strong><br>
-  Generate code, automate tasks, and run terminal commands with 500+ AI models.
+  Generate code, automate tasks, and run terminal commands with qwen-3.8-27b and deepseek-v4.1-flash, the two models served by bharatcode.ai.
 </p>
 
 ## Key Features
@@ -15,7 +15,7 @@
 - **Task Automation:** BharatCode can automate repetitive coding tasks to save time.
 - **Automated Refactoring:** BharatCode can refactor and improve existing code efficiently.
 - **MCP Server Marketplace:** BharatCode can find and use MCP servers to extend the agent's capabilities.
-- **Multi Mode**: Plan with Architect, Code with Coder, and Debug with Debugger, and make your own custom modes.
+- **Multi Mode**: Plan, Code, Debug, Ask, and Architect modes built in, plus your own custom modes.
 
 ## Get Started
 
@@ -41,7 +41,7 @@ bun run snapshot:build
 bun run snapshot:install
 ```
 
-The snapshot version embeds the current commit SHA and your git username (from `git config user.name`), e.g. `7.0.47-snapshot+8ff7f2d02.kirillk`.
+The snapshot version embeds the current commit SHA and your git username (from `git config user.name`), e.g. `7.0.47-snapshot+8ff7f2d02.yourname`.
 
 ## Contributing
 

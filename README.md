@@ -16,7 +16,7 @@
 
 ---
 
-BharatCode is an AI coding agent that meets you where you work — in VS Code. It's open source and MIT licensed. You pick from 500+ models through a single API key from [bharatcode.ai](https://bharatcode.ai), and every request goes through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
+BharatCode is an AI coding agent that meets you where you work — in VS Code. It's open source and MIT licensed. You pick from two models — `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context) — through a single API key from [bharatcode.ai](https://bharatcode.ai), and every request goes through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
 
 ### Installation
 
@@ -42,7 +42,7 @@ BharatCode ships with specialized agents you switch between depending on the tas
 - **Self-checking** so the agent reviews and corrects its own work.
 - **Terminal and browser control** to run commands and automate the web.
 - **BharatCode Marketplace** to install agents, skills, MCP servers, and plugins that extend what the agent can do.
-- **500+ models** with mid-task switching, so you can match latency, cost, and reasoning to the job.
+- **Two models** with mid-task switching between them — `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context) — so you can match latency, cost, and reasoning to the job.
 
 ### Documentation
 

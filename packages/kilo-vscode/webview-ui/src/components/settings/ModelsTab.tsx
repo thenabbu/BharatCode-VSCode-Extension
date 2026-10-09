@@ -213,7 +213,12 @@ const ModelsTab: Component = () => {
             value={getAutocompleteSelection(autocompleteProvider(), autocompleteModel())}
             onSelect={handleAutocompleteModelSelect}
             placement="bottom-start"
-            models={AUTOCOMPLETE_SELECTOR_MODELS}
+            models={AUTOCOMPLETE_SELECTOR_MODELS.map((m) => ({
+              ...m,
+              // Registry labels the bundled path "Kilo Gateway"; it is disabled
+              // in this build, so say that instead of carrying the old brand.
+              providerName: m.providerID === "kilo" ? "BharatCode gateway (disabled)" : m.providerName,
+            }))}
             favorites={false}
             allowClear
             clearLabel={language.t("settings.providers.notSet")}
