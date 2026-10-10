@@ -396,9 +396,7 @@ export class AutocompleteServiceManager {
 
   private getCurrentProviderName(): string {
     const info = getAutocompleteModel(this.settings?.provider, this.settings?.model)
-    // The gateway registry still labels the bundled path "Kilo Gateway"; show
-    // what it actually is in this build (endpoint dead-ended, see server-manager).
-    return info.provider === "Kilo Gateway" ? "BharatCode gateway (disabled)" : info.provider
+    return info.provider
   }
 
   private hasNoUsableProvider(): boolean {

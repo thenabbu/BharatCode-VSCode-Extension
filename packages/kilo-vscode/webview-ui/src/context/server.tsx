@@ -199,7 +199,7 @@ export const ServerProvider: ParentComponent = (props) => {
   /**
    * Route any "Sign In" action through the Profile view so the user always
    * sees the device-auth UI (URL, QR, code, timer, cancel). Entry points
-   * outside the Profile page — e.g. the Kilo Gateway card in the Providers
+   * outside the Profile page — e.g. a provider connect dialog from the Providers
    * settings tab, or the provider picker — must call this helper instead of
    * `startLogin()` directly. Otherwise the login flow runs silently and the
    * user has no way to see the code or cancel if the browser is dismissed.
