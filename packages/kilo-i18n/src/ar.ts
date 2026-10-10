@@ -6,8 +6,6 @@ export const dict = {
 
   // Provider settings translations
   "settings.providers.group.recommended": "موصى به",
-  "settings.providers.note.kilo": "الوصول إلى أكثر من 500 نموذج ذكاء اصطناعي",
-  "settings.providers.note.opencode": "نماذج منتقاة تشمل Claude وGPT وGemini والمزيد",
   "settings.providers.note.anthropic": "وصول مباشر إلى نماذج Claude، بما في ذلك Pro وMax",
   "settings.providers.note.deepseek": "نماذج DeepSeek لمهام الاستدلال والبرمجة",
   "settings.providers.note.copilot": "نماذج Claude للمساعدة في البرمجة",

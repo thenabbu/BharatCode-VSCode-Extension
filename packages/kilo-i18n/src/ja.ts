@@ -6,8 +6,6 @@ export const dict = {
 
   // Provider settings translations
   "settings.providers.group.recommended": "おすすめ",
-  "settings.providers.note.kilo": "500以上のAIモデルにアクセス",
-  "settings.providers.note.opencode": "Claude、GPT、Geminiなどの厳選モデル",
   "settings.providers.note.anthropic": "ProやMaxを含むClaudeモデルへ直接アクセス",
   "settings.providers.note.deepseek": "推論とコーディング作業向けのDeepSeekモデル",
   "settings.providers.note.copilot": "コーディング支援向けのClaudeモデル",

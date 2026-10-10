@@ -8,8 +8,6 @@ export const dict = {
 
   // Provider settings translations
   "settings.providers.group.recommended": "Consigliati",
-  "settings.providers.note.kilo": "Accesso a oltre 500 modelli AI",
-  "settings.providers.note.opencode": "Modelli selezionati, inclusi Claude, GPT, Gemini e altri",
   "settings.providers.note.anthropic": "Accesso diretto ai modelli Claude, inclusi Pro e Max",
   "settings.providers.note.deepseek": "Modelli DeepSeek per attività di ragionamento e programmazione",
   "settings.providers.note.copilot": "Modelli Claude per assistenza alla programmazione",

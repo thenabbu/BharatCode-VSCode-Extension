@@ -38,10 +38,8 @@ export function providerIcon(provider: Provider | string): IconName {
   return "synthetic"
 }
 
-
 export function providerNoteKey(provider: Provider | string) {
   if (typeof provider !== "string" && provider.metadata?.noteKey) return provider.metadata.noteKey
-  if (provider === KILO_PROVIDER_ID) return "settings.providers.note.kilo"
   return undefined
 }
 
