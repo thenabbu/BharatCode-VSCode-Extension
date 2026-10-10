@@ -103,7 +103,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "ค้นหาผู้ให้บริการ",
   "dialog.provider.empty": "ไม่พบผู้ให้บริการ",
   "dialog.provider.group.other": "อื่น ๆ",
-  "dialog.provider.tag.recommended": "แนะนำ",
 
   "dialog.model.select.title": "เลือกโมเดล",
   "dialog.model.search.placeholder": "ค้นหาโมเดล",
@@ -273,14 +272,6 @@ export const dict = {
 
   "error.startup.title": "การเชื่อมต่อเซิร์ฟเวอร์ล้มเหลว",
 
-  "error.paidModel.title": "คุณต้องเข้าสู่ระบบเพื่อใช้โมเดลนี้",
-  "error.paidModel.description":
-    "เข้าสู่ระบบหรือสร้างบัญชีเพื่อเข้าถึงโมเดลกว่า 500 รายการ ใช้เครดิตในราคาทุน หรือใช้คีย์ของคุณเอง",
-  "error.paidModel.action": "เข้าสู่ระบบ",
-  "error.promotionLimit.title": "คุณต้องสมัครสมาชิกเพื่อดำเนินการต่อ",
-  "error.promotionLimit.description":
-    "สมัครฟรีเพื่อดำเนินการต่อและสำรวจโมเดลกว่า 500 รายการ ใช้เวลา 2 นาที ไม่ต้องใช้บัตรเครดิต หรือกลับมาทีหลัง",
-  "error.promotionLimit.action": "สมัครสมาชิก",
   "error.providerAuth.title": "{{provider}} ออกจากระบบของคุณแล้ว",
   "error.providerAuth.description": "เชื่อมต่อ {{provider}} อีกครั้ง จากนั้นส่งข้อความของคุณใหม่",
   "error.providerAuth.chatgpt.title": "OpenAI ออกจากระบบของคุณแล้ว",
@@ -1293,44 +1284,7 @@ export const dict = {
   "question.summary": "{{n}} จาก {{total}} คำถาม",
   "common.review": "ตรวจสอบ",
 
-  "migration.migrate.selectLabel": "เลือกสิ่งที่จะย้าย",
-  "migration.migrate.chatHistory": "เซสชันแชทและประวัติ",
-
   // Migrate — completion
-  "migration.complete.summary": "ย้ายข้อมูลสำเร็จ {{success}} จาก {{total}} รายการ",
-  "migration.complete.done": "เสร็จสิ้น",
-  "migration.migrate.sessionsDetected": "ตรวจพบ {{count}} เซสชัน",
-  "migration.error.continue": "ดำเนินการต่อ",
-
-  "migration.sessionSummary.title": "สรุป:",
-  "migration.sessionSummary.copy": "คัดลอกรายงาน",
-  "migration.sessionSummary.toast.copied": "คัดลอกรายงานแล้ว",
-  "migration.sessionSummary.successful": "สำเร็จ",
-  "migration.sessionSummary.skipped": "ข้ามแล้ว",
-  "migration.sessionSummary.alreadyMigrated": "ย้ายแล้ว",
-  "migration.sessionSummary.errored": "มีข้อผิดพลาด",
-  "migration.sessionSummary.none": "ไม่มี",
-  "migration.forceReimport.title": "บังคับนำเข้าใหม่",
-  "migration.forceReimport.description":
-    "การนำเข้า {{target}} ใหม่จะเขียนทับและลบข้อความใหม่ใด ๆ ที่สร้างไว้แล้วในเซสชันเหล่านั้น",
-  "migration.forceReimport.target.one": "เซสชันนี้",
-  "migration.forceReimport.target.many": "{{count}} เซสชันเหล่านี้",
-  "migration.forceReimport.button": "บังคับนำเข้าใหม่",
-  "migration.forceReimport.all": "นำเข้าทั้งหมดใหม่",
-  "migration.forceReimport.proceed": "ดำเนินการต่อ",
-  "migration.forceReimport.toast.started": "เริ่มการนำเข้าใหม่แบบบังคับแล้ว",
-  "migration.running.title": "กำลังย้ายข้อมูล",
-  "migration.running.description.line1": "คุณกำลังจะเสร็จสิ้นในขณะที่ยังมีบางเซสชันกำลังย้ายข้อมูลอยู่",
-  "migration.running.description.line2": "หากคุณออกตอนนี้ บางเซสชันอาจยังไม่สมบูรณ์",
-  "migration.running.stay": "อยู่ต่อ",
-  "migration.running.proceed": "ดำเนินการต่อ",
-  "migration.sessionProgress.preparing": "กำลังเตรียมเซสชัน",
-  "migration.sessionProgress.storing": "กำลังบันทึกเซสชัน",
-  "migration.sessionProgress.skipped": "ข้ามเซสชันแล้ว",
-  "migration.sessionProgress.header": "กำลังย้าย {{current}} จาก {{total}}",
-  "migration.sessionFormat.unknownDate": "ไม่ทราบวันที่",
-  "migration.sessionFormat.unknown": "ไม่ทราบ",
-  "migration.sessionFormat.unknownError": "ข้อผิดพลาดที่ไม่ทราบสาเหตุ",
 
   "error.details.show": "รายละเอียด",
 

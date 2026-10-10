@@ -105,7 +105,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Providers zoeken",
   "dialog.provider.empty": "Geen providers gevonden",
   "dialog.provider.group.other": "Overige",
-  "dialog.provider.tag.recommended": "Aanbevolen",
 
   "dialog.model.select.title": "Model selecteren",
   "dialog.model.search.placeholder": "Modellen zoeken",
@@ -278,14 +277,6 @@ export const dict = {
 
   "error.startup.title": "Serververbinding mislukt",
 
-  "error.paidModel.title": "Je moet inloggen om dit model te gebruiken",
-  "error.paidModel.description":
-    "Log in of maak een account aan om toegang te krijgen tot meer dan 500 modellen, credits tegen kostprijs te gebruiken, of je eigen sleutel mee te nemen.",
-  "error.paidModel.action": "Inloggen",
-  "error.promotionLimit.title": "Je moet je registreren om door te gaan",
-  "error.promotionLimit.description":
-    "Registreer je gratis om door te gaan en 500 andere modellen te ontdekken. Duurt 2 minuten, geen creditcard vereist. Of kom later terug.",
-  "error.promotionLimit.action": "Registreren",
   "error.providerAuth.title": "{{provider}} heeft je afgemeld",
   "error.providerAuth.description": "Verbind opnieuw met {{provider}} en stuur je bericht nog een keer.",
   "error.providerAuth.chatgpt.title": "OpenAI heeft je afgemeld",
@@ -1306,44 +1297,7 @@ export const dict = {
   "question.summary": "{{n}} van de {{total}} vragen",
   "common.review": "Beoordelen",
 
-  "migration.migrate.selectLabel": "Selecteer wat je wilt migreren",
-  "migration.migrate.chatHistory": "Chatsessies & Geschiedenis",
-
   // Migrate — completion
-  "migration.complete.summary": "{{success}} van de {{total}} items succesvol gemigreerd.",
-  "migration.complete.done": "Klaar",
-  "migration.migrate.sessionsDetected": "{{count}} sessies gedetecteerd",
-  "migration.error.continue": "Doorgaan",
-
-  "migration.sessionSummary.title": "Samenvatting:",
-  "migration.sessionSummary.copy": "Rapport kopiëren",
-  "migration.sessionSummary.toast.copied": "Rapport gekopieerd",
-  "migration.sessionSummary.successful": "Geslaagd",
-  "migration.sessionSummary.skipped": "Overgeslagen",
-  "migration.sessionSummary.alreadyMigrated": "Al gemigreerd",
-  "migration.sessionSummary.errored": "Met fouten",
-  "migration.sessionSummary.none": "Geen",
-  "migration.forceReimport.title": "Herimport forceren",
-  "migration.forceReimport.description":
-    "Het opnieuw importeren van {{target}} zal deze overschrijven en alle nieuwe berichten verwijderen die al in die sessies zijn gemaakt.",
-  "migration.forceReimport.target.one": "deze sessie",
-  "migration.forceReimport.target.many": "deze {{count}} sessies",
-  "migration.forceReimport.button": "Herimport forceren",
-  "migration.forceReimport.all": "Alles opnieuw importeren",
-  "migration.forceReimport.proceed": "Doorgaan",
-  "migration.forceReimport.toast.started": "Geforceerde herimport gestart",
-  "migration.running.title": "Migratie bezig",
-  "migration.running.description.line1": "Je staat op het punt af te ronden terwijl er nog sessies worden gemigreerd.",
-  "migration.running.description.line2": "Als je nu vertrekt, kunnen sommige sessies onvolledig blijven.",
-  "migration.running.stay": "Blijven",
-  "migration.running.proceed": "Doorgaan",
-  "migration.sessionProgress.preparing": "Sessie voorbereiden",
-  "migration.sessionProgress.storing": "Sessie opslaan",
-  "migration.sessionProgress.skipped": "Sessie overgeslagen",
-  "migration.sessionProgress.header": "Bezig met migreren van {{current}} van {{total}}",
-  "migration.sessionFormat.unknownDate": "Onbekende datum",
-  "migration.sessionFormat.unknown": "Onbekend",
-  "migration.sessionFormat.unknownError": "Onbekende fout",
 
   "error.details.show": "Details",
 

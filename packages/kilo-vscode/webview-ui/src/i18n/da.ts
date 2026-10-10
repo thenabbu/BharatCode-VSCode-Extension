@@ -103,7 +103,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Søg udbydere",
   "dialog.provider.empty": "Ingen udbydere fundet",
   "dialog.provider.group.other": "Andre",
-  "dialog.provider.tag.recommended": "Anbefalet",
 
   "dialog.model.select.title": "Vælg model",
   "dialog.model.search.placeholder": "Søg modeller",
@@ -273,14 +272,6 @@ export const dict = {
 
   "error.startup.title": "Serverforbindelse mislykkedes",
 
-  "error.paidModel.title": "Du skal logge ind for at bruge denne model",
-  "error.paidModel.description":
-    "Log ind eller opret en konto for at få adgang til over 500 modeller, brug kreditter til kostpris, eller medbring din egen nøgle.",
-  "error.paidModel.action": "Log ind",
-  "error.promotionLimit.title": "Du skal tilmelde dig for at fortsætte",
-  "error.promotionLimit.description":
-    "Tilmeld dig gratis for at fortsætte og udforske over 500 modeller. Tager 2 minutter, intet kreditkort nødvendigt. Eller kom tilbage senere.",
-  "error.promotionLimit.action": "Tilmeld dig",
   "error.providerAuth.title": "{{provider}} har logget dig af",
   "error.providerAuth.description": "Forbind til {{provider}} igen, og send din besked på ny.",
   "error.providerAuth.chatgpt.title": "OpenAI har logget dig af",
@@ -1315,44 +1306,7 @@ export const dict = {
   "question.summary": "{{n}} af {{total}} spørgsmål",
   "common.review": "Gennemgå",
 
-  "migration.migrate.selectLabel": "Vælg hvad der skal migreres",
-  "migration.migrate.chatHistory": "Chatsessioner og historik",
-
   // Migrate — completion
-  "migration.complete.summary": "{{success}} af {{total}} elementer blev migreret med succes.",
-  "migration.complete.done": "Færdig",
-  "migration.migrate.sessionsDetected": "{{count}} sessioner fundet",
-  "migration.error.continue": "Fortsæt",
-
-  "migration.sessionSummary.title": "Opsummering:",
-  "migration.sessionSummary.copy": "Kopiér rapport",
-  "migration.sessionSummary.toast.copied": "Rapport kopieret",
-  "migration.sessionSummary.successful": "Vellykkede",
-  "migration.sessionSummary.skipped": "Sprunget over",
-  "migration.sessionSummary.alreadyMigrated": "Allerede migreret",
-  "migration.sessionSummary.errored": "Med fejl",
-  "migration.sessionSummary.none": "Ingen",
-  "migration.forceReimport.title": "Tving genimport",
-  "migration.forceReimport.description":
-    "Genimport af {{target}} vil overskrive dem og slette alle nye beskeder, der allerede er oprettet i disse sessioner.",
-  "migration.forceReimport.target.one": "denne session",
-  "migration.forceReimport.target.many": "disse {{count}} sessioner",
-  "migration.forceReimport.button": "Tving genimport",
-  "migration.forceReimport.all": "Genimportér alle",
-  "migration.forceReimport.proceed": "Fortsæt",
-  "migration.forceReimport.toast.started": "Tvungen genimport er startet",
-  "migration.running.title": "Migrering i gang",
-  "migration.running.description.line1": "Du er ved at afslutte, mens der stadig er sessioner, som bliver migreret.",
-  "migration.running.description.line2": "Hvis du forlader nu, kan nogle sessioner forblive ufuldstændige.",
-  "migration.running.stay": "Bliv",
-  "migration.running.proceed": "Fortsæt",
-  "migration.sessionProgress.preparing": "Forbereder session",
-  "migration.sessionProgress.storing": "Gemmer session",
-  "migration.sessionProgress.skipped": "Session sprunget over",
-  "migration.sessionProgress.header": "Migrerer {{current}} af {{total}}",
-  "migration.sessionFormat.unknownDate": "Ukendt dato",
-  "migration.sessionFormat.unknown": "Ukendt",
-  "migration.sessionFormat.unknownError": "Ukendt fejl",
 
   "error.details.show": "Detaljer",
 

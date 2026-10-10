@@ -104,7 +104,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "جستجوی ارائه‌دهندگان",
   "dialog.provider.empty": "ارائه‌دهنده‌ای یافت نشد",
   "dialog.provider.group.other": "سایر",
-  "dialog.provider.tag.recommended": "پیشنهادی",
 
   "dialog.model.select.title": "انتخاب مدل",
   "dialog.model.search.placeholder": "جستجوی مدل‌ها",
@@ -272,14 +271,6 @@ export const dict = {
 
   "error.startup.title": "اتصال به سرور ناموفق بود",
 
-  "error.paidModel.title": "برای استفاده از این مدل باید وارد شوید",
-  "error.paidModel.description":
-    "برای دسترسی به بیش از ۵۰۰ مدل، استفاده از اعتبار با هزینه واقعی یا استفاده از کلید خودتان، وارد شوید یا حساب کاربری بسازید.",
-  "error.paidModel.action": "ورود",
-  "error.promotionLimit.title": "برای ادامه باید ثبت‌نام کنید",
-  "error.promotionLimit.description":
-    "برای ادامه و دسترسی به ۵۰۰ مدل دیگر، رایگان ثبت‌نام کنید. تنها ۲ دقیقه طول می‌کشد و نیازی به کارت اعتباری نیست. یا بعداً برگردید.",
-  "error.promotionLimit.action": "ثبت‌نام",
   "error.providerAuth.title": "{{provider}} شما را خارج کرد",
   "error.providerAuth.description": "{{provider}} را دوباره متصل کنید، سپس پیام خود را مجدداً ارسال کنید.",
   "error.providerAuth.chatgpt.title": "OpenAI شما را خارج کرد",
@@ -1311,43 +1302,7 @@ export const dict = {
   "question.summary": "{{n}} از {{total}} سؤال",
   "common.review": "بررسی",
 
-  "migration.migrate.selectLabel": "انتخاب موارد برای انتقال",
-  "migration.migrate.chatHistory": "جلسات و تاریخچه چت",
-  "migration.migrate.sessionsDetected": "{{count}} نشست شناسایی شد",
-
   // Migrate — completion
-  "migration.complete.summary": "{{success}} از {{total}} مورد با موفقیت منتقل شد.",
-  "migration.complete.done": "انجام شد",
-  "migration.error.continue": "ادامه",
-  "migration.sessionSummary.title": "خلاصه:",
-  "migration.sessionSummary.copy": "کپی گزارش",
-  "migration.sessionSummary.toast.copied": "گزارش کپی شد",
-  "migration.sessionSummary.successful": "موفق",
-  "migration.sessionSummary.skipped": "رد شده",
-  "migration.sessionSummary.alreadyMigrated": "قبلاً منتقل شده",
-  "migration.sessionSummary.errored": "با خطا مواجه شد",
-  "migration.sessionSummary.none": "هیچ‌کدام",
-  "migration.forceReimport.title": "وارد کردن مجدد اجباری",
-  "migration.forceReimport.description":
-    "وارد کردن مجدد {{target}} آن‌ها را بازنویسی کرده و هر پیام جدیدی که در آن نشست‌ها ایجاد شده را حذف می‌کند.",
-  "migration.forceReimport.target.one": "این نشست",
-  "migration.forceReimport.target.many": "این {{count}} نشست",
-  "migration.forceReimport.button": "وارد کردن مجدد اجباری",
-  "migration.forceReimport.all": "وارد کردن مجدد همه",
-  "migration.forceReimport.proceed": "ادامه",
-  "migration.forceReimport.toast.started": "وارد کردن مجدد اجباری آغاز شد",
-  "migration.running.title": "انتقال در حال انجام است",
-  "migration.running.description.line1": "در حالی که هنوز نشست‌هایی در حال انتقال هستند، می‌خواهید پایان دهید.",
-  "migration.running.description.line2": "اگر اکنون خارج شوید، برخی جلسات ممکن است ناتمام بمانند.",
-  "migration.running.stay": "ماندن",
-  "migration.running.proceed": "ادامه",
-  "migration.sessionProgress.preparing": "در حال آماده‌سازی جلسه",
-  "migration.sessionProgress.storing": "در حال ذخیره جلسه",
-  "migration.sessionProgress.skipped": "جلسه رد شد",
-  "migration.sessionProgress.header": "در حال انتقال {{current}} از {{total}}",
-  "migration.sessionFormat.unknownDate": "تاریخ نامشخص",
-  "migration.sessionFormat.unknown": "نامشخص",
-  "migration.sessionFormat.unknownError": "خطای نامشخص",
 
   "error.details.show": "جزئیات",
 

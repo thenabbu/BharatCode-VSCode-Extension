@@ -106,7 +106,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Søk etter leverandører",
   "dialog.provider.empty": "Ingen leverandører funnet",
   "dialog.provider.group.other": "Andre",
-  "dialog.provider.tag.recommended": "Anbefalt",
 
   "dialog.model.select.title": "Velg modell",
   "dialog.model.search.placeholder": "Søk etter modeller",
@@ -280,14 +279,6 @@ export const dict = {
 
   "error.startup.title": "Servertilkobling mislyktes",
 
-  "error.paidModel.title": "Du må logge inn for å bruke denne modellen",
-  "error.paidModel.description":
-    "Logg inn eller opprett en konto for å få tilgang til over 500 modeller, bruk kreditter til kostpris, eller ta med din egen nøkkel.",
-  "error.paidModel.action": "Logg inn",
-  "error.promotionLimit.title": "Du må registrere deg for å fortsette",
-  "error.promotionLimit.description":
-    "Registrer deg gratis for å fortsette og utforske over 500 modeller. Tar 2 minutter, ingen kredittkort nødvendig. Eller kom tilbake senere.",
-  "error.promotionLimit.action": "Registrer deg",
   "error.providerAuth.title": "{{provider}} logget deg ut",
   "error.providerAuth.description": "Koble til {{provider}} på nytt, og send meldingen din igjen.",
   "error.providerAuth.chatgpt.title": "OpenAI logget deg ut",
@@ -1314,44 +1305,7 @@ export const dict = {
   "question.summary": "{{n}} av {{total}} spørsmål",
   "common.review": "Gjennomgå",
 
-  "migration.migrate.selectLabel": "Velg hva som skal migreres",
-  "migration.migrate.chatHistory": "Chatøkter og historikk",
-
   // Migrate — completion
-  "migration.complete.summary": "{{success}} av {{total}} elementer ble migrert.",
-  "migration.complete.done": "Ferdig",
-  "migration.migrate.sessionsDetected": "{{count}} økter oppdaget",
-  "migration.error.continue": "Fortsett",
-
-  "migration.sessionSummary.title": "Oppsummering:",
-  "migration.sessionSummary.copy": "Kopier rapport",
-  "migration.sessionSummary.toast.copied": "Rapport kopiert",
-  "migration.sessionSummary.successful": "Vellykkede",
-  "migration.sessionSummary.skipped": "Hoppet over",
-  "migration.sessionSummary.alreadyMigrated": "Allerede migrert",
-  "migration.sessionSummary.errored": "Med feil",
-  "migration.sessionSummary.none": "Ingen",
-  "migration.forceReimport.title": "Tving ny import",
-  "migration.forceReimport.description":
-    "Hvis du importerer {{target}} på nytt, blir de overskrevet og alle nye meldinger som allerede er opprettet i disse øktene blir slettet.",
-  "migration.forceReimport.target.one": "denne økten",
-  "migration.forceReimport.target.many": "disse {{count}} øktene",
-  "migration.forceReimport.button": "Tving ny import",
-  "migration.forceReimport.all": "Importer alle på nytt",
-  "migration.forceReimport.proceed": "Fortsett",
-  "migration.forceReimport.toast.started": "Tvungen ny import startet",
-  "migration.running.title": "Migrering pågår",
-  "migration.running.description.line1": "Du er i ferd med å avslutte mens det fortsatt er økter som migreres.",
-  "migration.running.description.line2": "Hvis du går nå, kan noen økter forbli ufullstendige.",
-  "migration.running.stay": "Bli",
-  "migration.running.proceed": "Fortsett",
-  "migration.sessionProgress.preparing": "Forbereder økt",
-  "migration.sessionProgress.storing": "Lagrer økt",
-  "migration.sessionProgress.skipped": "Økt hoppet over",
-  "migration.sessionProgress.header": "Migrerer {{current}} av {{total}}",
-  "migration.sessionFormat.unknownDate": "Ukjent dato",
-  "migration.sessionFormat.unknown": "Ukjent",
-  "migration.sessionFormat.unknownError": "Ukjent feil",
 
   "task.todos.progress": "{{done}}/{{total}} oppgaver fullført",
   "task.todos.allDone": "{{count}} oppgaver fullført",

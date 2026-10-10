@@ -107,7 +107,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "공급자 검색",
   "dialog.provider.empty": "공급자 없음",
   "dialog.provider.group.other": "기타",
-  "dialog.provider.tag.recommended": "추천",
 
   "dialog.model.select.title": "모델 선택",
   "dialog.model.search.placeholder": "모델 검색",
@@ -274,14 +273,6 @@ export const dict = {
 
   "error.startup.title": "서버 연결 실패",
 
-  "error.paidModel.title": "이 모델을 사용하려면 로그인이 필요합니다",
-  "error.paidModel.description":
-    "로그인하거나 계정을 만들어 500개 이상의 모델에 접근하고, 원가로 크레딧을 사용하거나, 자체 키를 가져오세요.",
-  "error.paidModel.action": "로그인",
-  "error.promotionLimit.title": "계속하려면 가입이 필요합니다",
-  "error.promotionLimit.description":
-    "무료로 가입하여 500개 이상의 모델을 탐색하세요. 2분이면 완료, 신용카드 불필요. 또는 나중에 다시 오세요.",
-  "error.promotionLimit.action": "가입하기",
   "error.providerAuth.title": "{{provider}}에서 로그아웃되었습니다",
   "error.providerAuth.description": "{{provider}}에 다시 연결한 후 메시지를 다시 보내주세요.",
   "error.providerAuth.chatgpt.title": "OpenAI에서 로그아웃되었습니다",
@@ -1292,44 +1283,7 @@ export const dict = {
   "question.summary": "{{total}}개 질문 중 {{n}}번째",
   "common.review": "검토",
 
-  "migration.migrate.selectLabel": "마이그레이션할 항목 선택",
-  "migration.migrate.chatHistory": "채팅 세션 및 기록",
-
   // Migrate — completion
-  "migration.complete.summary": "{{total}}개 중 {{success}}개 항목이 성공적으로 마이그레이션되었습니다.",
-  "migration.complete.done": "완료",
-  "migration.migrate.sessionsDetected": "{{count}}개의 세션이 감지되었습니다",
-  "migration.error.continue": "계속",
-
-  "migration.sessionSummary.title": "요약:",
-  "migration.sessionSummary.copy": "보고서 복사",
-  "migration.sessionSummary.toast.copied": "보고서가 복사되었습니다",
-  "migration.sessionSummary.successful": "성공",
-  "migration.sessionSummary.skipped": "건너뜀",
-  "migration.sessionSummary.alreadyMigrated": "이미 마이그레이션됨",
-  "migration.sessionSummary.errored": "오류 발생",
-  "migration.sessionSummary.none": "없음",
-  "migration.forceReimport.title": "강제 재가져오기",
-  "migration.forceReimport.description":
-    "{{target}}을 다시 가져오면 덮어쓰게 되며, 해당 세션에서 이미 생성된 새 메시지는 삭제됩니다.",
-  "migration.forceReimport.target.one": "이 세션",
-  "migration.forceReimport.target.many": "이 {{count}}개 세션",
-  "migration.forceReimport.button": "강제 재가져오기",
-  "migration.forceReimport.all": "모두 다시 가져오기",
-  "migration.forceReimport.proceed": "진행",
-  "migration.forceReimport.toast.started": "강제 재가져오기가 시작되었습니다",
-  "migration.running.title": "마이그레이션 진행 중",
-  "migration.running.description.line1": "아직 마이그레이션 중인 세션이 남아 있는 상태에서 종료하려고 합니다.",
-  "migration.running.description.line2": "지금 나가면 일부 세션이 완료되지 않은 상태로 남을 수 있습니다.",
-  "migration.running.stay": "머무르기",
-  "migration.running.proceed": "진행",
-  "migration.sessionProgress.preparing": "세션 준비 중",
-  "migration.sessionProgress.storing": "세션 저장 중",
-  "migration.sessionProgress.skipped": "세션 건너뜀",
-  "migration.sessionProgress.header": "{{total}}개 중 {{current}}개 마이그레이션 중",
-  "migration.sessionFormat.unknownDate": "알 수 없는 날짜",
-  "migration.sessionFormat.unknown": "알 수 없음",
-  "migration.sessionFormat.unknownError": "알 수 없는 오류",
 
   "error.details.show": "상세 정보",
 

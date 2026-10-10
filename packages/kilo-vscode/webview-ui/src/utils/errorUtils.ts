@@ -55,11 +55,6 @@ export function unwrapError(message: string): string {
   return format(read(text.slice(start, end + 1)), 0) ?? message
 }
 
-const errorCodes = {
-  PAID_MODEL_AUTH_REQUIRED: "PAID_MODEL_AUTH_REQUIRED",
-  PROMOTION_MODEL_LIMIT_REACHED: "PROMOTION_MODEL_LIMIT_REACHED",
-} as const
-
 export interface ParsedError {
   statusCode?: number
   code?: string
@@ -111,20 +106,4 @@ export function parseProviderAuthError(
   const message = typeof data.message === "string" ? data.message : undefined
   if (!providerID || !message) return null
   return { providerID, message }
-}
-
-export function isUnauthorizedPaidModelError(parsed: ParsedError | null): boolean {
-  if (!parsed) return false
-  return parsed.statusCode === 401 && parsed.code === errorCodes.PAID_MODEL_AUTH_REQUIRED
-}
-
-/**
- * Accepts both 401 (current backend) and 429 (future backend) to support
- * the transition. Keep 401 until the backend is updated to return 429.
- */
-export function isUnauthorizedPromotionLimitError(parsed: ParsedError | null): boolean {
-  if (!parsed) return false
-  return (
-    (parsed.statusCode === 401 || parsed.statusCode === 429) && parsed.code === errorCodes.PROMOTION_MODEL_LIMIT_REACHED
-  )
 }

@@ -104,7 +104,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Szukaj dostawców",
   "dialog.provider.empty": "Nie znaleziono dostawców",
   "dialog.provider.group.other": "Inne",
-  "dialog.provider.tag.recommended": "Zalecane",
 
   "dialog.model.select.title": "Wybierz model",
   "dialog.model.search.placeholder": "Szukaj modeli",
@@ -275,14 +274,6 @@ export const dict = {
 
   "error.startup.title": "Błąd połączenia z serwerem",
 
-  "error.paidModel.title": "Musisz się zalogować, aby użyć tego modelu",
-  "error.paidModel.description":
-    "Zaloguj się lub utwórz konto, aby uzyskać dostęp do ponad 500 modeli, korzystać z kredytów po kosztach lub użyć własnego klucza.",
-  "error.paidModel.action": "Zaloguj się",
-  "error.promotionLimit.title": "Musisz się zarejestrować, aby kontynuować",
-  "error.promotionLimit.description":
-    "Zarejestruj się za darmo, aby kontynuować i odkryć ponad 500 modeli. Zajmie to 2 minuty, bez karty kredytowej. Lub wróć później.",
-  "error.promotionLimit.action": "Zarejestruj się",
   "error.providerAuth.title": "{{provider}} wylogował Cię",
   "error.providerAuth.description": "Połącz się ponownie z {{provider}}, a następnie wyślij wiadomość jeszcze raz.",
   "error.providerAuth.chatgpt.title": "OpenAI wylogowało Cię",
@@ -1324,44 +1315,7 @@ export const dict = {
   "question.summary": "{{n}} z {{total}} pytań",
   "common.review": "Przejrzyj",
 
-  "migration.migrate.selectLabel": "Wybierz, co zmigrować",
-  "migration.migrate.chatHistory": "Sesje czatu i historia",
-
   // Migrate — completion
-  "migration.complete.summary": "Pomyślnie zmigrowano {{success}} z {{total}} elementów.",
-  "migration.complete.done": "Gotowe",
-  "migration.migrate.sessionsDetected": "Wykryto {{count}} sesji",
-  "migration.error.continue": "Kontynuuj",
-
-  "migration.sessionSummary.title": "Podsumowanie:",
-  "migration.sessionSummary.copy": "Kopiuj raport",
-  "migration.sessionSummary.toast.copied": "Skopiowano raport",
-  "migration.sessionSummary.successful": "Udane",
-  "migration.sessionSummary.skipped": "Pominięte",
-  "migration.sessionSummary.alreadyMigrated": "Już zmigrowane",
-  "migration.sessionSummary.errored": "Z błędem",
-  "migration.sessionSummary.none": "Brak",
-  "migration.forceReimport.title": "Wymuś ponowny import",
-  "migration.forceReimport.description":
-    "Ponowny import {{target}} spowoduje ich nadpisanie i usunięcie wszystkich nowych wiadomości już utworzonych w tych sesjach.",
-  "migration.forceReimport.target.one": "tej sesji",
-  "migration.forceReimport.target.many": "tych {{count}} sesji",
-  "migration.forceReimport.button": "Wymuś ponowny import",
-  "migration.forceReimport.all": "Zaimportuj ponownie wszystko",
-  "migration.forceReimport.proceed": "Kontynuuj",
-  "migration.forceReimport.toast.started": "Rozpoczęto wymuszony ponowny import",
-  "migration.running.title": "Migracja w toku",
-  "migration.running.description.line1": "Zaraz zakończysz, podczas gdy część sesji wciąż się migruje.",
-  "migration.running.description.line2": "Jeśli wyjdziesz teraz, niektóre sesje mogą pozostać niekompletne.",
-  "migration.running.stay": "Zostań",
-  "migration.running.proceed": "Kontynuuj",
-  "migration.sessionProgress.preparing": "Przygotowywanie sesji",
-  "migration.sessionProgress.storing": "Zapisywanie sesji",
-  "migration.sessionProgress.skipped": "Sesja pominięta",
-  "migration.sessionProgress.header": "Migracja {{current}} z {{total}}",
-  "migration.sessionFormat.unknownDate": "Nieznana data",
-  "migration.sessionFormat.unknown": "Nieznane",
-  "migration.sessionFormat.unknownError": "Nieznany błąd",
 
   "error.details.show": "Szczegóły",
 

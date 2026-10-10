@@ -103,7 +103,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Пошук провайдера",
   "dialog.provider.empty": "Провайдерів не знайдено",
   "dialog.provider.group.other": "Інші",
-  "dialog.provider.tag.recommended": "Рекомендовано",
 
   "dialog.model.select.title": "Вибір моделі",
   "dialog.model.search.placeholder": "Пошук моделі",
@@ -276,14 +275,6 @@ export const dict = {
 
   "error.startup.title": "Підключення до сервера не вдалося",
 
-  "error.paidModel.title": "Для використання цієї моделі потрібно увійти",
-  "error.paidModel.description":
-    "Увійдіть або створіть акаунт для доступу до 500+ моделей, використання кредитів за вартістю або підключення власного ключа.",
-  "error.paidModel.action": "Увійти",
-  "error.promotionLimit.title": "Для продовження потрібна реєстрація",
-  "error.promotionLimit.description":
-    "Зареєструйтеся безкоштовно для продовження та доступу до 500+ моделей. Займе 2 хвилини, кредитна картка не потрібна. Або поверніться пізніше.",
-  "error.promotionLimit.action": "Зареєструватися",
   "error.providerAuth.title": "Сеанс {{provider}} завершено",
   "error.providerAuth.description": "Підключіться до {{provider}} знову, а потім надішліть повідомлення ще раз.",
   "error.providerAuth.chatgpt.title": "Сеанс OpenAI завершено",
@@ -1291,44 +1282,7 @@ export const dict = {
   "question.summary": "{{n}} з {{total}} питань",
   "common.review": "Переглянути",
 
-  "migration.migrate.selectLabel": "Вибрати для перенесення",
-  "migration.migrate.chatHistory": "Сесії чату та історія",
-
   // Migrate — completion
-  "migration.complete.summary": "{{success}} з {{total}} елементів успішно перенесено.",
-  "migration.complete.done": "Готово",
-  "migration.migrate.sessionsDetected": "Знайдено {{count}} сесій",
-  "migration.error.continue": "Продовжити",
-
-  "migration.sessionSummary.title": "Підсумок:",
-  "migration.sessionSummary.copy": "Скопіювати звіт",
-  "migration.sessionSummary.toast.copied": "Звіт скопійовано",
-  "migration.sessionSummary.successful": "Успішно",
-  "migration.sessionSummary.skipped": "Пропущено",
-  "migration.sessionSummary.alreadyMigrated": "Уже перенесено",
-  "migration.sessionSummary.errored": "З помилкою",
-  "migration.sessionSummary.none": "Немає",
-  "migration.forceReimport.title": "Примусово імпортувати повторно",
-  "migration.forceReimport.description":
-    "Повторний імпорт {{target}} перезапише їх і видалить усі нові повідомлення, уже створені в цих сесіях.",
-  "migration.forceReimport.target.one": "цю сесію",
-  "migration.forceReimport.target.many": "ці {{count}} сесії",
-  "migration.forceReimport.button": "Примусово імпортувати повторно",
-  "migration.forceReimport.all": "Імпортувати все повторно",
-  "migration.forceReimport.proceed": "Продовжити",
-  "migration.forceReimport.toast.started": "Примусовий повторний імпорт розпочато",
-  "migration.running.title": "Триває перенесення",
-  "migration.running.description.line1": "Ви збираєтеся завершити роботу, поки деякі сесії ще переносяться.",
-  "migration.running.description.line2": "Якщо ви вийдете зараз, деякі сесії можуть залишитися незавершеними.",
-  "migration.running.stay": "Залишитися",
-  "migration.running.proceed": "Продовжити",
-  "migration.sessionProgress.preparing": "Підготовка сесії",
-  "migration.sessionProgress.storing": "Збереження сесії",
-  "migration.sessionProgress.skipped": "Сесію пропущено",
-  "migration.sessionProgress.header": "Перенесення {{current}} з {{total}}",
-  "migration.sessionFormat.unknownDate": "Невідома дата",
-  "migration.sessionFormat.unknown": "Невідомо",
-  "migration.sessionFormat.unknownError": "Невідома помилка",
 
   "error.details.show": "Деталі",
 

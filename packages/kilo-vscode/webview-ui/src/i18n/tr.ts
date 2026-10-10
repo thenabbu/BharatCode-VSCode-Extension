@@ -103,7 +103,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Sağlayıcı ara",
   "dialog.provider.empty": "Sağlayıcı bulunamadı",
   "dialog.provider.group.other": "Diğer",
-  "dialog.provider.tag.recommended": "Önerilen",
 
   "dialog.model.select.title": "Model seç",
   "dialog.model.search.placeholder": "Model ara",
@@ -273,14 +272,6 @@ export const dict = {
 
   "error.startup.title": "Sunucu bağlantısı başarısız",
 
-  "error.paidModel.title": "Bu modeli kullanmak için giriş yapmalısınız",
-  "error.paidModel.description":
-    "500'den fazla modele erişmek, kredileri maliyetle kullanmak veya kendi anahtarınızı getirmek için giriş yapın ya da hesap oluşturun.",
-  "error.paidModel.action": "Giriş Yap",
-  "error.promotionLimit.title": "Devam etmek için kayıt olmalısınız",
-  "error.promotionLimit.description":
-    "Devam etmek ve 500'den fazla modeli keşfetmek için ücretsiz kayıt olun. 2 dakika sürer, kredi kartı gerekmez. Ya da daha sonra gelin.",
-  "error.promotionLimit.action": "Kayıt Ol",
   "error.providerAuth.title": "{{provider}} oturumunuzu kapattı",
   "error.providerAuth.description": "{{provider}} bağlantısını yeniden kurun ve mesajınızı tekrar gönderin.",
   "error.providerAuth.chatgpt.title": "OpenAI oturumunuzu kapattı",
@@ -1292,44 +1283,7 @@ export const dict = {
   "question.summary": "{{total}} sorudan {{n}} tanesi",
   "common.review": "İncele",
 
-  "migration.migrate.selectLabel": "Taşınacakları seçin",
-  "migration.migrate.chatHistory": "Sohbet Oturumları ve Geçmiş",
-
   // Migrate — completion
-  "migration.complete.summary": "{{total}} öğeden {{success}} tanesi başarıyla taşındı.",
-  "migration.complete.done": "Bitti",
-  "migration.migrate.sessionsDetected": "{{count}} oturum bulundu",
-  "migration.error.continue": "Devam et",
-
-  "migration.sessionSummary.title": "Özet:",
-  "migration.sessionSummary.copy": "Raporu kopyala",
-  "migration.sessionSummary.toast.copied": "Rapor kopyalandı",
-  "migration.sessionSummary.successful": "Başarılı",
-  "migration.sessionSummary.skipped": "Atlandı",
-  "migration.sessionSummary.alreadyMigrated": "Zaten taşındı",
-  "migration.sessionSummary.errored": "Hatalı",
-  "migration.sessionSummary.none": "Yok",
-  "migration.forceReimport.title": "Yeniden içe aktarmayı zorla",
-  "migration.forceReimport.description":
-    "{{target}} yeniden içe aktarılırsa üzerlerine yazılır ve bu oturumlarda zaten oluşturulmuş yeni mesajlar silinir.",
-  "migration.forceReimport.target.one": "bu oturum",
-  "migration.forceReimport.target.many": "bu {{count}} oturum",
-  "migration.forceReimport.button": "Yeniden içe aktarmayı zorla",
-  "migration.forceReimport.all": "Hepsini yeniden içe aktar",
-  "migration.forceReimport.proceed": "Devam et",
-  "migration.forceReimport.toast.started": "Zorunlu yeniden içe aktarma başlatıldı",
-  "migration.running.title": "Taşıma sürüyor",
-  "migration.running.description.line1": "Hâlâ taşınan oturumlar varken işlemi bitirmek üzeresiniz.",
-  "migration.running.description.line2": "Şimdi çıkarsanız bazı oturumlar eksik kalabilir.",
-  "migration.running.stay": "Kal",
-  "migration.running.proceed": "Devam et",
-  "migration.sessionProgress.preparing": "Oturum hazırlanıyor",
-  "migration.sessionProgress.storing": "Oturum kaydediliyor",
-  "migration.sessionProgress.skipped": "Oturum atlandı",
-  "migration.sessionProgress.header": "{{total}} içinden {{current}} taşınıyor",
-  "migration.sessionFormat.unknownDate": "Bilinmeyen tarih",
-  "migration.sessionFormat.unknown": "Bilinmiyor",
-  "migration.sessionFormat.unknownError": "Bilinmeyen hata",
 
   "error.details.show": "Ayrıntılar",
 

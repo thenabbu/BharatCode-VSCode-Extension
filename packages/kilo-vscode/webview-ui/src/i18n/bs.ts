@@ -103,7 +103,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "Pretraži provajdere",
   "dialog.provider.empty": "Nema pronađenih provajdera",
   "dialog.provider.group.other": "Ostalo",
-  "dialog.provider.tag.recommended": "Preporučeno",
 
   "dialog.model.select.title": "Odaberi model",
   "dialog.model.search.placeholder": "Pretraži modele",
@@ -274,14 +273,6 @@ export const dict = {
 
   "error.startup.title": "Povezivanje sa serverom nije uspjelo",
 
-  "error.paidModel.title": "Morate se prijaviti da biste koristili ovaj model",
-  "error.paidModel.description":
-    "Prijavite se ili kreirajte račun za pristup preko 500 modela, koristite kredite po cijeni koštanja ili donesite vlastiti ključ.",
-  "error.paidModel.action": "Prijava",
-  "error.promotionLimit.title": "Morate se registrovati da biste nastavili",
-  "error.promotionLimit.description":
-    "Registrujte se besplatno da nastavite i istražite preko 500 modela. Traje 2 minute, bez kreditne kartice. Ili se vratite kasnije.",
-  "error.promotionLimit.action": "Registracija",
   "error.providerAuth.title": "{{provider}} vas je odjavio",
   "error.providerAuth.description": "Ponovo se povežite sa {{provider}}, a zatim ponovo pošaljite poruku.",
   "error.providerAuth.chatgpt.title": "OpenAI vas je odjavio",
@@ -1324,44 +1315,7 @@ export const dict = {
   "question.summary": "{{n}} od {{total}} pitanja",
   "common.review": "Pregled",
 
-  "migration.migrate.selectLabel": "Odaberite šta želite migrirati",
-  "migration.migrate.chatHistory": "Sesije razgovora i historija",
-
   // Migrate — completion
-  "migration.complete.summary": "Uspješno migrirano {{success}} od {{total}} stavki.",
-  "migration.complete.done": "Završeno",
-  "migration.migrate.sessionsDetected": "Otkrivene {{count}} sesije",
-  "migration.error.continue": "Nastavi",
-
-  "migration.sessionSummary.title": "Sažetak:",
-  "migration.sessionSummary.copy": "Kopiraj izvještaj",
-  "migration.sessionSummary.toast.copied": "Izvještaj kopiran",
-  "migration.sessionSummary.successful": "Uspješne",
-  "migration.sessionSummary.skipped": "Preskočene",
-  "migration.sessionSummary.alreadyMigrated": "Već migrirane",
-  "migration.sessionSummary.errored": "S greškom",
-  "migration.sessionSummary.none": "Nijedna",
-  "migration.forceReimport.title": "Prisilni ponovni uvoz",
-  "migration.forceReimport.description":
-    "Ponovni uvoz {{target}} će ih prepisati i obrisati sve nove poruke koje su već napravljene u tim sesijama.",
-  "migration.forceReimport.target.one": "ovu sesiju",
-  "migration.forceReimport.target.many": "ovih {{count}} sesija",
-  "migration.forceReimport.button": "Prisilni ponovni uvoz",
-  "migration.forceReimport.all": "Ponovo uvezi sve",
-  "migration.forceReimport.proceed": "Nastavi",
-  "migration.forceReimport.toast.started": "Prisilni ponovni uvoz je pokrenut",
-  "migration.running.title": "Migracija je u toku",
-  "migration.running.description.line1": "Upravo ćete završiti dok se neke sesije još uvijek migriraju.",
-  "migration.running.description.line2": "Ako sada izađete, neke sesije mogu ostati nedovršene.",
-  "migration.running.stay": "Ostani",
-  "migration.running.proceed": "Nastavi",
-  "migration.sessionProgress.preparing": "Priprema se sesija",
-  "migration.sessionProgress.storing": "Spremanje sesije",
-  "migration.sessionProgress.skipped": "Sesija je preskočena",
-  "migration.sessionProgress.header": "Migrira se {{current}} od {{total}}",
-  "migration.sessionFormat.unknownDate": "Nepoznat datum",
-  "migration.sessionFormat.unknown": "Nepoznato",
-  "migration.sessionFormat.unknownError": "Nepoznata greška",
 
   "error.details.show": "Detalji",
 

@@ -1,12 +1,6 @@
 import { describe, it, expect } from "bun:test"
 import type { AssistantMessage } from "@kilocode/sdk/v2"
-import {
-  unwrapError,
-  parseAssistantError,
-  parseProviderAuthError,
-  isUnauthorizedPaidModelError,
-  isUnauthorizedPromotionLimitError,
-} from "../../webview-ui/src/utils/errorUtils"
+import { unwrapError, parseAssistantError, parseProviderAuthError } from "../../webview-ui/src/utils/errorUtils"
 
 type AssistantError = AssistantMessage["error"]
 
@@ -135,33 +129,5 @@ describe("parseProviderAuthError", () => {
     }
 
     expect(parseProviderAuthError(error)).toBeNull()
-  })
-})
-
-describe("isUnauthorizedPaidModelError", () => {
-  it("returns true for 401 + PAID_MODEL_AUTH_REQUIRED", () => {
-    expect(isUnauthorizedPaidModelError({ statusCode: 401, code: "PAID_MODEL_AUTH_REQUIRED" })).toBe(true)
-  })
-
-  it("returns false for 401 + different code", () => {
-    expect(isUnauthorizedPaidModelError({ statusCode: 401, code: "SOMETHING_ELSE" })).toBe(false)
-  })
-
-  it("returns false for null input", () => {
-    expect(isUnauthorizedPaidModelError(null)).toBe(false)
-  })
-})
-
-describe("isUnauthorizedPromotionLimitError", () => {
-  it("returns true for 401 + PROMOTION_MODEL_LIMIT_REACHED", () => {
-    expect(isUnauthorizedPromotionLimitError({ statusCode: 401, code: "PROMOTION_MODEL_LIMIT_REACHED" })).toBe(true)
-  })
-
-  it("returns true for 429 + PROMOTION_MODEL_LIMIT_REACHED", () => {
-    expect(isUnauthorizedPromotionLimitError({ statusCode: 429, code: "PROMOTION_MODEL_LIMIT_REACHED" })).toBe(true)
-  })
-
-  it("returns false for null input", () => {
-    expect(isUnauthorizedPromotionLimitError(null)).toBe(false)
   })
 })

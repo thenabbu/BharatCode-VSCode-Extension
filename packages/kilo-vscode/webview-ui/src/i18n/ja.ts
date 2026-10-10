@@ -105,7 +105,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "プロバイダーを検索",
   "dialog.provider.empty": "プロバイダーが見つかりません",
   "dialog.provider.group.other": "その他",
-  "dialog.provider.tag.recommended": "推奨",
 
   "dialog.model.select.title": "モデルを選択",
   "dialog.model.search.placeholder": "モデルを検索",
@@ -275,14 +274,6 @@ export const dict = {
 
   "error.startup.title": "サーバー接続に失敗しました",
 
-  "error.paidModel.title": "このモデルを使用するにはサインインが必要です",
-  "error.paidModel.description":
-    "サインインまたはアカウントを作成して、500以上のモデルにアクセスし、原価でクレジットを使用するか、独自のキーを持ち込みましょう。",
-  "error.paidModel.action": "サインイン",
-  "error.promotionLimit.title": "続けるにはサインアップが必要です",
-  "error.promotionLimit.description":
-    "無料でサインアップして、500以上のモデルを探索しましょう。2分で完了、クレジットカード不要。または後でお戻りください。",
-  "error.promotionLimit.action": "サインアップ",
   "error.providerAuth.title": "{{provider}} からログアウトしました",
   "error.providerAuth.description": "{{provider}} に再接続してから、メッセージを再送信してください。",
   "error.providerAuth.chatgpt.title": "OpenAI からログアウトしました",
@@ -1310,44 +1301,7 @@ export const dict = {
   "question.summary": "{{total}} 問中 {{n}} 問目",
   "common.review": "確認",
 
-  "migration.migrate.selectLabel": "移行する項目を選択",
-  "migration.migrate.chatHistory": "チャットセッションと履歴",
-
   // Migrate — completion
-  "migration.complete.summary": "{{total}}個中{{success}}個の項目が正常に移行されました。",
-  "migration.complete.done": "完了",
-  "migration.migrate.sessionsDetected": "{{count}} 件のセッションが見つかりました",
-  "migration.error.continue": "続行",
-
-  "migration.sessionSummary.title": "概要:",
-  "migration.sessionSummary.copy": "レポートをコピー",
-  "migration.sessionSummary.toast.copied": "レポートをコピーしました",
-  "migration.sessionSummary.successful": "成功",
-  "migration.sessionSummary.skipped": "スキップ",
-  "migration.sessionSummary.alreadyMigrated": "移行済み",
-  "migration.sessionSummary.errored": "エラーあり",
-  "migration.sessionSummary.none": "なし",
-  "migration.forceReimport.title": "再インポートを強制",
-  "migration.forceReimport.description":
-    "{{target}} を再インポートすると上書きされ、それらのセッションで既に作成された新しいメッセージは削除されます。",
-  "migration.forceReimport.target.one": "このセッション",
-  "migration.forceReimport.target.many": "これら {{count}} 件のセッション",
-  "migration.forceReimport.button": "再インポートを強制",
-  "migration.forceReimport.all": "すべて再インポート",
-  "migration.forceReimport.proceed": "続行",
-  "migration.forceReimport.toast.started": "強制再インポートを開始しました",
-  "migration.running.title": "移行を実行中",
-  "migration.running.description.line1": "まだ移行中のセッションがある状態で終了しようとしています。",
-  "migration.running.description.line2": "今離れると、一部のセッションは未完了のままになる可能性があります。",
-  "migration.running.stay": "このままにする",
-  "migration.running.proceed": "続行",
-  "migration.sessionProgress.preparing": "セッションを準備中",
-  "migration.sessionProgress.storing": "セッションを保存中",
-  "migration.sessionProgress.skipped": "セッションをスキップしました",
-  "migration.sessionProgress.header": "{{total}} 件中 {{current}} 件を移行中",
-  "migration.sessionFormat.unknownDate": "不明な日付",
-  "migration.sessionFormat.unknown": "不明",
-  "migration.sessionFormat.unknownError": "不明なエラー",
 
   "error.details.show": "詳細",
 

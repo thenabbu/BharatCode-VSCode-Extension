@@ -100,7 +100,6 @@ export const dict = {
   "dialog.provider.search.placeholder": "البحث عن موفرين",
   "dialog.provider.empty": "لم يتم العثور على موفرين",
   "dialog.provider.group.other": "آخر",
-  "dialog.provider.tag.recommended": "موصى به",
 
   "dialog.model.select.title": "تحديد نموذج",
   "dialog.model.search.placeholder": "البحث عن نماذج",
@@ -267,14 +266,6 @@ export const dict = {
 
   "error.startup.title": "فشل الاتصال بالخادم",
 
-  "error.paidModel.title": "يجب عليك تسجيل الدخول لاستخدام هذا النموذج",
-  "error.paidModel.description":
-    "سجّل الدخول أو أنشئ حسابًا للوصول إلى أكثر من 500 نموذج، واستخدم الرصيد بسعر التكلفة، أو استخدم مفتاحك الخاص.",
-  "error.paidModel.action": "تسجيل الدخول",
-  "error.promotionLimit.title": "يجب عليك التسجيل للمتابعة",
-  "error.promotionLimit.description":
-    "سجّل مجانًا للمتابعة واستكشاف أكثر من 500 نموذج. يستغرق دقيقتين، بدون بطاقة ائتمان. أو عُد لاحقًا.",
-  "error.promotionLimit.action": "التسجيل",
   "error.providerAuth.title": "تم تسجيل خروجك من {{provider}}",
   "error.providerAuth.description": "أعد الاتصال بـ {{provider}}، ثم أرسل رسالتك مرة أخرى.",
   "error.providerAuth.chatgpt.title": "تسجيل الدخول باستخدام ChatGPT مرة أخرى",
@@ -1284,44 +1275,7 @@ export const dict = {
   "question.summary": "{{n}} من {{total}} أسئلة",
   "common.review": "مراجعة",
 
-  "migration.migrate.selectLabel": "اختر ما تريد ترحيله",
-  "migration.migrate.chatHistory": "جلسات الدردشة والسجل",
-
   // Migrate — completion
-  "migration.complete.summary": "تم ترحيل {{success}} من {{total}} عناصر بنجاح.",
-  "migration.complete.done": "تم",
-  "migration.migrate.sessionsDetected": "تم اكتشاف {{count}} جلسة",
-  "migration.error.continue": "متابعة",
-
-  "migration.sessionSummary.title": "الملخص:",
-  "migration.sessionSummary.copy": "نسخ التقرير",
-  "migration.sessionSummary.toast.copied": "تم نسخ التقرير",
-  "migration.sessionSummary.successful": "ناجحة",
-  "migration.sessionSummary.skipped": "تم تخطيها",
-  "migration.sessionSummary.alreadyMigrated": "تم ترحيلها بالفعل",
-  "migration.sessionSummary.errored": "حدثت بها أخطاء",
-  "migration.sessionSummary.none": "لا يوجد",
-  "migration.forceReimport.title": "فرض إعادة الاستيراد",
-  "migration.forceReimport.description":
-    "ستؤدي إعادة استيراد {{target}} إلى استبدالها وحذف أي رسائل جديدة تم إنشاؤها بالفعل في تلك الجلسات.",
-  "migration.forceReimport.target.one": "هذه الجلسة",
-  "migration.forceReimport.target.many": "هذه الجلسات الـ {{count}}",
-  "migration.forceReimport.button": "فرض إعادة الاستيراد",
-  "migration.forceReimport.all": "إعادة استيراد الكل",
-  "migration.forceReimport.proceed": "متابعة",
-  "migration.forceReimport.toast.started": "بدأت إعادة الاستيراد القسرية",
-  "migration.running.title": "الترحيل قيد التنفيذ",
-  "migration.running.description.line1": "أنت على وشك الإنهاء بينما لا تزال هناك جلسات قيد الترحيل.",
-  "migration.running.description.line2": "إذا غادرت الآن، فقد تبقى بعض الجلسات غير مكتملة.",
-  "migration.running.stay": "البقاء",
-  "migration.running.proceed": "متابعة",
-  "migration.sessionProgress.preparing": "جارٍ تحضير الجلسة",
-  "migration.sessionProgress.storing": "جارٍ حفظ الجلسة",
-  "migration.sessionProgress.skipped": "تم تخطي الجلسة",
-  "migration.sessionProgress.header": "جارٍ ترحيل {{current}} من {{total}}",
-  "migration.sessionFormat.unknownDate": "تاريخ غير معروف",
-  "migration.sessionFormat.unknown": "غير معروف",
-  "migration.sessionFormat.unknownError": "خطأ غير معروف",
 
   "error.details.show": "التفاصيل",
 
