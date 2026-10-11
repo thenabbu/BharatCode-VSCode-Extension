@@ -1,5 +1,7 @@
 # Releasing the JetBrains Plugin
 
+> **No CI in this fork:** `.github/workflows/` does not exist here, so the upstream GitHub Actions workflows referenced throughout this document cannot be run. The sections below record the upstream process; the local runbook is in **Create Release Tag And PR**, and the secrets table at the end is upstream reference only.
+
 JetBrains releases are locked by an immediate `jetbrains/v<version>` tag, then gated by a reviewed release PR. The tag fixes the exact source code that will be published; the PR is where maintainers review and edit the version and changelog before publishing starts.
 
 The published code comes from `jetbrains/v<version>`. Marketplace and GitHub release notes come from the reviewed changelog merged in the release PR.
@@ -52,19 +54,11 @@ CLI releases also try to open this pin bump PR automatically after publishing. T
 
 ## Create Release Tag And PR
 
-1. Open the GitHub Actions workflow:
+This fork has no CI (`.github/workflows/` does not exist), so the upstream prepare workflow cannot be dispatched. Run the release locally instead:
 
-[https://github.com/Kilo-Org/kilocode/actions/workflows/prepare-jetbrains-release.yml](https://github.com/Kilo-Org/kilocode/actions/workflows/prepare-jetbrains-release.yml)
-
-2. Click **Run workflow**. This immediately creates `jetbrains/v<version>` at the current `origin/main` commit, then creates or updates the release PR.
-
-3. Fill the inputs:
-
-| Input | Value |
-|---|---|
-| `kind` | `rc` for an EAP release, `stable` for a default Marketplace release. |
-| `version` | `x.y.z-rc.n` for RCs, `x.y.z` for stable releases. |
-| `from_tag` | Optional previous tag for the changelog range. Leave empty unless the default range is wrong. |
+1. Verify the CLI pin: `bun .kilo/skills/release-jetbrains/script/check-pin.ts` (see **CLI Pin Review** above).
+2. Set `kilo.jetbrains.version` in `packages/kilo-jetbrains/gradle.properties` and add the reviewed entry to `packages/kilo-jetbrains/CHANGELOG.md`. Use `x.y.z-rc.n` for RC/EAP releases or `x.y.z` for stable releases.
+3. Create the release tag at the locked `bc/main` commit and push it, then land the version/changelog change through a normal reviewed PR (see **Manual Recovery** below for the exact `git tag` commands).
 
 Examples:
 
@@ -174,7 +168,9 @@ git tag jetbrains/v7.3.13 <locked-main-sha>
 git push origin jetbrains/v7.3.13
 ```
 
-## Required GitHub Actions Secrets
+## Required GitHub Actions Secrets (upstream reference only)
+
+This fork has no GitHub Actions, so none of these secrets exist here; the table is kept to document what the upstream publishing workflows require.
 
 | Secret | Purpose |
 |---|---|

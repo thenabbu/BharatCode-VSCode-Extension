@@ -1,26 +1,25 @@
 # REVIEW.md
 
-Guidance for the automated reviewer (kilo-code-bot) on PRs in this repo.
+Guidance for PR reviewers — human or agent — on pull requests in this repo.
 
-The goal of the review is to catch things CI **cannot** catch: bugs, design issues, and judgment calls about style and fork hygiene. Be helpful, not pedantic — frame everything as a suggestion the human can accept or reject.
+This repo has no CI and no review-bot integration: every check runs locally on the author's machine. The goal of review is to catch what those local checks cannot: bugs, design issues, and judgment calls about style and fork hygiene. Be helpful, not pedantic — frame everything as a suggestion the human can accept or reject.
 
-## Don't duplicate CI
+## Don't duplicate the local checks
 
-CI already runs and will report failures directly. Do **not** comment on:
+The author runs the checks below locally before pushing — there is no CI to re-run them. Confirm the PR description names which checks were run; do not re-run them or comment on their output:
 
-- Lint, formatting, or typecheck errors (root `lint`, `turbo typecheck`)
+- Lint, formatting, or typecheck errors (root `bun run lint`, `bun run typecheck`)
 - Test failures (CLI tests, vscode tests)
-- `knip` unused exports
+- `knip` unused exports (`bun run knip` in `packages/kilo-vscode/`)
 - `kilocode_change` marker rules — both directions:
-  - Missing markers on shared opencode files (`script/check-opencode-annotations.ts`)
-  - Markers present in kilo-only paths like `packages/kilo-vscode/`, `packages/kilo-ui/`, `packages/opencode/src/kilocode/` (`bun run check-kilocode-change`)
-- Workflow allowlist drift (`script/check-workflows.ts`)
-- Stale `packages/kilo-docs/source-links.md` (`script/extract-source-links.ts`)
-- Markdown table padding (`script/check-md-table-padding.ts`)
-- Visual regression snapshots (CI generates baselines on Linux)
-- SDK regeneration drift (`generate.yml`)
-- Generated artifact freshness (`check-kilo-generated-artifacts.yml`)
-- Docs link checks, nix evals, container builds
+  - Missing markers on shared opencode files (`bun run script/check-opencode-annotations.ts`)
+  - Markers present in kilo-only paths like `packages/kilo-vscode/`, `packages/kilo-ui/`, `packages/opencode/src/kilocode/` (`bun run check-kilocode-change` in `packages/kilo-vscode/`)
+- Workflow allowlist drift (`bun run script/check-workflows.ts`)
+- Stale `packages/kilo-docs/source-links.md` (`bun run script/extract-source-links.ts`)
+- Markdown table padding (`bun run script/check-md-table-padding.ts`)
+- Visual snapshot drift (`bun run test:visual` in `packages/kilo-vscode/`)
+- SDK regeneration drift (`bun run script/generate.ts`)
+- Generated artifact freshness (`bun run script/check-kilo-generated-artifacts.ts`)
 
 If the only issue you'd raise is one of the above, just say `lgtm`.
 
@@ -54,37 +53,33 @@ When suggesting fixes, ensure the suggestion is valid TypeScript (matched braces
 
 ### 3. Fork merge hygiene
 
-Kilo CLI is a fork of opencode. Minimizing diff against upstream is a top priority.
+This repo is a rebrand fork of Kilo Code v7.8.8 (itself a fork of opencode), pinned at the `upstream-pristine` tag with no upstream sync workflow — `bc/main` only. Minimizing diff against upstream still matters: `kilocode_change` markers and the local check scripts keep the upstream diff auditable.
 
 - If a change modifies a shared opencode file (anything under `packages/opencode/` not in a path containing `kilocode`), ask whether the logic could live in a Kilo-only directory instead (`packages/opencode/src/kilocode/`, `packages/kilo-gateway/`, etc.) or be reduced to a smaller hook.
 - Refactors or reorganizations of upstream code are a red flag — flag them unless clearly justified.
 - See `.kilo/skills/kilocode-merge-minimizer/SKILL.md` for the decision rules.
 
-### 4. Cloud config schema mirror
-
-When `Config.Info` in `packages/opencode/src/config/config.ts` gains a new `kilocode_change` field, the matching JSON Schema entry must also be added in the cloud repo (`apps/web/src/app/config.json/extras.ts`). CI does **not** check this — flag it as a reminder if you see a new config field added.
-
-### 5. Test quality
+### 4. Test quality
 
 - Tests should exercise real implementation, not duplicate logic into the test.
 - Mocks should be avoided where reasonable; flag mock-heavy tests that look like they're testing the mock rather than the code.
 - New behavior in `packages/opencode/` should generally come with a test under `packages/opencode/test/`.
 
-### 6. User-facing changes
+### 5. User-facing changes
 
 - Features, bug fixes, and breaking changes should include a changeset (`.changeset/*.md`). If a PR clearly changes user-visible behavior and has no changeset, mention it.
 - Changeset descriptions are read by end users — if one is present but written as implementation notes ("Add a new export handler that serializes…"), suggest a user-facing rewrite ("Support exporting conversations as markdown").
 - PR descriptions should explain **why**, not enumerate files. Skip file-by-file inventories.
 
-### 7. UI changes
+### 6. UI changes
 
 For changes under `packages/kilo-vscode/webview-ui/`:
 
 - Significant visual or layout changes should have a Storybook story added under `webview-ui/src/stories/`. Minor tweaks and i18n-only changes don't need one.
-- Don't ask for locally generated baseline PNGs — those must come from Linux CI.
+- Don't ask for locally generated baseline PNGs — regenerating visual baselines is the author's local step (`bun run test:visual:update`), not something a reviewer must obtain.
 
 ## How to comment
 
-- Leave comments on the exact line via `gh api .../pulls/{n}/comments`.
+- Leave comments on the exact line via `gh api .../pulls/{n}/comments` — this applies where a reviewing bot or agent is wired to the repo; humans can comment through the GitHub UI.
 - Make it clear suggestions are suggestions; the human decides.
 - If the PR is clean against the above, comment `lgtm` and nothing else.

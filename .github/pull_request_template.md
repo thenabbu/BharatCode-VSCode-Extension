@@ -58,7 +58,7 @@ If a relevant command could not be completed, name the command, explain the bloc
 <!--
 Every PR marked ready for review must include testing evidence. A bare "Not tested" or "N/A" answer is not sufficient. For each piece of evidence make clear if the test was executed by the agent or by a human
 
-Docs-only, config-only, and similar changes still need concrete evidence. For examples, see [Testing Evidence for Pull Requests](https://kilo.ai/docs/contributing/development-environment#testing-evidence-for-pull-requests). Draft PRs may be incomplete until marked ready for review.
+Docs-only, config-only, and similar changes still need concrete evidence. For examples, see [Testing Evidence for Pull Requests](packages/kilo-docs/pages/contributing/development-environment.md#testing-evidence-for-pull-requests). Draft PRs may be incomplete until marked ready for review.
 -->
 
 ## Checklist
@@ -71,4 +71,4 @@ Docs-only, config-only, and similar changes still need concrete evidence. For ex
 
 ## Get in Touch
 
-<!-- We'd love to have a way to chat with you about your changes if necessary. If you're in the [Kilo Code Discord](https://kilo.ai/discord), please share your handle here. -->
+<!-- We'd love to have a way to chat with you about your changes if necessary. If a conversation would help, open a GitHub Issue on this repo and link it here. -->

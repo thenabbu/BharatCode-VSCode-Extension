@@ -2,6 +2,8 @@
 description: Review an upstream merge PR and write reports
 ---
 
+> **Upstream-lineage only:** this command reviews merges from the Kilo-Org upstream. This fork has no upstream sync workflow (workspace decision D5: `bc/main` only), so run it only when an upstream merge PR is actually under review.
+
 Review $1.
 
 Branch off so we have all the code for the reviewed PR. Then run the following reviews in parallel, using one subagent per review, and save each result in the named markdown file at the repository root. A human will read those files, so if in doubt add a finding for human verification.

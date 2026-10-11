@@ -1,5 +1,7 @@
 # CI containers
 
+> Upstream CI images, retained as reference: this fork has no CI (`.github/workflows/` does not exist) and does not use these images.
+
 Prebuilt images intended to speed up GitHub Actions jobs by baking in
 large, slow-to-install dependencies. These are designed for Linux jobs
 that can use `job.container` in workflows.

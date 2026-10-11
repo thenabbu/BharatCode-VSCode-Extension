@@ -1,10 +1,8 @@
 Use Kilo Code directly from your terminal for maximum flexibility.
 
-### Install via npm
+### Install
 
-```bash
-npm install -g @kilocode/cli
-```
+This fork is not published to npm. Download the platform VSIX for your OS from the [BharatCode VSIX releases](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases) and install it in VS Code via **Extensions: Install from VSIX...** — the extension bundles the `bharatcode` CLI.
 
 ### Older CPUs (No AVX Support)
 
@@ -20,5 +18,5 @@ If you're running on an older CPU without AVX support (e.g., Intel Xeon Nehalem,
 ### Verify Installation
 
 ```bash
-kilo --version
+bharatcode --version
 ```

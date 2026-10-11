@@ -20,11 +20,11 @@ BharatCode is an open source AI coding agent platform. It ships as a CLI and edi
 
 ### Products and How They Relate
 
-All products are thin clients over the **CLI** (`packages/opencode/`, published as `@kilocode/cli`). The CLI is a fork of upstream [OpenCode](https://github.com/anomalyco/opencode) with Kilo-specific additions (gateway auth, telemetry, migration, code review, branding). It contains the full AI agent runtime, tool execution, session management, provider integrations (500+ models), and an HTTP API server.
+All products are thin clients over the **CLI** (`packages/opencode/`). The CLI is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode) — itself forked from upstream [OpenCode](https://github.com/anomalyco/opencode) — rebranded for bharatcode.ai and its two chat models. Gateway auth and telemetry cloud coupling remain in the tree but are disabled in this build. It contains the full AI agent runtime, tool execution, session management, and an HTTP API server.
 
-The VS Code extension spawns or connects to a `kilo serve` process and communicates via HTTP REST + SSE using the auto-generated `@kilocode/sdk`. CLI clients can also use in-process transports, as shown below.
+The VS Code extension spawns or connects to a `bharatcode serve` process and communicates via HTTP REST + SSE using the auto-generated `@kilocode/sdk`. CLI clients can also use in-process transports, as shown below.
 
-```
+```text
                         @kilocode/cli  (packages/opencode/)
                      ┌────────────────────────────────┐
                      │  AI agents, tools, sessions,    │
@@ -41,18 +41,18 @@ The VS Code extension spawns or connects to a `kilo serve` process and communica
 | Product | Package | What it is | How it uses the CLI |
 |---|---|---|---|
 | BharatCode CLI (TUI) | `packages/opencode/` | Interactive terminal UI (SolidJS + OpenTUI) | In-process — TUI and server run together |
-| BharatCode CLI (`kilo run`) | `packages/opencode/` | Non-interactive headless mode for scripting | In-process — no network socket |
-| **BharatCode VS Code Extension** | **`packages/kilo-vscode/`** | VS Code extension with sidebar chat + Agent Manager | Bundles CLI binary, spawns `kilo serve --port 0` as child process |
+| BharatCode CLI (`bharatcode run`) | `packages/opencode/` | Non-interactive headless mode for scripting | In-process — no network socket |
+| **BharatCode VS Code Extension** | **`packages/kilo-vscode/`** | VS Code extension with sidebar chat + Agent Manager | Bundles CLI binary, spawns `bharatcode serve --port 0` as child process |
 
 ### Kilo-Domain Packages
 
 | Package | Name | Role |
 |---|---|---|
 | `packages/kilo-vscode/` | `bharatcode-vscode` | **This package.** VS Code extension. |
-| `packages/kilo-gateway/` | `@kilocode/kilo-gateway` | Auth (device flow), AI provider routing (OpenRouter), Kilo API integration (profile, balance, teams) |
+| `packages/kilo-gateway/` | `@kilocode/kilo-gateway` | Auth (device flow), AI provider routing (OpenRouter), Kilo API integration (profile, balance, teams) (disabled in this build) |
 | `packages/kilo-ui/` | `@kilocode/kilo-ui` | SolidJS component library (40+ components, built on `@kobalte/core`). Shared by this extension's webview and docs screenshot stories |
-| `packages/kilo-telemetry/` | `@kilocode/kilo-telemetry` | PostHog analytics + OpenTelemetry tracing for the CLI |
-| `packages/kilo-i18n/` | `@kilocode/kilo-i18n` | Translation strings (16 languages) |
+| `packages/kilo-telemetry/` | `@kilocode/kilo-telemetry` | PostHog analytics + OpenTelemetry tracing for the CLI (disabled in this build) |
+| `packages/kilo-i18n/` | `@kilocode/kilo-i18n` | Translation strings (20+ locales) |
 | `packages/kilo-docs/` | `@kilocode/kilo-docs` | Documentation site (Next.js + Markdoc) |
 
 ### Upstream OpenCode Packages (not Kilo-specific)
@@ -86,7 +86,7 @@ Single VS Code integration test: `bun run test -- --grep "test name"`
 
 ## CLI Binary
 
-The extension bundles its own CLI binary at `bin/kilo` — it does NOT use a system-installed CLI. To build it:
+The extension bundles its own CLI binary at `bin/bharatcode` (`bin/bharatcode.exe` on Windows) — it does NOT use a system-installed CLI. To build it:
 
 ```bash
 bun script/local-bin.ts
@@ -98,31 +98,31 @@ Or use `--force` to rebuild:
 bun script/local-bin.ts --force
 ```
 
-The script checks for a prebuilt binary in `packages/opencode/dist/`, builds the CLI if needed, and copies it to `bin/kilo`.
+The script checks for a prebuilt binary in `packages/opencode/dist/**/bin/bharatcode`, builds the CLI if needed, and copies it to `bin/bharatcode`.
 
 ## Architecture
 
 ### Extension ↔ CLI Backend
 
-The extension is a client of the CLI. Activation creates one shared `KiloConnectionService`; on its first connection, which autocomplete may prewarm, `ServerManager` spawns `bin/kilo serve --port 0`, captures the dynamically assigned port from stdout, and communicates over HTTP + SSE. The current child process is reused unless it exits. A random password is generated and passed via `KILO_SERVER_PASSWORD` env var for basic auth.
+The extension is a client of the CLI. Activation creates one shared `KiloConnectionService`; on its first connection, which autocomplete may prewarm, `ServerManager` spawns `bin/bharatcode serve --port 0`, captures the dynamically assigned port from stdout, and communicates over HTTP + SSE. The current child process is reused unless it exits. A random password is generated and passed via `KILO_SERVER_PASSWORD` env var for basic auth.
 
-```
+```text
 Extension (Node.js)                          CLI Backend (child process)
 ┌──────────────────────────┐                ┌──────────────────────┐
-│ KiloConnectionService    │── HTTP/SSE ──> │ kilo serve --port 0  │
-│   ├── ServerManager      │                │   HTTP REST API      │
-│   ├── HttpClient         │                │   SSE event stream   │
-│   └── SSEClient          │                │   Session management │
-│                          │                │   AI agent runtime   │
-│ KiloProvider (sidebar)   │                └──────────────────────┘
-│ KiloProvider (agent mgr) │
+│ KiloConnectionService    │── HTTP/SSE ──> │ bharatcode serve     │
+│   ├── ServerManager      │                │ --port 0             │
+│   ├── HttpClient         │                │   HTTP REST API      │
+│   └── SSEClient          │                │   SSE event stream   │
+│                          │                │   Session management │
+│ KiloProvider (sidebar)   │                │   AI agent runtime   │
+│ KiloProvider (agent mgr) │                └──────────────────────┘
 │ KiloProvider (open tabs) │
 └──────────────────────────┘
 ```
 
 - **`KiloConnectionService`** (`src/services/cli-backend/connection-service.ts`) is created once during extension activation and shared across the sidebar, BharatCode editor tabs, and Agent Manager. It owns the current server process, HTTP client, and SSE connection.
 - **`ServerManager`** (`src/services/cli-backend/server-manager.ts`) lazily spawns the CLI binary, reuses its current process, and can start a replacement if that process exits.
-- The sidebar, every **Open in Tab** BharatCode panel, and the Agent Manager chat provider reuse this connection. Multiple **`KiloProvider`** instances subscribe to it, with SSE events filtered per-webview via a `trackedSessionIds` Set. Agent Manager terminals may use additional PTY/WebSocket channels to the same backend, not separate `kilo serve` processes.
+- The sidebar, every **Open in Tab** BharatCode panel, and the Agent Manager chat provider reuse this connection. Multiple **`KiloProvider`** instances subscribe to it, with SSE events filtered per-webview via a `trackedSessionIds` Set. Agent Manager terminals may use additional PTY/WebSocket channels to the same backend, not separate `bharatcode serve` processes.
 - Backend state follows where it is allocated, not the worktree shown in a panel. Snapshot repository state uses directory-keyed `InstanceState`, while `trackState` is created once in the active Snapshot service closure. For these shared VS Code session paths, its slow-track `asked` guard spans worktree requests; choosing **Continue with snapshots** resets `asked` only when continued tracking returns a snapshot hash.
 
 ### Builds
@@ -176,9 +176,9 @@ The Agent Manager is a feature within this extension (not a separate product). I
 | Setup scripts | None | Configurable `.kilo/setup-script` runs per worktree |
 | Multi-version | Not supported | Up to 4 parallel worktrees with the same prompt |
 
-### Architecture
+### Session and process architecture
 
-Agent Manager local worktree sessions use the current shared `kilo serve` process owned by `KiloConnectionService`; no session starts its own backend. Their CLI requests pass the worktree path as `directory`, which resolves directory-scoped backend state. Setup scripts, terminal PTYs, git subprocesses, and a separately opened VS Code window are separate process or extension-host boundaries, not per-worktree `kilo serve` instances.
+Agent Manager local worktree sessions use the current shared `bharatcode serve` process owned by `KiloConnectionService`; no session starts its own backend. Their CLI requests pass the worktree path as `directory`, which resolves directory-scoped backend state. Setup scripts, terminal PTYs, git subprocesses, and a separately opened VS Code window are separate process or extension-host boundaries, not per-worktree `bharatcode serve` instances.
 
 Extension-side code lives in `src/agent-manager/`, webview code in `webview-ui/agent-manager/`. The webview reuses the sidebar's provider chain and `ChatView` component, adding a `WorktreeModeProvider` and a split layout.
 
@@ -201,7 +201,7 @@ New webview features must use **`@kilocode/kilo-ui`** components instead of raw 
 - **Check existing webview usages first**: `webview-ui/src/` and `packages/kilo-ui/src/stories/` show how kilo-ui components are composed. Do not rely only on the component API in isolation.
 - **`data-component` and `data-slot` attributes carry CSS styling** — kilo-ui uses `[data-component]` and `[data-slot]` attribute selectors, not class names. Reuse existing component slots where available so shared styles apply consistently.
 - **Prefer kilo-ui styles**: Reuse existing kilo-ui CSS variables, tokens, and component styles. Add missing reusable styles there; keep extension-specific rules in their owning feature stylesheet rather than inlining or duplicating styles.
-- **Icons**: Kilo-only icons are in [kilo-ui's registry](../kilo-ui/src/components/icon.tsx), which falls back to [the upstream registry](../ui/src/components/icon.tsx). To list upstream icon names: `node -e "const c=require('fs').readFileSync('../../packages/ui/src/components/icon.tsx','utf8');[...c.matchAll(/^\\s{2}[\"']?([\\w-]+)[\"']?:\\s*\x60/gm)].map(m=>m[1]).sort().forEach(n=>console.log(n))"`. Icon names use both hyphenated (`arrow-left`) and bare-word (`brain`, `console`, `providers`) keys.
+- **Icons**: Kilo-only icons are in [kilo-ui's registry](../kilo-ui/src/components/icon.tsx), which falls back to [the upstream registry](../ui/src/components/icon.tsx). To list upstream icon names: `node -e "const c=require('fs').readFileSync('../../packages/ui/src/components/icon.tsx','utf8');[...c.matchAll(/^\s{2}[\"']?([\w-]+)[\"']?:\s*\x60/gm)].map(m=>m[1]).sort().forEach(n=>console.log(n))"`. Icon names use both hyphenated (`arrow-left`) and bare-word (`brain`, `console`, `providers`) keys.
 
 ### Diff Rendering Performance
 
@@ -239,7 +239,7 @@ On Windows, any `spawn`/`execFile`/`exec` call that does not set `windowsHide: t
 import { spawn, exec } from "../util/process"
 ```
 
-The `spawn` wrapper covers long-lived processes (e.g. `kilo serve`). The `exec` wrapper covers short commands (e.g. `git`, `tar`). If you need the raw callback form of `execFile` for some reason, pass `windowsHide: true` explicitly in the options object.
+The `spawn` wrapper covers long-lived processes (e.g. `bharatcode serve`). The `exec` wrapper covers short commands (e.g. `git`, `tar`). If you need the raw callback form of `execFile` for some reason, pass `windowsHide: true` explicitly in the options object.
 
 Agent Manager uses read-only `gh` commands for PR status and PR import. Call `execGhRead` from `src/agent-manager/gh.ts` for those commands; on Windows it supplies `TZ=UTC` when no timezone is configured, preventing older `gh` releases from launching `tzutil.exe` in a visible console.
 

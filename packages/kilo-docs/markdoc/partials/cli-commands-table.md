@@ -5,14 +5,14 @@
 | `kilo acp` | start ACP (Agent Client Protocol) server |
 | `kilo mcp` | manage MCP (Model Context Protocol) servers |
 | `kilo [project]` | start kilo tui |
-| `kilo attach <url>` | attach to a running kilo server |
+| `bharatcode attach <url>` | attach to a running kilo server |
 | `kilo run [message..]` | run kilo with a message |
 | `kilo debug` | debugging and troubleshooting tools |
 | `kilo auth` | manage AI providers and credentials |
 | `kilo agent` | manage agents |
 | `kilo upgrade [target]` | upgrade kilo to the latest or a specific version |
 | `kilo uninstall` | uninstall kilo and remove all related files |
-| `kilo serve` | starts a headless kilo server |
+| `bharatcode serve` | starts a headless kilo server |
 | `kilo models [provider]` | list all available models |
 | `kilo roll-call <filter>` | batch-test text models matching a filter for connectivity and latency |
 | `kilo profile` | show Kilo account profile |

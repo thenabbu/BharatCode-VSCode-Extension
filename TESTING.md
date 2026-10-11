@@ -1,13 +1,13 @@
 # TESTING.md
 
-How to spin up the **local main-branch** Kilo backend and test it with `curl` / `fetch`. Aimed at a running Kilo CLI agent iterating on backend fixes without rebuilding the VS Code extension or TUI.
+How to spin up the **local `bc/main`** BharatCode backend and test it with `curl` / `fetch`. Aimed at a running Kilo CLI agent iterating on backend fixes without rebuilding the VS Code extension or TUI.
 
 All examples use plain shell + `curl`. Writing TypeScript files is a last resort (see Section 8).
 
 ## TL;DR
 
 ```bash
-# From repo root. Starts the LOCAL main-branch backend in the background.
+# From repo root. Starts the LOCAL bc/main backend in the background.
 PASS=$(openssl rand -hex 16)
 KILO_SERVER_PASSWORD="$PASS" bun dev serve --port 0 >/tmp/kilo-serve.log 2>&1 &
 echo $! >/tmp/kilo-serve.pid
@@ -26,7 +26,7 @@ rm -f /tmp/kilo-serve.pid /tmp/kilo-serve.log
 
 ## 1. What this doc is for
 
-Testing local backend fixes against a real running server, talking to it over HTTP the same way the VS Code extension, TUI, and `kilo run --attach` do — but without any of those clients. Every request is a `curl` the agent can copy-paste.
+Testing local backend fixes against a real running server, talking to it over HTTP the same way the VS Code extension, TUI, and `bharatcode run --attach` do — but without any of those clients. Every request is a `curl` the agent can copy-paste.
 
 For in-process tests (no socket, fastest loop) see `packages/opencode/test/kilocode/server/permission-allow-everything.test.ts` for the `Server.Default().app.request(...)` pattern. That's the right tool inside the `packages/opencode/` test suite; this doc is for out-of-process HTTP testing.
 
@@ -34,15 +34,15 @@ For in-process tests (no socket, fastest loop) see `packages/opencode/test/kiloc
 
 | Command | What it runs |
 |---|---|
-| `kilo serve` | The npm-installed production CLI on `$PATH`. **Not the code in this repo.** |
-| `bun dev serve …` (repo root) | The local main-branch backend from this worktree. **This is what you want.** |
+| `kilo serve` | The production CLI binary on `$PATH` — this fork builds it as `bharatcode` and ships it inside the extension/VSIX, never via npm. **Not the code in this repo.** |
+| `bun dev serve …` (repo root) | The local `bc/main` backend from this worktree. **This is what you want.** |
 | `bun run --cwd packages/opencode --conditions=browser src/index.ts serve …` | Same as `bun dev serve`, fully expanded. |
 
-Root `package.json` defines `"dev"` as the full `bun run --cwd packages/opencode --conditions=browser src/index.ts` invocation, so `bun dev <args>` forwards `<args>` to the local CLI entry point (`packages/opencode/src/index.ts`) without touching the installed binary.
+Root `package.json` defines `"dev"` as the full `bun run --cwd packages/opencode --conditions=browser src/index.ts` invocation, so `bun dev <args>` forwards `<args>` to the local CLI entry point (`packages/opencode/src/index.ts`) without invoking the production binary.
 
 `bun dev` imports the source directly — no rebuild is needed between code edits. Just kill the running server and relaunch.
 
-Do **not** use `createKiloServer()` from `@kilocode/sdk/v2` to test local code: it spawns the PATH `kilo` binary (`packages/sdk/js/src/v2/server.ts:38-136`), which is the wrong tool here.
+Do **not** use `createKiloServer()` from `@kilocode/sdk/v2` to test local code: it spawns the `kilo` production CLI from `$PATH` (`packages/sdk/js/src/v2/server.ts:69`), which is the wrong tool here.
 
 ## 3. Starting the backend (background)
 
@@ -236,11 +236,11 @@ PORT="$PORT" KILO_SERVER_PASSWORD="$KILO_SERVER_PASSWORD" bun /tmp/probe.ts
 rm /tmp/probe.ts
 ```
 
-Reminder: this script **connects to** the server you launched in Section 3 — it does not start one. `createKiloServer()` from the SDK would spawn the PATH `kilo` binary (production CLI), which defeats the point of testing local code.
+Reminder: this script **connects to** the server you launched in Section 3 — it does not start one. `createKiloServer()` from the SDK would spawn the `kilo` production CLI from `$PATH` (this fork's built binary is named `bharatcode`), which defeats the point of testing local code.
 
 ## 9. Pitfalls
 
-- Running `kilo serve` instead of `bun dev serve` runs the installed prod binary, not your edits.
+- Running `kilo serve` instead of `bun dev serve` runs the production binary on your `$PATH`, not your edits.
 - Missing `x-kilo-directory` (or `?directory=`) returns `400` from `InstanceMiddleware`.
 - `curl` without `-N` buffers SSE output — you won't see events until the connection closes.
 - Hardcoding port `4096` breaks when a previous run didn't exit cleanly. Parse the log instead.

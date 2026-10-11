@@ -201,9 +201,9 @@ Only skip stories as a last resort. Prefer making the story deterministic (e.g.,
 
 ## Step 5: Generate baseline images
 
-Baselines are generated on **Linux CI only** (font rendering differs on macOS). The CI workflow at `.github/workflows/visual-regression.yml` auto-runs `bun run test:visual:update` and commits new baselines to the PR branch.
+Baselines are generated on **Linux only** (font rendering differs from macOS). This fork has no CI (`.github/workflows/` does not exist), so generate them yourself: run `bun run test:visual:update` from `packages/kilo-vscode/` and commit the new baseline PNGs together with your change.
 
-**You do NOT need to generate baseline PNGs locally.** Just write the story, push, and CI handles the rest.
+**Generating baselines is a manual, local step.** Run the update script, review the resulting PNGs, then commit.
 
 To preview stories locally:
 
@@ -245,9 +245,9 @@ Key settings in `packages/kilo-vscode/playwright.config.ts`:
 - Storybook: built and served statically on port **6007**
 - Animations: forced off via `reducedMotion: "reduce"` + injected CSS
 
-# Reference: CI pipeline
+# Reference: when to run
 
-The `visual-regression.yml` workflow triggers on PRs when these paths change:
+There is no `visual-regression.yml` workflow in this fork (`.github/workflows/` does not exist), so run the suite manually. Run it when these paths change:
 
 - `packages/kilo-ui/**`
 - `packages/ui/**`
@@ -256,9 +256,8 @@ The `visual-regression.yml` workflow triggers on PRs when these paths change:
 - `packages/kilo-vscode/webview-ui/**`
 - `packages/kilo-vscode/.storybook/**`
 - `packages/kilo-vscode/tests/visual-regression*`
-- `.github/workflows/visual-regression.yml`
 
-CI auto-commits new baselines via Git LFS and fails if screenshots changed, requiring developer review.
+From `packages/kilo-vscode/`, run `bun run test:visual` (or `bun run test:visual:update` to regenerate baselines). Baseline PNGs are tracked via Git LFS; changed screenshots must be reviewed before they are committed.
 
 # Reference: import paths
 
@@ -323,5 +322,5 @@ This ensures tool cards like `bash` render with their VS Code-specific expanded/
 4. Wrap in `<StoryProviders>` with appropriate props
 5. If testing multiple widths, create separate exports with the `-200` suffix convention
 6. If the component has animated states, prefer a static variant or add to the SKIP set
-7. Push to PR — CI generates baseline PNGs automatically
-8. Review the auto-committed baseline images in the PR diff
+7. Run `bun run test:visual:update` from `packages/kilo-vscode/`, then commit the new baseline PNGs with your change
+8. Review the baseline image diff before pushing

@@ -1,89 +1,34 @@
-# Kilo Code CLI
+# BharatCode Agent Runtime (`packages/opencode/`)
 
-The AI coding agent built for the terminal. Generate code from natural language, automate tasks, and run terminal commands -- powered by 500+ AI models.
+The agent runtime and CLI behind BharatCode: agent loop, tool execution, session management, and an HTTP + SSE server. It is the core engine of the [BharatCode VS Code extension](https://github.com/thenabbu/BharatCode-VSCode-Extension), which bundles the built binary and spawns it as a local backend.
 
-![Kilo CLI showing code edits in a terminal](https://raw.githubusercontent.com/Kilo-Org/kilocode/main/packages/kilo-docs/public/img/npm-package-readme/kilo-cli.png)
+## Lineage
 
-Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open source coding agent.
+This package is a fork of the [Kilo Code CLI](https://github.com/Kilo-Org/kilocode), itself forked from upstream [OpenCode](https://github.com/anomalyco/opencode). It is rebranded for [bharatcode.ai](https://bharatcode.ai) and serves its two chat models, `qwen-3.8-27b` and `deepseek-v4.1-flash`.
 
-[Website](https://kilo.ai) · [Install](https://kilo.ai/install) · [IDE](https://kilo.ai/landing/vs-code) · [CLI](https://kilo.ai/cli) · [Docs](https://kilo.ai/docs) · [Models](https://kilo.ai/leaderboard) · [Gateway](https://kilo.ai/gateway) · [Pricing](https://kilo.ai/pricing) · [Kilo Pass](https://kilo.ai/pricing/kilo-pass)
+## Publishing
 
-[500+ models](https://kilo.ai/leaderboard). One open source agent in [VS Code](https://kilo.ai/vscode-marketplace), [JetBrains](https://plugins.jetbrains.com/plugin/27133-kilo-code), [CLI](https://www.npmjs.com/package/@kilocode/cli), [Slack](https://kilo.ai/slack), and [Cloud](https://kilo.ai/cloud).
+This fork does not publish to npm or any registry. The built binary ships inside the platform `.vsix` files on the [Releases page](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases); install the extension from there.
 
-## Install
+## Development
 
-```bash
-npm install -g @kilocode/cli
-```
+Commands run from the repository root unless noted:
 
-Or run directly with npx:
+| Command | Description |
+|---|---|
+| `bun install` | Install workspace dependencies |
+| `bun dev` | Run the CLI from local source |
+| `bun test` | Run this package's tests |
+| `bun run typecheck` | Type-check this package |
 
-```bash
-npx --package @kilocode/cli kilo
-```
-
-## Getting Started
-
-Run `kilo` in any project directory to launch the interactive TUI:
-
-```bash
-kilo
-```
-
-Run a one-off task:
-
-```bash
-kilo run "add input validation to the signup form"
-```
-
-## Features
-
-- **Code generation** -- describe what you want in natural language
-- **Terminal commands** -- the agent can run shell commands on your behalf
-- **500+ AI models** -- use models from OpenAI, Anthropic, Google, and more
-- **MCP servers** -- extend agent capabilities with the Model Context Protocol
-- **Multiple modes** -- Plan with Architect, code with Coder, debug with Debugger, or create your own
-- **Sessions** -- resume previous conversations and export transcripts
-- **API keys optional** -- bring your own keys or use Kilo credits
-
-## Commands
-
-| Command               | Description                |
-| --------------------- | -------------------------- |
-| `kilo`                | Launch interactive TUI     |
-| `kilo run "<task>"`   | Run a one-off task         |
-| `kilo auth`           | Manage authentication      |
-| `kilo models`         | List available models      |
-| `kilo mcp`            | Manage MCP servers         |
-| `kilo session list`   | List sessions              |
-| `kilo session delete` | Delete a session           |
-| `kilo export`         | Export session transcripts |
-
-Run `kilo --help` for the full list.
-
-## Alternative Installation
-
-### Homebrew (macOS/Linux)
-
-```bash
-brew install Kilo-Org/tap/kilo
-```
-
-### GitHub Releases
-
-Download pre-built binaries from the [Releases page](https://github.com/Kilo-Org/kilocode/releases).
+Build output is written to `dist/**/bin/bharatcode` (`.exe` on Windows), staged into the extension at `packages/kilo-vscode/bin/bharatcode`.
 
 ## Documentation
 
-- [Docs](https://kilo.ai/docs)
-- [Getting Started](https://kilo.ai/docs/getting-started)
-
-## Links
-
-- [GitHub](https://github.com/Kilo-Org/kilocode)
-- [Discord](https://kilo.ai/discord)
-- [VS Code Extension](https://kilo.ai/vscode-marketplace)
-- [Website](https://kilo.ai)
+- [Repository README](../README.md)
+- [Contributing Guide](../CONTRIBUTING.md)
+- [Testing Guide](../TESTING.md)
+- [bharatcode.ai](https://bharatcode.ai)
 
 ## License
 

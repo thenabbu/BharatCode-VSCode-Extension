@@ -343,6 +343,8 @@ Use a top-level `"mcp"` object. Each key is the server name. For a local server,
 
 # Kilo Notifications
 
+> Upstream behaviour, disabled in this fork: the Kilo Gateway is stripped from this build, so notifications are never fetched; any `docs.kilo.ai` links below are upstream URLs.
+
 When connected to Kilo Gateway, the CLI fetches and displays notifications from the Kilo API. This allows Kilo to communicate important announcements, feature updates, and tips to users.
 
 ## How It Works
@@ -371,7 +373,7 @@ interface KilocodeNotification {
 ```
 Title: Agent skills now supported!
 Message: Define reusable skills and workflows for your AI agent.
-Action: Learn More -> https://docs.kilo.ai/skills
+Action: Learn More -> https://docs.kilo.ai/skills (upstream link)
 ```
 
 ## Display Conditions

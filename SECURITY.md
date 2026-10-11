@@ -23,7 +23,7 @@ Server mode is opt-in only. When enabled, set `KILO_SERVER_PASSWORD` to require 
 ### Out of scope
 
 | Category | Rationale |
-| --- | --- |
+|---|---|
 | **Server access when opted-in** | If you enable server mode, API access is expected behavior |
 | **Sandbox escapes** | The permission system is not a sandbox (see above) |
 | **LLM provider data handling** | Data sent to your configured LLM provider is governed by their policies |

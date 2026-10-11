@@ -160,7 +160,7 @@ In `frontend/` and `backend/`, do not call `Json.decodeFromString<SharedDto>(...
 
 ## Server Protocol
 
-- The plugin spawns `kilo serve --port 0` (OS assigns random port) and reads stdout for `listening on http://...:(\d+)` to discover the port.
+- The plugin spawns `<cli binary> serve --port 0` (OS assigns random port) and reads stdout for `listening on http://...:(\d+)` to discover the port. The binary file itself is named `kilo` (`kilo.exe` on Windows, `KiloCliPlatform.exe()`): by default it is extracted from the pinned upstream Kilo-Org release asset `kilo-<platform>.<ext>` (v7.8.7); repo-CLI mode (`kilo.cli.pinned=false`) expects `dist/@kilocode/cli-<platform>/bin/kilo`, which this fork's build does not emit (it builds `bin/bharatcode`). The VS Code extension, by contrast, spawns `bharatcode serve --port 0`.
 - A random 32-byte hex password is passed via `KILO_SERVER_PASSWORD` env var for Basic Auth.
 - Fixed env vars set on every spawn: `KILO_CLIENT=jetbrains`, `KILO_PLATFORM=jetbrains`, `KILO_APP_NAME=kilo-code`, `KILO_ENABLE_QUESTION_TOOL=true`, `KILO_DISABLE_CLAUDE_CODE=true`, `KILOCODE_FEATURE=jetbrains-plugin`.
 - Unless already provided by the base environment, the backend sets `KILO_CONFIG_CONTENT` to make `edit` and `bash` permissions ask by default for JetBrains-launched CLI processes.

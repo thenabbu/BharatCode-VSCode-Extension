@@ -16,13 +16,13 @@ On first launch the extension prompts for your API key and validates it live aga
 All requests go to a single OpenAI-compatible endpoint:
 
 | Item | Value |
-| --- | --- |
+|---|---|
 | Base URL | `https://bharatcode.ai/api/model/v1` |
 | Discovery | `GET /models` (answers without auth) |
 | Chat | `POST /chat/completions`, `POST /responses` |
 
 | Model | Context | Good for |
-| --- | --- | --- |
+|---|---|---|
 | `qwen-3.8-27b` | 262k | everyday coding, fast turnaround |
 | `deepseek-v4.1-flash` | 1M | very large contexts, long sessions |
 
@@ -33,7 +33,7 @@ Pick the active model from the model picker in the chat header — you can switc
 Open Settings and search `BharatCode`. The most used ones:
 
 | Setting | What it does |
-| --- | --- |
+|---|---|
 | `BharatCode: Set API Key` (command) | Replace the stored API key |
 | Default model provider/model | Model used for new sessions |
 | Inline autocomplete provider/model | BYOK completion provider — see below |
@@ -83,7 +83,7 @@ The extension ships with upstream cloud coupling switched off: telemetry, sessio
 ## Troubleshooting
 
 | Symptom | Fix |
-| --- | --- |
+|---|---|
 | Key rejected at onboarding | Re-copy the key from bharatcode.ai, run `BharatCode: Set API Key` |
 | No models listed | Check network access to `https://bharatcode.ai/api/model/v1/models` (it answers without auth) |
 | Autocomplete never appears | Expected without a BYOK provider key — see [Inline autocomplete](#inline-autocomplete) |

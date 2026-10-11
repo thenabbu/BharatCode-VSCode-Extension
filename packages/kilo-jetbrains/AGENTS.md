@@ -72,7 +72,7 @@ Full lifecycle rules, anti-patterns, and required stress/leak tests for streamin
 | Test | `./gradlew test` |
 | Full build | `bun run build` (`./gradlew buildPlugin`) |
 | Run split-mode sandbox | `./gradlew --no-configuration-cache runIdeSplitMode` |
-| Marketplace build | `script/build-version.sh <version>` |
+| Marketplace build (upstream only — this fork never publishes to marketplaces) | script/build-version.sh <version> |
 
 Full build/run/debug workflow, sandbox recovery, dev storage isolation, CLI pin modes: `jetbrains-dev` skill.
 

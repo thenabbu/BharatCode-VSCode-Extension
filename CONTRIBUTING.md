@@ -1,6 +1,6 @@
 # Contributing to BharatCode
 
-See [the Documentation for details on contributing](https://kilo.ai/docs/contributing).
+Start with [README.md](README.md) and [AGENTS.md](AGENTS.md) for the repository overview and conventions. This file is the full contributing guide; [TESTING.md](./TESTING.md) covers backend testing.
 
 ## TL;DR
 
@@ -175,7 +175,7 @@ This detects your shell, shows exactly what it will add, asks for confirmation, 
 
 Useful flags:
 
-- `--yes` — skip the confirmation prompt (good for CI/containers).
+- `--yes` — skip the confirmation prompt (good for containers).
 - `--print` — just print the snippet, don't touch any file (pipe-friendly).
 - `--dry-run` — show what would change without writing.
 - `--shell <zsh|bash|fish|powershell>` — override shell detection.
@@ -206,24 +206,26 @@ To compile a standalone executable:
 Then run it with:
 
 ```bash
-./packages/opencode/dist/@kilocode/cli-<platform>/bin/kilo
+./packages/opencode/dist/@kilocode/cli-<platform>/bin/bharatcode
 ```
 
 Replace `<platform>` with your platform (e.g., `darwin-arm64`, `linux-x64`).
 
-### Understanding bun dev vs kilo
+### Understanding bun dev vs bharatcode
 
-During development, `bun dev` is the local equivalent of the built `kilo` command. Both run the same CLI interface:
+During development, `bun dev` runs the CLI straight from local source. The production command is the built binary, named `bharatcode` (output path shown above). Both run the same CLI interface:
 
 ```bash
-# Development (from project root)
+# Development (from repo root)
 bun dev --help           # Show all available commands
 bun dev serve            # Start headless API server
 
 # Production
-kilo --help          # Show all available commands
-kilo serve           # Start headless API server
+bharatcode --help        # Show all available commands
+bharatcode serve         # Start headless API server
 ```
+
+The VS Code extension does not use a system-installed CLI: it bundles this binary at `<extension>/bin/bharatcode`.
 
 ### Testing with a local backend
 
@@ -233,12 +235,12 @@ To point the CLI at a local backend (e.g., a locally running BharatCode backend 
 KILO_API_URL=http://localhost:3000 bun dev
 ```
 
-This redirects all gateway traffic (auth, model listing, provider routing, profile, etc.) to your local server. The default is `https://api.kilo.ai`.
+This points the CLI at your local server instead of the default URL. The default is `http://127.0.0.1:9` — a dead end on purpose; this build has no cloud gateway, and model traffic goes to bharatcode.ai instead.
 
 There are also optional overrides for other services:
 
 | Variable | Default | Purpose |
-| --- | --- | --- |
+|---|---|---|
 | `KILO_API_URL` | `http://127.0.0.1:9` | Kilo cloud API — intentionally dead-ended in this build; not needed for bharatcode.ai |
 | `KILO_SESSION_INGEST_URL` | `https://ingest.kilosessions.ai` | Session export / cloud sync — disabled in this build |
 | `KILO_MODELS_URL` | `https://models.dev` | Model metadata — fetch disabled in this build |
@@ -249,7 +251,7 @@ There are also optional overrides for other services:
 
 If you open an issue through the GitHub web UI, GitHub will guide you through the correct template automatically.
 
-If you open an issue through `gh issue create`, the API, or another tool that bypasses the web UI, include the equivalent required fields yourself so the issue still matches the template. Issues that skip required fields may be auto-closed by the compliance bot.
+If you open an issue through `gh issue create`, the API, or another tool that bypasses the web UI, include the equivalent required fields yourself so the issue still matches the template. Issues that skip required fields may be closed by maintainers.
 
 Current required fields by issue type:
 
@@ -336,7 +338,7 @@ Use conventional commit style PR titles such as:
 
 ## Issue and PR Lifecycle
 
-To keep our backlog manageable, we automatically close inactive issues and PRs after a period of inactivity. This isn't a judgment on quality — older items tend to lose context over time and we'd rather start fresh if they're still relevant. Feel free to reopen or create a new issue/PR if you're still working on something!
+To keep our backlog manageable, we close inactive issues and PRs after a period of inactivity. This isn't a judgment on quality — older items tend to lose context over time and we'd rather start fresh if they're still relevant. Feel free to reopen or create a new issue/PR if you're still working on something!
 
 Maintainers may also close issues or PRs that disregard the contribution guide, bypass required context, or lack credible contributor ownership of AI-assisted work.
 

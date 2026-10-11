@@ -8,6 +8,6 @@ ServerManager has startup guards and process cleanup, but no explicit handling f
 ## Remaining Work
 
 - Reproduce and profile CPU usage during release <> pre-release switch
-- Check if both versions attempt to spawn `kilo serve` simultaneously causing port/race conflicts
+- Check if both versions attempt to spawn `bharatcode serve` simultaneously causing port/race conflicts
 - Ensure `deactivate()` fully terminates the server process before new version starts
 - Check for file lock conflicts on shared state (e.g., `agent-manager.json`, CLI config)

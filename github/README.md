@@ -1,3 +1,5 @@
+> **Upstream documentation — reference only:** this is the upstream Kilo Code GitHub Action readme; it is not operated or usable from this fork (this repository has no GitHub Actions workflows).
+
 # Kilo GitHub Action
 
 A GitHub Action that integrates [Kilo AI](https://kilo.ai) directly into your GitHub workflow.

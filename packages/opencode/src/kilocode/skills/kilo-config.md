@@ -68,7 +68,7 @@ Markdown files in `.kilo/workflows/` or `.kilocode/workflows/` (project-level) a
 
 ## Agent Manager Setup And Run Scripts
 
-For the full product guidance, use the canonical [Agent Manager reference](https://kilo.ai/docs/automate/agent-manager) and [Agent Manager Workflows guide](https://kilo.ai/docs/automate/agent-manager-workflows). Prefer these links instead of guessing documentation paths.
+For full product guidance in this fork, use the repository's [`docs/CONFIGURATION.md`](../../../../../docs/CONFIGURATION.md). The upstream [Agent Manager reference](https://kilo.ai/docs/automate/agent-manager) and [Agent Manager Workflows guide](https://kilo.ai/docs/automate/agent-manager-workflows) live on kilo.ai (upstream links, not served from this fork).
 
 Agent Manager setup/run scripts are project files in the main repository's `.kilo/` directory. They are not `kilo.json` settings and should not be configured inside generated `.kilo/worktrees/<name>/` checkouts.
 
