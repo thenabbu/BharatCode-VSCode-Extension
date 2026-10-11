@@ -23,7 +23,7 @@ Then upload from anywhere with `gh`:
 
 ```bash
 gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
-  /data/ssd240/vsix-out/kilo-vscode-<plat>-<ver>.vsix ... SHA256SUMS
+  /data/ssd240/vsix-out/bharatcode-vscode-<plat>-<ver>.vsix ... SHA256SUMS
 ```
 (or `gh release create <tag> ... --notes-file notes.md` for a fresh release; the repo flag `-R` is required.)
 
@@ -43,7 +43,7 @@ gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
 ## Pitfalls that bit once
 
 - **Never `git add -A` while builds run** — `bin/` holds the 150-290MB CLI binary; committing it makes GitHub reject the push (100MB hard limit). `bin/kilo` and `bin/kilo.exe` stay untracked; only `bin/kilodev*` are tracked. If a large blob sneaks into a commit, `git rm --cached <file>` (one pathspec per call — a missing second pathspec fails the whole command), amend, re-point the tag, push.
-- The factory emits unsuffixed names (`kilo-vscode-<plat>.vsix`); the script renames to `-<version>` suffixes on move.
+- The factory emits unsuffixed names (`bharatcode-vscode-<plat>.vsix`); the script renames to `-<version>` suffixes on move.
 - Builds rewrite `bun.lock` and flip `bin/kilodev.cmd` mode — fold lockfile drift into the release commit, and `git checkout --` the mode bit.
 - `vsce` must be on PATH for the factory (`packages/kilo-vscode/node_modules/.bin`).
 - No publish CI: builds run where the toolchain lives. Marketplace publish config stays intact for the future listing.

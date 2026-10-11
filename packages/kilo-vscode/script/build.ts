@@ -31,14 +31,14 @@ if (!existsSync(cliDistDir)) {
 }
 
 const targets = [
-  { target: "linux-x64", cliDir: "@kilocode/cli-linux-x64", binary: "kilo" },
-  { target: "linux-arm64", cliDir: "@kilocode/cli-linux-arm64", binary: "kilo" },
-  { target: "alpine-x64", cliDir: "@kilocode/cli-linux-x64-musl", binary: "kilo" },
-  { target: "alpine-arm64", cliDir: "@kilocode/cli-linux-arm64-musl", binary: "kilo" },
-  { target: "darwin-x64", cliDir: "@kilocode/cli-darwin-x64", binary: "kilo" },
-  { target: "darwin-arm64", cliDir: "@kilocode/cli-darwin-arm64", binary: "kilo" },
-  { target: "win32-x64", cliDir: "@kilocode/cli-windows-x64", binary: "kilo.exe" },
-  { target: "win32-arm64", cliDir: "@kilocode/cli-windows-arm64", binary: "kilo.exe" },
+  { target: "linux-x64", cliDir: "@kilocode/cli-linux-x64", binary: "bharatcode" },
+  { target: "linux-arm64", cliDir: "@kilocode/cli-linux-arm64", binary: "bharatcode" },
+  { target: "alpine-x64", cliDir: "@kilocode/cli-linux-x64-musl", binary: "bharatcode" },
+  { target: "alpine-arm64", cliDir: "@kilocode/cli-linux-arm64-musl", binary: "bharatcode" },
+  { target: "darwin-x64", cliDir: "@kilocode/cli-darwin-x64", binary: "bharatcode" },
+  { target: "darwin-arm64", cliDir: "@kilocode/cli-darwin-arm64", binary: "bharatcode" },
+  { target: "win32-x64", cliDir: "@kilocode/cli-windows-x64", binary: "bharatcode.exe" },
+  { target: "win32-arm64", cliDir: "@kilocode/cli-windows-arm64", binary: "bharatcode.exe" },
   // ponytail: KILO_VSIX_TARGETS=linux-x64 builds a single platform on low-RAM
   // boxes; unset = all eight (upstream behavior). Upgrade path: none needed.
 ].filter((config) => !process.env.KILO_VSIX_TARGETS || process.env.KILO_VSIX_TARGETS.split(",").includes(config.target))
@@ -92,7 +92,7 @@ for (const config of targets) {
   await copySandboxResources(sourceBinary, targetBinary)
   await copyKiloSandboxWorker(sourceBinary, targetBinary)
 
-  if (config.binary !== "kilo.exe") {
+  if (config.binary !== "bharatcode.exe") {
     chmodSync(targetBinary, 0o755)
   }
 
@@ -104,7 +104,7 @@ for (const config of targets) {
   console.log(`  📦 Packaging .vsix for ${config.target}${prerelease ? " (pre-release)" : ""}...`)
   // drop sourcemaps left in dist/: vsce re-includes them through !dist/** (ignore-order quirk)
   for (const f of new Bun.Glob("dist/**/*.map").scanSync(".")) rmSync(f)
-  const vsixPath = join(outDir, `kilo-vscode-${config.target}.vsix`)
+  const vsixPath = join(outDir, `bharatcode-vscode-${config.target}.vsix`)
   const args = ["--no-dependencies", "--skip-license", "--target", config.target, "-o", vsixPath]
   if (prerelease) args.push("--pre-release")
   await $`vsce package ${args}`.env({

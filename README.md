@@ -23,8 +23,8 @@ BharatCode is an AI coding agent that meets you where you work — in VS Code. I
 The extension ships as a platform VSIX from the [Releases page](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest) (a VS Code Marketplace listing is planned):
 
 ```bash
-code --install-extension kilo-vscode-win32-x64.vsix   # Windows
-code --install-extension kilo-vscode-linux-x64.vsix   # Linux
+code --install-extension bharatcode-vscode-win32-x64.vsix   # Windows
+code --install-extension bharatcode-vscode-linux-x64.vsix   # Linux
 ```
 
 Or drop the `.vsix` file into VS Code's `Extensions: Install from VSIX...` command.

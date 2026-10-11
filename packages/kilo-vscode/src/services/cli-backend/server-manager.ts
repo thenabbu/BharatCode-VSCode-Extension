@@ -265,7 +265,7 @@ export class ServerManager {
 
   private getCliPath(): string {
     // Always use the bundled binary from the extension directory
-    const binName = process.platform === "win32" ? "kilo.exe" : "kilo"
+    const binName = process.platform === "win32" ? "bharatcode.exe" : "bharatcode"
     const cliPath = path.join(this.context.extensionPath, "bin", binName)
     console.log("[BharatCode] ServerManager: 📦 Using CLI path:", cliPath)
     return cliPath

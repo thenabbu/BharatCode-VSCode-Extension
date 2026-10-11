@@ -103,7 +103,7 @@ const base =
     ? expand(opts["state-dir"])
     : isolated
       ? join(dev, "vscode")
-      : join(temp, `kilo-vscode-dev-${hash}`)
+      : join(temp, `bharatcode-vscode-dev-${hash}`)
 const userDir = join(base, "user-data")
 const extDir = join(base, "extensions")
 const kilo =

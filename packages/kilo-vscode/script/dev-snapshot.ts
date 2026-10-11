@@ -33,7 +33,7 @@ if (existsSync(dist)) {
   console.log("  ✓ Cleaned dist/")
 }
 
-const outDir = join(tmpdir(), "kilo-vscode-snapshots")
+const outDir = join(tmpdir(), "bharatcode-vscode-snapshots")
 mkdirSync(outDir, { recursive: true })
 
 console.log("\n📦 Preparing SDK...")
@@ -44,7 +44,7 @@ await $`bun script/local-bin.ts --compiled`.cwd(root)
 await $`bun run build:check:production`.cwd(root)
 
 console.log("\n📦 Packaging VSIX...")
-const vsixPath = join(outDir, `kilo-vscode-snapshot-${sha}-${user}.vsix`)
+const vsixPath = join(outDir, `bharatcode-vscode-snapshot-${sha}-${user}.vsix`)
 const require = createRequire(import.meta.url)
 const vsceRequire = createRequire(require.resolve("@vscode/vsce"))
 if (shouldInstall) {

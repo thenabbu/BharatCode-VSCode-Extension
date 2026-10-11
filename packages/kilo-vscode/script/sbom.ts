@@ -128,7 +128,7 @@ export async function vsix(input: { file: string; target: string; release: Relea
   }
 }
 
-export const CHECKSUMS = "kilo-vscode-SHA256SUMS"
+export const CHECKSUMS = "bharatcode-vscode-SHA256SUMS"
 
 /**
  * Describe every VSIX in `dir`.
@@ -142,7 +142,7 @@ export async function evidence(input: { dir: string; release: Release; expected?
 
   const entries: Manifest.Entry[] = []
   for (const file of files) {
-    const target = file.replace(/^kilo-vscode-/, "").replace(/\.vsix$/, "")
+    const target = file.replace(/^bharatcode-vscode-/, "").replace(/\.vsix$/, "")
     try {
       const result = await vsix({ file: path.join(input.dir, file), target, release: input.release, lock })
       entries.push(result.entry)
