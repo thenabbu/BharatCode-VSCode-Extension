@@ -1,4 +1,4 @@
-# Contributing to Kilo CLI
+# Contributing to BharatCode
 
 See [the Documentation for details on contributing](https://kilo.ai/docs/contributing).
 
@@ -12,7 +12,7 @@ There are lots of ways to contribute to the project:
 - **Feature Requests:** Suggest new features or improvements
 - **Community Support:** Help other users in the community
 
-The Kilo Community is [on Discord](https://kilo.ai/discord).
+Questions and discussion belong in [GitHub Issues](https://github.com/thenabbu/BharatCode-VSCode-Extension/issues).
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ The Kilo Community is [on Discord](https://kilo.ai/discord).
   bun turbo typecheck --filter=!@kilocode/kilo-jetbrains
   ```
 
-## Developing Kilo CLI
+## Developing BharatCode
 
 - **Requirements:** Bun 1.4.2+, Java 21 (see [Prerequisites](#prerequisites) above)
 - Install dependencies and start the CLI from the repo root:
@@ -115,13 +115,13 @@ Build and launch the extension in an isolated VS Code instance:
 
 ```bash
 bun run extension                  # Build + launch in dev mode
-bun run extension:isolated         # Build + launch with persistent isolated IDE + Kilo state
+bun run extension:isolated         # Build + launch with persistent isolated IDE + BharatCode state
 bun run extension:isolated:clean   # Clear isolated state, then build + launch
 ```
 
 This auto-detects VS Code on macOS, Linux, and Windows. Override with `--app-path PATH` or `VSCODE_EXEC_PATH`. Use `--insiders` to prefer Insiders, pass a directory argument to open a specific folder, or use `--workspace PATH` for the same behavior.
 
-The isolated modes are for testing the extension without touching your primary VS Code profile or real Kilo config. `extension:isolated` reuses `.kilo-dev/` on each run, so installed extensions, VS Code settings, Kilo auth, sessions, config, state, and cache persist across launches. `extension:isolated:clean` deletes `.kilo-dev/` before launching, which simulates a fresh install while still keeping all state inside this repo checkout.
+The isolated modes are for testing the extension without touching your primary VS Code profile or real BharatCode config. `extension:isolated` reuses `.kilo-dev/` on each run, so installed extensions, VS Code settings, BharatCode auth, sessions, config, state, and cache persist across launches. `extension:isolated:clean` deletes `.kilo-dev/` before launching, which simulates a fresh install while still keeping all state inside this repo checkout.
 
 ```bash
 bun run extension:isolated -- ../sample-project
@@ -149,19 +149,19 @@ bun turbo test:ci --filter=@kilocode/kilo-jetbrains
 
 ### Running against a different directory
 
-By default, `bun dev` runs Kilo CLI in the `packages/opencode` directory. To run it against a different directory or repository:
+By default, `bun dev` runs the BharatCode backend in `packages/opencode` directory. To run it against a different directory or repository:
 
 ```bash
 bun dev <directory>
 ```
 
-To run Kilo CLI in the root of the repo itself:
+To run the backend in the root of the repo itself:
 
 ```bash
 bun dev .
 ```
 
-### Running Kilo CLI from any folder
+### Running the backend from any folder
 
 `bin/kilodev` is a self-locating launcher that runs this checkout from wherever you invoke it. Running it with no arguments launches the TUI pointed at the caller's directory; any arguments are forwarded to the CLI unchanged.
 
@@ -227,7 +227,7 @@ kilo serve           # Start headless API server
 
 ### Testing with a local backend
 
-To point the CLI at a local backend (e.g., a locally running Kilo API server on port 3000), set the `KILO_API_URL` environment variable:
+To point the CLI at a local backend (e.g., a locally running BharatCode backend on port 3000), set the `KILO_API_URL` environment variable:
 
 ```bash
 KILO_API_URL=http://localhost:3000 bun dev
@@ -238,10 +238,10 @@ This redirects all gateway traffic (auth, model listing, provider routing, profi
 There are also optional overrides for other services:
 
 | Variable | Default | Purpose |
-|---|---|---|
-| `KILO_API_URL` | `https://api.kilo.ai` | Kilo API (gateway, auth, models, profile) |
-| `KILO_SESSION_INGEST_URL` | `https://ingest.kilosessions.ai` | Session export / cloud sync |
-| `KILO_MODELS_URL` | `https://models.dev` | Model metadata |
+| --- | --- | --- |
+| `KILO_API_URL` | `http://127.0.0.1:9` | Kilo cloud API — intentionally dead-ended in this build; not needed for bharatcode.ai |
+| `KILO_SESSION_INGEST_URL` | `https://ingest.kilosessions.ai` | Session export / cloud sync — disabled in this build |
+| `KILO_MODELS_URL` | `https://models.dev` | Model metadata — fetch disabled in this build |
 
 > **VS Code:** The repo includes a "VSCode - Run Extension (Local Backend)" launch config in `.vscode/launch.json` that sets `KILO_API_URL=http://localhost:3000` automatically.
 
@@ -253,7 +253,7 @@ If you open an issue through `gh issue create`, the API, or another tool that by
 
 Current required fields by issue type:
 
-- **Bug report:** include a `Description`. When you can, also add Plugins, Kilo version, Steps to reproduce, Screenshot and/or share link, Operating System, and Terminal so the report matches the full bug template.
+- **Bug report:** include a `Description`. When you can, also add Plugins, BharatCode version, Steps to reproduce, Screenshot and/or share link, Operating System, and Terminal so the report matches the full bug template.
 - **Feature request:** use a title prefixed with `[FEATURE]:`, complete the required checkbox confirming you have searched for duplicates, and fill in `Describe the enhancement you want to request`.
 - **Question:** include the `Question` field.
 
@@ -284,7 +284,7 @@ Repeated disregard of this contribution guide, or high-volume automated or agent
 
 ### Bug Bounties
 
-Kilo has bug bounties. To be eligible, make sure your GitHub account is connected in your Kilo account.
+This project does not currently run a bug bounty program.
 
 ### Testing Evidence
 

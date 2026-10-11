@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=bharatcode.bharatcode-vscode"><img src="https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace" height="20"></a>
+  <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest"><img src="https://img.shields.io/github/v/release/thenabbu/BharatCode-VSCode-Extension?label=release&color=ff6b35" alt="Latest release" height="20"></a>
   <a href="https://bharatcode.ai"><img src="https://raster.shields.io/badge/bharatcode.ai-ff6b35?style=flat&logoColor=white" alt="bharatcode.ai" height="20"></a>
 </p>
 
@@ -14,18 +14,18 @@
 - **Inline Autocomplete:** Get intelligent code completions as you type, powered by AI.
 - **Task Automation:** BharatCode can automate repetitive coding tasks to save time.
 - **Automated Refactoring:** BharatCode can refactor and improve existing code efficiently.
-- **MCP Server Marketplace:** BharatCode can find and use MCP servers to extend the agent's capabilities.
+- **MCP support:** Connect Model Context Protocol servers through config to extend the agent's capabilities.
 - **Multi Mode**: Plan, Code, Debug, Ask, and Architect modes built in, plus your own custom modes.
 
 ## Get Started
 
-1. Install the BharatCode extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=bharatcode.bharatcode-vscode).
+1. Install the BharatCode extension `.vsix` for your platform from the [Releases page](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest).
 2. On first launch, BharatCode prompts you for your API key. Create one at [bharatcode.ai](https://bharatcode.ai) — all model requests go through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
 3. Start coding with AI that adapts to your workflow.
 
 ## Developer Setup
 
-If you want to contribute or modify the extension locally, see the [DEVELOPMENT.md](/DEVELOPMENT.md) file for build and setup instructions.
+If you want to contribute or modify the extension locally, see the [Contributing Guide](/CONTRIBUTING.md) for build and setup instructions.
 
 ### Snapshot Builds
 
