@@ -15,7 +15,7 @@ On first launch the extension prompts for your API key and validates it live aga
 
 All requests go to a single OpenAI-compatible endpoint:
 
-| --- | --- |
+| Item | Value |
 | --- | --- |
 | Base URL | `https://bharatcode.ai/api/model/v1` |
 | Discovery | `GET /models` (answers without auth) |
