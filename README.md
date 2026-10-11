@@ -16,17 +16,7 @@
 
 BharatCode is an AI coding agent that meets you where you work — in VS Code. It's open source and MIT licensed. You pick from two models — `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context) — through a single API key from [bharatcode.ai](https://bharatcode.ai), and every request goes through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
 
-```mermaid
-flowchart TB
-    VSCode["VS Code + BharatCode extension"] -->|"chat, edits, tools"| Backend["Local backend"]
-    Backend -->|"POST /chat/completions"| API["bharatcode.ai API<br/>api/model/v1"]
-    API --> Qwen["qwen-3.8-27b<br/>262k context"]
-    API --> DeepSeek["deepseek-v4.1-flash<br/>1M context"]
-    classDef brand fill:#ff6b35,stroke:#111113,color:#ffffff
-    classDef neutral fill:#f5f5f6,stroke:#343438,color:#171b18
-    class VSCode,Backend brand
-    class API,Qwen,DeepSeek neutral
-```
+<img src="docs/assets/request-flow.svg" alt="Request path: VS Code extension to local backend to bharatcode.ai API (qwen-3.8-27b or deepseek-v4.1-flash)" width="900" />
 
 ## Installation
 
