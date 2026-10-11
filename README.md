@@ -14,7 +14,9 @@
   <a href="https://bharatcode.ai"><img src="https://raster.shields.io/badge/bharatcode.ai-ff6b35?style=flat&logoColor=white" alt="bharatcode.ai" height="20"></a>
 </p>
 
-BharatCode is an AI coding agent that meets you where you work — in VS Code. It's open source and MIT licensed. You pick from two models — `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context) — through a single API key from [bharatcode.ai](https://bharatcode.ai), and every request goes through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
+BharatCode is an AI coding agent that meets you where you work — in VS Code. It's open source and MIT licensed.
+
+> **Fork notice:** BharatCode is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode) (itself a fork of [OpenCode](https://github.com/anomalyco/opencode)), rebranded and reconfigured for the [bharatcode.ai](https://bharatcode.ai) provider. The upstream projects and their contributors did the heavy lifting — this fork exists to bring their agent to the BharatCode platform. All credit to them; MIT licensed, attribution preserved. You pick from two models — `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context) — through a single API key from [bharatcode.ai](https://bharatcode.ai), and every request goes through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
 
 <img src="docs/assets/request-flow.svg" alt="Request path: VS Code extension to local backend to bharatcode.ai API (qwen-3.8-27b or deepseek-v4.1-flash)" width="900" />
 
@@ -74,7 +76,7 @@ MIT. You're free to use, modify, and distribute this code, including commerciall
 <details>
 <summary>Where does BharatCode come from?</summary>
 
-BharatCode is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode), which is itself a fork of [OpenCode](https://github.com/anomalyco/opencode). It is rebranded and reconfigured for the bharatcode.ai provider.
+BharatCode is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode) (v7.8.8), which is itself a fork of [OpenCode](https://github.com/anomalyco/opencode) — see the fork notice at the top. Upstream history, commit links, and the `kilocode_change` markers in the source preserve full attribution.
 
 </details>
 
