@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://bharatcode.ai"><img width="250" alt="BharatCode logo" src="packages/kilo-vscode/assets/icons/logo-outline-black.png" /></a>
+  <a href="https://bharatcode.ai"><img width="180" alt="BharatCode logo" src="packages/kilo-vscode/assets/icons/bharatcode-mark.svg" /></a>
 </p>
 
 # BharatCode
@@ -17,8 +17,7 @@
 BharatCode is an AI coding agent that meets you where you work — in VS Code. It's open source and MIT licensed. You pick from two models — `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context) — through a single API key from [bharatcode.ai](https://bharatcode.ai), and every request goes through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
 
 ```mermaid
-%%{init: {"flowchart": {"curve": "linear"}}}%%
-flowchart LR
+flowchart TB
     VSCode["VS Code + BharatCode extension"] -->|"chat, edits, tools"| Backend["Local backend"]
     Backend -->|"POST /chat/completions"| API["bharatcode.ai API<br/>api/model/v1"]
     API --> Qwen["qwen-3.8-27b<br/>262k context"]

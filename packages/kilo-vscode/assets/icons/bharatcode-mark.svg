@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="BharatCode mark">
+  <title>BharatCode mark</title>
+  <g fill="none" stroke="#ff6b35" stroke-width="54" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M194 142 84 256l110 114"/>
+    <path d="m318 142 110 114-110 114"/>
+  </g>
+  <path fill="#ff6b35" d="m256 221 35 35-35 35-35-35z"/>
+</svg>
