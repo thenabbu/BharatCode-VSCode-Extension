@@ -243,9 +243,12 @@ const allTargets: {
 const envTargets = process.env.KILO_CLI_TARGETS
   ? allTargets.filter(
       (item) =>
-        process.env.KILO_CLI_TARGETS!.split(",").includes(`${item.os}-${item.arch}`) &&
-        item.avx2 !== false &&
-        item.abi === undefined,
+        // kilocode_change start - allow musl (alpine) targets via a -musl suffix in KILO_CLI_TARGETS
+        process.env.KILO_CLI_TARGETS!.split(",").includes(
+          `${item.os}-${item.arch}${item.abi ? `-${item.abi}` : ""}`,
+        ) &&
+        // kilocode_change end
+        item.avx2 !== false,
     )
   : undefined
 
