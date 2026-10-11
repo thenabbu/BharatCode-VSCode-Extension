@@ -1,118 +1,36 @@
-# Releasing Kilo Code
+# Releasing BharatCode
 
-Kilo Code uses a fully automated CI pipeline triggered via GitHub Actions `workflow_dispatch`. A single workflow handles version bumping, building all artifacts, publishing to every distribution channel, and updating package registries.
+One script, one command, from the lab host:
 
-## How to Trigger a Release
+```bash
+ssh lab 'bash /data/ssd240/bharatcode-vscode-workspace/scripts/release.sh 7.8.8-bc.2'
+```
 
-1. Go to the [`publish` workflow](https://github.com/Kilo-Org/kilocode/actions/workflows/publish.yml) in GitHub Actions.
-2. Click **"Run workflow"**.
-3. Select the branch (typically `main`).
-4. Fill in the inputs:
-   - **`bump`** (choice): `patch`, `minor`, or `major`. Determines how the version number is incremented.
-   - **`version`** (string, optional): Override the version explicitly instead of using `bump`. Leave empty to use the bump-based calculation.
+It bumps the version trio (root + extension + CLI `package.json`, plus the ~33 sibling packages that share `7.8.8`), gates with production esbuild, builds both platform VSIXes (win32-x64, linux-x64), audits the zips (no sourcemaps, platform-exclusive `bin/`, LICENSE, manifest id/version), writes SHA256SUMS, tags, and pushes `bc/main` + the tag.
 
-   > **⚠️ Do not fill in `version` unless you have a specific reason to.**
-   > The default behavior — leaving `version` empty and selecting a `bump` level — is almost always what you want. The automated bump logic computes the correct next version from the current state of the repo. Only use the `version` override for exceptional cases like skipping versions or publishing a pre-release (e.g. `1.5.0-beta.1`).
+Then from anywhere with `gh`:
 
-5. Click **"Run workflow"** to start the release.
+```bash
+gh release create 7.8.8-bc.2 -R thenabbu/BharatCode-VSCode-Extension \
+  --title "BharatCode v7.8.8-bc.2" --notes-file notes.md \
+  /data/ssd240/vsix-out/kilo-vscode-win32-x64-7.8.8-bc.2.vsix \
+  /data/ssd240/vsix-out/kilo-vscode-linux-x64-7.8.8-bc.2.vsix \
+  /data/ssd240/vsix-out/SHA256SUMS-7.8.8-bc.2.txt
+```
 
-## What Happens During a Release
+## Version scheme
 
-The `publish.yml` workflow runs four jobs sequentially:
+- Fork of Kilo Code v7.8.8. BharatCode releases: `7.8.8-bc.N` (upstream X.Y.Z, `-bc` for BharatCode, `N` = our release count). Upstream bumps would be `7.8.9-bc.1`, etc.
+- ~36 `package.json` files share the version string; the script's bump replaces the literal `"version": "7.8.8"` → new version, then `git add -A` — any package already moved off `7.8.8` keeps its own version (upgrade drift is visible in the commit diff).
+- The embedded CLI reports its version from the same string via `KILO_VERSION` (`packages/opencode/script/build.ts:355`), so extension About and `kilo --version` stay in sync automatically.
 
-### 1. Version (`version`)
+## What a release must prove (the script enforces)
 
-- Checks out the repo with full history (`fetch-depth: 0`).
-- Runs `script/version.ts` to compute the next version based on the `bump` or `version` input.
-- Generates release notes from the commit history since the last release.
-- Creates a **draft** GitHub Release with the computed tag (e.g. `v1.2.3`) and release notes.
-- Outputs the `version`, `release` (database ID), and `tag` for downstream jobs.
+- tree clean, branch synced with origin, tag not taken
+- esbuild production gate RC=0
+- zip audit: zero `*.map`, `bin/kilo.exe` XOR `bin/kilo`, `extension/LICENSE.txt` with the BharatCode line, manifest `bharatcode.bharatcode-vscode` at the new version
+- sha256 recorded before anything else touches `out/`
 
-### 2. Build CLI (`build-cli`)
+## CI stance
 
-- Runs `packages/opencode/script/build.ts` to compile the Kilo CLI binary.
-- Builds native binaries for **all supported platforms and architectures**:
-  - Linux: x64, arm64 (glibc and musl), plus baseline (non-AVX2) variants
-  - macOS: x64, arm64, plus baseline variants
-  - Windows: x64 (plus baseline variant), arm64
-- Patches ELF interpreters on Linux binaries for broad compatibility.
-- Creates platform archives (`.tar.gz` for Linux, `.zip` for macOS/Windows) and uploads them to the draft GitHub Release.
-- Uploads the `dist/` directory as a workflow artifact (`kilo-cli`) for subsequent jobs.
-
-### 3. Build VS Code Extension (`build-vscode`)
-
-- Downloads the CLI artifacts from the previous job.
-- Runs `packages/kilo-vscode/script/build.ts` to build VSIX packages for all target platforms:
-  - `linux-x64`, `linux-arm64`, `alpine-x64`, `alpine-arm64`, `darwin-x64`, `darwin-arm64`, `win32-x64`, `win32-arm64`
-- Each VSIX bundles the platform-specific CLI binary.
-- Uploads the VSIX files as a workflow artifact (`kilo-vscode`).
-
-### 4. Publish (`publish`)
-
-Downloads all build artifacts and publishes to every distribution channel:
-
-#### Version Commit and Tagging
-
-- Updates the `version` field in all `package.json` files across the monorepo.
-- Updates the Zed extension manifest (`extension.toml`) with the new version.
-- Rebuilds the TypeScript SDK (`packages/sdk/js`).
-- Commits the version bump, tags the commit, and pushes to the repo.
-- Promotes the draft GitHub Release to a published release.
-
-#### CLI (`@kilocode/cli`)
-
-- Publishes platform-specific binary packages to **npm** (e.g. `@kilocode/cli-linux-x64`, `@kilocode/cli-darwin-arm64`, etc.).
-- Publishes the main `@kilocode/cli` package to **npm** with optional dependencies on the binary packages.
-- Builds and pushes a multi-arch **Docker image** (`ghcr.io/kilo-org/kilocode`) to GitHub Container Registry (linux/amd64 + linux/arm64).
-
-#### SDK (`@kilocode/sdk`)
-
-- Builds and publishes the TypeScript SDK to **npm**.
-
-#### Plugin (`@kilocode/plugin`)
-
-- Builds and publishes the plugin interface package to **npm**.
-
-#### VS Code Extension
-
-- Publishes platform-specific VSIX packages to the **VS Code Marketplace** via `vsce`.
-- Uploads all VSIX files to the **GitHub Release** as assets.
-
-#### Package Registries (stable releases only)
-
-- **AUR (Arch Linux)**: Clones `kilo-bin` from the AUR, updates the `PKGBUILD` with new version and SHA256 checksums, and pushes.
-- **Homebrew**: Clones `Kilo-Org/homebrew-tap`, updates the `kilo.rb` formula with new version, download URLs, and SHA256 checksums, and pushes.
-
-## Prerequisites and Permissions
-
-### Repository Access
-
-- The workflow only runs in the `Kilo-Org/kilocode` repository (guarded by `if: github.repository == 'Kilo-Org/kilocode'`).
-- You must have **write access** to the repository to trigger a `workflow_dispatch` event.
-
-### Workflow Permissions
-
-The workflow requires these GitHub token permissions:
-
-- `id-token: write` -- for npm provenance attestation
-- `contents: write` -- for creating releases, pushing tags, and uploading assets
-- `packages: write` -- for publishing Docker images to GHCR
-
-### Required Secrets
-
-The following secrets must be configured in the repository:
-
-| Secret | Purpose |
-|---|---|
-| `KILO_API_KEY` | Kilo API key used during version computation |
-| `KILO_ORG_ID` | Kilo organization ID |
-| `KILO_MAINTAINER_APP_ID` | GitHub App ID for the kilo-maintainer bot (used for git commits) |
-| `KILO_MAINTAINER_APP_SECRET` | GitHub App secret for the kilo-maintainer bot |
-| `NPM_TOKEN` | npm authentication token for publishing packages |
-| `VSCE_TOKEN` | VS Code Marketplace personal access token |
-| `OVSX_TOKEN` | Open VSX Registry token (currently unused but configured) |
-| `AUR_KEY` | SSH private key for pushing to the AUR |
-
-### Concurrency
-
-The workflow uses concurrency control (`workflow-ref-bump/version`) to prevent parallel releases from conflicting.
+No publish CI. Builds and releases run where the toolchain lives (lab host); the repo keeps marketplace publish config intact for when we list it. Re-run `release.sh` after any merge to `bc/main` that should go out.
