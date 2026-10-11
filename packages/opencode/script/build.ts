@@ -244,9 +244,7 @@ const envTargets = process.env.KILO_CLI_TARGETS
   ? allTargets.filter(
       (item) =>
         // kilocode_change start - allow musl (alpine) targets via a -musl suffix in KILO_CLI_TARGETS
-        process.env.KILO_CLI_TARGETS!.split(",").includes(
-          `${item.os}-${item.arch}${item.abi ? `-${item.abi}` : ""}`,
-        ) &&
+        process.env.KILO_CLI_TARGETS!.split(",").includes(`${item.os}-${item.arch}${item.abi ? `-${item.abi}` : ""}`) &&
         // kilocode_change end
         item.avx2 !== false,
     )
@@ -344,8 +342,8 @@ for (const item of targets) {
       autoloadPackageJson: true,
       target: name.replace(pkg.name, "bun") as any,
       // kilocode_change start
-      outfile: `dist/${name}/bin/kilo`,
-      execArgv: [`--user-agent=kilo/${Script.version}`, "--use-system-ca", "--"],
+      outfile: `dist/${name}/bin/bharatcode`,
+      execArgv: [`--user-agent=bharatcode/${Script.version}`, "--use-system-ca", "--"],
       // kilocode_change end
       windows: {},
     },
@@ -395,7 +393,7 @@ for (const item of targets) {
     const interpreter = interpreters[key]
     if (interpreter) {
       try {
-        await $`patchelf --set-interpreter ${interpreter} dist/${name}/bin/kilo`
+        await $`patchelf --set-interpreter ${interpreter} dist/${name}/bin/bharatcode`
         console.log(`patched interpreter for ${name} -> ${interpreter}`)
       } catch {
         console.warn(`patchelf not available, skipping interpreter fix for ${name}`)
@@ -406,7 +404,7 @@ for (const item of targets) {
 
   // Smoke test: only run if binary is for current platform
   if (item.os === process.platform && item.arch === process.arch && !item.abi) {
-    const binaryPath = `dist/${name}/bin/kilo` // kilocode_change
+    const binaryPath = `dist/${name}/bin/bharatcode` // kilocode_change
     console.log(`Running smoke test: ${binaryPath} --version`)
     try {
       const versionOutput = await $`${binaryPath} --version`.text()
@@ -470,7 +468,7 @@ for (const item of targets) {
 if (Script.release) {
   const archives: string[] = [] // kilocode_change
   for (const key of Object.keys(binaries)) {
-    const archive = key.replace(pkg.name, "kilo") // kilocode_change
+    const archive = key.replace(pkg.name, "bharatcode") // kilocode_change
     if (key.includes("linux")) {
       // kilocode_change start
       const out = path.resolve("dist", `${archive}.tar.gz`)

@@ -121,8 +121,8 @@ await Bun.file(`./dist/${pkg.name}/package.json`).write(
       name: pkg.name, // kilocode_change
       bin: {
         // kilocode_change start
-        kilo: `./bin/kilo`,
-        kilocode: `./bin/kilo`,
+        bharatcode: `./bin/bharatcode`,
+        kilocode: `./bin/bharatcode`,
         // kilocode_change end
       },
       scripts: {
@@ -199,14 +199,14 @@ if (!Script.preview) {
     `sha256sums_x86_64=('${x64Sha}')`,
     "",
     "package() {",
-    '  install -Dm755 ./kilo "${pkgdir}/usr/lib/kilo/kilo"', // kilocode_change
+    '  install -Dm755 ./kilo "${pkgdir}/usr/lib/bharatcode/bharatcode"', // kilocode_change
     '  install -Dm755 ./bwrap "${pkgdir}/usr/lib/kilo/bwrap"', // kilocode_change
-    '  install -Dm644 ./kilo-sandbox-mutation-worker.js "${pkgdir}/usr/lib/kilo/kilo-sandbox-mutation-worker.js"', // kilocode_change
-    '  install -dm755 "${pkgdir}/usr/bin" "${pkgdir}/usr/lib/kilo/tree-sitter" "${pkgdir}/usr/share/licenses/kilo"', // kilocode_change
-    '  cp -r ./tree-sitter/. "${pkgdir}/usr/lib/kilo/tree-sitter/"', // kilocode_change
+    '  install -Dm644 ./kilo-sandbox-mutation-worker.js "${pkgdir}/usr/lib/bharatcode/bharatcode-sandbox-mutation-worker.js"', // kilocode_change
+    '  install -dm755 "${pkgdir}/usr/bin" "${pkgdir}/usr/lib/bharatcode/tree-sitter" "${pkgdir}/usr/share/licenses/kilo"', // kilocode_change
+    '  cp -r ./tree-sitter/. "${pkgdir}/usr/lib/bharatcode/tree-sitter/"', // kilocode_change
     '  cp -r ./licenses/. "${pkgdir}/usr/share/licenses/kilo/"', // kilocode_change
-    "  printf '%s\\n' '#!/bin/sh' 'export KILO_TREE_SITTER_WASM_DIR=/usr/lib/kilo/tree-sitter' 'exec /usr/lib/kilo/kilo \"$@\"' > \"${pkgdir}/usr/bin/kilo\"", // kilocode_change
-    '  chmod 755 "${pkgdir}/usr/bin/kilo"', // kilocode_change
+    "  printf '%s\\n' '#!/bin/sh' 'export KILO_TREE_SITTER_WASM_DIR=/usr/lib/bharatcode/tree-sitter' 'exec /usr/lib/bharatcode/bharatcode \"$@\"' > \"${pkgdir}/usr/bin/bharatcode\"", // kilocode_change
+    '  chmod 755 "${pkgdir}/usr/bin/bharatcode"', // kilocode_change
     "}",
     "",
   ].join("\n")

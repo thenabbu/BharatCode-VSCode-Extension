@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * Watches packages/opencode/src/ for changes and rebuilds the CLI binary,
- * then copies it into packages/kilo-vscode/bin/kilo.
+ * then copies it into packages/kilo-vscode/bin/bharatcode.
  *
  * Used during development so the VS Code extension always has an up-to-date
  * CLI backend without manual rebuild steps.
