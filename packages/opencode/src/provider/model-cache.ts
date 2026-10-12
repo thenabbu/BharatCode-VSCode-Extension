@@ -115,7 +115,11 @@ export const layer: Layer.Layer<
       tool_call: item.metadata?.toolCalling ?? true,
       cost: { input: 0, output: 0 },
       limit: { context: item.context_window ?? 128000, output: item.max_output_tokens ?? 4096 },
-      modalities: { input: item.metadata?.input ?? ["text", "image"], output: item.metadata?.output ?? ["text"] },
+      modalities: {
+        // Apertis metadata types these as plain strings; narrow to the model modality union
+        input: (item.metadata?.input ?? ["text", "image"]) as Models[string]["modalities"]["input"],
+        output: (item.metadata?.output ?? ["text"]) as Models[string]["modalities"]["output"],
+      },
     })
 
     const fetchApertisModels = Effect.fn("ModelCache.fetchApertisModels")(function* (options: Options) {
@@ -130,7 +134,7 @@ export const layer: Layer.Layer<
       const url = `${baseURL.replace(/\/+$/, "")}/models`
       const response = yield* HttpClientRequest.get(url).pipe(
         HttpClientRequest.acceptJson,
-        options.apiKey ? HttpClientRequest.bearerToken(options.apiKey) : (req: HttpClientRequest) => req,
+        options.apiKey ? HttpClientRequest.bearerToken(options.apiKey) : (req) => req, // HttpClientRequest is a namespace here, not a type; pipe infers
         http.execute,
         Effect.timeout("10 seconds"),
       )
