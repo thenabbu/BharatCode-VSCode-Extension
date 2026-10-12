@@ -14,6 +14,7 @@ import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // ki
 import { httpClient } from "@opencode-ai/core/effect/app-node-platform" // kilocode_change
 
 type Models = Provider["models"]
+type Modalities = NonNullable<Models[string]["modalities"]>
 type KiloOptions = NonNullable<Parameters<typeof fetchKiloModels>[0]>
 type Options = { -readonly [K in keyof KiloOptions]?: KiloOptions[K] } & { apiKey?: string }
 type Failure = NonNullable<KiloModelsResult["error"]>
@@ -117,8 +118,8 @@ export const layer: Layer.Layer<
       limit: { context: item.context_window ?? 128000, output: item.max_output_tokens ?? 4096 },
       modalities: {
         // Apertis metadata types these as plain strings; narrow to the model modality union
-        input: (item.metadata?.input ?? ["text", "image"]) as Models[string]["modalities"]["input"],
-        output: (item.metadata?.output ?? ["text"]) as Models[string]["modalities"]["output"],
+        input: (item.metadata?.input ?? ["text", "image"]) as Modalities["input"],
+        output: (item.metadata?.output ?? ["text"]) as Modalities["output"],
       },
     })
 
