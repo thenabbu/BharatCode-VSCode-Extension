@@ -142,7 +142,9 @@ export async function evidence(input: { dir: string; release: Release; expected?
 
   const entries: Manifest.Entry[] = []
   for (const file of files) {
-    const target = file.replace(/^bharatcode-vscode-/, "").replace(/\.vsix$/, "")
+    // 02ae152 renamed shipped artifacts to bharatcode-vscode-*; also accept the old
+    // kilo-vscode-* name so stale dev-tree artifacts still describe (local-bin precedent).
+    const target = file.replace(/^(?:bharatcode|kilo)-vscode-/, "").replace(/\.vsix$/, "")
     try {
       const result = await vsix({ file: path.join(input.dir, file), target, release: input.release, lock })
       entries.push(result.entry)
