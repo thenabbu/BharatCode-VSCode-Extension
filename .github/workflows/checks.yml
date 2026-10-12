@@ -1,3 +1,4 @@
+# kilocode_change - new file
 # The checks AGENTS.md tells contributors to run locally — lint, guard
 # scripts, format, tests — moved to CI where heavy work belongs (the lab
 # must never run it again: tsgo in the old pre-push hook crashed the
@@ -20,7 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      # fetch-depth 0: check-opencode-annotations diffs origin/main...HEAD
+      # (fork base = upstream-pristine pushed as origin/main).
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -80,6 +85,10 @@ jobs:
           bun-version: 1.4.2
 
       - run: bun install --frozen-lockfile
+
+      # bwrap helper for the sandbox network tests (upstream's own action;
+      # without it: "No usable Bubblewrap executable is available")
+      - uses: ./.github/actions/setup-linux-sandbox
 
       # 37 pre-existing failures = rebrand drift (tests assert upstream
       # strings like "Add to Kilo Code"; nothing ran these in this fork

@@ -178,7 +178,14 @@ for (const scenario of [
       expect(connected.default.external).toBe("independent")
       expect(all.default.external).toBe("independent")
       expect(all.connected).toContain("external")
-      expect(paths.filter((path) => path.endsWith("/models"))).toEqual(["/api/organizations/org-env/models"])
+      // kilocode_change: the fork's builtin bharatcode provider warms its
+      // model list once (first scenario; cell not cleared per scenario) and
+      // the test's own fetch stub catches that path - no real egress.
+      expect(paths.filter((path) => path.endsWith("/models"))).toEqual(
+        scenario === "valid"
+          ? ["/api/organizations/org-env/models", "/api/model/v1/models"]
+          : ["/api/organizations/org-env/models"],
+      )
       expect(paths.filter((path) => path.endsWith("/defaults"))).toEqual(
         unavailable ? [] : ["/api/organizations/org-env/defaults", "/api/organizations/org-env/defaults"],
       )
@@ -201,7 +208,7 @@ for (const scenario of [
               expect(retained.default).toEqual({ external: "independent", kilo: "test/private" })
               expect(configured.default).toEqual(retained.default)
               expect(paths.filter((path) => path.endsWith("/defaults"))).toHaveLength(2)
-              expect(paths.filter((path) => path.endsWith("/models"))).toHaveLength(1)
+              expect(paths.filter((path) => path.endsWith("/models"))).toHaveLength(2) // org catalog + bharatcode warm
             }),
           (spy) => Effect.sync(() => spy.mockRestore()),
         )

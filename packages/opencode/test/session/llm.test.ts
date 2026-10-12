@@ -916,7 +916,7 @@ describe("session.llm.stream", () => {
         expect(url.pathname.startsWith("/v1/")).toBe(true)
         expect(url.pathname.endsWith("/chat/completions")).toBe(true)
         expect(headers.get("Authorization")).toBe("Bearer test-key")
-        expect(headers.get("User-Agent") ?? "").toMatch(/^Kilo-Code\//) // kilocode_change
+        expect(headers.get("User-Agent") ?? "").toMatch(/^BharatCode\//) // kilocode_change - fork UA prefix
 
         expect(body.model).toBe(resolved.api.id)
         expect(body.temperature).toBe(0.4)

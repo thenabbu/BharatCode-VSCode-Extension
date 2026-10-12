@@ -115,6 +115,21 @@ it.instance("routes URL-scoped credentials to their catalog origin", () => {
 
 it.instance("returns text-output models that support or may support tools", () =>
   Effect.gen(function* () {
+    // kilocode_change: the fork's default KILO_API_URL is a dead http
+    // loopback the secure-origin gate rejects; give this test an explicit
+    // https base (env is the live process.env object, read at call time).
+    const previous = process.env.KILO_API_URL
+    yield* Effect.acquireRelease(
+      Effect.sync(() => {
+        process.env.KILO_API_URL = "https://catalog.test"
+        return previous
+      }),
+      (prev) =>
+        Effect.sync(() => {
+          if (prev === undefined) delete process.env.KILO_API_URL
+          else process.env.KILO_API_URL = prev
+        }),
+    )
     const catalog = yield* CloudCatalog.Service
     const models = yield* catalog.models({ token: Redacted.make("stored-token") })
     expect(models).toEqual(["anthropic/code", "typesafe/jev-router", "anthropic/unknown"])
