@@ -77,6 +77,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      # goal.test.ts (115 tests, ~2.5s each + a model-cache fetch per turn)
+      # blew the runner's 300s per-file default -> TIMED OUT
+      KILO_TEST_FILE_TIMEOUT: "600000"
     steps:
       - uses: actions/checkout@v4
 
