@@ -141,7 +141,7 @@ describe("runDoctor", () => {
     })
 
     // A command that reveals nothing looks like a command that did nothing.
-    expect(lines).toEqual(["Kilo Agent Manager — no project is open."])
+    expect(lines).toEqual(["BharatCode Agent Manager — no project is open."])
     expect(revealed).toBe(1)
   })
 

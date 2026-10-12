@@ -111,7 +111,7 @@ describe("speech-to-text custom source", () => {
 
   it("still requires the Kilo backend without a custom source", async () => {
     const result = await transcribeSpeech(offline, { data: "", format: "m4a" }, "")
-    expect(result).toEqual({ ok: false, error: "Not connected to the Kilo backend", code: "not_connected" })
+    expect(result).toEqual({ ok: false, error: "Not connected to the BharatCode backend", code: "not_connected" })
   })
 
   it("parses list and data shaped catalogs and rejects empty ones", () => {

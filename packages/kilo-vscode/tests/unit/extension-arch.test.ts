@@ -72,6 +72,7 @@ describe("Extension — package.json command sync", () => {
     // so verify the dynamic registration pattern exists in source instead.
     const dynamic: Record<string, string> = {
       "kilo-code.new.agentManager.jumpTo": "registerCommand(`kilo-code.new.agentManager.jumpTo${",
+      "kilo-code.new.setBharatcodeKey": "registerCommand(SET_KEY_COMMAND",
     }
 
     const missing: string[] = []
@@ -203,11 +204,11 @@ describe("Extension — package.json command sync", () => {
     const commands = pkg.contributes?.commands ?? []
     expect(commands).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ command: "kilo-code.new.closeTask", title: "Close Task", category: "Kilo Code" }),
+        expect.objectContaining({ command: "kilo-code.new.closeTask", title: "Close Task", category: "BharatCode" }),
         expect.objectContaining({
           command: "kilo-code.new.closeAllTasks",
           title: "Close All Tasks",
-          category: "Kilo Code",
+          category: "BharatCode",
         }),
       ]),
     )

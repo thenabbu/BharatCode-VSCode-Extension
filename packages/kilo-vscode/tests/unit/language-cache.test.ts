@@ -348,7 +348,7 @@ describe("language dictionary cache", () => {
       request.reject(err)
       expect(await pending).toBeUndefined()
       expect(state.load("fa")).toBe(persian)
-      expect(state.errors).toEqual([["[Kilo New] Failed to load language", { locale: "ar", err }]])
+      expect(state.errors).toEqual([["[BharatCode] Failed to load language", { locale: "ar", err }]])
       expect(root.locale()).toBe("en")
       expect(root.t("common.save")).toBe(state.cache.en!["common.save"])
       expect(state.html).toEqual({ lang: "en", dir: "ltr" })

@@ -620,7 +620,7 @@ describe("BrowserBroker", () => {
       missing,
       cause,
       message: expect.stringContaining(
-        `${system ? "disable" : "enable"} Use System Chrome in Kilo Settings > Experimental for the Integrated Browser`,
+        `${system ? "disable" : "enable"} Use System Chrome in BharatCode Settings > Experimental for the Integrated Browser`,
       ),
     })
     await expect(open()).rejects.toThrow(system ? "Install Chrome" : "enable Use System Chrome")

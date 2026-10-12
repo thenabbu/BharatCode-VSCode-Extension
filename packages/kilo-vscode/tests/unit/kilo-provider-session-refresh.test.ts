@@ -21,7 +21,6 @@ type ProviderInternals = {
   handleLoadSessions: () => Promise<void>
   isWebviewReady: boolean
   syncWebviewState: (reason: string) => Promise<void>
-  handleMigrationMessage: (message: { type: string }) => boolean
   seedSessionWakeups: () => Promise<void>
   handleEvent: (event: unknown, directory?: string) => void
   wakeupSessions: Set<string>
@@ -163,9 +162,9 @@ describe("KiloProvider pending session refresh", () => {
     expect(reads).toEqual([])
     expect(sent).toContainEqual(expect.objectContaining({ type: "ready" }))
     expect(sent).not.toContainEqual(expect.objectContaining({ type: "migrationState" }))
-    for (const type of ["skipLegacyMigration", "clearLegacyData", "finalizeLegacyMigration"]) {
-      expect(internal.handleMigrationMessage({ type })).toBe(false)
-    }
+    // The fork dropped the legacy migration surface entirely: no handler is left
+    // to receive (or silently swallow) those messages.
+    expect((internal as unknown as Record<string, unknown>).handleMigrationMessage).toBeUndefined()
   })
 
   it("does not let a late listing restore the previous project's identity", async () => {

@@ -87,7 +87,7 @@ const remote = node("#remote")
 const remote2 = node("#remote2")
 
 // Local-only destination exposes Kilo actions, never the GitHub split button.
-assert.equal(button("send-kilo", local).textContent, "Send to Kilo")
+assert.equal(button("send-kilo", local).textContent, "Send to BharatCode")
 assert.equal(button("save", local).textContent, "Save")
 assert.equal(button("cancel", local).textContent, "Cancel")
 assert.equal(local.querySelector('[data-action="send-primary"]'), null, "no split button without a PR")

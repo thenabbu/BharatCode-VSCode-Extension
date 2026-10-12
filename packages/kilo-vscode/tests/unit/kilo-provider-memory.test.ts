@@ -75,7 +75,7 @@ describe("KiloProviderMemory", () => {
         expect.objectContaining({ label: "Stored memory fact :: with context" }),
       )
       expect(notice).toHaveBeenCalledWith(
-        "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+        "This project doesn't have any memory yet. It will start showing after you use BharatCode.",
       )
     } finally {
       picker.mockRestore()
