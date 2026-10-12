@@ -86,6 +86,10 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
+      # ubuntu-24.04 AppArmor blocks unprivileged user namespaces, which
+      # bwrap needs for its uid map ("setting up uid map: Permission denied")
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
       # bwrap helper for the sandbox network tests (upstream's own action;
       # without it: "No usable Bubblewrap executable is available")
       - uses: ./.github/actions/setup-linux-sandbox
