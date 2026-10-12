@@ -1,0 +1,32 @@
+# Typecheck CI — moved off the local pre-push hook: running tsgo on the lab
+# crashed the server, and typecheck work belongs on a runner, not a homelab
+# box. This is the only workflow this fork runs; when adding or removing a
+# workflow, keep script/check-workflows.ts (the drift guard) in sync.
+name: Typecheck
+
+on:
+  push:
+    branches: [bc/main]
+  pull_request:
+    branches: [bc/main]
+  workflow_dispatch:
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      # bun turbo typecheck covers packages/kilo-jetbrains (gradle) too
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - run: bun install --frozen-lockfile
+
+      - run: bun typecheck

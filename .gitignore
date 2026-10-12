@@ -76,3 +76,9 @@ packages/*/.kilo/tui.jsonc
 # Test Artifacts
 packages/app/.artifacts/
 packages/opencode/.artifacts/
+
+# staged build binaries (VSIX packaging output)
+/bin/bharatcode
+/bin/bharatcode.exe
+/bin/kilo
+/bin/kilo.exe

@@ -36,7 +36,7 @@ AGENTS.md files here serve double duty — contributor guidance and a product fe
 
 ## Quality Checks
 
-Before saying an implementation is ready, run the smallest relevant checks that can catch lint, typecheck, and test failures for the touched package. Do not rely on manual extension launch to discover build problems. Fix failures you introduced before the final response, or state exactly which check is still failing or could not be run. This repo has no CI — every check below runs locally before pushing.
+Before saying an implementation is ready, run the smallest relevant checks that can catch lint, typecheck, and test failures for the touched package. Do not rely on manual extension launch to discover build problems. Fix failures you introduced before the final response, or state exactly which check is still failing or could not be run. CI runs only typecheck (pushes and PRs to `bc/main`); every other check below runs locally before pushing.
 
 | Area | Checks |
 |---|---|

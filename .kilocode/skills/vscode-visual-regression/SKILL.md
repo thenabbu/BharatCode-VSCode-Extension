@@ -201,7 +201,7 @@ Only skip stories as a last resort. Prefer making the story deterministic (e.g.,
 
 ## Step 5: Generate baseline images
 
-Baselines are generated on **Linux only** (font rendering differs from macOS). This fork has no CI (`.github/workflows/` does not exist), so generate them yourself: run `bun run test:visual:update` from `packages/kilo-vscode/` and commit the new baseline PNGs together with your change.
+Baselines are generated on **Linux only** (font rendering differs from macOS). This fork has no visual-regression workflow (CI only typechecks), so generate them yourself: run `bun run test:visual:update` from `packages/kilo-vscode/` and commit the new baseline PNGs together with your change.
 
 **Generating baselines is a manual, local step.** Run the update script, review the resulting PNGs, then commit.
 
@@ -247,7 +247,7 @@ Key settings in `packages/kilo-vscode/playwright.config.ts`:
 
 # Reference: when to run
 
-There is no `visual-regression.yml` workflow in this fork (`.github/workflows/` does not exist), so run the suite manually. Run it when these paths change:
+There is no `visual-regression.yml` workflow in this fork (CI only typechecks), so run the suite manually. Run it when these paths change:
 
 - `packages/kilo-ui/**`
 - `packages/ui/**`

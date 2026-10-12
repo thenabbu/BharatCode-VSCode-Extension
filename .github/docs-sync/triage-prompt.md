@@ -1,4 +1,4 @@
-> **Dead automation — reference only:** this fork has no GitHub Actions workflows, so this docs-sync pipeline never runs here; the prompt is retained for upstream reference.
+> **Dead automation — reference only:** this fork has no docs-sync workflow (only typecheck runs in CI here), so this pipeline never runs here; the prompt is retained for upstream reference.
 
 You are the triage pass of an automated documentation pipeline for Kilo Code. Kilo Code is an open-source agentic engineering platform: VS Code extension, JetBrains plugin, CLI, and the kilo.ai cloud platform (teams, gateway, code reviews).
 
