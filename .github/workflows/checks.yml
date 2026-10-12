@@ -1,0 +1,93 @@
+# The checks AGENTS.md tells contributors to run locally — lint, guard
+# scripts, format, tests — moved to CI where heavy work belongs (the lab
+# must never run it again: tsgo in the old pre-push hook crashed the
+# server). typecheck.yml holds typecheck. Keep script/check-workflows.ts
+# (drift guard) in sync when adding/removing workflows.
+name: Checks
+
+on:
+  push:
+    branches: [bc/main]
+  pull_request:
+    branches: [bc/main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-guards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - run: bun install --frozen-lockfile
+
+      # cheap guards first so they signal even if a linter is broken
+      - name: guard scripts
+        run: |
+          set -e
+          for g in \
+            check-md-table-padding \
+            check-workflows \
+            check-architecture \
+            check-kilocode-duplication \
+            check-forbidden-strings \
+            check-kilo-generated-artifacts \
+            check-test-ci \
+            check-opencode-promise-facades \
+            check-model-tool-network \
+            check-opencode-annotations; do
+            echo "::group::$g"
+            bun "script/$g.ts"
+            echo "::endgroup::"
+          done
+          echo "::group::extract-source-links"
+          bun script/extract-source-links.ts --check
+          echo "::endgroup::"
+
+      - name: oxlint (root)
+        run: bun run lint
+
+      - name: eslint (kilo-vscode)
+        run: bun run lint
+        working-directory: packages/kilo-vscode
+
+      - name: prettier (root docs)
+        run: bunx prettier --check README.md AGENTS.md CONTRIBUTING.md TESTING.md REVIEW.md RELEASING.md CONTEXT.md PRIVACY.md SECURITY.md CODE_OF_CONDUCT.md docs/*.md .github/pull_request_template.md
+
+      - name: prettier (kilo-vscode)
+        run: bun run format:check
+        working-directory: packages/kilo-vscode
+
+      - name: kilocode_change marker guard (kilo-vscode)
+        run: bun run check-kilocode-change
+        working-directory: packages/kilo-vscode
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - run: bun install --frozen-lockfile
+
+      - name: vscode unit tests
+        run: bun run test:unit
+        working-directory: packages/kilo-vscode
+
+      - name: opencode tests
+        run: bun run test:ci
+        working-directory: packages/opencode
+
+      - name: repo script tests
+        run: bun run test:script:ci

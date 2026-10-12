@@ -2,11 +2,11 @@
 
 Guidance for PR reviewers — human or agent — on pull requests in this repo.
 
-This repo has no review-bot integration and CI only typechecks: every check below runs locally on the author's machine. The goal of review is to catch what those local checks cannot: bugs, design issues, and judgment calls about style and fork hygiene. Be helpful, not pedantic — frame everything as a suggestion the human can accept or reject.
+This repo has no review-bot integration: CI runs lint, guards, format, tests, and typecheck, so treat those as covered. The goal of review is to catch what those checks cannot: bugs, design issues, and judgment calls about style and fork hygiene. Be helpful, not pedantic — frame everything as a suggestion the human can accept or reject.
 
 ## Don't duplicate the local checks
 
-The author runs the checks below locally before pushing — CI only typechecks and does not re-run them. Confirm the PR description names which checks were run; do not re-run them or comment on their output:
+CI reruns lint, guards, format, tests, and typecheck on every push; treat a green run as the mechanical baseline rather than re-running checks in review. Confirm the PR description names any additional checks that were run manually; do not comment on their output:
 
 - Lint, formatting, or typecheck errors (root `bun run lint`, `bun run typecheck`)
 - Test failures (CLI tests, vscode tests)

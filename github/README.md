@@ -1,4 +1,4 @@
-> **Upstream documentation — reference only:** this is the upstream Kilo Code GitHub Action readme; it is not operated or usable from this fork (this repository's only GitHub Actions workflow is typecheck).
+> **Upstream documentation — reference only:** this is the upstream Kilo Code GitHub Action readme; it is not operated or usable from this fork (this repository runs only its own check workflows — `checks.yml` and `typecheck.yml`).
 
 # Kilo GitHub Action
 

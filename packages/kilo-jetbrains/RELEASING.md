@@ -1,6 +1,6 @@
 # Releasing the JetBrains Plugin
 
-> **No release CI in this fork:** only a typecheck workflow exists here, so the upstream GitHub Actions workflows referenced throughout this document cannot be run. The sections below record the upstream process; the local runbook is in **Create Release Tag And PR**, and the secrets table at the end is upstream reference only.
+> **No release CI in this fork:** only lint/guard/test/typecheck workflows exist here, so the upstream GitHub Actions workflows referenced throughout this document cannot be run. The sections below record the upstream process; the local runbook is in **Create Release Tag And PR**, and the secrets table at the end is upstream reference only.
 
 JetBrains releases are locked by an immediate `jetbrains/v<version>` tag, then gated by a reviewed release PR. The tag fixes the exact source code that will be published; the PR is where maintainers review and edit the version and changelog before publishing starts.
 
@@ -54,7 +54,7 @@ CLI releases also try to open this pin bump PR automatically after publishing. T
 
 ## Create Release Tag And PR
 
-This fork has no release CI (only typecheck runs), so the upstream prepare workflow cannot be dispatched. Run the release locally instead:
+This fork has no release CI (only lint/guards/tests/typecheck run), so the upstream prepare workflow cannot be dispatched. Run the release locally instead:
 
 1. Verify the CLI pin: `bun .kilo/skills/release-jetbrains/script/check-pin.ts` (see **CLI Pin Review** above).
 2. Set `kilo.jetbrains.version` in `packages/kilo-jetbrains/gradle.properties` and add the reviewed entry to `packages/kilo-jetbrains/CHANGELOG.md`. Use `x.y.z-rc.n` for RC/EAP releases or `x.y.z` for stable releases.

@@ -25,10 +25,12 @@ import path from "node:path"
 const ROOT = path.resolve(import.meta.dir, "..")
 const DIR = path.join(ROOT, ".github", "workflows")
 
-// Workflows we deliberately run. This fork carries exactly one: typecheck
-// (moved off the pre-push hook — running tsgo locally crashed the lab).
-// Upstream merge must not silently add more: add here only after review.
+// Workflows we deliberately run: checks (lint/guards/format/tests) and
+// typecheck (moved off the pre-push hook — running tsgo locally crashed
+// the lab). Upstream merge must not silently add more: add here only
+// after review.
 const active = new Set([
+  "checks.yml",
   "typecheck.yml",
 ])
 
