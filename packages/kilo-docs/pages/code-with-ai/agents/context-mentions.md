@@ -1,0 +1,143 @@
+---
+title: "Context & Mentions"
+description: "How to provide context to Kilo Code using mentions"
+---
+
+# Context Mentions
+
+Providing the right context helps Kilo Code understand your project and perform tasks accurately. All platforms support `@`-mentions for referencing files, and the agent can also discover context on its own using built-in tools like `read`, `grep`, and `glob`.
+
+{% tabs %}
+{% tab label="VSCode" %}
+
+The extension supports `@`-mention autocomplete for file paths and also uses a tool-based context model where the agent can automatically discover and read files using built-in tools.
+
+## How Context Works
+
+When you describe a task, the agent uses its tools — `read`, `grep`, `glob`, and others — to find and read relevant files on its own. You don't need to explicitly point it at files in most cases; just describe what you want done and the agent will locate the right code.
+
+### @-Mention Autocomplete
+
+Type `@` in the chat input to get autocomplete suggestions. You can mention:
+
+| Mention | Description | Example |
+|---|---|---|
+| **File** | Attach a file's contents to your message | `@src/utils.ts` |
+| **Terminal** | In the sidebar, include the active VS Code terminal output. In Agent Manager, include the focused terminal for the selected session or worktree, including embedded **Run** and **Setup** tabs. | `@terminal` |
+| **Git Changes** | Attach uncommitted working-tree diffs and new files | `@git-changes` |
+| **Past chats** | Add a previous session's chat history as context | `@` → **Past chats** → pick a session |
+| **Worktrees** | In Agent Manager, reference another worktree's location and session metadata | `@` → **Worktrees** → pick a worktree |
+| **Model** | Reference a model for a subagent or Agent Manager session | `@` → **Model** → pick a model |
+
+Selecting a suggestion inserts the mention and highlights it in the input. File contents, terminal output, and git changes are attached as context when you send the message.
+
+Terminal context is limited to 500 lines or 50,000 characters. Longer output is truncated. If no terminal content is available, Kilo reports that terminal content is unavailable instead of attaching an empty file.
+
+### Referencing Past Chats
+
+Choosing **Past chats** from the `@` menu opens a searchable picker of sessions in the current workspace and related Git worktrees, including Agent Manager worktrees, ordered by recency. Search matches session titles and worktree names. Selecting a session inserts a highlighted mention token; when you send the message, that session's current chat history is added as context so the agent can build on the earlier conversation. Clicking the mention token opens the referenced session.
+
+Very long chat histories are truncated, keeping the beginning and end, so a single mention cannot fill the context window.
+
+### Referencing worktrees and models
+
+In Agent Manager, choose **Worktrees** to search other worktrees by name, branch, or session title. A worktree mention includes its path, branch, base branch, and session metadata. It does not attach files, diffs, or chat history, and does not change your working directory.
+
+Choose **Model** to insert an inline `@provider/model` reference. Use it to request a particular model for a subagent or Agent Manager session. It does not attach a file or change the current session's model.
+
+### Drag and Drop
+
+You can also add file mentions by dragging and dropping:
+
+| Source | How | Result |
+|---|---|---|
+| **Explorer / Editor tabs** | Drag a file or folder from VS Code's Explorer or an editor tab into the chat input | Inserts an `@/relative/path` mention |
+| **Multiple files** | Drag several files at once | Inserts space-separated `@` mentions |
+| **Agent Manager diff headers** | Drag a file header from the Agent Manager's diff panel into chat | Inserts an `@file` mention |
+| **Agent Manager session tabs** | Drag a session tab from the Agent Manager tab strip into the chat input | Inserts an `@` mention that adds that session's chat history |
+| **Agent Manager worktree cards** | Drag a worktree card from the Agent Manager sidebar into the chat input | Inserts a mention for the worktree directory and its session metadata, not file contents or chat history |
+| **Agent Manager terminal tabs** | Drag a main or side terminal tab into the chat input | Inserts an `@terminal` mention for the focused terminal |
+| **Agent Manager document tabs** | Drag a tab from the Documents inspector into the chat input | Inserts an `@file` mention for that document |
+| **Images** | Hold **Shift** while dragging an image file from your OS file manager into the chat input | Attaches the image |
+
+{% callout type="info" %}
+VS Code requires holding **Shift** when dragging files from outside the editor (e.g. Finder or Windows Explorer) into a webview. This applies to image drops — file drops from within VS Code (Explorer, editor tabs) work without Shift.
+{% /callout %}
+
+### Automatic Editor Context
+
+The extension automatically includes context from your editor with each message — your currently focused file and all open editor tabs. You don't need to mention these explicitly.
+
+Selected code and editor diagnostics (errors/warnings) are not included automatically. However, you can send these to Kilo Code through VS Code's Code Actions: select code or hover over an error, then use the lightbulb menu to find context-dependent actions like "Explain with Kilo Code" or "Fix with Kilo Code."
+
+### Session-scoped file references
+
+In Agent Manager, file mentions, clickable file links, and review-comment file links use the referenced session's directory or worktree. File-link validation and native VS Code opening use the same scope, even after you switch sessions. Kilo rejects an unqualified session ID when it is ambiguous across projects instead of opening or validating a file in the wrong project.
+
+### Tool-Based File Access
+
+Rather than attaching file contents up front, the agent reads files on demand during its work:
+
+| Tool | Purpose | Example |
+|---|---|---|
+| **read** | Read the contents of a specific file | Agent reads `src/utils.ts` to understand it |
+| **glob** | Find files matching a pattern | Agent searches for `**/*.test.ts` |
+| **grep** | Search file contents for a pattern | Agent searches for `function handleError` |
+| **bash** | Run shell commands including `git` operations | Agent runs `git diff` or `git log` |
+
+This means the agent can explore your entire project as needed, rather than being limited to files you explicitly mention.
+
+## Best Practices
+
+| Practice | Description |
+|---|---|
+| **Describe the task clearly** | The agent finds context on its own — focus on _what_ you want done rather than _where_ the code is |
+| **Mention files when helpful** | If you know the exact file, mention its path to save the agent a search step |
+| **Keep editor tabs relevant** | Open tabs are passed as context, so keep relevant files open |
+| **Trust the agent's tools** | The agent can search, read, and explore your codebase — let it do the discovery work |
+| **Reference a past chat** | Type `@` and choose **Past chats** to search the current workspace and related Git worktrees, including Agent Manager worktrees. Selecting a session adds its current chat history as context when you send the message. |
+
+{% /tab %}
+{% tab label="CLI" %}
+
+The CLI uses a tool-based context model. The agent **automatically discovers and reads the context it needs** using built-in tools. In the TUI, you can type `@` to get file autocomplete suggestions for quick file references.
+
+## How Context Works
+
+When you describe a task, the agent uses its tools — `read`, `grep`, `glob`, and others — to find and read relevant files on its own. You don't need to explicitly point it at files in most cases; just describe what you want done and the agent will locate the right code.
+
+### Providing File Context
+
+In the terminal-based TUI, you can provide context in several ways:
+
+- **Type `@` for file autocomplete** — In the TUI, type `@` followed by a filename to get autocomplete suggestions. Selecting a file attaches its contents to your message. You can limit how much is included by appending a line range, e.g. `@src/utils.ts#10-50`.
+- **Reference a past chat** — Type `@`, choose **Past chats**, then search for and select a session. Kilo adds that chat history as context when you send the message without switching sessions.
+- **Mention file paths in your message** — Simply refer to files by path in your conversation text (e.g., "look at src/utils.ts") and the agent will read them.
+- **Use `kilo run -f`** — When using the non-interactive `kilo run` command, pass `-f path/to/file.ts` to explicitly include a file's contents in the context.
+- **Let the agent find files itself** — The agent has access to `glob` (find files by pattern), `grep` (search file contents), and `read` (read file contents) tools. Describe what you're looking for and it will locate the relevant code.
+
+### Tool-Based File Access
+
+Rather than attaching file contents up front, the agent reads files on demand during its work:
+
+| Tool | Purpose | Example |
+|---|---|---|
+| **read** | Read the contents of a specific file | Agent reads `src/utils.ts` to understand it |
+| **glob** | Find files matching a pattern | Agent searches for `**/*.test.ts` |
+| **grep** | Search file contents for a pattern | Agent searches for `function handleError` |
+| **bash** | Run shell commands including `git` operations | Agent runs `git diff` or `git log` |
+
+This means the agent can explore your entire project as needed, rather than being limited to files you explicitly mention.
+
+## Best Practices
+
+| Practice | Description |
+|---|---|
+| **Describe the task clearly** | The agent finds context on its own — focus on _what_ you want done rather than _where_ the code is |
+| **Mention files when helpful** | If you know the exact file, mention its path to save the agent a search step |
+| **Reference a past chat** | Type `@` and choose **Past chats** to add another session's chat history as context without switching sessions. |
+| **Use `kilo run -f`** | Pass key files with `-f` when using `kilo run` for immediate context |
+| **Trust the agent's tools** | The agent can search, read, and explore your codebase — let it do the discovery work |
+
+{% /tab %}
+{% /tabs %}

@@ -1,0 +1,72 @@
+---
+title: "Team Management"
+description: "Add and manage team members in Kilo Code"
+---
+
+# Managing Your Team
+
+Team roles are _Owner_, _Admin_, _Member_, and _Billing Manager_.
+
+Owners have full administrative oversight including billing, seat allocation, and model/provider selection.
+
+Owners and Admins can manage the team. Only Owners can grant the Owner role or manage another Owner's membership.
+
+Members can use the Kilo Code extension and see data on the team's usage in the [usage dashboard](/docs/collaborate/teams/analytics).
+
+## Adding Team Members
+
+1. **Navigate to Organization Tab** in your profile page and click on the team you want to manage
+2. **Click "Invite Member"** button
+3. **Enter the team member's email address**
+4. **Select an initial role** from the available options
+5. Click **Send Invitation**
+
+{% image src="/docs/img/team-management/invite-member.png" alt="invite-member" width="619" caption="invite-member" /%}
+
+## Joining automatically with a verified domain
+
+An organization Owner or Admin can verify an email domain so users with matching addresses join automatically:
+
+1. Open the **Verified Domains** card in your Organization dashboard.
+2. Add your company's email domain and follow the WorkOS verification steps to prove ownership.
+3. Return to **Verified Domains** and click **Check status**. If verification is still pending, check again until the domain shows **Verified**.
+
+After verification, matching users join as Members when they sign in through the browser, SSO, or the mobile app. They keep their personal account and other organization memberships. Removed members are not automatically re-added, and elevated roles still require an explicit role change.
+
+Auto-join does not require SSO. See [SSO setup](/docs/collaborate/enterprise/sso) to configure single sign-on separately.
+
+## Removing Team Members
+
+When team members leave:
+
+1. **Navigate to Organization tab**
+2. **Find the departing member**
+3. **Click "Remove" button**
+4. **Confirm removal**
+5. **Seat becomes available** immediately
+
+## Changing Team Member Roles
+
+Promote or demote team members as needed:
+
+1. **Locate team member** in Organization tab
+2. **Click role dropdown** next to their name
+3. **Select a new role** from the available options
+4. **Confirm change**
+5. **Member receives email notification**
+
+### Viewing Team Status
+
+The Organization tab shows:
+
+- **Active members** with last activity
+- **Pending invitations** awaiting acceptance
+- **Role distribution** across the team
+
+## Next Steps
+
+- [Understand billing and credits](/docs/collaborate/teams/billing)
+- [Explore usage analytics](/docs/collaborate/teams/analytics)
+- [Learn about team roles and permissions](/docs/collaborate/teams/team-management)
+
+Effective team management ensures your organization maximizes the benefits of AI-assisted development while maintaining cost control and security.

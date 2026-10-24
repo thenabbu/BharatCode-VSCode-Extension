@@ -1,0 +1,223 @@
+import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { Effect, Layer, Context, Schema } from "effect"
+import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { EventV2Bridge } from "@/event-v2-bridge"
+import { Config } from "@/config/config" // kilocode_change
+import { InstanceState } from "@/effect/instance-state" // kilocode_change
+import { Snapshot } from "../snapshot"
+import { Storage } from "@/storage/storage"
+import { Session } from "./session"
+import { MessageV2 } from "./message-v2"
+import { SessionID, MessageID, PartID } from "./schema"
+import { SessionRunState } from "./run-state"
+import { SessionSummary } from "./summary"
+import { KiloSessionRevert } from "@/kilocode/session/revert" // kilocode_change
+
+export const RevertInput = Schema.Struct({
+  sessionID: SessionID,
+  messageID: MessageID,
+  partID: Schema.optional(PartID),
+})
+export type RevertInput = Schema.Schema.Type<typeof RevertInput>
+
+export interface Interface {
+  readonly revert: (input: RevertInput) => Effect.Effect<Session.Info, Session.BusyError>
+  readonly unrevert: (input: { sessionID: SessionID }) => Effect.Effect<Session.Info, Session.BusyError>
+  readonly cleanup: (session: Session.Info) => Effect.Effect<void>
+}
+
+export class Service extends Context.Service<Service, Interface>()("@opencode/SessionRevert") {}
+
+const layer = Layer.effect(
+  Service,
+  Effect.gen(function* () {
+    const sessions = yield* Session.Service
+    const snap = yield* Snapshot.Service
+    const storage = yield* Storage.Service
+    const events = yield* EventV2Bridge.Service
+    const summary = yield* SessionSummary.Service
+    const state = yield* SessionRunState.Service
+    const config = yield* Config.Service // kilocode_change
+
+    const revert = Effect.fn("SessionRevert.revert")(function* (input: RevertInput) {
+      yield* state.assertNotBusy(input.sessionID)
+      const all = yield* sessions.messages({ sessionID: input.sessionID }).pipe(Effect.orDie)
+      let lastUser: SessionV1.User | undefined
+      const session = yield* sessions.get(input.sessionID).pipe(Effect.orDie)
+
+      let rev: Session.Info["revert"]
+      const patches: Snapshot.Patch[] = []
+      for (const msg of all) {
+        if (msg.info.role === "user") lastUser = msg.info
+        const remaining = []
+        for (const part of msg.parts) {
+          if (rev) {
+            if (part.type === "patch") patches.push(part)
+            continue
+          }
+
+          if (!rev) {
+            if ((msg.info.id === input.messageID && !input.partID) || part.id === input.partID) {
+              const partID = remaining.some((item) => ["text", "tool"].includes(item.type)) ? input.partID : undefined
+              rev = {
+                messageID: !partID && lastUser ? lastUser.id : msg.info.id,
+                partID,
+              }
+            }
+            remaining.push(part)
+          }
+        }
+      }
+
+      if (!rev) return session
+
+      // kilocode_change start
+      // A fresh snapshot only preserves the state needed for redo. File restoration
+      // is possible only when the historical turn retained checkpoint data.
+      const index = all.findIndex((msg) => msg.info.id === rev.messageID)
+      const range = index < 0 ? [] : all.slice(index)
+      const checkpoint = patches.length > 0
+      const ctx = yield* InstanceState.context
+      rev.workspace = checkpoint
+        ? "restored"
+        : ctx.project.vcs !== "git"
+          ? "not-a-git-repo"
+          : (yield* config.get()).snapshot === false
+            ? "snapshots-disabled"
+            : "unavailable"
+      // kilocode_change end
+      rev.snapshot = session.revert?.snapshot ?? (yield* snap.track())
+      // kilocode_change start - keep the entire workspace transition atomic
+      const prior = session.revert ? KiloSessionRevert.files(all, session.revert) : []
+      const files = [...new Set([...prior, ...patches.flatMap((patch) => patch.files)])]
+      const baseline = session.revert?.snapshot && files.length > 0 ? yield* snap.track() : rev.snapshot
+      if (files.length > 0 && !baseline) {
+        return yield* Effect.die(new Error("Cannot rewind files because the current workspace snapshot is unavailable"))
+      }
+      yield* KiloSessionRevert.apply(
+        snap,
+        baseline,
+        files,
+        Effect.gen(function* () {
+          if (session.revert?.snapshot) yield* KiloSessionRevert.restore(snap, session.revert.snapshot, prior)
+
+          // Compute the user-facing diff while files still contain the changes being undone.
+          const diffs = yield* summary.computeDiff({ messages: range })
+          yield* snap.revert(patches)
+          if (rev.snapshot) rev.diff = yield* snap.diff(rev.snapshot)
+          yield* storage.write(["session_diff", input.sessionID], diffs).pipe(Effect.ignore)
+          yield* events.publish(Session.Event.Diff, { sessionID: input.sessionID, diff: diffs })
+          const summaryDiffs: Snapshot.SummaryFileDiff[] = diffs.map((d) => ({
+            file: d.file,
+            additions: d.additions,
+            deletions: d.deletions,
+            status: d.status,
+          }))
+          yield* sessions.setRevert({
+            sessionID: input.sessionID,
+            revert: rev,
+            summary: {
+              additions: diffs.reduce((sum, x) => sum + x.additions, 0),
+              deletions: diffs.reduce((sum, x) => sum + x.deletions, 0),
+              files: diffs.length,
+              diffs: summaryDiffs,
+            },
+          })
+        }),
+      )
+      // kilocode_change end
+      return yield* sessions.get(input.sessionID).pipe(Effect.orDie)
+    })
+
+    const unrevert = Effect.fn("SessionRevert.unrevert")(function* (input: { sessionID: SessionID }) {
+      yield* Effect.logInfo("unreverting", { sessionID: input.sessionID })
+      yield* state.assertNotBusy(input.sessionID)
+      const session = yield* sessions.get(input.sessionID).pipe(Effect.orDie)
+      if (!session.revert) return session
+      // kilocode_change start - preserve the reverted workspace if redo cannot complete
+      const all = yield* sessions.messages({ sessionID: input.sessionID }).pipe(Effect.orDie)
+      const files = KiloSessionRevert.files(all, session.revert)
+      const baseline = files.length > 0 ? yield* snap.track() : undefined
+      if (files.length > 0 && !baseline) {
+        return yield* Effect.die(
+          new Error("Cannot restore files because the current workspace snapshot is unavailable"),
+        )
+      }
+      yield* KiloSessionRevert.apply(
+        snap,
+        baseline,
+        files,
+        Effect.gen(function* () {
+          if (session.revert?.snapshot) yield* KiloSessionRevert.restore(snap, session.revert.snapshot, files)
+          yield* sessions.clearRevert(input.sessionID)
+        }),
+      )
+      // kilocode_change end
+      return yield* sessions.get(input.sessionID).pipe(Effect.orDie)
+    })
+
+    const cleanup = Effect.fn("SessionRevert.cleanup")(function* (session: Session.Info) {
+      if (!session.revert) return
+      const sessionID = session.id
+      const msgs = yield* sessions.messages({ sessionID }).pipe(Effect.orDie)
+      const messageID = session.revert.messageID
+      const remove = [] as SessionV1.WithParts[]
+      let target: SessionV1.WithParts | undefined
+      const index = msgs.findIndex((msg) => msg.info.id === messageID)
+      if (index < 0) {
+        yield* sessions.clearRevert(sessionID)
+        return
+      }
+      for (const msg of msgs.slice(index)) {
+        if (msg.info.id !== messageID) {
+          remove.push(msg)
+          continue
+        }
+        if (session.revert.partID) {
+          target = msg
+          continue
+        }
+        remove.push(msg)
+      }
+      for (const msg of remove) {
+        yield* sessions.removeMessage({ sessionID, messageID: msg.info.id })
+      }
+      if (session.revert.partID && target) {
+        const partID = session.revert.partID
+        const idx = target.parts.findIndex((part) => part.id === partID)
+        if (idx >= 0) {
+          const removeParts = target.parts.slice(idx)
+          target.parts = target.parts.slice(0, idx)
+          for (const part of removeParts) {
+            yield* sessions.removePart({ sessionID, messageID: target.info.id, partID: part.id })
+          }
+          // kilocode_change start - clear a reverted provider error from the retained assistant message
+          if (target.info.role === "assistant" && target.info.error) {
+            delete target.info.error
+            yield* sessions.updateMessage(target.info)
+          }
+          // kilocode_change end
+        }
+      }
+      yield* sessions.clearRevert(sessionID)
+    })
+
+    return Service.of({ revert, unrevert, cleanup })
+  }),
+)
+
+export const node = LayerNode.make({
+  service: Service,
+  layer: layer,
+  deps: [
+    Session.node,
+    Snapshot.node,
+    Storage.node,
+    EventV2Bridge.node,
+    SessionSummary.node,
+    SessionRunState.node,
+    Config.node, // kilocode_change
+  ],
+})
+
+export * as SessionRevert from "./revert"

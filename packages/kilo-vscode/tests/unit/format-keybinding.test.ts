@@ -1,0 +1,126 @@
+import { describe, it, expect } from "bun:test"
+import { buildKeybindingMap, formatKeybinding } from "../../src/agent-manager/format-keybinding"
+
+describe("formatKeybinding", () => {
+  describe("mac", () => {
+    it("formats cmd as ⌘", () => {
+      expect(formatKeybinding("cmd+w", true)).toBe("⌘W")
+    })
+
+    it("formats cmd+shift as ⌘⇧", () => {
+      expect(formatKeybinding("cmd+shift+w", true)).toBe("⌘⇧W")
+    })
+
+    it("formats ctrl as ⌃", () => {
+      expect(formatKeybinding("ctrl+c", true)).toBe("⌃C")
+    })
+
+    it("formats alt as ⌥", () => {
+      expect(formatKeybinding("alt+f", true)).toBe("⌥F")
+    })
+
+    it("formats arrow keys as symbols", () => {
+      expect(formatKeybinding("cmd+left", true)).toBe("⌘←")
+      expect(formatKeybinding("cmd+right", true)).toBe("⌘→")
+      expect(formatKeybinding("cmd+up", true)).toBe("⌘↑")
+      expect(formatKeybinding("cmd+down", true)).toBe("⌘↓")
+    })
+
+    it("formats special keys", () => {
+      expect(formatKeybinding("cmd+backspace", true)).toBe("⌘⌫")
+      expect(formatKeybinding("cmd+enter", true)).toBe("⌘↵")
+      expect(formatKeybinding("escape", true)).toBe("Esc")
+    })
+
+    it("joins without separator on mac", () => {
+      expect(formatKeybinding("cmd+shift+alt+t", true)).toBe("⌘⇧⌥T")
+    })
+
+    it("formats plain key", () => {
+      expect(formatKeybinding("cmd+/", true)).toBe("⌘/")
+    })
+
+    it("formats bracket keys", () => {
+      expect(formatKeybinding("cmd+shift+[", true)).toBe("⌘⇧[")
+      expect(formatKeybinding("cmd+shift+]", true)).toBe("⌘⇧]")
+    })
+  })
+
+  describe("windows/linux", () => {
+    it("formats cmd as Ctrl", () => {
+      expect(formatKeybinding("cmd+w", false)).toBe("Ctrl+W")
+    })
+
+    it("formats ctrl as Ctrl", () => {
+      expect(formatKeybinding("ctrl+w", false)).toBe("Ctrl+W")
+    })
+
+    it("formats ctrl+shift", () => {
+      expect(formatKeybinding("ctrl+shift+w", false)).toBe("Ctrl+Shift+W")
+    })
+
+    it("formats alt as Alt", () => {
+      expect(formatKeybinding("alt+f", false)).toBe("Alt+F")
+    })
+
+    it("formats arrow keys as symbols", () => {
+      expect(formatKeybinding("ctrl+left", false)).toBe("Ctrl+←")
+      expect(formatKeybinding("ctrl+right", false)).toBe("Ctrl+→")
+      expect(formatKeybinding("ctrl+up", false)).toBe("Ctrl+↑")
+      expect(formatKeybinding("ctrl+down", false)).toBe("Ctrl+↓")
+    })
+
+    it("joins with + separator on non-mac", () => {
+      expect(formatKeybinding("ctrl+shift+alt+t", false)).toBe("Ctrl+Shift+Alt+T")
+    })
+  })
+})
+
+describe("buildKeybindingMap", () => {
+  it("maps the configurable Agent Manager search shortcut", () => {
+    const bindings = [{ command: "kilo-code.new.agentManager.search", key: "ctrl+f", mac: "cmd+f" }]
+    expect(buildKeybindingMap(bindings, true).search).toBe("⌘F")
+    expect(buildKeybindingMap(bindings, false).search).toBe("Ctrl+F")
+  })
+
+  it("maps the shared session tab shortcuts", () => {
+    const bindings = [
+      { command: "kilo-code.new.agentManager.previousTab", key: "ctrl+alt+left", mac: "cmd+alt+left" },
+      { command: "kilo-code.new.agentManager.nextTab", key: "ctrl+alt+right", mac: "cmd+alt+right" },
+    ]
+    expect(buildKeybindingMap(bindings, true)).toMatchObject({ previousTab: "⌘⌥←", nextTab: "⌘⌥→" })
+    expect(buildKeybindingMap(bindings, false)).toMatchObject({ previousTab: "Ctrl+Alt+←", nextTab: "Ctrl+Alt+→" })
+  })
+
+  it("provides terminal navigation fallbacks", () => {
+    expect(buildKeybindingMap([], true).previousTerminal).toBe("⌘⇧[")
+    expect(buildKeybindingMap([], true).nextTerminal).toBe("⌘⇧]")
+    expect(buildKeybindingMap([], false).previousTerminal).toBe("Ctrl+Shift+[")
+    expect(buildKeybindingMap([], false).nextTerminal).toBe("Ctrl+Shift+]")
+  })
+
+  it("keeps prompt and side-terminal shortcuts separate", () => {
+    const bindings = [
+      {
+        command: "kilo-code.new.agentManager.newTerminalTab",
+        key: "ctrl+shift+t",
+        mac: "cmd+shift+t",
+        when: "activeWebviewPanelId == 'kilo-code.new.AgentManagerPanel' && kilo-code.new.agentManagerPromptFocused",
+      },
+      {
+        command: "kilo-code.new.agentManager.newSideTerminal",
+        key: "ctrl+t",
+        mac: "cmd+t",
+        when: "activeWebviewPanelId == 'kilo-code.new.AgentManagerPanel' && kilo-code.new.agentManagerSideTerminalFocused",
+      },
+    ]
+    expect(buildKeybindingMap(bindings, true)).toMatchObject({
+      newTerminalCenter: "⌘⇧T",
+      newTerminalTerminal: "⌘T",
+    })
+    expect(buildKeybindingMap(bindings, false)).toMatchObject({
+      newTerminalCenter: "Ctrl+Shift+T",
+      newTerminalTerminal: "Ctrl+T",
+    })
+  })
+})

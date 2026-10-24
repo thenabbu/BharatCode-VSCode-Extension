@@ -1,0 +1,286 @@
+/**
+ * SessionTerminalManager tests.
+ *
+ * Structural tests use ts-morph to protect ordering and cleanup invariants.
+ * Command behavior tests exercise the narrow TerminalHost interface directly.
+ */
+
+import { describe, it, expect } from "bun:test"
+import path from "node:path"
+import { Project, SyntaxKind } from "ts-morph"
+import { SessionTerminalManager, type TerminalHost } from "../../src/agent-manager/SessionTerminalManager"
+import type { WorktreeStateManager } from "../../src/agent-manager/WorktreeStateManager"
+
+const ROOT = path.resolve(import.meta.dir, "../..")
+const FILE = path.join(ROOT, "src/agent-manager/SessionTerminalManager.ts")
+const COMMAND = "workbench.action.togglePanel"
+
+type Handler = (...args: unknown[]) => Promise<unknown>
+
+function runtime(run: () => Promise<unknown>) {
+  let blocked = false
+  const handlers = new Map<string, Handler>()
+  const host: TerminalHost = {
+    createTerminal() {
+      throw new Error("not used")
+    },
+    activeTerminal: () => undefined,
+    repoPath: () => undefined,
+    showWarning() {},
+    setContext() {},
+    onTerminalClosed: () => ({ dispose() {} }),
+    onActiveTerminalChanged: () => ({ dispose() {} }),
+    registerCommand(id, handler) {
+      if (blocked && id === COMMAND) throw new Error(`command '${id}' already exists`)
+      handlers.set(id, handler)
+      return {
+        dispose() {
+          if (handlers.get(id) === handler) handlers.delete(id)
+        },
+      }
+    },
+    executeCommand() {
+      blocked = true
+      return run()
+    },
+  }
+  const manager = new SessionTerminalManager(() => {}, host)
+  const handler = handlers.get(COMMAND)
+  if (!handler) throw new Error(`command '${COMMAND}' was not registered`)
+  return { manager, handler }
+}
+
+function getClass() {
+  const project = new Project({ compilerOptions: { allowJs: true } })
+  const source = project.addSourceFileAtPath(FILE)
+  return source.getFirstDescendantByKind(SyntaxKind.ClassDeclaration)!
+}
+
+function body(name: string): string {
+  const cls = getClass()
+  const method = cls.getMethod(name)
+  expect(method, `method ${name} not found in SessionTerminalManager`).toBeTruthy()
+  return method!.getText()
+}
+
+describe("SessionTerminalManager structure", () => {
+  it("constructor registers both terminal lifecycle listeners", () => {
+    const cls = getClass()
+    const ctor = cls.getConstructors()[0]
+    expect(ctor).toBeTruthy()
+    const text = ctor!.getText()
+    // Both listeners are required: close (cleanup) and active-change (context key)
+    expect(text).toContain("onTerminalClosed")
+    expect(text).toContain("onActiveTerminalChanged")
+  })
+
+  it("dispose clears the context key, disposes terminals, and clears the map", () => {
+    const text = body("dispose")
+    // All three are required for clean shutdown — missing any would leak resources
+    expect(text).toContain("kilo-code.agentTerminalFocus")
+    expect(text).toContain("terminal.dispose()")
+    expect(text).toContain("terminals.clear()")
+  })
+
+  it("showTerminal resolves CWD from worktree with repo fallback", () => {
+    const text = body("showTerminal")
+    // The fallback chain must be worktreePath ?? repoPath, not the reverse.
+    // Getting this wrong would run agents in the wrong directory.
+    expect(text).toContain("worktreePath ?? repoPath")
+  })
+
+  /**
+   * Regression: showOrCreate must check exitStatus before checking CWD changes.
+   * If reversed, a stale exited terminal with a different CWD would hit the
+   * dispose path instead of the cleanup path, potentially leaving ghost entries.
+   */
+  it("showOrCreate checks exit status before CWD mismatch", () => {
+    const text = body("showOrCreate")
+    const exitIdx = text.indexOf("exitStatus")
+    const cwdIdx = text.indexOf("entry.cwd !== cwd")
+    expect(exitIdx).toBeGreaterThan(-1)
+    expect(cwdIdx).toBeGreaterThan(-1)
+    expect(exitIdx, "exit check must come before cwd check").toBeLessThan(cwdIdx)
+  })
+
+  it("showOrCreate updates context key after showing terminal", () => {
+    const text = body("showOrCreate")
+    const showIdx = text.lastIndexOf("entry.terminal.show")
+    const contextIdx = text.lastIndexOf("this.updateContextKey()")
+    expect(showIdx).toBeGreaterThan(-1)
+    expect(contextIdx).toBeGreaterThan(-1)
+    expect(showIdx, "show must precede updateContextKey").toBeLessThan(contextIdx)
+  })
+
+  it("syncOnSessionSwitch only switches when panel is open", () => {
+    const text = body("syncOnSessionSwitch")
+    expect(text).toContain("if (!this.panelOpen)")
+    expect(text).toContain("this.showExisting(sessionId)")
+  })
+
+  it("syncLocalOnSessionSwitch only switches when panel is open", () => {
+    const text = body("syncLocalOnSessionSwitch")
+    expect(text).toContain("if (!this.panelOpen)")
+    expect(text).toContain("this.showExistingLocal()")
+  })
+
+  it("panel command registration is best effort", () => {
+    const text = body("tryRegisterCommand")
+    expect(text).toContain("this.host.registerCommand")
+    expect(text).toContain("catch (err)")
+    expect(text).toContain("panel command registration skipped")
+  })
+
+  it("resolves the key that owns the active managed terminal", () => {
+    const text = body("activeKey")
+    expect(text).toContain("this.host.activeTerminal()")
+    expect(text).toContain("entry.terminal === active")
+  })
+
+  it("rejects context capture from another managed session", () => {
+    const text = body("prepareContext")
+    expect(text).toContain("this.showExisting(sessionId, false)")
+    expect(text).toContain("this.activeKey()")
+    expect(text).toContain("SessionTerminalManager.sessionKey(sessionId)")
+  })
+
+  it("allows a focused legacy Run terminal when no managed terminal exists", () => {
+    const active = {}
+    const host: TerminalHost = {
+      createTerminal() {
+        throw new Error("not used")
+      },
+      activeTerminal: () => active,
+      repoPath: () => undefined,
+      showWarning() {},
+      setContext() {},
+      onTerminalClosed: () => ({ dispose() {} }),
+      onActiveTerminalChanged: () => ({ dispose() {} }),
+      registerCommand: () => ({ dispose() {} }),
+      executeCommand: () => Promise.resolve(),
+    }
+    const manager = new SessionTerminalManager(() => {}, host)
+
+    expect(manager.prepareContext("session-1", "local")).toBe(true)
+    manager.dispose()
+  })
+})
+
+describe("SessionTerminalManager command restoration", () => {
+  it("preserves the original command result when re-registration fails", async () => {
+    const expected = { status: "complete" }
+    const state = runtime(async () => expected)
+
+    expect(await state.handler()).toBe(expected)
+    state.manager.dispose()
+  })
+
+  it("preserves the original command error when re-registration fails", async () => {
+    const expected = new Error("panel command failed")
+    const state = runtime(async () => {
+      throw expected
+    })
+
+    await expect(state.handler()).rejects.toBe(expected)
+    state.manager.dispose()
+  })
+})
+
+describe("SessionTerminalManager worktree terminals", () => {
+  function scene(opts: { worktreePath?: string; repoPath?: string } = {}) {
+    const created: Array<{ cwd: string; name: string }> = []
+    const disposed: string[] = []
+    const warnings: string[] = []
+    let shown = 0
+    const host: TerminalHost = {
+      createTerminal(o) {
+        created.push(o)
+        return {
+          show: () => shown++,
+          dispose: () => disposed.push(o.cwd),
+          exitStatus: undefined,
+        }
+      },
+      activeTerminal: () => undefined,
+      repoPath: () => opts.repoPath,
+      showWarning: (msg) => warnings.push(msg),
+      setContext() {},
+      onTerminalClosed: () => ({ dispose() {} }),
+      onActiveTerminalChanged: () => ({ dispose() {} }),
+      registerCommand: () => ({ dispose() {} }),
+      executeCommand: () => Promise.resolve(),
+    }
+    const state = {
+      directoryFor: () => opts.worktreePath,
+      getSession: (id: string) => (opts.worktreePath ? { id, worktreeId: "wt-1" } : undefined),
+      getWorktree: (id: string) =>
+        opts.worktreePath ? { id, path: opts.worktreePath, branch: "feature/x" } : undefined,
+    } as unknown as WorktreeStateManager
+    const manager = new SessionTerminalManager(() => {}, host)
+    return { manager, state, created, disposed, warnings, shown: () => shown }
+  }
+
+  it("creates a terminal rooted at the worktree path", () => {
+    const s = scene({ worktreePath: "/repo/.kilo/worktrees/wt-1", repoPath: "/repo" })
+    s.manager.showWorktreeTerminal("wt-1", s.state)
+    expect(s.created).toEqual([{ cwd: "/repo/.kilo/worktrees/wt-1", name: "Agent: feature/x" }])
+    expect(s.shown()).toBe(1)
+  })
+
+  it("reuses the live terminal on repeat calls", () => {
+    const s = scene({ worktreePath: "/repo/.kilo/worktrees/wt-1" })
+    s.manager.showWorktreeTerminal("wt-1", s.state)
+    s.manager.showWorktreeTerminal("wt-1", s.state)
+    expect(s.created).toHaveLength(1)
+    expect(s.shown()).toBe(2)
+  })
+
+  it("keeps session and worktree terminal keys in separate namespaces", () => {
+    const s = scene({ worktreePath: "/repo/.kilo/worktrees/wt-1", repoPath: "/repo" })
+    s.manager.showTerminal("worktree:wt-1", undefined)
+    s.manager.showWorktreeTerminal("wt-1", s.state)
+    expect(s.created).toEqual([
+      { cwd: "/repo", name: "Agent: local" },
+      { cwd: "/repo/.kilo/worktrees/wt-1", name: "Agent: feature/x" },
+    ])
+    expect(s.shown()).toBe(2)
+  })
+
+  it("falls back to the repo root when the worktree is unknown", () => {
+    const s = scene({ repoPath: "/repo" })
+    s.manager.showWorktreeTerminal("gone", s.state)
+    expect(s.created).toEqual([{ cwd: "/repo", name: "Agent: worktree" }])
+  })
+
+  it("warns and creates nothing when no cwd resolves", () => {
+    const s = scene({})
+    s.manager.showWorktreeTerminal("gone", s.state)
+    expect(s.created).toHaveLength(0)
+    expect(s.warnings).toHaveLength(1)
+  })
+
+  it("closes session and worktree terminals without closing local terminals", () => {
+    const s = scene({ worktreePath: "/repo/.kilo/worktrees/wt-1", repoPath: "/repo" })
+    s.manager.showLocalTerminal()
+    s.manager.showTerminal("session-1", s.state)
+    s.manager.showWorktreeTerminal("wt-1", s.state)
+
+    s.manager.closeDirectory("/repo/.kilo/worktrees/wt-1/")
+
+    expect(s.disposed).toEqual(["/repo/.kilo/worktrees/wt-1", "/repo/.kilo/worktrees/wt-1"])
+    expect(s.manager.showExisting("session-1")).toBe(false)
+    expect(s.manager.showExistingLocal()).toBe(true)
+
+    s.manager.closeDirectory("/repo/.kilo/worktrees/wt-1")
+    expect(s.disposed).toHaveLength(2)
+  })
+
+  it("matches Windows worktree directories without case or separator differences", () => {
+    const s = scene({ worktreePath: "C:\\Repo\\.kilo\\worktrees\\Feature", repoPath: "C:\\Repo" })
+    s.manager.showWorktreeTerminal("wt-1", s.state)
+
+    s.manager.closeDirectory("c:/repo/.KILO/worktrees/feature/")
+
+    expect(s.disposed).toEqual(["C:\\Repo\\.kilo\\worktrees\\Feature"])
+  })
+})
