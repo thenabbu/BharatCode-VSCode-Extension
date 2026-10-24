@@ -99,7 +99,8 @@ describe("plugin.bharatcode", () => {
       const redirect = await fetch(`${TEST_REDIRECT_URI}?code=authcode-1&state=${state}`)
       expect(redirect.status).toBe(200)
 
-      const outcome = await authorization.callback()
+      if (authorization.method !== "auto") throw new Error("expected auto callback method")
+      const outcome = await (authorization as any).callback()
       expect(outcome.type).toBe("success")
       if (outcome.type !== "success" || !("access" in outcome)) throw new Error("expected oauth success")
       expect(outcome.access).toBe("access-1")
@@ -129,7 +130,8 @@ describe("plugin.bharatcode", () => {
       // Release the real pending entry so the module state stays clean.
       const state = new URL(authorization.url).searchParams.get("state")!
       await fetch(`${TEST_REDIRECT_URI}?code=release&state=${state}`)
-      await authorization.callback()
+      if (authorization.method !== "auto") throw new Error("expected auto callback method")
+      await (authorization as any).callback()
     } finally {
       server.stop(true)
     }
