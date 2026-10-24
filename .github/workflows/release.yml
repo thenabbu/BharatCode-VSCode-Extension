@@ -1,0 +1,200 @@
+# kilocode_change - new file
+# Auto-release: every push to bc/main cuts 7.8.8-bc.N+1, builds all 8 vsix
+# platforms on one runner (same commands as the proven lab recipe), and
+# publishes a GitHub Release — no lab lockup, no manual step. Marketplace
+# publish stays banned (see AGENTS.md); assets-only, matching bc.1-bc.3.
+# Keep script/check-workflows.ts allowlist in sync when renaming/removing.
+name: Release
+
+on:
+  push:
+    branches: [bc/main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+# One release at a time; never cancel a build mid-flight.
+concurrency:
+  group: release-bc-main
+  cancel-in-progress: false
+
+jobs:
+  cut:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Pushes made by this workflow use GITHUB_TOKEN (which does not retrigger
+    # workflows), but guard anyway so a manual run on a release commit only
+    # rebuilds instead of double-bumping.
+    if: ${{ github.event_name == 'workflow_dispatch' || !startsWith(github.event.head_commit.message || '', 'chore(release)') }}
+    outputs:
+      version: ${{ steps.cut.outputs.version }}
+      tag: ${{ steps.cut.outputs.tag }}
+      sha: ${{ steps.cut.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - run: bun install --frozen-lockfile
+
+      - id: cut
+        name: cut next release version
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          existing="$(git tag --points-at HEAD --list '7.8.8-bc.*' | head -1 || true)"
+          if [ -n "$existing" ]; then
+            V="$existing"
+            SHA="$(git rev-parse HEAD)"
+            echo "HEAD already released as $V — rebuilding only"
+          else
+            latest="$(git tag -l '7.8.8-bc.*' --sort=-v:refname | head -1)"
+            n="${latest##*-bc.}"
+            V="7.8.8-bc.$((n + 1))"
+            bun run script/sync-versions.ts "$V"
+            git add -u
+            git commit -m "chore(release): v${V}"
+            SHA="$(git rev-parse HEAD)"
+            git tag -a "$V" -m "v$V"
+            git push origin HEAD:bc/main "refs/tags/$V"
+          fi
+          {
+            echo "version=$V"
+            echo "tag=$V"
+            echo "sha=$SHA"
+          } >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: cut
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.cut.outputs.sha }}
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      # --os/--cpu: pull native optional deps for every target platform so the
+      # cross-compiled CLIs embed them (lab recipe).
+      - name: Install dependencies (all platforms)
+        run: bun install --frozen-lockfile --os='*' --cpu='*'
+
+      - name: Build CLI (8 targets)
+        working-directory: packages/opencode
+        env:
+          KILO_VERSION: ${{ needs.cut.outputs.version }}
+          KILO_CLI_TARGETS: win32-x64,win32-arm64,linux-x64,linux-arm64,linux-x64-musl,linux-arm64-musl,darwin-x64,darwin-arm64
+          KILO_SKIP_BUNDLED_BWRAP: "1"
+        run: bun script/build.ts
+
+      - name: Build VSIXes (8 platforms)
+        working-directory: packages/kilo-vscode
+        env:
+          # KILO_SKIP_HEAVY: typecheck/lint already gate the same commit via
+          # typecheck.yml/checks.yml; the factory still runs esbuild (its
+          # resolution gate). Matches the proven lab releases.
+          KILO_SKIP_HEAVY: "1"
+          KILO_SKIP_BUNDLED_BWRAP: "1"
+        run: |
+          export PATH="$PWD/node_modules/.bin:$PWD/../node_modules/.bin:$PATH"
+          bun script/build.ts
+
+      - name: Version the vsix filenames
+        env:
+          V: ${{ needs.cut.outputs.version }}
+        run: |
+          set -euo pipefail
+          cd packages/kilo-vscode/out
+          for f in bharatcode-vscode-*.vsix; do
+            [ "$f" = "bharatcode-vscode-*.vsix" ] && { echo "::error::factory produced no vsix"; exit 1; }
+            mv "$f" "${f%.vsix}-${V}.vsix"
+          done
+          ls -la
+
+      - name: Audit vsixes + SHA256SUMS
+        env:
+          V: ${{ needs.cut.outputs.version }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, zipfile, glob
+          V = os.environ["V"]
+          expected_binary = {
+              "win32-x64": "extension/bin/bharatcode.exe",
+              "win32-arm64": "extension/bin/bharatcode.exe",
+          }
+          files = sorted(glob.glob("packages/kilo-vscode/out/*.vsix"))
+          assert len(files) == 8, f"expected 8 vsixes, got {len(files)}"
+          for f in files:
+              base = os.path.basename(f)
+              prefix, suffix = "bharatcode-vscode-", f"-{V}.vsix"
+              assert base.startswith(prefix) and base.endswith(suffix), f"unexpected name {base}"
+              plat = base[len(prefix):-len(suffix)]
+              z = zipfile.ZipFile(f)
+              names = z.namelist()
+              maps = [n for n in names if n.endswith(".map")]
+              assert not maps, f"{plat}: {len(maps)} sourcemaps in zip"
+              want = expected_binary.get(plat, "extension/bin/bharatcode")
+              other = "extension/bin/bharatcode" if want.endswith(".exe") else "extension/bin/bharatcode.exe"
+              bins = [
+                  n for n in names
+                  if n.startswith("extension/bin/") and n.count("/") == 2
+                  and not n.endswith((".wasm", ".js"))
+                  and not any(t in n for t in ("tree-sitter", "console", "ffmpeg", "sandbox"))
+              ]
+              assert want in bins, f"{plat}: missing {want}, have {bins}"
+              assert other not in bins, f"{plat}: wrong-platform binary {other}"
+              lic = z.read("extension/LICENSE.txt").decode()
+              assert "BharatCode modifications" in lic and "Kilo Code" in lic, f"{plat}: license lines missing"
+              man = json.loads(z.read("extension/package.json"))
+              assert man["version"] == V, f"{plat}: version {man['version']} != {V}"
+              assert man["name"] == "bharatcode-vscode" and man["publisher"] == "bharatcode", f"{plat}: manifest identity"
+              print(f"{plat}: OK v{man['version']}")
+          PY
+          (cd packages/kilo-vscode/out && sha256sum *.vsix > SHA256SUMS)
+          cat packages/kilo-vscode/out/SHA256SUMS
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsixes
+          path: |
+            packages/kilo-vscode/out/*.vsix
+            packages/kilo-vscode/out/SHA256SUMS
+          if-no-files-found: error
+
+  release:
+    needs: [cut, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TAG: ${{ needs.cut.outputs.tag }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: vsixes
+          path: dist
+
+      - name: Publish GitHub release
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" > /dev/null 2>&1; then
+            gh release create "$TAG" --title "BharatCode v$TAG" --generate-notes
+          fi
+          gh release upload "$TAG" dist/*.vsix dist/SHA256SUMS --clobber
+          count="$(gh release view "$TAG" --json assets -q '.assets | length')"
+          echo "asset count: $count"
+          gh release view "$TAG" --json assets -q '.assets[] | "  " + .name + " " + (.size | tostring)'
+          # 8 vsix + SHA256SUMS — rc=0 on upload is not proof they landed.
+          test "$count" -eq 9 || { echo "::error::expected 9 assets, got $count"; exit 1; }
