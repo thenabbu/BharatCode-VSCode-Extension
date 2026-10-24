@@ -71,6 +71,8 @@
   <!-- packages/opencode/src/provider/transform.ts -->
 - <https://docs.x.ai/docs/guides/reasoning#control-how-hard-the-model-thinks>
   <!-- packages/opencode/src/provider/transform.ts -->
+- <https://evgvlcaxfpwupaiwzqqm.supabase.co/auth/v1>
+  <!-- packages/opencode/src/plugin/bharatcode.ts -->
 - <https://git-scm.com>
   <!-- packages/kilo-vscode/src/agent-manager/git-errors.ts -->
 - <https://github.com>
