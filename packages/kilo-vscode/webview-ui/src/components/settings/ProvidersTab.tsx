@@ -18,6 +18,7 @@ import ProviderConnectDialog from "./ProviderConnectDialog"
 import ProviderSelectDialog from "./ProviderSelectDialog"
 import { isPopularProvider, providerIcon, providerNoteKey, sortProviders } from "./provider-catalog"
 import { canChangeProviderKey, disabledProviderOptions, visibleConnectedIds } from "./provider-visibility"
+
 import { isCustomProviderPackage, KILO_PROVIDER_ID } from "../../../../src/shared/provider-model"
 import { createProviderAction } from "../../utils/provider-action"
 
@@ -150,6 +151,7 @@ const ProvidersTab: Component = () => {
   return (
     <div>
       {/* Connected providers */}
+
       <h4 style={{ "margin-top": "16px", "margin-bottom": "8px" }}>
         {language.t("settings.providers.section.connected")}
       </h4>

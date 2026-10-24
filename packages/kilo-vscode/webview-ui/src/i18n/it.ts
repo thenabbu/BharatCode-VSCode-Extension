@@ -60,6 +60,7 @@ export const dict = {
   ...anacondaDesktopDict,
   ...cloudProviderDict,
   "task.swarm.title": "Bacheca",
+  "task.swarm.open": "Apri bacheca",
   "task.swarm.refresh": "Aggiorna",
   "task.swarm.reset": "Reimposta bacheca",
   "task.swarm.resetTitle": "Reimpostare questa bacheca?",
@@ -192,6 +193,7 @@ export const dict = {
   "prompt.action.stop.background": "Ferma l'agente principale. Gli agenti in background continuano a funzionare.",
   "prompt.agents.show": "Mostra agenti in background",
   "prompt.action.enhance": "Migliora prompt",
+  "prompt.action.more": "Altre azioni",
   "prompt.paste.expand": "Fai clic per espandere il testo incollato",
   "prompt.issues.title": "Problemi della sessione",
   "prompt.mcp.provider": "MCP {{name}}",
@@ -247,6 +249,7 @@ export const dict = {
   "ui.permission.toolLabel.todoRead": "Todo Read",
   "ui.permission.toolLabel.todoWrite": "Todo Write",
   "ui.permission.toolLabel.codeSearch": "Ricerca codice",
+  "ui.permission.toolLabel.browserOpen": "Browser integrato",
   "ui.permission.copyCommand": "Copia",
   "ui.approval.auto": "Approvato automaticamente",
   "ui.approval.manual": "Approvato da te",
@@ -433,6 +436,7 @@ export const dict = {
   "settings.permissions.tool.webfetch.description": "Recupera contenuti da una pagina web",
   "settings.permissions.tool.websearch.description": "Cerca sul web",
   "settings.permissions.tool.codesearch.description": "Cerca codice sul web",
+  "settings.permissions.tool.browser_open.description": "Apri una pagina nel Browser integrato",
   "settings.permissions.tool.external_directory.description": "Accede a file fuori dalla directory del progetto",
   "settings.permissions.tool.doom_loop.description": "Rileva chiamate tool ripetute con input identico",
   "session.delete.title": "Elimina sessione",
@@ -614,6 +618,12 @@ export const dict = {
   "settings.aboutKiloCode.title": "Informazioni su BharatCode",
   "session.messages.welcome":
     "BharatCode è un assistente AI per il coding. Chiedigli di creare feature, correggere bug o spiegare il codebase.",
+  "session.workspaceScope.description":
+    "La chat di BharatCode usa solo «{{folder}}», la prima cartella di questo workspace.",
+  "session.workspaceScope.alternatives":
+    "Per lavorare con un'altra cartella, aprila in una finestra separata o aggiungila come progetto in Agent Manager.",
+  "session.workspaceScope.dismiss": "Nascondi il suggerimento sull'ambito del workspace",
+
   "session.messages.scrollToBottom": "Scorri in fondo",
   "session.messages.initializing": "Inizializzazione...",
   "session.messages.taskStarting": "Avvio...",
@@ -784,6 +794,9 @@ export const dict = {
   "settings.experimental.nativeNotebookTools.title": "Strumenti nativi per notebook",
   "settings.experimental.nativeNotebookTools.description":
     "Abilita strumenti sperimentali per leggere, modificare ed eseguire i notebook di VS Code",
+  "settings.experimental.globIncludeIgnored.title": "Cerca nei percorsi ignorati",
+  "settings.experimental.globIncludeIgnored.description":
+    "Cartelle o file in cui lo strumento glob deve cercare anche quando .gitignore o altri file di esclusione li escludono. Usa pattern in stile gitignore relativi all’area di lavoro; le cartelle ignorate al loro interno restano escluse.",
   "settings.experimental.continueOnDeny.title": "Continua dopo rifiuto",
   "settings.experimental.continueOnDeny.description": "Continua il loop agente quando un'autorizzazione viene negata",
   "settings.sandboxing.title": "Sandbox",
@@ -1023,6 +1036,8 @@ export const dict = {
     "Gestisci lista task. Consente lettura e aggiornamento della lista task interna.",
   "settings.autoApprove.tool.webfetch": "Recupera URL. Consente di recuperare contenuti da un URL specifico.",
   "settings.autoApprove.tool.websearch": "Cerca sul web. Consente ricerche web esterne.",
+  "settings.autoApprove.tool.browser_open":
+    "Apri pagine nel Browser integrato. È l'anteprima integrata, non l'automazione Playwright.",
   "settings.autoApprove.tool.doom_loop":
     "Previeni azioni identiche ripetute. Si attiva quando la stessa chiamata tool si ripete con input identico.",
   "settings.checkpoints.enable.title": "Abilita snapshot",
@@ -1197,6 +1212,8 @@ export const dict = {
   "task.backgroundAgents.stopAll": "Arresta tutti ({{count}})",
   "task.backgroundAgents.finished": "Agenti in background completati",
   "task.stop": "Arresta sub-agent",
+  "task.open.panel": "Apri sub-agent nel pannello",
+  "task.open.tab": "Apri sub-agent in una scheda",
   "settings.saveBar.unsavedChanges": "Modifiche non salvate",
   "settings.saveBar.discard": "Scarta",
   "settings.saveBar.save": "Salva",
@@ -1359,6 +1376,15 @@ export const dict = {
   "error.providerAuth.chatgpt.title": "OpenAI ti ha disconnesso",
   "error.providerAuth.chatgpt.description":
     "Accedi di nuovo con ChatGPT, quindi invia di nuovo il tuo messaggio per continuare a usare i modelli Codex.",
+
+  // Provider failure
+  "provider.failure.unauthorized": "Credenziali rifiutate (HTTP {{status}}). Accedi di nuovo.",
+  "provider.failure.unauthorizedNoStatus": "Credenziali rifiutate. Accedi di nuovo.",
+  "provider.failure.unauthenticated": "Non hai effettuato l'accesso.",
+  "provider.failure.network": "Impossibile raggiungere il provider. Controlla la connessione.",
+  "provider.failure.http": "Errore del provider (HTTP {{status}}).",
+  "provider.failure.httpNoStatus": "Errore del provider.",
+  "provider.failure.schema": "Risposta imprevista dal provider.",
 
   // Speech to Text tooltips and errors
   "speechToText.tooltip.start": "Avvia input vocale",

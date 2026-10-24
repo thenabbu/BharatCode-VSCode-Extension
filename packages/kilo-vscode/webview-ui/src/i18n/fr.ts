@@ -60,6 +60,7 @@ export const dict = {
   ...anacondaDesktopDict,
   ...cloudProviderDict,
   "task.swarm.title": "Tableau",
+  "task.swarm.open": "Ouvrir le tableau",
   "task.swarm.refresh": "Actualiser",
   "task.swarm.reset": "Réinitialiser le tableau",
   "task.swarm.resetTitle": "Réinitialiser ce tableau ?",
@@ -216,6 +217,7 @@ export const dict = {
   "prompt.action.stop.background": "Arrêter l'agent principal. Les agents en arrière-plan continuent de s'exécuter.",
   "prompt.agents.show": "Afficher les agents en arrière-plan",
   "prompt.action.enhance": "Améliorer le prompt",
+  "prompt.action.more": "Autres actions",
   "prompt.paste.expand": "Cliquez pour développer le texte collé",
   "prompt.issues.title": "Problèmes de session",
   "prompt.mcp.provider": "MCP {{name}}",
@@ -283,6 +285,14 @@ export const dict = {
   "error.providerAuth.chatgpt.description":
     "Reconnectez-vous à ChatGPT, puis renvoyez votre message pour continuer à utiliser les modèles Codex.",
 
+  "provider.failure.unauthorized": "Identifiants refusés (HTTP {{status}}). Reconnectez-vous.",
+  "provider.failure.unauthorizedNoStatus": "Identifiants refusés. Reconnectez-vous.",
+  "provider.failure.unauthenticated": "Non connecté.",
+  "provider.failure.network": "Impossible de joindre le fournisseur. Vérifiez votre connexion.",
+  "provider.failure.http": "Erreur du fournisseur (HTTP {{status}}).",
+  "provider.failure.httpNoStatus": "Erreur du fournisseur.",
+  "provider.failure.schema": "Réponse inattendue du fournisseur.",
+
   "notification.permission.title": "Permission requise",
   "notification.permission.titleSubagent": "Permission requise (sous-agent)",
   "notification.permission.titleSkillShell": "Exécuter les commandes shell de la compétence «\u00a0{{skill}}\u00a0» ?",
@@ -316,6 +326,7 @@ export const dict = {
   "ui.permission.toolLabel.todoRead": "Lire Todo",
   "ui.permission.toolLabel.todoWrite": "Écrire Todo",
   "ui.permission.toolLabel.codeSearch": "Recherche de code",
+  "ui.permission.toolLabel.browserOpen": "Navigateur intégré",
   "ui.permission.copyCommand": "Copier",
   "ui.approval.auto": "Approuvé automatiquement",
   "ui.approval.manual": "Approuvé par vous",
@@ -599,6 +610,7 @@ export const dict = {
   "settings.permissions.tool.webfetch.description": "Récupérer le contenu d'une URL",
   "settings.permissions.tool.websearch.description": "Rechercher sur le web",
   "settings.permissions.tool.codesearch.description": "Rechercher du code sur le web",
+  "settings.permissions.tool.browser_open.description": "Ouvrir une page dans le Navigateur intégré",
   "settings.permissions.tool.external_directory.description": "Accéder aux fichiers en dehors du répertoire du projet",
   "settings.permissions.tool.doom_loop.description": "Détecter les appels d'outils répétés avec une entrée identique",
 
@@ -763,6 +775,12 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode est un assistant de programmation IA. Demandez-lui de créer des fonctionnalités, corriger des bugs ou expliquer votre code.",
+  "session.workspaceScope.description":
+    "Le chat BharatCode utilise uniquement « {{folder}} », le premier dossier de cet espace de travail.",
+  "session.workspaceScope.alternatives":
+    "Pour travailler avec un autre dossier, ouvrez-le dans sa propre fenêtre ou ajoutez-le comme projet dans Agent Manager.",
+  "session.workspaceScope.dismiss": "Masquer l’indication sur la portée de l’espace de travail",
+
   "session.messages.scrollToBottom": "Défiler vers le bas",
   "session.messages.initializing": "Initialisation...",
   "session.messages.taskStarting": "Démarrage...",
@@ -957,6 +975,9 @@ export const dict = {
   "settings.experimental.nativeNotebookTools.title": "Outils de notebook natifs",
   "settings.experimental.nativeNotebookTools.description":
     "Activer les outils expérimentaux pour lire, modifier et exécuter les notebooks VS Code",
+  "settings.experimental.globIncludeIgnored.title": "Rechercher les chemins ignorés",
+  "settings.experimental.globIncludeIgnored.description":
+    "Dossiers ou fichiers que l’outil glob doit parcourir même lorsque .gitignore ou d’autres fichiers d’exclusion les excluent. Utilisez des motifs de style gitignore relatifs à l’espace de travail ; les dossiers ignorés qu’ils contiennent restent exclus.",
   "settings.experimental.continueOnDeny.title": "Continuer en cas de refus",
   "settings.experimental.continueOnDeny.description":
     "Continuer la boucle de l'agent lorsqu'une autorisation est refusée",
@@ -1186,6 +1207,8 @@ export const dict = {
   "settings.autoApprove.tool.webfetch": "Récupérer une URL. Permet de récupérer le contenu d'une URL spécifique.",
   "settings.autoApprove.tool.websearch":
     "Rechercher sur le Web. Permet d'effectuer des recherches externes sur le Web.",
+  "settings.autoApprove.tool.browser_open":
+    "Ouvrir des pages dans le Navigateur intégré. Il s'agit de l'aperçu intégré, pas de l'automatisation Playwright.",
   "settings.autoApprove.tool.external_directory":
     "Accéder aux fichiers en dehors de l'espace de travail. Déclenché lors de l'accès à des fichiers en dehors du répertoire de projet actuel.",
   "settings.autoApprove.tool.doom_loop":
@@ -1370,6 +1393,8 @@ export const dict = {
   "task.backgroundAgents.stopAll": "Tout arrêter ({{count}})",
   "task.backgroundAgents.finished": "Agents en arrière-plan terminés",
   "task.stop": "Arrêter le sous-agent",
+  "task.open.panel": "Ouvrir le sous-agent dans le panneau",
+  "task.open.tab": "Ouvrir le sous-agent dans un onglet",
   "settings.saveBar.unsavedChanges": "Modifications non enregistrées",
   "settings.saveBar.discard": "Ignorer",
   "settings.saveBar.save": "Enregistrer",
