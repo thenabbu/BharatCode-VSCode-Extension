@@ -136,7 +136,13 @@ const lookups = Effect.gen(function* () {
 it.instance("lists models from the AI gateway and defaults from the Kilo API by default", () => {
   const urls: string[] = []
   return lookups.pipe(
-    Effect.provide(recorder({}, urls)),
+    // kilocode_change: the fork's DEFAULT_KILO_API_URL is a dead http loopback
+    // (no Kilo cloud in this build) and env={} keeps the loopback exemption off,
+    // so the secure-origin gate rejects before routing runs; pin the env values
+    // upstream's own defaults carry so the four URL assertions stay upstream's.
+    Effect.provide(
+      recorder({ KILO_API_URL: "https://api.kilo.ai", KILO_AI_GATEWAY_URL: "https://ai-gateway.kilo.ai/api/v1" }, urls),
+    ),
     Effect.tap(() =>
       Effect.sync(() =>
         expect(urls).toEqual([
