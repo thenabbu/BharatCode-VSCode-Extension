@@ -27,11 +27,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.4.2
-
-      - run: bun install --frozen-lockfile
+      - uses: ./.github/actions/setup-bun
 
       # cheap guards first so they signal even if a linter is broken
       - name: guard scripts
@@ -84,11 +80,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.4.2
-
-      - run: bun install --frozen-lockfile
+      - uses: ./.github/actions/setup-bun
 
       # ubuntu-24.04 AppArmor blocks unprivileged user namespaces, which
       # bwrap needs for its uid map ("setting up uid map: Permission denied")

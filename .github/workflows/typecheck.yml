@@ -17,16 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.4.2
+      - uses: ./.github/actions/setup-bun
 
       # bun turbo typecheck covers packages/kilo-jetbrains (gradle) too
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "21"
-
-      - run: bun install --frozen-lockfile
 
       - run: bun typecheck

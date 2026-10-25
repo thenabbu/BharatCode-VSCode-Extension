@@ -93,8 +93,15 @@ for (const scenario of [
       const paths: string[] = []
       const original = globalThis.fetch
       let active = true
+      // kilocode_change: the fork's default KILO_API_URL is a dead http
+      // loopback the secure-origin gate rejects before the stub sees the
+      // gateway-routed defaults call; an https base keeps the gate happy and
+      // pathname matching makes the host irrelevant.
+      let prevKiloApiUrl: string | undefined
       yield* Effect.acquireRelease(
         Effect.sync(() => {
+          prevKiloApiUrl = process.env.KILO_API_URL
+          process.env.KILO_API_URL = "https://kilo-gateway.test"
           globalThis.fetch = Object.assign(
             async (input: RequestInfo | URL, init?: RequestInit) => {
               if (!active) return original(input, init)
@@ -115,7 +122,7 @@ for (const scenario of [
                           : undefined,
                 })
               }
-              if (url.pathname === "/api/organizations/org-env/models") {
+              if (url.pathname === "/api/v1/organizations/org-env/models") {
                 if (scenario === "unauthorized") return new Response(null, { status: 401 })
                 if (scenario === "error") return new Response(null, { status: 500 })
                 if (scenario === "empty") return Response.json({ data: [] })
@@ -135,6 +142,8 @@ for (const scenario of [
           Effect.sync(() => {
             active = false
             globalThis.fetch = original
+            if (prevKiloApiUrl === undefined) delete process.env.KILO_API_URL
+            else process.env.KILO_API_URL = prevKiloApiUrl
           }),
       )
       const tmp = yield* Effect.acquireRelease(
@@ -183,9 +192,10 @@ for (const scenario of [
       // the test's own fetch stub catches that path - no real egress.
       expect(paths.filter((path) => path.endsWith("/models"))).toEqual(
         scenario === "valid"
-          ? ["/api/organizations/org-env/models", "/api/model/v1/models"]
-          : ["/api/organizations/org-env/models"],
+          ? ["/api/v1/organizations/org-env/models", "/api/model/v1/models"]
+          : ["/api/v1/organizations/org-env/models"],
       )
+
       expect(paths.filter((path) => path.endsWith("/defaults"))).toEqual(
         unavailable ? [] : ["/api/organizations/org-env/defaults", "/api/organizations/org-env/defaults"],
       )

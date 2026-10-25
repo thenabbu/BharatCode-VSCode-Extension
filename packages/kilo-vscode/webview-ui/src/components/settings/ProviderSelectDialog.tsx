@@ -4,18 +4,21 @@ import { List } from "@kilocode/kilo-ui/list"
 import { ProviderIcon } from "@kilocode/kilo-ui/provider-icon"
 import { Tag } from "@kilocode/kilo-ui/tag"
 import { Show, createMemo } from "solid-js"
+import type { ProviderFailure } from "@kilocode/sdk/v2/client"
 import { useConfig } from "../../context/config"
 import { useLanguage } from "../../context/language"
 import { useProvider } from "../../context/provider"
 import type { Provider } from "../../types/messages"
 import ProviderConnectDialog from "./ProviderConnectDialog"
 import { CUSTOM_PROVIDER_ID, isPopularProvider, providerIcon, popularProviderIndex } from "./provider-catalog"
+
 import CustomProviderDialog from "./CustomProviderDialog"
 
 type ProviderItem = {
   id: string
   name: string
   provider?: Provider
+  failure?: ProviderFailure
 }
 
 const ProviderSelectDialog = () => {
@@ -96,28 +99,29 @@ const ProviderSelectDialog = () => {
               height={18}
               data-slot="list-item-extra-icon"
             />
-            <div
-              style={{
-                display: "flex",
-                gap: "8px",
-                "align-items": "center",
-                "min-width": 0,
-                flex: 1,
-                "flex-wrap": "wrap",
-              }}
-            >
-              <span
+            <div style={{ display: "flex", "flex-direction": "column", "min-width": 0, flex: 1 }}>
+              <div
                 style={{
-                  "font-size": "var(--kilo-font-size-14)",
-                  "line-height": "var(--kilo-font-size-20)",
-                  color: "var(--vscode-foreground)",
+                  display: "flex",
+                  gap: "8px",
+                  "align-items": "center",
+                  "min-width": 0,
+                  "flex-wrap": "wrap",
                 }}
               >
-                {item.name}
-              </span>
-              <Show when={item.id === CUSTOM_PROVIDER_ID}>
-                <Tag>{language.t("settings.providers.tag.custom")}</Tag>
-              </Show>
+                <span
+                  style={{
+                    "font-size": "var(--kilo-font-size-14)",
+                    "line-height": "var(--kilo-font-size-20)",
+                    color: "var(--vscode-foreground)",
+                  }}
+                >
+                  {item.name}
+                </span>
+                <Show when={item.id === CUSTOM_PROVIDER_ID}>
+                  <Tag>{language.t("settings.providers.tag.custom")}</Tag>
+                </Show>
+              </div>
             </div>
           </div>
         )}

@@ -30,11 +30,7 @@ const DIR = path.join(ROOT, ".github", "workflows")
 // the lab), and release (auto-cut + 8-platform vsix build + GitHub release
 // on every bc/main push). Upstream merge must not silently add more: add
 // here only after review.
-const active = new Set([
-  "checks.yml",
-  "typecheck.yml",
-  "release.yml",
-])
+const active = new Set(["checks.yml", "typecheck.yml", "release.yml"])
 
 // GitHub picks up both .yml and .yaml in .github/workflows/. We accept both so
 // an upstream `.yaml` addition also shows up as unexpected drift.
