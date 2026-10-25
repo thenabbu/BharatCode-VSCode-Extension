@@ -45,19 +45,29 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          existing="$(git tag --points-at HEAD --list '7.8.8-bc.*' | head -1 || true)"
+          # kilocode_change: series derives from the root package.json version
+          # instead of a hardcoded 7.8.8 so an upstream sync that moves the base
+          # (7.8.8 -> 7.8.17) moves the tag series with it, and a HEAD already
+          # carrying the computed version is tagged without an empty bump commit.
+          base="$(node -p "require('./package.json').version.replace(/-bc\..*$/, '')")"
+          existing="$(git tag --points-at HEAD --list "${base}-bc.*" | head -1 || true)"
           if [ -n "$existing" ]; then
             V="$existing"
             SHA="$(git rev-parse HEAD)"
             echo "HEAD already released as $V — rebuilding only"
           else
-            latest="$(git tag -l '7.8.8-bc.*' --sort=-v:refname | head -1)"
-            n="${latest##*-bc.}"
-            V="7.8.8-bc.$((n + 1))"
-            bun run script/sync-versions.ts "$V"
-            git add -u
-            git commit -m "chore(release): v${V}"
-            SHA="$(git rev-parse HEAD)"
+            latest="$(git tag -l "${base}-bc.*" --sort=-v:refname | head -1 || true)"
+            if [ -n "$latest" ]; then n="${latest##*-bc.}"; else n=0; fi
+            V="${base}-bc.$((n + 1))"
+            if [ "$(node -p "require('./package.json').version")" = "$V" ]; then
+              echo "package.json already at $V — tagging without a bump commit"
+              SHA="$(git rev-parse HEAD)"
+            else
+              bun run script/sync-versions.ts "$V"
+              git add -u
+              git commit -m "chore(release): v${V}"
+              SHA="$(git rev-parse HEAD)"
+            fi
             git tag -a "$V" -m "v$V"
             git push origin HEAD:bc/main "refs/tags/$V"
           fi
