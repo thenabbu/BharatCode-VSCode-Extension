@@ -207,11 +207,100 @@ jobs:
           name: vsixes
           path: dist
 
+      # kilocode_change: every release page must TELL THE USER WHICH FILE TO
+      # GRAB. There are 8 platform vsixes at ~180MB each; a combined bundle was
+      # tried and rejected (1.4GB download for someone who needs 180MB). So the
+      # split stays, and the guidance is generated per release below.
+      # kilocode_change: every release page must TELL THE USER WHICH FILE TO
+      # GRAB. There are 8 platform vsixes (~180MB each); a combined bundle was
+      # tried and rejected (1.4GB download for someone who needs 180MB). So the
+      # split stays and the guidance is generated per release. Generated in
+      # Python: shell heredocs mangle backticks/tables into broken markdown.
+      - name: Generate install guide
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, subprocess
+          tag = os.environ["TAG"]
+          repo = os.environ["GH_REPO"]
+          b = f"https://github.com/{repo}/releases/download/{tag}"
+          rows = [
+              ("**Windows 11 / 10 (Intel or AMD)** - the normal case", "win32-x64"),
+              ("Windows on ARM (Surface Pro X, Copilot+ PC)", "win32-arm64"),
+              ("**macOS, Apple Silicon (M1/M2/M3/M4)**", "darwin-arm64"),
+              ("macOS, Intel", "darwin-x64"),
+              ("**Linux (Ubuntu, Debian, Mint, Fedora, Arch)**", "linux-x64"),
+              ("Linux on ARM (Raspberry Pi, ARM server)", "linux-arm64"),
+              ("Alpine Linux on x64 (some Docker images)", "alpine-x64"),
+              ("Alpine Linux on ARM", "alpine-arm64"),
+          ]
+          out = []
+          out.append("## Which file do I download?")
+          out.append("")
+          out.append("One row matches your computer. Each file is ~150-180 MB and you only")
+          out.append("need **one** of them - downloading more than one is pointless.")
+          out.append("")
+          out.append("| Your computer | File |")
+          out.append("|---|---|")
+          for label, plat in rows:
+              name = f"bharatcode-vscode-{plat}-{tag}.vsix"
+              out.append(f"| {label} | [`{name}`]({b}/{name}) |")
+          out.append("")
+          out.append("**Not sure?** It is almost certainly `win32-x64` on Windows,")
+          out.append("`darwin-arm64` on any Mac from 2020 onwards, or `linux-x64` on Linux.")
+          out.append("If you pick the wrong one VS Code refuses to install it and tells")
+          out.append("you so - nothing breaks.")
+          out.append("")
+          out.append("## How to install")
+          out.append("")
+          out.append("**Terminal (fastest)**")
+          out.append("")
+          out.append("```bash")
+          out.append(f"code --install-extension bharatcode-vscode-{tag}.vsix   # use the real filename")
+          out.append("```")
+          out.append("")
+          out.append("**Inside VS Code**")
+          out.append("")
+          out.append("1. Extensions view - `Ctrl+Shift+X` (Windows/Linux) or `Cmd+Shift+X` (macOS)")
+          out.append("2. Click the `...` menu, top right")
+          out.append("3. **Install from VSIX...**")
+          out.append("4. Pick the file you downloaded")
+          out.append("5. Reload when prompted, then click **Sign in with BharatCode**")
+          out.append("")
+          out.append("Setup after that is one click: the extension opens your browser for")
+          out.append("sign-in. No API key to paste unless you prefer one.")
+          out.append("")
+          out.append("## Verify the download (optional)")
+          out.append("")
+          out.append("`SHA256SUMS` holds a checksum for every file:")
+          out.append("")
+          out.append("```bash")
+          out.append(f"sha256sum bharatcode-vscode-win32-x64-{tag}.vsix    # macOS: shasum -a 256")
+          out.append("```")
+          out.append("")
+          out.append("---")
+          out.append("")
+          out.append("### What changed in this release")
+          out.append("")
+          notes = subprocess.run(
+              ["gh", "api", f"repos/{repo}/releases/generate-notes", "-f", f"tag_name={tag}", "-q", ".body"],
+              capture_output=True, text=True,
+          )
+          if notes.returncode == 0 and notes.stdout.strip():
+              out.append(notes.stdout.strip())
+          else:
+              out.append("_See the commit history for this tag._")
+          open("/tmp/notes.md", "w").write("\n".join(out) + "\n")
+          print(f"wrote /tmp/notes.md ({len(out)} lines)")
+          PY
+
       - name: Publish GitHub release
         run: |
           set -euo pipefail
           if ! gh release view "$TAG" > /dev/null 2>&1; then
-            gh release create "$TAG" --title "BharatCode v$TAG" --generate-notes
+            gh release create "$TAG" --title "BharatCode v$TAG" --notes-file /tmp/notes.md
+          else
+            gh release edit "$TAG" --notes-file /tmp/notes.md
           fi
           gh release upload "$TAG" dist/*.vsix dist/SHA256SUMS --clobber
           count="$(gh release view "$TAG" --json assets -q '.assets | length')"
