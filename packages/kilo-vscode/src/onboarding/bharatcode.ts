@@ -130,8 +130,10 @@ async function hasStoredCredentials(client: () => Promise<KiloClient>): Promise<
     const c = await client()
     const directory = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
     if (!directory) return false
-    const { connected } = await fetchProviderData(c, directory)
-    return connected.includes("bharatcode")
+    // fetchProviderData returns { response, authMethods, authStates, ... };
+    // the provider list (and its `connected` array) lives under .response.
+    const { response } = await fetchProviderData(c, directory)
+    return (response.connected ?? []).includes("bharatcode")
   } catch (error) {
     console.warn("[BharatCode] Could not read stored BharatCode credentials:", error)
     // Unknown state: trust the flag rather than nagging a connected user.
