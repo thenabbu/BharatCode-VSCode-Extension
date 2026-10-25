@@ -1,5 +1,6 @@
 import * as vscode from "vscode"
 import type { KiloClient } from "@kilocode/sdk/v2/client"
+import { fetchProviderData } from "../provider-actions"
 
 export const BHARATCODE_BASE_URL = "https://bharatcode.ai/api/model/v1"
 const SET_KEY_COMMAND = "kilo-code.new.setBharatcodeKey"
@@ -117,8 +118,29 @@ function explain(error: unknown): string {
   return raw || "BharatCode sign-in failed. Try again, or use an API key instead."
 }
 
+/**
+ * The flag is only a fast path: credentials can disappear underneath it (a
+ * sign-out, a wiped credential store, or an auth-server cutover that
+ * invalidated every stored session). Ask the backend before trusting it, so a
+ * user whose stored login no longer exists is offered the picker again
+ * instead of being left with a silent extension.
+ */
+async function hasStoredCredentials(client: () => Promise<KiloClient>): Promise<boolean> {
+  try {
+    const c = await client()
+    const directory = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
+    if (!directory) return false
+    const { connected } = await fetchProviderData(c, directory)
+    return connected.includes("bharatcode")
+  } catch (error) {
+    console.warn("[BharatCode] Could not read stored BharatCode credentials:", error)
+    // Unknown state: trust the flag rather than nagging a connected user.
+    return true
+  }
+}
+
 export async function ensureKey(ctx: vscode.ExtensionContext, client: () => Promise<KiloClient>): Promise<void> {
-  if (ctx.globalState.get<boolean>(KEY_SET_FLAG)) return
+  if (ctx.globalState.get<boolean>(KEY_SET_FLAG) && (await hasStoredCredentials(client))) return
   for (;;) {
     const choice = await choose()
     if (!choice) return
