@@ -469,7 +469,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "使用 BharatCode 解決衝突",
   "agentManager.intro.updateText":
-    "將變更套用至 Local 或合併 pull request 前，請在該 worktree 的工作階段中執行 /update-from-base。Kilo 會先在該 worktree 中合併基底分支的最新變更並解決衝突。",
+    "將變更套用至 Local 或合併 pull request 前，請在該 worktree 的工作階段中執行 /update-from-base。BharatCode 會先在該 worktree 中合併基底分支的最新變更並解決衝突。",
   "agentManager.intro.stage1.title": "你的儲存庫",
   "agentManager.intro.stage1.text": "本機檔案保持不變",
   "agentManager.intro.stage2.title": "範例：兩個工作平行進行",
@@ -506,11 +506,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "未知",
   "agentManager.orphans.dialogTitle": "殘留的 worktree 資料夾",
   "agentManager.orphans.helpIntro":
-    "Kilo 會將建立的每個 worktree 都保存在本儲存庫的 .kilo/worktrees 資料夾中。下列資料夾位於該資料夾內，但 git 並未將它們列為 worktree，因此已經沒有任何項目在使用它們。",
+    "BharatCode 會將建立的每個 worktree 都保存在本儲存庫的 .kilo/worktrees 資料夾中。下列資料夾位於該資料夾內，但 git 並未將它們列為 worktree，因此已經沒有任何項目在使用它們。",
   "agentManager.orphans.helpCheckout":
     "被標記為仍包含 git 檢出的資料夾內仍有 .git 項目，可能存在尚未提交的變更。這類資料夾預設不會被選取，請在刪除前先開啟檢查。",
   "agentManager.orphans.helpCauses":
-    "殘留通常來自中斷的刪除、在 Kilo 之外移除的 worktree，或在資料夾被移除後仍寫入其中的工具。仍在進行中的刪除不會列在這裡。",
+    "殘留通常來自中斷的刪除、在 BharatCode 之外移除的 worktree，或在資料夾被移除後仍寫入其中的工具。仍在進行中的刪除不會列在這裡。",
   "agentManager.orphans.helpDelete":
     "刪除會將所選資料夾從磁碟永久移除，不會經過資源回收筒。不會變更任何分支或使用中的 worktree。顯示的大小是每個資料夾目前在磁碟上佔用的空間。",
   "agentManager.orphans.helpMore": "顯示更多",

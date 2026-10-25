@@ -69,8 +69,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Bezmaksas limits pārsniegts",
   "ui.sessionTurn.error.addCredits": "Pievienot kredītus",
   "dialog.usageExceeded.freeTier.title": "Sasniegts bezmaksas limits",
-  "dialog.usageExceeded.freeTier.description":
-    "Abonē Kilo Go par $10/mēn., lai iegūtu uzticamu piekļuvi labākajiem atvērtā koda modeļiem.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Abonēt",
   "dialog.usageExceeded.accountRateLimit.title": "Sasniegts Go limits",
   "dialog.usageExceeded.accountRateLimit.description":

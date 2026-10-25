@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "უფასო გამოყენება გადაჭარბებულია",
   "ui.sessionTurn.error.addCredits": "დაამატე კრედიტები",
   "dialog.usageExceeded.freeTier.title": "უფასო ლიმიტი მიღწეულია",
-  "dialog.usageExceeded.freeTier.description":
-    "გამოიწერეთ Kilo Go საუკეთესო ღია კოდის მოდელებზე სანდო წვდომისთვის, თვეში $10-ად.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "გამოწერა",
   "dialog.usageExceeded.accountRateLimit.title": "გადასვლის ლიმიტი მიღწეულია",
   "dialog.usageExceeded.accountRateLimit.description":

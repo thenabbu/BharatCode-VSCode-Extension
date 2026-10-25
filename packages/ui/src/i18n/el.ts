@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Υπέρβαση της δωρεάν χρήσης",
   "ui.sessionTurn.error.addCredits": "Προσθήκη πιστώσεων",
   "dialog.usageExceeded.freeTier.title": "Συμπληρώθηκε το δωρεάν όριο",
-  "dialog.usageExceeded.freeTier.description":
-    "Εγγραφείτε στο Kilo Go για 10 $/μήνα και αποκτήστε αξιόπιστη πρόσβαση στα καλύτερα μοντέλα ανοιχτού κώδικα.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Εγγραφή",
   "dialog.usageExceeded.accountRateLimit.title": "Συμπληρώθηκε το όριο μετάβασης",
   "dialog.usageExceeded.accountRateLimit.description":

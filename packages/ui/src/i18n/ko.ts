@@ -48,8 +48,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "크레딧 추가",
 
   "dialog.usageExceeded.freeTier.title": "무료 한도에 도달했습니다",
-  "dialog.usageExceeded.freeTier.description":
-    "월 $10로 Kilo Go를 구독하여 최고의 오픈 소스 모델에 안정적으로 액세스하세요.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "구독",
   "dialog.usageExceeded.accountRateLimit.title": "Go 한도에 도달했습니다",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -217,7 +216,7 @@ export const dict = {
   "ui.sessionTurn.diffs.showLess": "간략히 표시",
   "ui.sessionTurn.diffs.more": "+{{count}}개 더 보기",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "PNG 복사",
   "ui.mermaid.copySource": "Mermaid 소스 복사",
   "ui.mermaid.copySvg": "SVG 복사",

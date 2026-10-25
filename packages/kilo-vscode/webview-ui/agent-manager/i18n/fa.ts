@@ -447,7 +447,7 @@ export const dict = {
   "agentManager.import.failed": "وارد کردن ناموفق بود",
   "agentManager.caffeination.toggle": "رایانه را هنگام کار عامل‌های BharatCode بیدار نگه دار",
   "agentManager.caffeination.armed":
-    "حالت بیدار نگه داشتن رایانه برای عامل‌های Kilo فعال است؛ برای غیرفعال کردن کلیک کنید",
+    "حالت بیدار نگه داشتن رایانه برای عامل‌های BharatCode فعال است؛ برای غیرفعال کردن کلیک کنید",
   "agentManager.caffeination.active": "رایانه هنگام کار عامل‌های BharatCode بیدار نگه داشته می‌شود",
   "agentManager.caffeination.unavailable": "حالت بیدار نگه داشتن رایانه در این پلتفرم در دسترس نیست",
   "agentManager.browser.title": "مرورگر یکپارچه",
@@ -488,7 +488,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "رفع تعارض‌ها با BharatCode",
   "agentManager.intro.updateText":
-    "پیش از اعمال تغییرات در Local یا ادغام pull request، /update-from-base را در جلسه همان worktree اجرا کنید. Kilo آخرین تغییرات شاخه پایه را ادغام می‌کند و ابتدا تعارض‌ها را در همان worktree برطرف می‌کند.",
+    "پیش از اعمال تغییرات در Local یا ادغام pull request، /update-from-base را در جلسه همان worktree اجرا کنید. BharatCode آخرین تغییرات شاخه پایه را ادغام می‌کند و ابتدا تعارض‌ها را در همان worktree برطرف می‌کند.",
   "agentManager.intro.stage1.title": "مخزن شما",
   "agentManager.intro.stage1.text": "فایل‌های محلی بدون تغییر می‌مانند",
   "agentManager.intro.stage2.title": "مثال: دو وظیفه به‌صورت موازی",
@@ -527,11 +527,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "نامشخص",
   "agentManager.orphans.dialogTitle": "پوشه‌های باقی‌مانده worktree",
   "agentManager.orphans.helpIntro":
-    "Kilo هر worktree‌ای که می‌سازد را داخل پوشه .kilo/worktrees همین مخزن نگه می‌دارد. پوشه‌های زیر در همان پوشه قرار دارند، اما git هیچ‌کدام را به عنوان worktree فهرست نمی‌کند، بنابراین دیگر چیزی از آن‌ها استفاده نمی‌کند.",
+    "BharatCode هر worktree‌ای که می‌سازد را داخل پوشه .kilo/worktrees همین مخزن نگه می‌دارد. پوشه‌های زیر در همان پوشه قرار دارند، اما git هیچ‌کدام را به عنوان worktree فهرست نمی‌کند، بنابراین دیگر چیزی از آن‌ها استفاده نمی‌کند.",
   "agentManager.orphans.helpCheckout":
     "پوشه‌ای که به‌عنوان دارای checkout گیت علامت خورده است، همچنان یک ورودی .git در خود دارد و ممکن است کار commit‌نشده داشته باشد. این پوشه‌ها انتخاب‌نشده باقی می‌مانند؛ پیش از حذف، یکی را باز کنید و بررسی کنید.",
   "agentManager.orphans.helpCauses":
-    "باقی‌مانده‌ها معمولاً از حذفی که نیمه‌کاره مانده، worktree‌ای که بیرون از Kilo حذف شده، یا ابزاری که پس از حذف پوشه در آن نوشته است به وجود می‌آیند. حذف‌هایی که هنوز در حال اجرا هستند اینجا فهرست نمی‌شوند.",
+    "باقی‌مانده‌ها معمولاً از حذفی که نیمه‌کاره مانده، worktree‌ای که بیرون از BharatCode حذف شده، یا ابزاری که پس از حذف پوشه در آن نوشته است به وجود می‌آیند. حذف‌هایی که هنوز در حال اجرا هستند اینجا فهرست نمی‌شوند.",
   "agentManager.orphans.helpDelete":
     "حذف، پوشه‌های انتخاب‌شده را برای همیشه از دیسک پاک می‌کند و آن‌ها را به سبد بازیافت نمی‌فرستد. هیچ شاخه و هیچ worktree فعالی دست‌کاری نمی‌شود. حجم‌ها نشان می‌دهند هر پوشه در این لحظه چه مقدار فضای دیسک را اشغال کرده است.",
   "agentManager.orphans.helpMore": "نمایش بیشتر",

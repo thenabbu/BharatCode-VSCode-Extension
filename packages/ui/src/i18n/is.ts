@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Farið yfir ókeypis notkun",
   "ui.sessionTurn.error.addCredits": "Bæta við inneign",
   "dialog.usageExceeded.freeTier.title": "Ókeypis hámarki náð",
-  "dialog.usageExceeded.freeTier.description":
-    "Gerast áskrifandi að Kilo Go fyrir $10 á mánuði og fá áreiðanlegan aðgang að bestu opnu gerðunum.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Gerast áskrifandi",
   "dialog.usageExceeded.accountRateLimit.title": "Go takmörkum náð",
   "dialog.usageExceeded.accountRateLimit.description":

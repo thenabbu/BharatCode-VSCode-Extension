@@ -73,8 +73,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "Añadir créditos",
 
   "dialog.usageExceeded.freeTier.title": "Límite gratuito alcanzado",
-  "dialog.usageExceeded.freeTier.description":
-    "Suscríbete a Kilo Go por 10 USD al mes para acceder de forma fiable a los mejores modelos de código abierto.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Suscribirse",
   "dialog.usageExceeded.accountRateLimit.title": "Límite de Go alcanzado",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -220,7 +219,7 @@ export const dict = {
   "ui.message.duration.seconds": "{{count}}s",
   "ui.message.duration.minutesSeconds": "{{minutes}}m {{seconds}}s",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "Copiar PNG",
   "ui.mermaid.copySource": "Copiar código fuente Mermaid",
   "ui.mermaid.copySvg": "Copiar SVG",
