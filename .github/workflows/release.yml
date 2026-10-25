@@ -37,11 +37,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.4.2
-
-      - run: bun install --frozen-lockfile
+      - uses: ./.github/actions/setup-bun
 
       - id: cut
         name: cut next release version
@@ -80,14 +76,11 @@ jobs:
         with:
           ref: ${{ needs.cut.outputs.sha }}
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.4.2
-
       # --os/--cpu: pull native optional deps for every target platform so the
       # cross-compiled CLIs embed them (lab recipe).
-      - name: Install dependencies (all platforms)
-        run: bun install --frozen-lockfile --os='*' --cpu='*'
+      - uses: ./.github/actions/setup-bun
+        with:
+          install-flags: "--os='*' --cpu='*'"
 
       - name: Build CLI (8 targets)
         working-directory: packages/opencode
