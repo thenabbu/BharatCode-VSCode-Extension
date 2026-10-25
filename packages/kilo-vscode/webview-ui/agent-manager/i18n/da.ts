@@ -445,7 +445,7 @@ export const dict = {
   "agentManager.import.failed": "Import mislykkedes",
   "agentManager.caffeination.toggle": "Hold computeren vågen, mens BharatCode-agenterne arbejder",
   "agentManager.caffeination.armed":
-    "Tilstanden til at holde computeren vågen er aktiveret for Kilo-agenter; klik for at deaktivere",
+    "Tilstanden til at holde computeren vågen er aktiveret for BharatCode-agenter; klik for at deaktivere",
   "agentManager.caffeination.active": "Holder computeren vågen, mens BharatCode-agenterne arbejder",
   "agentManager.caffeination.unavailable":
     "Tilstanden til at holde computeren vågen er ikke tilgængelig på denne platform",
@@ -489,7 +489,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Løs konflikter med BharatCode",
   "agentManager.intro.updateText":
-    "Før du anvender ændringer på Local eller fletter en pull request, skal du køre /update-from-base i sessionen for det pågældende worktree. Kilo fletter de seneste ændringer fra base-branchen og løser først konflikter i dette worktree.",
+    "Før du anvender ændringer på Local eller fletter en pull request, skal du køre /update-from-base i sessionen for det pågældende worktree. BharatCode fletter de seneste ændringer fra base-branchen og løser først konflikter i dette worktree.",
   "agentManager.intro.stage1.title": "Dit repository",
   "agentManager.intro.stage1.text": "Lokale filer forbliver uændrede",
   "agentManager.intro.stage2.title": "Eksempel: to opgaver parallelt",
@@ -528,11 +528,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "ukendt",
   "agentManager.orphans.dialogTitle": "Efterladte worktree-mapper",
   "agentManager.orphans.helpIntro":
-    "Kilo gemmer alle worktrees, den opretter, i mappen .kilo/worktrees i dette repository. Mapperne nedenfor ligger i den mappe, men git viser ingen af dem som et worktree, så der er ikke længere noget, der bruger dem.",
+    "BharatCode gemmer alle worktrees, den opretter, i mappen .kilo/worktrees i dette repository. Mapperne nedenfor ligger i den mappe, men git viser ingen af dem som et worktree, så der er ikke længere noget, der bruger dem.",
   "agentManager.orphans.helpCheckout":
     "En mappe, der er markeret som indeholdende et git-checkout, har stadig en .git-post indeni og kan indeholde arbejde, der ikke er committet. Sådanne mapper er ikke valgt, så åbn en af dem og tjek den, før du sletter den.",
   "agentManager.orphans.helpCauses":
-    "Efterladte mapper skyldes typisk en sletning, der blev afbrudt, et worktree, der blev fjernet uden om Kilo, eller et værktøj, der skrev i mappen, efter at den blev fjernet. Sletninger, der stadig kører, vises ikke her.",
+    "Efterladte mapper skyldes typisk en sletning, der blev afbrudt, et worktree, der blev fjernet uden om BharatCode, eller et værktøj, der skrev i mappen, efter at den blev fjernet. Sletninger, der stadig kører, vises ikke her.",
   "agentManager.orphans.helpDelete":
     "Sletning fjerner de valgte mapper permanent fra disken uden om Papirkurven. Ingen branch og intet aktivt worktree bliver berørt. Størrelserne er den plads, hver mappe fylder på disken lige nu.",
   "agentManager.orphans.helpMore": "Vis mere",

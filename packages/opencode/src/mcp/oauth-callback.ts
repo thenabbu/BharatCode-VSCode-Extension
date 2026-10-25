@@ -28,7 +28,7 @@ const HTML_SUCCESS = `<!DOCTYPE html>
   <div class="container">
     <h1>Authorization Successful</h1>
     <!-- kilocode_change start -->
-    <p>You can close this window and return to Kilo.</p>
+    <p>You can close this window and return to BharatCode.</p>
     <!-- kilocode_change end -->
   </div>
   <script>setTimeout(() => window.close(), 2000);</script>
@@ -248,7 +248,8 @@ export async function isPortInUse(port: number = OAUTH_CALLBACK_PORT): Promise<b
   })
 }
 
-export async function stop(reason?: Error): Promise<void> { // kilocode_change - reason for waiting flows
+export async function stop(reason?: Error): Promise<void> {
+  // kilocode_change - reason for waiting flows
   if (server) {
     await new Promise<void>((resolve) => server!.close(() => resolve()))
     server = undefined

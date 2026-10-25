@@ -71,8 +71,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "クレジットを追加",
 
   "dialog.usageExceeded.freeTier.title": "無料制限に達しました",
-  "dialog.usageExceeded.freeTier.description":
-    "Kilo Go にサブスクライブして、最高のオープンソースモデルに安定してアクセスできます。月額 $10。", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "サブスクライブ",
   "dialog.usageExceeded.accountRateLimit.title": "Go の制限に達しました",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -215,7 +214,7 @@ export const dict = {
   "ui.message.duration.seconds": "{{count}}秒",
   "ui.message.duration.minutesSeconds": "{{minutes}}分 {{seconds}}秒",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "PNG をコピー",
   "ui.mermaid.copySource": "Mermaid ソースをコピー",
   "ui.mermaid.copySvg": "SVG をコピー",

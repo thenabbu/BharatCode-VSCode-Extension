@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Tasuta kasutus on ületatud",
   "ui.sessionTurn.error.addCredits": "Lisa krediite",
   "dialog.usageExceeded.freeTier.title": "Tasuta limiit on täis",
-  "dialog.usageExceeded.freeTier.description":
-    "Tellige Kilo Go 10 dollari eest kuus, et saada usaldusväärne juurdepääs parimatele avatud lähtekoodiga mudelitele.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Telli",
   "dialog.usageExceeded.accountRateLimit.title": "Go limiit on täis",
   "dialog.usageExceeded.accountRateLimit.description":

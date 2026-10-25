@@ -26,7 +26,7 @@ export const KiloPlugin = define({
             // kilocode_change end
             provider.request.headers["HTTP-Referer"] = "https://kilo.ai/"
             // kilocode_change start
-            provider.request.headers["X-Title"] = "Kilo Code"
+            provider.request.headers["X-Title"] = "BharatCode"
             options.apiKey = token ?? "anonymous"
             options.kilocodeToken = options.apiKey
             if (org) options.kilocodeOrganizationId = org

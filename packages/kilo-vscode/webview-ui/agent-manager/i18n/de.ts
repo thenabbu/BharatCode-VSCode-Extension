@@ -506,7 +506,7 @@ export const dict = {
     "Bitten Sie den Agenten in jedem Worktree, einen Pull Request zu öffnen. Oder verwenden Sie Apply im Diff-Panel, um Änderungen nach Local zu kopieren.",
   "agentManager.intro.updateTitle": "Konflikte mit BharatCode lösen",
   "agentManager.intro.updateText":
-    "Bevor Sie Änderungen auf Local anwenden oder einen Pull Request mergen, führen Sie /update-from-base in der Sitzung dieses Worktrees aus. Kilo mergt die neuesten Änderungen des Basis-Branches und löst Konflikte zuerst in diesem Worktree.",
+    "Bevor Sie Änderungen auf Local anwenden oder einen Pull Request mergen, führen Sie /update-from-base in der Sitzung dieses Worktrees aus. BharatCode mergt die neuesten Änderungen des Basis-Branches und löst Konflikte zuerst in diesem Worktree.",
   "agentManager.intro.prDetection":
     "PR-Abzeichen werden für jeden Worktree-Branch automatisch aktualisiert (GitHub CLI-Anmeldung erforderlich).",
   "agentManager.intro.checksRunning": "Prüfungen laufen",
@@ -536,11 +536,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "unbekannt",
   "agentManager.orphans.dialogTitle": "Übrig gebliebene Worktree-Ordner",
   "agentManager.orphans.helpIntro":
-    "Kilo legt jeden Worktree, den es erstellt, im Ordner .kilo/worktrees dieses Repositorys ab. Die folgenden Ordner liegen in diesem Ordner, aber git führt keinen davon als Worktree, sodass sie von nichts mehr verwendet werden.",
+    "BharatCode legt jeden Worktree, den es erstellt, im Ordner .kilo/worktrees dieses Repositorys ab. Die folgenden Ordner liegen in diesem Ordner, aber git führt keinen davon als Worktree, sodass sie von nichts mehr verwendet werden.",
   "agentManager.orphans.helpCheckout":
     "Ein Ordner, der als git-Checkout markiert ist, enthält noch einen .git-Eintrag und möglicherweise nicht committete Arbeit. Diese Ordner bleiben nicht ausgewählt; öffnen Sie einen davon und prüfen Sie ihn, bevor Sie ihn löschen.",
   "agentManager.orphans.helpCauses":
-    "Übrig gebliebene Ordner entstehen meist durch eine abgebrochene Löschung, einen außerhalb von Kilo entfernten Worktree oder ein Tool, das nach dem Entfernen noch in den Ordner geschrieben hat. Löschvorgänge, die noch laufen, werden hier nicht aufgeführt.",
+    "Übrig gebliebene Ordner entstehen meist durch eine abgebrochene Löschung, einen außerhalb von BharatCode entfernten Worktree oder ein Tool, das nach dem Entfernen noch in den Ordner geschrieben hat. Löschvorgänge, die noch laufen, werden hier nicht aufgeführt.",
   "agentManager.orphans.helpDelete":
     "Beim Löschen werden die ausgewählten Ordner endgültig von der Festplatte entfernt, ohne den Papierkorb zu durchlaufen. Kein Branch und kein aktiver Worktree wird angetastet. Die Größen zeigen, wie viel Speicherplatz jeder Ordner aktuell belegt.",
   "agentManager.orphans.helpMore": "Mehr anzeigen",

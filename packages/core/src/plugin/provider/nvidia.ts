@@ -15,8 +15,8 @@ export const NvidiaPlugin = define({
           evt.provider.update(item.provider.id, (provider) => {
             provider.request.headers["HTTP-Referer"] = "https://kilo.ai/" // kilocode_change
             // kilocode_change start
-            provider.request.headers["X-Title"] = "Kilo Code"
-            provider.request.headers["X-BILLING-INVOKE-ORIGIN"] ??= "KiloCode"
+            provider.request.headers["X-Title"] = "BharatCode"
+            provider.request.headers["X-BILLING-INVOKE-ORIGIN"] ??= "BharatCode"
             // kilocode_change end
           })
         }

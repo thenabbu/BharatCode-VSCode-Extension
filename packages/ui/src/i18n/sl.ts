@@ -71,8 +71,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Brezplačna uporaba je presežena",
   "ui.sessionTurn.error.addCredits": "Dodajte kredite",
   "dialog.usageExceeded.freeTier.title": "Brezplačna omejitev je dosežena",
-  "dialog.usageExceeded.freeTier.description":
-    "Naročite se na Kilo Go za zanesljiv dostop do najboljših odprtokodnih modelov za 10 $/mesec.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Naročite se",
   "dialog.usageExceeded.accountRateLimit.title": "Dosežena omejitev",
   "dialog.usageExceeded.accountRateLimit.description":

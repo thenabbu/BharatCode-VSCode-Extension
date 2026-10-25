@@ -206,7 +206,7 @@ const HTML_SUCCESS = `<!doctype html>
     <div class="container">
       <h1>Authorization Successful</h1>
       <!-- kilocode_change start -->
-      <p>You can close this window and return to Kilo.</p>
+      <p>You can close this window and return to BharatCode.</p>
       <!-- kilocode_change end -->
     </div>
     <script>

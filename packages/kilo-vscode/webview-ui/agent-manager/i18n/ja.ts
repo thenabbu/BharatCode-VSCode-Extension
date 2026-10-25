@@ -273,7 +273,7 @@ export const dict = {
   "agentManager.review.sendToChat": "チャットに送信",
   "agentManager.pr.comment.title": "コメント",
   "agentManager.pr.copyLink": "PRリンクをコピー",
-  "agentManager.pr.checks.fix": "Kiloで修正",
+  "agentManager.pr.checks.fix": "BharatCodeで修正",
   "agentManager.pr.checks.terminal": "失敗情報をターミナルに送信",
   "agentManager.pr.checks.feedback": "CIフィードバック",
   "agentManager.pr.checks.title": "チェック",
@@ -304,8 +304,8 @@ export const dict = {
   "agentManager.pr.checks.tally.skipped.other": "{{count}} 件スキップ",
   "agentManager.pr.checks.tally.success.one": "{{count}} 件成功",
   "agentManager.pr.checks.tally.success.other": "{{count}} 件成功",
-  "agentManager.pr.fixWithKilo": "Kiloで修正",
-  "agentManager.pr.fixWithKiloCount": "Kiloで{{count}}件を修正",
+  "agentManager.pr.fixWithKilo": "BharatCodeで修正",
+  "agentManager.pr.fixWithKiloCount": "BharatCodeで{{count}}件を修正",
   "agentManager.pr.comment.unresolvedCount": "{{count}} 件未解決",
   "agentManager.pr.comment.unresolvedThread": "未解決のレビュースレッド {{count}} 件",
   "agentManager.pr.comment.unresolvedThreads": "未解決のレビュースレッド {{count}} 件",
@@ -359,7 +359,7 @@ export const dict = {
   "agentManager.pr.timeline.earlier": "Show earlier activity",
   "agentManager.pr.conversation.dismiss": "閉じる",
   "agentManager.pr.conversation.restore": "復元",
-  "agentManager.pr.conversation.sendAll": "Kiloで{{count}}件を修正",
+  "agentManager.pr.conversation.sendAll": "BharatCodeで{{count}}件を修正",
   "agentManager.pr.conversation.sendAllToTerminal": "{{count}} 件をターミナルに送信",
   "agentManager.pr.summary.title": "PR Summary",
   "agentManager.pr.summary.checksPassing": "All checks passing",
@@ -376,7 +376,7 @@ export const dict = {
   "agentManager.pr.merge.draft": "ドラフト pull request",
   "agentManager.pr.merge.checking": "マージ可能か確認中",
   "agentManager.pr.merge.ready": "マージする準備ができています",
-  "agentManager.pr.merge.fix": "Kiloで修正",
+  "agentManager.pr.merge.fix": "BharatCodeで修正",
   "agentManager.pr.merge.update": "ブランチを更新",
   "agentManager.pr.merge.button": "{{method}}",
   "agentManager.pr.merge.autoButton": "auto-mergeを有効化",
@@ -499,7 +499,7 @@ export const dict = {
     "各 worktree のエージェントに pull request を開くよう依頼します。または差分パネルで Apply を使い、変更を Local にコピーします。",
   "agentManager.intro.updateTitle": "BharatCode で競合を解決",
   "agentManager.intro.updateText":
-    "Local に変更を適用するか、pull request をマージする前に、その worktree のセッションで /update-from-base を実行してください。Kilo がベースブランチの最新変更をマージし、まずその worktree 内で競合を解決します。",
+    "Local に変更を適用するか、pull request をマージする前に、その worktree のセッションで /update-from-base を実行してください。BharatCode がベースブランチの最新変更をマージし、まずその worktree 内で競合を解決します。",
   "agentManager.intro.prDetection":
     "PR バッジは各 worktree ブランチで自動的に更新されます（GitHub CLI へのサインインが必要です）。",
   "agentManager.intro.checksRunning": "チェック実行中",
@@ -529,11 +529,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "不明",
   "agentManager.orphans.dialogTitle": "残された worktree フォルダー",
   "agentManager.orphans.helpIntro":
-    "Kilo は作成した worktree をすべて、このリポジトリの .kilo/worktrees フォルダー内に保存します。以下のフォルダーはそのフォルダー内にありますが、git はいずれも worktree として認識していないため、どこからも使用されていません。",
+    "BharatCode は作成した worktree をすべて、このリポジトリの .kilo/worktrees フォルダー内に保存します。以下のフォルダーはそのフォルダー内にありますが、git はいずれも worktree として認識していないため、どこからも使用されていません。",
   "agentManager.orphans.helpCheckout":
     "git チェックアウトが残っていると表示されているフォルダーには、まだ .git エントリがあり、コミットされていない作業が含まれている可能性があります。これらは選択されていないため、削除する前に開いて内容を確認してください。",
   "agentManager.orphans.helpCauses":
-    "残されたフォルダーは通常、中断された削除、Kilo の外で削除された worktree、または削除後にフォルダーへ書き込んだツールが原因で発生します。実行中の削除はここには表示されません。",
+    "残されたフォルダーは通常、中断された削除、BharatCode の外で削除された worktree、または削除後にフォルダーへ書き込んだツールが原因で発生します。実行中の削除はここには表示されません。",
   "agentManager.orphans.helpDelete":
     "削除すると、選択したフォルダーはゴミ箱を経由せずにディスクから完全に削除されます。ブランチや使用中の worktree には影響しません。サイズは各フォルダーが現在ディスク上で占めている容量です。",
   "agentManager.orphans.helpMore": "さらに表示",

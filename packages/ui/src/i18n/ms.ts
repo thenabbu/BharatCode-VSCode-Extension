@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Penggunaan percuma telah melebihi had",
   "ui.sessionTurn.error.addCredits": "Tambah kredit",
   "dialog.usageExceeded.freeTier.title": "Had percuma dicapai",
-  "dialog.usageExceeded.freeTier.description":
-    "Langgan Kilo Go pada harga $10/bulan untuk akses yang lebih stabil kepada model sumber terbuka terbaik.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Langgan",
   "dialog.usageExceeded.accountRateLimit.title": "Had Go dicapai",
   "dialog.usageExceeded.accountRateLimit.description":

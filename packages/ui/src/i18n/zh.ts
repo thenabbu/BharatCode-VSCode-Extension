@@ -76,7 +76,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "充值",
 
   "dialog.usageExceeded.freeTier.title": "免费额度已用完",
-  "dialog.usageExceeded.freeTier.description": "每月 $10 订阅 Kilo Go，可靠地使用最佳开源模型。", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "订阅",
   "dialog.usageExceeded.accountRateLimit.title": "Go 额度已用完",
   "dialog.usageExceeded.accountRateLimit.description": "使用额度已达上限。如需立即继续使用此模型，请启用余额付费",
@@ -217,7 +217,7 @@ export const dict = {
   "ui.toolErrorCard.copyError": "复制错误",
   "ui.message.duration.seconds": "{{count}} 秒",
   "ui.message.duration.minutesSeconds": "{{minutes}} 分钟 {{seconds}} 秒",
-  // kilocode_change start - preserve Kilo UI translations across the upstream dictionary refresh
+  // kilocode_change start - preserve BharatCode UI translations across the upstream dictionary refresh
   "ui.sessionTurn.status.delegatingWaitingPermission": "Subagent waiting for permission",
   "ui.sessionTurn.status.delegatingWaitingQuestion": "Subagent waiting for response",
   "ui.messagePart.mcp.input": "输入",

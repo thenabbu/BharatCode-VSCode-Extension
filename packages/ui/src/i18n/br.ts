@@ -71,8 +71,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "Adicionar créditos",
 
   "dialog.usageExceeded.freeTier.title": "Limite gratuito atingido",
-  "dialog.usageExceeded.freeTier.description":
-    "Assine o Kilo Go por $10/mês para ter acesso confiável aos melhores modelos de código aberto.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Assinar",
   "dialog.usageExceeded.accountRateLimit.title": "Limite do Go atingido",
   "dialog.usageExceeded.accountRateLimit.description":

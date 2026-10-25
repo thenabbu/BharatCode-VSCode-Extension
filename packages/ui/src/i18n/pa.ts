@@ -69,8 +69,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "مفت استعمال توں ودھ گیا",
   "ui.sessionTurn.error.addCredits": "کریڈٹ شامل کرو",
   "dialog.usageExceeded.freeTier.title": "مفت حد پوری ہو گئی",
-  "dialog.usageExceeded.freeTier.description":
-    "$10/مہینہ وچ بہترین اوپن سورس ماڈلاں تک بھروسے جوگی رسائی لئی Kilo Go دی رکنیت لوو۔", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "سبسکرائب کرو",
   "dialog.usageExceeded.accountRateLimit.title": "Go دی حد پوری ہو گئی",
   "dialog.usageExceeded.accountRateLimit.description":

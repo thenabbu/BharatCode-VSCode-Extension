@@ -78,8 +78,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "Kredi ekle",
 
   "dialog.usageExceeded.freeTier.title": "Ücretsiz sınıra ulaşıldı",
-  "dialog.usageExceeded.freeTier.description":
-    "En iyi açık kaynaklı modellere güvenilir erişim için aylık $10 karşılığında Kilo Go'ya abone olun.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Abone ol",
   "dialog.usageExceeded.accountRateLimit.title": "Go sınırına ulaşıldı",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -221,7 +220,7 @@ export const dict = {
   "ui.toolErrorCard.copyError": "Hatayı kopyala",
   "ui.message.duration.seconds": "{{count}} sn",
   "ui.message.duration.minutesSeconds": "{{minutes}} dk {{seconds}} sn",
-  // kilocode_change start - preserve Kilo UI translations across the upstream dictionary refresh
+  // kilocode_change start - preserve BharatCode UI translations across the upstream dictionary refresh
   "ui.sessionTurn.status.delegatingWaitingPermission": "Subagent waiting for permission",
   "ui.sessionTurn.status.delegatingWaitingQuestion": "Subagent waiting for response",
   "ui.messagePart.mcp.input": "Giriş",
