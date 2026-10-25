@@ -2,7 +2,7 @@
   "name": "bharatcode-vscode",
   "displayName": "BharatCode: AI Coding Agent, Copilot, and Autocomplete",
   "description": "BharatCode is an open source AI coding agent for VS Code: inline autocomplete, browser automation, automated refactoring, an agent manager, and custom modes for planning, coding, and debugging. Powered by bharatcode.ai with two models: qwen-3.8-27b (262k context) and deepseek-v4.1-flash (1M context).",
-  "version": "7.8.17-bc.1",
+  "version": "7.8.17-bc.2",
   "icon": "assets/icons/logo-outline-black.png",
   "galleryBanner": {
     "color": "#111113",
