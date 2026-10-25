@@ -4,12 +4,18 @@ import type { Auth } from "@kilocode/sdk/v2"
 import { OAUTH_DUMMY_KEY } from "../auth"
 import { createServer } from "http"
 
-// Supabase GoTrue OAuth 2.0, authorization code + PKCE (S256) — the same
+// GoTrue-compatible OAuth 2.0, authorization code + PKCE (S256) — the same
 // flow the official BharatCode CLI (`bharatcode auth login`) and desktop app
 // use. The auth server's redirect allowlist is exact-match: only the CLI
 // loopback (127.0.0.1 / localhost :27182) and the desktop deep link are
 // registered, so this plugin reuses the CLI loopback callback URI.
-const DEFAULT_ISSUER = "https://evgvlcaxfpwupaiwzqqm.supabase.co/auth/v1"
+// Since the 2026-10-25 cutover the issuer is first-party: auth moved off the
+// managed Supabase project onto auth.bharatcode.ai (same /auth/v1 GoTrue API,
+// same client_id/scope/redirect — verified against the official desktop
+// source `BharatCode-ai/bharatcode-desktop` packages/opencode/src/bharatcode/account.ts
+// and a live 302 consent probe; the old supabase.co host was being torn down
+// mid-upgrade and errored with `error creating authorization`).
+const DEFAULT_ISSUER = "https://auth.bharatcode.ai/auth/v1"
 const DEFAULT_CLIENT_ID = "4cad332a-232f-4ef2-9363-12fea4420635"
 const DEFAULT_REDIRECT_URI = "http://127.0.0.1:27182/callback"
 const SCOPE = "openid email profile"
