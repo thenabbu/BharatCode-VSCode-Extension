@@ -453,7 +453,7 @@ export const dict = {
   "agentManager.import.failed": "İçe aktarma başarısız oldu",
   "agentManager.caffeination.toggle": "BharatCode ajanları çalışırken bilgisayarı uyanık tut",
   "agentManager.caffeination.armed":
-    "Kilo ajanları için bilgisayarı uyanık tutma modu etkin; devre dışı bırakmak için tıklayın",
+    "BharatCode ajanları için bilgisayarı uyanık tutma modu etkin; devre dışı bırakmak için tıklayın",
   "agentManager.caffeination.active": "BharatCode ajanları çalışırken bilgisayar uyanık tutuluyor",
   "agentManager.caffeination.unavailable": "Bilgisayarı uyanık tutma modu bu platformda kullanılamıyor",
   "agentManager.browser.title": "Entegre Tarayıcı",
@@ -496,7 +496,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Çakışmaları BharatCode ile çözün",
   "agentManager.intro.updateText":
-    "Değişiklikleri Local'e uygulamadan veya bir pull request'i birleştirmeden önce ilgili worktree oturumunda /update-from-base komutunu çalıştırın. Kilo en son temel dal değişikliklerini birleştirir ve çakışmaları önce aynı worktree içinde çözer.",
+    "Değişiklikleri Local'e uygulamadan veya bir pull request'i birleştirmeden önce ilgili worktree oturumunda /update-from-base komutunu çalıştırın. BharatCode en son temel dal değişikliklerini birleştirir ve çakışmaları önce aynı worktree içinde çözer.",
   "agentManager.intro.stage1.title": "Deponuz",
   "agentManager.intro.stage1.text": "Yerel dosyalar değişmeden kalır",
   "agentManager.intro.stage2.title": "Örnek: iki görev paralel",
@@ -534,11 +534,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "bilinmiyor",
   "agentManager.orphans.dialogTitle": "Artakalan worktree klasörleri",
   "agentManager.orphans.helpIntro":
-    "Kilo, oluşturduğu her worktree'yi bu deponun .kilo/worktrees klasöründe tutar. Aşağıdaki klasörler bu klasörün içindedir, ancak git bunların hiçbirini worktree olarak listelemez; dolayısıyla artık hiçbir şey onları kullanmıyor.",
+    "BharatCode, oluşturduğu her worktree'yi bu deponun .kilo/worktrees klasöründe tutar. Aşağıdaki klasörler bu klasörün içindedir, ancak git bunların hiçbirini worktree olarak listelemez; dolayısıyla artık hiçbir şey onları kullanmıyor.",
   "agentManager.orphans.helpCheckout":
     "İçinde git checkout bulunduğu belirtilen bir klasörde hâlâ bir .git girdisi vardır ve commit edilmemiş çalışma barındırabilir. Bu klasörler seçili bırakılmaz; silmeden önce birini açıp inceleyin.",
   "agentManager.orphans.helpCauses":
-    "Artakalan klasörler genellikle yarıda kesilen bir silme işleminden, Kilo dışında kaldırılan bir worktree'den veya klasör kaldırıldıktan sonra içine yazan bir araçtan kaynaklanır. Hâlâ sürmekte olan silme işlemleri burada listelenmez.",
+    "Artakalan klasörler genellikle yarıda kesilen bir silme işleminden, BharatCode dışında kaldırılan bir worktree'den veya klasör kaldırıldıktan sonra içine yazan bir araçtan kaynaklanır. Hâlâ sürmekte olan silme işlemleri burada listelenmez.",
   "agentManager.orphans.helpDelete":
     "Silme işlemi, seçili klasörleri Geri Dönüşüm Kutusu'na göndermeden diskten kalıcı olarak kaldırır. Hiçbir dal ve etkin worktree etkilenmez. Boyutlar, her klasörün şu anda diskte kapladığı alanı gösterir.",
   "agentManager.orphans.helpMore": "Daha fazla göster",

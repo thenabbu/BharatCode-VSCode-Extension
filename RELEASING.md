@@ -47,7 +47,13 @@ gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
 
 ## Version scheme
 
-- Fork of Kilo Code v7.8.8. BharatCode releases: `7.8.8-bc.N` — upstream X.Y.Z, `-bc` marks ours, `N` counts our releases. An upstream bump lands as `7.8.9-bc.1`, etc.
+- Fork of Kilo Code. BharatCode releases are **plain semver `X.Y.Z`** — necessarily so, see below.
+- **Scheme:** upstream's `major.minor` is preserved and OUR release counter lives in the patch, offset by 100. First release of base 7.8 is `7.8.101`, then `7.8.102`, `7.8.103`… An upstream sync that moves the base to 7.9 restarts at `7.9.101`.
+- **Why not `7.8.17-bc.3`:** the Marketplace *upload* validator rejects any prerelease suffix (`-bc.3`), with "must be one to four numbers separated by a period".
+- **Why not `7.8.17.3`:** `vsce package` — which BUILDS the vsix — refuses a fourth component outright (`Invalid extension "version"`). Verified by direct test: `7.8.17-bc.3` and `7.8.101` both pass vsce; `7.8.17.3` fails.
+- **The intersection is a 3-part numeric version.** The 100 offset keeps 1–99 free for real upstream patch releases of that minor, so a future upstream `7.8.20` sorts BELOW our `7.8.101` and can never collide.
+- Tags use the same string (`7.8.101`). `release.yml` derives `major.minor` from the root `package.json` and takes the highest **pure 3-segment numeric** tag as the counter — legacy `-bc.N` and 4-part tags are filtered out, since they would corrupt the count.
+- The Zed `extension.toml` is NOT version-synced: Zed validates strict semver against upstream's own release URLs, so it keeps upstream's version and stays upstream-maintained.
 - ~36 `package.json` files share the version string; the bump replaces the old literal once per file. The embedded CLI inherits it via `KILO_VERSION` (`packages/opencode/script/build.ts`), so extension About and `bharatcode --version` stay in sync.
 - Tag the exact final release commit — if you amend after tagging, re-point the tag (`git tag -d` + re-create) or the push ships the old tree.
 
@@ -55,7 +61,7 @@ gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
 
 - tree clean, branch synced with origin, tag not taken
 - esbuild production gate RC=0
-- zip audit per platform: zero `*.map`, only the target platform's binary under `extension/bin/`, `extension/LICENSE.txt` with the BharatCode line, manifest `bharatcode.bharatcode-vscode` at the new version
+- zip audit per platform: zero `*.map`, only the target platform's binary under `extension/bin/`, `extension/LICENSE.txt` with the BharatCode line, manifest `thenabbu.bharatcode-vscode` at the new version
 - sha256 recorded before anything else touches `out/`
 
 ## Pitfalls that bit once

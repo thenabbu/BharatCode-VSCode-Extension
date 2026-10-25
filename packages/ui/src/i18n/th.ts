@@ -72,8 +72,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "เพิ่มเครดิต",
 
   "dialog.usageExceeded.freeTier.title": "ถึงขีดจำกัดฟรีแล้ว",
-  "dialog.usageExceeded.freeTier.description":
-    "สมัครสมาชิก Kilo Go ในราคา $10/เดือน เพื่อการเข้าถึงโมเดลโอเพนซอร์สที่ดีที่สุดอย่างเชื่อถือได้", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "สมัครสมาชิก",
   "dialog.usageExceeded.accountRateLimit.title": "ถึงขีดจำกัดของ Go แล้ว",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -216,7 +215,7 @@ export const dict = {
   "ui.message.duration.seconds": "{{count}} วินาที",
   "ui.message.duration.minutesSeconds": "{{minutes}} นาที {{seconds}} วินาที",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "คัดลอก PNG",
   "ui.mermaid.copySource": "คัดลอกซอร์ส Mermaid",
   "ui.mermaid.copySvg": "คัดลอก SVG",

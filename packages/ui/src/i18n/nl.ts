@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Gratis gebruik overschreden",
   "ui.sessionTurn.error.addCredits": "Tegoed toevoegen",
   "dialog.usageExceeded.freeTier.title": "Gratis limiet bereikt",
-  "dialog.usageExceeded.freeTier.description":
-    "Abonneer je voor $ 10 per maand op Kilo Go voor betrouwbare toegang tot de beste open-sourcemodellen.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Abonneer je",
   "dialog.usageExceeded.accountRateLimit.title": "Go-limiet bereikt",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -196,7 +195,7 @@ export const dict: Record<string, string> = {
   "ui.question.singleHint": "Selecteer één antwoord",
   "ui.question.custom.placeholder": "Typ je antwoord...",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "PNG kopiëren",
   "ui.mermaid.copySource": "Mermaid-bron kopiëren",
   "ui.mermaid.copySvg": "SVG kopiëren",

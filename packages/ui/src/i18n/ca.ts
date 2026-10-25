@@ -69,8 +69,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "S'ha superat l'ús gratuït",
   "ui.sessionTurn.error.addCredits": "Afegeix crèdits",
   "dialog.usageExceeded.freeTier.title": "S'ha arribat al límit gratuït",
-  "dialog.usageExceeded.freeTier.description":
-    "Subscriviu-vos a Kilo Go per 10 dòlars al mes i obteniu accés fiable als millors models de codi obert.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Subscriu-te",
   "dialog.usageExceeded.accountRateLimit.title": "S'ha assolit el límit de Go",
   "dialog.usageExceeded.accountRateLimit.description":

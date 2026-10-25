@@ -445,7 +445,7 @@ export const dict = {
   "agentManager.import.failed": "Import nie powiódł się",
   "agentManager.caffeination.toggle": "Nie usypiaj komputera, gdy agenci BharatCode pracują",
   "agentManager.caffeination.armed":
-    "Tryb zapobiegania uśpieniu komputera włączony dla agentów Kilo; kliknij, aby wyłączyć",
+    "Tryb zapobiegania uśpieniu komputera włączony dla agentów BharatCode; kliknij, aby wyłączyć",
   "agentManager.caffeination.active": "Komputer pozostaje aktywny, gdy agenci BharatCode pracują",
   "agentManager.caffeination.unavailable": "Tryb utrzymywania komputera aktywnego jest niedostępny na tej platformie",
   "agentManager.browser.title": "Zintegrowana przeglądarka",
@@ -488,7 +488,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Rozwiąż konflikty z BharatCode",
   "agentManager.intro.updateText":
-    "Zanim zastosujesz zmiany w Local lub scalisz pull request, uruchom /update-from-base w sesji tego worktree. Kilo scala najnowsze zmiany z gałęzi bazowej i najpierw rozwiązuje konflikty w tym worktree.",
+    "Zanim zastosujesz zmiany w Local lub scalisz pull request, uruchom /update-from-base w sesji tego worktree. BharatCode scala najnowsze zmiany z gałęzi bazowej i najpierw rozwiązuje konflikty w tym worktree.",
   "agentManager.intro.stage1.title": "Twoje repozytorium",
   "agentManager.intro.stage1.text": "Lokalne pliki pozostają niezmienione",
   "agentManager.intro.stage2.title": "Przykład: dwa zadania równolegle",
@@ -527,11 +527,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "nieznany",
   "agentManager.orphans.dialogTitle": "Pozostałe foldery worktree",
   "agentManager.orphans.helpIntro":
-    "Kilo przechowuje każdy tworzony worktree w folderze .kilo/worktrees tego repozytorium. Poniższe foldery znajdują się w tym folderze, ale git nie wymienia żadnego z nich jako worktree, więc nic już ich nie używa.",
+    "BharatCode przechowuje każdy tworzony worktree w folderze .kilo/worktrees tego repozytorium. Poniższe foldery znajdują się w tym folderze, ale git nie wymienia żadnego z nich jako worktree, więc nic już ich nie używa.",
   "agentManager.orphans.helpCheckout":
     "Folder oznaczony jako zawierający checkout git nadal ma w środku wpis .git i może zawierać zmiany bez commita. Takie foldery pozostają niezaznaczone, więc otwórz jeden z nich i sprawdź go, zanim go usuniesz.",
   "agentManager.orphans.helpCauses":
-    "Pozostałości zwykle wynikają z przerwanego usuwania, worktree usuniętego poza Kilo albo narzędzia, które zapisało coś w folderze po jego usunięciu. Usuwanie, które nadal trwa, nie jest tu wymieniane.",
+    "Pozostałości zwykle wynikają z przerwanego usuwania, worktree usuniętego poza BharatCode albo narzędzia, które zapisało coś w folderze po jego usunięciu. Usuwanie, które nadal trwa, nie jest tu wymieniane.",
   "agentManager.orphans.helpDelete":
     "Usunięcie trwale usuwa wybrane foldery z dysku, bez przenoszenia ich do Kosza. Żadna gałąź ani żaden aktywny worktree nie zostaje zmieniony. Rozmiary pokazują, ile miejsca każdy folder zajmuje na dysku w tej chwili.",
   "agentManager.orphans.helpMore": "Pokaż więcej",

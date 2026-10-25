@@ -452,7 +452,7 @@ export const dict = {
   "agentManager.import.failed": "Importeren mislukt",
   "agentManager.caffeination.toggle": "Houd de computer wakker terwijl BharatCode-agents werken",
   "agentManager.caffeination.armed":
-    "Modus om de computer wakker te houden voor Kilo-agents ingeschakeld; klik om uit te schakelen",
+    "Modus om de computer wakker te houden voor BharatCode-agents ingeschakeld; klik om uit te schakelen",
   "agentManager.caffeination.active": "Computer wordt wakker gehouden terwijl BharatCode-agents werken",
   "agentManager.caffeination.unavailable":
     "De modus om de computer wakker te houden is niet beschikbaar op dit platform",
@@ -495,7 +495,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Los conflicten op met BharatCode",
   "agentManager.intro.updateText":
-    "Voer /update-from-base uit in de sessie van die worktree voordat je wijzigingen toepast op Local of een pull request samenvoegt. Kilo voegt de nieuwste wijzigingen van de basisbranch samen en lost conflicten eerst in die worktree op.",
+    "Voer /update-from-base uit in de sessie van die worktree voordat je wijzigingen toepast op Local of een pull request samenvoegt. BharatCode voegt de nieuwste wijzigingen van de basisbranch samen en lost conflicten eerst in die worktree op.",
   "agentManager.intro.stage1.title": "Je repository",
   "agentManager.intro.stage1.text": "Lokale bestanden blijven ongewijzigd",
   "agentManager.intro.stage2.title": "Voorbeeld: twee taken parallel",
@@ -534,11 +534,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "onbekend",
   "agentManager.orphans.dialogTitle": "Achtergebleven worktree-mappen",
   "agentManager.orphans.helpIntro":
-    "Kilo bewaart elke worktree die het aanmaakt in de map .kilo/worktrees van deze repository. De mappen hieronder staan in die map, maar git vermeldt er geen enkele als worktree, dus niets gebruikt ze nog.",
+    "BharatCode bewaart elke worktree die het aanmaakt in de map .kilo/worktrees van deze repository. De mappen hieronder staan in die map, maar git vermeldt er geen enkele als worktree, dus niets gebruikt ze nog.",
   "agentManager.orphans.helpCheckout":
     "Een map die is gemarkeerd als map met een git-checkout heeft nog een .git-item erin en kan werk bevatten dat niet is gecommit. Die mappen blijven niet geselecteerd, dus open er een en controleer die voordat je hem verwijdert.",
   "agentManager.orphans.helpCauses":
-    "Restanten komen meestal van een verwijdering die is afgebroken, een worktree die buiten Kilo is verwijderd of een tool die na het verwijderen nog in de map heeft geschreven. Verwijderingen die nog bezig zijn, staan hier niet.",
+    "Restanten komen meestal van een verwijdering die is afgebroken, een worktree die buiten BharatCode is verwijderd of een tool die na het verwijderen nog in de map heeft geschreven. Verwijderingen die nog bezig zijn, staan hier niet.",
   "agentManager.orphans.helpDelete":
     "Verwijderen haalt de geselecteerde mappen definitief van de schijf, zonder via de Prullenbak te gaan. Er wordt geen branch en geen actieve worktree aangeraakt. De groottes zijn de ruimte die elke map op dit moment op de schijf inneemt.",
   "agentManager.orphans.helpMore": "Meer weergeven",

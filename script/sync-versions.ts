@@ -79,20 +79,8 @@ for await (const rel of glob.scan({ cwd: root, onlyFiles: true })) {
   updated++
 }
 
-const zed = join(root, "packages/extensions/zed/extension.toml")
-if (await Bun.file(zed).exists()) {
-  const text = await Bun.file(zed).text()
-  const next = text
-    .replace(/^version\s*=\s*"[^"]+"/m, `version = "${target}"`)
-    .replace(
-      /https:\/\/github\.com\/Kilo-Org\/kilocode\/releases\/download\/v[^/]+\//g,
-      `https://github.com/Kilo-Org/kilocode/releases/download/v${target}/`,
-    )
-  if (next !== text) {
-    await Bun.write(zed, next)
-    console.log(`  ${relative(root, zed)}`)
-    updated++
-  }
-}
+// kilocode_change: the Zed extension.toml is deliberately NOT synced. Our
+// version carries a fourth component (7.8.17.3) which Zed validates as strict
+// semver and rejects; the toml keeps the upstream X.Y.Z and stays upstream-maintained.
 
 console.log(`\nupdated ${updated} file(s)`)

@@ -444,7 +444,7 @@ export const dict = {
   "agentManager.import.failed": "Uvoz neuspješan",
   "agentManager.caffeination.toggle": "Održi računar budnim dok BharatCode agenti rade",
   "agentManager.caffeination.armed":
-    "Režim održavanja računara budnim je uključen za Kilo agente; kliknite da ga isključite",
+    "Režim održavanja računara budnim je uključen za BharatCode agente; kliknite da ga isključite",
   "agentManager.caffeination.active": "Računar se održava budnim dok BharatCode agenti rade",
   "agentManager.caffeination.unavailable": "Režim održavanja računara budnim nije dostupan na ovoj platformi",
   "agentManager.browser.title": "Integrirani preglednik",
@@ -486,7 +486,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Riješite konflikte uz BharatCode",
   "agentManager.intro.updateText":
-    "Prije nego što primijenite promjene na Local ili spojite pull request, pokrenite /update-from-base u sesiji tog worktree-a. Kilo spaja najnovije promjene iz baze i prvo rješava konflikte unutar tog worktree-a.",
+    "Prije nego što primijenite promjene na Local ili spojite pull request, pokrenite /update-from-base u sesiji tog worktree-a. BharatCode spaja najnovije promjene iz baze i prvo rješava konflikte unutar tog worktree-a.",
   "agentManager.intro.stage1.title": "Vaš repozitorij",
   "agentManager.intro.stage1.text": "Lokalne datoteke ostaju nepromijenjene",
   "agentManager.intro.stage2.title": "Primjer: dva zadatka paralelno",
@@ -525,11 +525,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "nepoznato",
   "agentManager.orphans.dialogTitle": "Zaostali worktree folderi",
   "agentManager.orphans.helpIntro":
-    "Kilo čuva svaki worktree koji napravi u folderu .kilo/worktrees ovog repozitorija. Folderi ispod nalaze se u tom folderu, ali git ni jedan od njih ne navodi kao worktree, pa ih više ništa ne koristi.",
+    "BharatCode čuva svaki worktree koji napravi u folderu .kilo/worktrees ovog repozitorija. Folderi ispod nalaze se u tom folderu, ali git ni jedan od njih ne navodi kao worktree, pa ih više ništa ne koristi.",
   "agentManager.orphans.helpCheckout":
     "Folder označen kao folder koji sadrži git checkout još ima .git zapis unutra i može sadržavati nekomitovan rad. Takvi folderi ostaju neodabrani, pa otvorite jedan i provjerite ga prije nego što ga izbrišete.",
   "agentManager.orphans.helpCauses":
-    "Zaostali folderi najčešće nastaju zbog prekinutog brisanja, worktreeja uklonjenog izvan aplikacije Kilo ili alata koji je pisao u folder nakon što je uklonjen. Brisanja koja su još u toku nisu navedena ovdje.",
+    "Zaostali folderi najčešće nastaju zbog prekinutog brisanja, worktreeja uklonjenog izvan aplikacije BharatCode ili alata koji je pisao u folder nakon što je uklonjen. Brisanja koja su još u toku nisu navedena ovdje.",
   "agentManager.orphans.helpDelete":
     "Brisanje trajno uklanja odabrane foldere s diska, bez prebacivanja u Korpu za smeće. Nijedna grana niti aktivan worktree se ne dira. Veličine pokazuju koliko prostora svaki folder trenutno zauzima na disku.",
   "agentManager.orphans.helpMore": "Prikaži još",

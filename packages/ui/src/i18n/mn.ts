@@ -68,8 +68,7 @@ export const dict = {
   "ui.sessionTurn.error.freeUsageExceeded": "Үнэгүй хэрэглээ хэтэрсэн",
   "ui.sessionTurn.error.addCredits": "Кредит нэмэх",
   "dialog.usageExceeded.freeTier.title": "Үнэгүй хязгаарт хүрсэн",
-  "dialog.usageExceeded.freeTier.description":
-    "Kilo Go-д сард 10 доллараар бүртгүүлж, нээлттэй эхийн шилдэг загваруудад найдвартай хандаарай.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Бүртгүүлэх",
   "dialog.usageExceeded.accountRateLimit.title": "Явах хязгаарт хүрсэн",
   "dialog.usageExceeded.accountRateLimit.description":

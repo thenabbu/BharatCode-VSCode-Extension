@@ -49,16 +49,34 @@ jobs:
           # instead of a hardcoded 7.8.8 so an upstream sync that moves the base
           # (7.8.8 -> 7.8.17) moves the tag series with it, and a HEAD already
           # carrying the computed version is tagged without an empty bump commit.
-          base="$(node -p "require('./package.json').version.replace(/-bc\..*$/, '')")"
-          existing="$(git tag --points-at HEAD --list "${base}-bc.*" | head -1 || true)"
+          # kilocode_change: version scheme is plain semver X.Y.Z because `vsce`
+          # REFUSES a 4th component ("Invalid extension version"), even though the
+          # marketplace upload validator would accept one. We keep upstream's
+          # major.minor and encode OUR release counter in the patch: upstream base
+          # 7.8 -> our releases 7.8.101, 7.8.102, ... (offset 100, so a real
+          # upstream patch bump 7.8.17 still sorts below our series and can never
+          # collide). BASE_MINOR is read from package.json major.minor.
+          series="$(node -p "require('./package.json').version.split('.').slice(0,2).join('.')")"
+          existing="$(git tag --points-at HEAD --list "${series}.*" | head -1 || true)"
           if [ -n "$existing" ]; then
             V="$existing"
             SHA="$(git rev-parse HEAD)"
             echo "HEAD already released as $V — rebuilding only"
           else
-            latest="$(git tag -l "${base}-bc.*" --sort=-v:refname | head -1 || true)"
-            if [ -n "$latest" ]; then n="${latest##*-bc.}"; else n=0; fi
-            V="${base}-bc.$((n + 1))"
+            # kilocode_change: counter lives in PATCH, offset 100. Seed from the
+            # highest existing ${series}.N tag; the very first cut for a base
+            # starts at ${series}.101. Offset leaves 1-99 free for real upstream
+            # patch versions of that minor, so a future upstream 7.8.20 sorts
+            # BELOW our 7.8.101 and cannot collide.
+            # Only PURE-NUMERIC tags count. `7.8.*` would also match the legacy
+            # `7.8.17-bc.2` / `7.8.17.3` tags and corrupt the counter (it once
+            # yielded 7.8.4). Filter to ^[0-9]+$ on the last segment.
+            # Exactly three dot-separated numeric segments, nothing else. A bare
+            # "last segment is numeric" test still let the 4-part 7.8.17.3 tag
+            # through and produced 7.8.4.
+            latest="$(git tag -l "${series}.*" | grep -E "^${series}\.[0-9]+$" | sort -t. -k3 -n | tail -1 || true)"
+            if [ -n "$latest" ]; then n="${latest##*.}"; else n=100; fi
+            V="${series}.$((n + 1))"
             if [ "$(node -p "require('./package.json').version")" = "$V" ]; then
               echo "package.json already at $V — tagging without a bump commit"
               SHA="$(git rev-parse HEAD)"
@@ -161,7 +179,7 @@ jobs:
               assert "BharatCode modifications" in lic and "Kilo Code" in lic, f"{plat}: license lines missing"
               man = json.loads(z.read("extension/package.json"))
               assert man["version"] == V, f"{plat}: version {man['version']} != {V}"
-              assert man["name"] == "bharatcode-vscode" and man["publisher"] == "bharatcode", f"{plat}: manifest identity"
+              assert man["name"] == "bharatcode-vscode" and man["publisher"] == "thenabbu", f"{plat}: manifest identity"
               print(f"{plat}: OK v{man['version']}")
           PY
           (cd packages/kilo-vscode/out && sha256sum *.vsix > SHA256SUMS)
@@ -189,11 +207,100 @@ jobs:
           name: vsixes
           path: dist
 
+      # kilocode_change: every release page must TELL THE USER WHICH FILE TO
+      # GRAB. There are 8 platform vsixes at ~180MB each; a combined bundle was
+      # tried and rejected (1.4GB download for someone who needs 180MB). So the
+      # split stays, and the guidance is generated per release below.
+      # kilocode_change: every release page must TELL THE USER WHICH FILE TO
+      # GRAB. There are 8 platform vsixes (~180MB each); a combined bundle was
+      # tried and rejected (1.4GB download for someone who needs 180MB). So the
+      # split stays and the guidance is generated per release. Generated in
+      # Python: shell heredocs mangle backticks/tables into broken markdown.
+      - name: Generate install guide
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, subprocess
+          tag = os.environ["TAG"]
+          repo = os.environ["GH_REPO"]
+          b = f"https://github.com/{repo}/releases/download/{tag}"
+          rows = [
+              ("**Windows 11 / 10 (Intel or AMD)** - the normal case", "win32-x64"),
+              ("Windows on ARM (Surface Pro X, Copilot+ PC)", "win32-arm64"),
+              ("**macOS, Apple Silicon (M1/M2/M3/M4)**", "darwin-arm64"),
+              ("macOS, Intel", "darwin-x64"),
+              ("**Linux (Ubuntu, Debian, Mint, Fedora, Arch)**", "linux-x64"),
+              ("Linux on ARM (Raspberry Pi, ARM server)", "linux-arm64"),
+              ("Alpine Linux on x64 (some Docker images)", "alpine-x64"),
+              ("Alpine Linux on ARM", "alpine-arm64"),
+          ]
+          out = []
+          out.append("## Which file do I download?")
+          out.append("")
+          out.append("One row matches your computer. Each file is ~150-180 MB and you only")
+          out.append("need **one** of them - downloading more than one is pointless.")
+          out.append("")
+          out.append("| Your computer | File |")
+          out.append("|---|---|")
+          for label, plat in rows:
+              name = f"bharatcode-vscode-{plat}-{tag}.vsix"
+              out.append(f"| {label} | [`{name}`]({b}/{name}) |")
+          out.append("")
+          out.append("**Not sure?** It is almost certainly `win32-x64` on Windows,")
+          out.append("`darwin-arm64` on any Mac from 2020 onwards, or `linux-x64` on Linux.")
+          out.append("If you pick the wrong one VS Code refuses to install it and tells")
+          out.append("you so - nothing breaks.")
+          out.append("")
+          out.append("## How to install")
+          out.append("")
+          out.append("**Terminal (fastest)**")
+          out.append("")
+          out.append("```bash")
+          out.append(f"code --install-extension bharatcode-vscode-{tag}.vsix   # use the real filename")
+          out.append("```")
+          out.append("")
+          out.append("**Inside VS Code**")
+          out.append("")
+          out.append("1. Extensions view - `Ctrl+Shift+X` (Windows/Linux) or `Cmd+Shift+X` (macOS)")
+          out.append("2. Click the `...` menu, top right")
+          out.append("3. **Install from VSIX...**")
+          out.append("4. Pick the file you downloaded")
+          out.append("5. Reload when prompted, then click **Sign in with BharatCode**")
+          out.append("")
+          out.append("Setup after that is one click: the extension opens your browser for")
+          out.append("sign-in. No API key to paste unless you prefer one.")
+          out.append("")
+          out.append("## Verify the download (optional)")
+          out.append("")
+          out.append("`SHA256SUMS` holds a checksum for every file:")
+          out.append("")
+          out.append("```bash")
+          out.append(f"sha256sum bharatcode-vscode-win32-x64-{tag}.vsix    # macOS: shasum -a 256")
+          out.append("```")
+          out.append("")
+          out.append("---")
+          out.append("")
+          out.append("### What changed in this release")
+          out.append("")
+          notes = subprocess.run(
+              ["gh", "api", f"repos/{repo}/releases/generate-notes", "-f", f"tag_name={tag}", "-q", ".body"],
+              capture_output=True, text=True,
+          )
+          if notes.returncode == 0 and notes.stdout.strip():
+              out.append(notes.stdout.strip())
+          else:
+              out.append("_See the commit history for this tag._")
+          open("/tmp/notes.md", "w").write("\n".join(out) + "\n")
+          print(f"wrote /tmp/notes.md ({len(out)} lines)")
+          PY
+
       - name: Publish GitHub release
         run: |
           set -euo pipefail
           if ! gh release view "$TAG" > /dev/null 2>&1; then
-            gh release create "$TAG" --title "BharatCode v$TAG" --generate-notes
+            gh release create "$TAG" --title "BharatCode v$TAG" --notes-file /tmp/notes.md
+          else
+            gh release edit "$TAG" --notes-file /tmp/notes.md
           fi
           gh release upload "$TAG" dist/*.vsix dist/SHA256SUMS --clobber
           count="$(gh release view "$TAG" --json assets -q '.assets | length')"

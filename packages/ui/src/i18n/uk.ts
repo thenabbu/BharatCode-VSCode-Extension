@@ -76,8 +76,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.addCredits": "Додати кредити",
 
   "dialog.usageExceeded.freeTier.title": "Безкоштовний ліміт вичерпано",
-  "dialog.usageExceeded.freeTier.description":
-    "Підпишіться на Kilo Go за $10 на місяць для надійного доступу до найкращих моделей із відкритим кодом.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Підписатися",
   "dialog.usageExceeded.accountRateLimit.title": "Ліміт Go вичерпано",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -227,7 +226,7 @@ export const dict: Record<string, string> = {
   "ui.question.singleHint": "Виберіть одну відповідь",
   "ui.question.custom.placeholder": "Введіть свою відповідь...",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "Копіювати PNG",
   "ui.mermaid.copySource": "Копіювати вихідний код Mermaid",
   "ui.mermaid.copySvg": "Копіювати SVG",

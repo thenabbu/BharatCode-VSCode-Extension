@@ -51,8 +51,7 @@ export const dict: Record<Keys, string> = {
   "ui.sessionTurn.error.addCredits": "Legg til kreditter",
 
   "dialog.usageExceeded.freeTier.title": "Gratisgrensen er nådd",
-  "dialog.usageExceeded.freeTier.description":
-    "Abonner på Kilo Go for $10/måned for pålitelig tilgang til de beste modellene med åpen kildekode.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Abonner",
   "dialog.usageExceeded.accountRateLimit.title": "Go-grensen er nådd",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -220,7 +219,7 @@ export const dict: Record<Keys, string> = {
   "ui.sessionTurn.diffs.showLess": "Vis færre",
   "ui.sessionTurn.diffs.more": "+{{count}} filer til",
 
-  // kilocode_change start - Kilo UI compatibility
+  // kilocode_change start - BharatCode UI compatibility
   "ui.mermaid.copyPng": "Kopier PNG",
   "ui.mermaid.copySource": "Kopier Mermaid-kilde",
   "ui.mermaid.copySvg": "Kopier SVG",
