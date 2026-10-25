@@ -94,7 +94,7 @@
     "commands": [
       {
         "command": "kilo-code.new.setBharatcodeKey",
-        "title": "BharatCode: Set API Key",
+        "title": "Connect Account",
         "category": "BharatCode"
       },
       {

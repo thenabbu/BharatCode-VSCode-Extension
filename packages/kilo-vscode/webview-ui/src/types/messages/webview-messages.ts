@@ -289,6 +289,11 @@ export interface OpenProfilePanelRequest {
   type: "openProfilePanel"
 }
 
+/** Opens the BharatCode connect picker (OAuth or API key) from the chat welcome screen. */
+export interface ConnectBharatcodeRequest {
+  type: "connectBharatcode"
+}
+
 export interface OpenVSCodeSettingsRequest {
   type: "openVSCodeSettings"
   query: string
@@ -1779,6 +1784,7 @@ export type WebviewMessage =
   | SetAgentManagerDefaultBaseBranchMessage
   | ConfigureAgentManagerSetupScriptMessage
   | OpenProfilePanelRequest
+  | ConnectBharatcodeRequest
   | OpenVSCodeSettingsRequest
   | OpenConfigFileRequest
   | OpenMarketplacePanelRequest

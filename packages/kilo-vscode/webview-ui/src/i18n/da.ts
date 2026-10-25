@@ -760,6 +760,11 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode er en AI-kodningsassistent. Bed den om at bygge funktioner, rette fejl eller forklare din kodebase.",
+  "session.messages.connect": "Forbind BharatCode",
+  "session.onboarding.title": "Opsæt BharatCode",
+  "session.onboarding.body":
+    "Log ind i browseren eller indsæt en API-nøgle - begge virker. Kontoen gemmes af udvidelsen, aldrig i indstillingerne.",
+  "session.onboarding.hint": "BharatCode er assistenten i dette panel. Forbind den én gang og begynd.",
   "session.workspaceScope.description":
     "BharatCode-chatten bruger kun “{{folder}}”, den første mappe i dette arbejdsområde.",
   "session.workspaceScope.alternatives":

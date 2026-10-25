@@ -3,6 +3,8 @@ import { Icon } from "@kilocode/kilo-ui/icon"
 import { BharatCodeMark } from "../brand/BharatCodeMark"
 import { useDialog } from "@kilocode/kilo-ui/context/dialog"
 import { useSession } from "../../context/session"
+import { useProvider } from "../../context/provider"
+import { useVSCode } from "../../context/vscode"
 import { useLanguage } from "../../context/language"
 import { recentSessions } from "../../context/session-utils"
 import type { SessionInfo } from "../../types/messages"
@@ -41,12 +43,30 @@ export const WelcomeEmptyState: Component<WelcomeEmptyStateProps> = (props) => {
   const session = useSession()
   const language = useLanguage()
   const dialog = useDialog()
+  const provider = useProvider()
+  const vscode = useVSCode()
   const recent = () => recentSessions(props.sessions?.() ?? session.sessions())
+  // A new user sees this screen before any provider exists: offer the one
+  // action that starts the extension instead of an empty chat box.
+  const needsConnect = () => !provider.connected().includes("bharatcode")
 
   return (
     <div class="message-list-empty">
       <KiloLogo />
       <p class="kilo-about-text">{language.t("session.messages.welcome")}</p>
+      <Show when={needsConnect()}>
+        <div class="welcome-onboarding" role="region" aria-label={language.t("session.onboarding.title")}>
+          <div class="welcome-onboarding-heading">
+            <Icon name="account" size="small" />
+            <span>{language.t("session.onboarding.title")}</span>
+          </div>
+          <p class="welcome-onboarding-body">{language.t("session.onboarding.body")}</p>
+          <button class="welcome-connect" onClick={() => vscode.postMessage({ type: "connectBharatcode" })}>
+            {language.t("session.messages.connect")}
+          </button>
+          <p class="welcome-onboarding-hint">{language.t("session.onboarding.hint")}</p>
+        </div>
+      </Show>
       <WorkspaceScopeHint />
       <Show when={recent().length > 0 && props.onSelectSession}>
         <div class="recent-sessions">
