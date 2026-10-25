@@ -55,9 +55,17 @@ export const WelcomeEmptyState: Component<WelcomeEmptyStateProps> = (props) => {
       <KiloLogo />
       <p class="kilo-about-text">{language.t("session.messages.welcome")}</p>
       <Show when={needsConnect()}>
-        <button class="welcome-connect" onClick={() => vscode.postMessage({ type: "connectBharatcode" })}>
-          {language.t("session.messages.connect")}
-        </button>
+        <div class="welcome-onboarding" role="region" aria-label={language.t("session.onboarding.title")}>
+          <div class="welcome-onboarding-heading">
+            <Icon name="account" size="small" />
+            <span>{language.t("session.onboarding.title")}</span>
+          </div>
+          <p class="welcome-onboarding-body">{language.t("session.onboarding.body")}</p>
+          <button class="welcome-connect" onClick={() => vscode.postMessage({ type: "connectBharatcode" })}>
+            {language.t("session.messages.connect")}
+          </button>
+          <p class="welcome-onboarding-hint">{language.t("session.onboarding.hint")}</p>
+        </div>
       </Show>
       <WorkspaceScopeHint />
       <Show when={recent().length > 0 && props.onSelectSession}>

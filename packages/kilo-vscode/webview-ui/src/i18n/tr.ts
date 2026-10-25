@@ -751,6 +751,10 @@ export const dict = {
   "session.messages.welcome":
     "BharatCode bir yapay zeka kodlama asistanıdır. Özellik geliştirmesini, hata düzeltmesini veya kod tabanınızı açıklamasını isteyin.",
   "session.messages.connect": "BharatCode'a bağlan",
+  "session.onboarding.title": "BharatCode kurulumu",
+  "session.onboarding.body":
+    "Tarayıcıdan giriş yapın veya bir API anahtarı yapıştırın - ikisi de olur. Hesap ayarlarda değil, uzantıda saklanır.",
+  "session.onboarding.hint": "BharatCode bu paneldeki asistandır. Bir kez bağlayın ve başlayın.",
   "session.workspaceScope.description":
     "BharatCode sohbeti yalnızca bu çalışma alanındaki ilk klasör olan “{{folder}}” klasörünü kullanır.",
   "session.workspaceScope.alternatives":

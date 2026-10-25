@@ -154,7 +154,10 @@ export async function ensureKey(ctx: vscode.ExtensionContext, client: () => Prom
         await c.auth.set({ providerID: "bharatcode", auth: { type: "api", key } }, { throwOnError: true })
       }
       await ctx.globalState.update(KEY_SET_FLAG, true)
-      void vscode.window.showInformationMessage("BharatCode connected - open the sidebar chat to start.")
+      // The panel is the onboarding surface (a centre-top toast is easy to
+      // miss), so surface it rather than reporting into the void.
+      void vscode.commands.executeCommand("kilo-code.SidebarProvider.focus")
+      void vscode.window.showInformationMessage("BharatCode connected.")
       return
     } catch (error) {
       console.warn("[BharatCode] BharatCode sign-in failed:", error)

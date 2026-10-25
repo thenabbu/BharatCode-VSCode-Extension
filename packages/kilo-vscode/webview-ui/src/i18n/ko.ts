@@ -756,6 +756,10 @@ export const dict = {
   "session.messages.welcome":
     "BharatCode는 AI 코딩 어시스턴트입니다. 기능 구축, 버그 수정 또는 코드베이스 설명을 요청하세요.",
   "session.messages.connect": "BharatCode 연결",
+  "session.onboarding.title": "BharatCode 설정",
+  "session.onboarding.body":
+    "브라우저에서 로그인하거나 API 키를 붙여넣으세요. 둘 다 가능합니다. 계정은 확장 프로그램이 저장하며 설정에는 저장되지 않습니다.",
+  "session.onboarding.hint": "BharatCode는 이 패널의 어시스턴트입니다. 한 번 연결하고 시작하세요.",
   "session.workspaceScope.description": "BharatCode 채팅은 이 작업 영역의 첫 번째 폴더인 “{{folder}}”만 사용합니다.",
   "session.workspaceScope.alternatives":
     "다른 폴더에서 작업하려면 해당 폴더를 별도 창에서 열거나 Agent Manager에 프로젝트로 추가하세요.",

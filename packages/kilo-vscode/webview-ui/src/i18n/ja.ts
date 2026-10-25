@@ -758,6 +758,10 @@ export const dict = {
   "session.messages.welcome":
     "BharatCodeはAIコーディングアシスタントです。機能の構築、バグの修正、コードベースの説明を依頼できます。",
   "session.messages.connect": "BharatCode に接続",
+  "session.onboarding.title": "BharatCode をセットアップ",
+  "session.onboarding.body":
+    "ブラウザでサインインするか API キーを貼り付けてください。どちらでも使えます。アカウントは拡張機能が保存し、設定には保存しません。",
+  "session.onboarding.hint": "BharatCode はこのパネルのアシスタントです。一度接続すれば使い始められます。",
   "session.workspaceScope.description":
     "BharatCode チャットは、このワークスペースの最初のフォルダー「{{folder}}」のみを使用します。",
   "session.workspaceScope.alternatives":
