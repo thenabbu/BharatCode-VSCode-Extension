@@ -47,9 +47,13 @@ gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
 
 ## Version scheme
 
-- Fork of Kilo Code. BharatCode releases: **`X.Y.Z.N`** (four numeric parts) — the first three are the upstream version we synced to, the fourth counts OUR releases. Currently `7.8.17.3` = upstream 7.8.17, our 3rd release. An upstream sync to 7.8.18 restarts the counter: `7.8.18.1`.
-- **Why four parts and not `-bc.N`:** the VS Code Marketplace upload validator accepts only 1–4 dot-separated numbers — it rejects any prerelease suffix, so `7.8.17-bc.2` cannot be uploaded. Four numeric parts keep the upstream/release-counter split readable AND pass the validator. This format is not strict semver (deliberate — nothing here is published to npm), and the Zed `extension.toml` is excluded from version sync for exactly that reason.
-- Tags use the same string (`7.8.17.3`). `release.yml` derives the series from the first three parts of the root `package.json`, so the counter continues automatically.
+- Fork of Kilo Code. BharatCode releases are **plain semver `X.Y.Z`** — necessarily so, see below.
+- **Scheme:** upstream's `major.minor` is preserved and OUR release counter lives in the patch, offset by 100. First release of base 7.8 is `7.8.101`, then `7.8.102`, `7.8.103`… An upstream sync that moves the base to 7.9 restarts at `7.9.101`.
+- **Why not `7.8.17-bc.3`:** the Marketplace *upload* validator rejects any prerelease suffix (`-bc.3`), with "must be one to four numbers separated by a period".
+- **Why not `7.8.17.3`:** `vsce package` — which BUILDS the vsix — refuses a fourth component outright (`Invalid extension "version"`). Verified by direct test: `7.8.17-bc.3` and `7.8.101` both pass vsce; `7.8.17.3` fails.
+- **The intersection is a 3-part numeric version.** The 100 offset keeps 1–99 free for real upstream patch releases of that minor, so a future upstream `7.8.20` sorts BELOW our `7.8.101` and can never collide.
+- Tags use the same string (`7.8.101`). `release.yml` derives `major.minor` from the root `package.json` and takes the highest **pure 3-segment numeric** tag as the counter — legacy `-bc.N` and 4-part tags are filtered out, since they would corrupt the count.
+- The Zed `extension.toml` is NOT version-synced: Zed validates strict semver against upstream's own release URLs, so it keeps upstream's version and stays upstream-maintained.
 - ~36 `package.json` files share the version string; the bump replaces the old literal once per file. The embedded CLI inherits it via `KILO_VERSION` (`packages/opencode/script/build.ts`), so extension About and `bharatcode --version` stay in sync.
 - Tag the exact final release commit — if you amend after tagging, re-point the tag (`git tag -d` + re-create) or the push ships the old tree.
 

@@ -49,28 +49,33 @@ jobs:
           # instead of a hardcoded 7.8.8 so an upstream sync that moves the base
           # (7.8.8 -> 7.8.17) moves the tag series with it, and a HEAD already
           # carrying the computed version is tagged without an empty bump commit.
-          # kilocode_change: version scheme is X.Y.Z.N (4 numeric parts) so the
-          # marketplace validator accepts it (it rejects the old -bc.N prerelease
-          # form). Series = first three parts; the 4th is our release counter.
-          series="$(node -p "require('./package.json').version.split('.').slice(0,3).join('.')")"
+          # kilocode_change: version scheme is plain semver X.Y.Z because `vsce`
+          # REFUSES a 4th component ("Invalid extension version"), even though the
+          # marketplace upload validator would accept one. We keep upstream's
+          # major.minor and encode OUR release counter in the patch: upstream base
+          # 7.8 -> our releases 7.8.101, 7.8.102, ... (offset 100, so a real
+          # upstream patch bump 7.8.17 still sorts below our series and can never
+          # collide). BASE_MINOR is read from package.json major.minor.
+          series="$(node -p "require('./package.json').version.split('.').slice(0,2).join('.')")"
           existing="$(git tag --points-at HEAD --list "${series}.*" | head -1 || true)"
           if [ -n "$existing" ]; then
             V="$existing"
             SHA="$(git rev-parse HEAD)"
             echo "HEAD already released as $V — rebuilding only"
           else
-            # kilocode_change: seed the counter from the LEGACY `-bc.N` tags on the
-            # first cut after the X.Y.Z.N migration. Without this the new series
-            # has no matches and the counter restarts at .1, which DOWNGRADES an
-            # already-published version (7.8.17.3 -> 7.8.17.1) and is refused by
-            # the marketplace. Take the max of both schemes.
-            latest="$(git tag -l "${series}.*" --sort=-v:refname | head -1 || true)"
-            legacy="$(git tag -l "${series}-bc.*" --sort=-v:refname | head -1 || true)"
-            if [ -n "$latest" ]; then n="${latest##*.}"; else n=0; fi
-            if [ -n "$legacy" ]; then
-              ln="${legacy##*-bc.}"
-              if [ "$ln" -gt "$n" ]; then n="$ln"; fi
-            fi
+            # kilocode_change: counter lives in PATCH, offset 100. Seed from the
+            # highest existing ${series}.N tag; the very first cut for a base
+            # starts at ${series}.101. Offset leaves 1-99 free for real upstream
+            # patch versions of that minor, so a future upstream 7.8.20 sorts
+            # BELOW our 7.8.101 and cannot collide.
+            # Only PURE-NUMERIC tags count. `7.8.*` would also match the legacy
+            # `7.8.17-bc.2` / `7.8.17.3` tags and corrupt the counter (it once
+            # yielded 7.8.4). Filter to ^[0-9]+$ on the last segment.
+            # Exactly three dot-separated numeric segments, nothing else. A bare
+            # "last segment is numeric" test still let the 4-part 7.8.17.3 tag
+            # through and produced 7.8.4.
+            latest="$(git tag -l "${series}.*" | grep -E "^${series}\.[0-9]+$" | sort -t. -k3 -n | tail -1 || true)"
+            if [ -n "$latest" ]; then n="${latest##*.}"; else n=100; fi
             V="${series}.$((n + 1))"
             if [ "$(node -p "require('./package.json').version")" = "$V" ]; then
               echo "package.json already at $V — tagging without a bump commit"

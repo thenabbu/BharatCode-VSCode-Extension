@@ -41,7 +41,7 @@ const target = await (async () => {
   return pkg.version as string
 })()
 
-if (!/^\d+\.\d+\.\d+(\.\d+)?([-+].+)?$/.test(target)) {
+if (!/^\d+\.\d+\.\d+([-+].+)?$/.test(target)) {
   console.error(`error: invalid version "${target}"`)
   process.exit(1)
 }
