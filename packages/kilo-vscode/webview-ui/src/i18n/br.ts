@@ -764,6 +764,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode é um assistente de programação com IA. Peça para criar funcionalidades, corrigir bugs ou explicar sua base de código.",
+  "session.messages.connect": "Conectar BharatCode",
   "session.workspaceScope.description":
     "O chat do BharatCode usa apenas “{{folder}}”, a primeira pasta deste espaço de trabalho.",
   "session.workspaceScope.alternatives":

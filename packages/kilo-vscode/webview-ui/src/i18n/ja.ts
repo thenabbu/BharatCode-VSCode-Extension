@@ -757,6 +757,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCodeはAIコーディングアシスタントです。機能の構築、バグの修正、コードベースの説明を依頼できます。",
+  "session.messages.connect": "BharatCode に接続",
   "session.workspaceScope.description":
     "BharatCode チャットは、このワークスペースの最初のフォルダー「{{folder}}」のみを使用します。",
   "session.workspaceScope.alternatives":

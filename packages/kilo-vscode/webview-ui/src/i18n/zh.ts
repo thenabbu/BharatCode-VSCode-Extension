@@ -735,6 +735,8 @@ export const dict = {
   "settings.aboutKiloCode.title": "关于 BharatCode",
 
   "session.messages.welcome": "BharatCode 是一个 AI 编程助手。让它帮你构建功能、修复 bug 或解释代码库。",
+  "session.messages.connect": "连接 BharatCode",
+
   "session.workspaceScope.description": "BharatCode 聊天仅使用此工作区中的第一个文件夹“{{folder}}”。",
   "session.workspaceScope.alternatives":
     "要使用其他文件夹，请在单独的窗口中打开它，或将其作为项目添加到 Agent Manager。",

@@ -750,6 +750,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode — це асистент з кодування на базі ШІ. Попросіть його розробити функцію, виправити помилку або пояснити вашу кодову базу.",
+  "session.messages.connect": "Підключити BharatCode",
   "session.workspaceScope.description":
     "Чат BharatCode використовує лише «{{folder}}» — першу папку в цьому робочому просторі.",
   "session.workspaceScope.alternatives":

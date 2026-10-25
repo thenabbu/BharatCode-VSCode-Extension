@@ -745,6 +745,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode هو مساعد ترميز بالذكاء الاصطناعي. اطلب منه بناء ميزات أو إصلاح أخطاء أو شرح قاعدة الشيفرة.",
+  "session.messages.connect": "ربط BharatCode",
   "session.workspaceScope.description":
     "تستخدم دردشة BharatCode المجلد «{{folder}}» فقط، وهو المجلد الأول في مساحة العمل هذه.",
   "session.workspaceScope.alternatives": "للعمل على مجلد آخر، افتحه في نافذة مستقلة أو أضفه كمشروع في Agent Manager.",

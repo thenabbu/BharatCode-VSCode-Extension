@@ -752,6 +752,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode is een AI-codeerassistent. Vraag het om features te bouwen, bugs op te lossen of je codebase uit te leggen.",
+  "session.messages.connect": "BharatCode verbinden",
   "session.workspaceScope.description":
     "De BharatCode-chat gebruikt alleen ‘{{folder}}’, de eerste map in deze werkruimte.",
   "session.workspaceScope.alternatives":

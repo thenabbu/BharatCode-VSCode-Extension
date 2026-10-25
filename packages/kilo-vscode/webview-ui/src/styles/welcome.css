@@ -47,6 +47,28 @@
   line-height: 1.4;
 }
 
+/* kilocode_change - primary entry point on the chat welcome screen: a new
+   user has no other way to start the extension. */
+.welcome-connect {
+  margin-top: 4px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--kilo-radius-4, 4px);
+  font-size: var(--kilo-font-size-13);
+  cursor: pointer;
+  color: var(--vscode-button-foreground);
+  background: var(--vscode-button-background);
+}
+
+.welcome-connect:hover {
+  background: var(--vscode-button-hoverBackground);
+}
+
+.welcome-connect:focus-visible {
+  outline: 2px solid var(--vscode-focusBorder);
+  outline-offset: 2px;
+}
+
 .workspace-scope-hint {
   display: flex;
   align-items: flex-start;

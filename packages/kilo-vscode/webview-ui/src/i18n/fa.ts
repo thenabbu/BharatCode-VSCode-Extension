@@ -713,6 +713,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode یک دستیار هوش مصنوعی برای کدنویسی است. از آن بخواهید ویژگی‌ها بسازد، باگ‌ها را رفع کند یا کدبیس شما را توضیح دهد.",
+  "session.messages.connect": "اتصال به BharatCode",
   "session.workspaceScope.description":
     "گفتگوی BharatCode فقط از «{{folder}}»، اولین پوشه در این فضای کاری، استفاده می‌کند.",
   "session.workspaceScope.alternatives":

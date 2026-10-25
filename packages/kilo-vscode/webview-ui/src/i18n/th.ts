@@ -753,6 +753,8 @@ export const dict = {
   "settings.aboutKiloCode.title": "เกี่ยวกับ BharatCode",
 
   "session.messages.welcome": "BharatCode เป็นผู้ช่วยเขียนโค้ด AI ขอให้สร้างฟีเจอร์ แก้ไขบัก หรืออธิบายโค้ดเบสของคุณ",
+  "session.messages.connect": "เชื่อมต่อ BharatCode",
+
   "session.workspaceScope.description": "แชต BharatCode ใช้เฉพาะ “{{folder}}” ซึ่งเป็นโฟลเดอร์แรกในพื้นที่ทำงานนี้",
   "session.workspaceScope.alternatives":
     "หากต้องการทำงานกับโฟลเดอร์อื่น ให้เปิดโฟลเดอร์นั้นในหน้าต่างแยกต่างหาก หรือเพิ่มเป็นโปรเจกต์ใน Agent Manager",

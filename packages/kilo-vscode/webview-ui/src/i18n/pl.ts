@@ -720,6 +720,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode to asystent programowania AI. Poproś go o tworzenie funkcji, naprawę błędów lub wyjaśnienie bazy kodu.",
+  "session.messages.connect": "Połącz z BharatCode",
   "session.workspaceScope.description":
     "Czat BharatCode używa tylko „{{folder}}”, pierwszego folderu w tym obszarze roboczym.",
   "session.workspaceScope.alternatives":

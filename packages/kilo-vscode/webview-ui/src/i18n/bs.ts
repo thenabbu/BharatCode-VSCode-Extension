@@ -762,6 +762,7 @@ export const dict = {
 
   "session.messages.welcome":
     "BharatCode je AI asistent za programiranje. Zatražite da gradi funkcionalnosti, ispravlja greške ili objasni vašu bazu koda.",
+  "session.messages.connect": "Poveži BharatCode",
   "session.workspaceScope.description":
     "BharatCode razgovor koristi samo „{{folder}}“, prvi folder u ovom radnom prostoru.",
   "session.workspaceScope.alternatives":
