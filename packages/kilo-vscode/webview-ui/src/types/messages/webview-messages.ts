@@ -1784,6 +1784,7 @@ export type WebviewMessage =
   | SetAgentManagerDefaultBaseBranchMessage
   | ConfigureAgentManagerSetupScriptMessage
   | OpenProfilePanelRequest
+  | ConnectBharatcodeRequest
   | OpenVSCodeSettingsRequest
   | OpenConfigFileRequest
   | OpenMarketplacePanelRequest
