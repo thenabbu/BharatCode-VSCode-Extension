@@ -21,6 +21,8 @@
   <!-- packages/opencode/src/config/tui-migrate.ts -->
 - <https://app.kilo.ai/usage>
   <!-- packages/opencode/src/kilocode/components/dialog-kilo-profile.tsx -->
+- <https://auth.bharatcode.ai/auth/v1>
+  <!-- packages/opencode/src/plugin/bharatcode.ts -->
 - <https://auth.x.ai>
   <!-- packages/opencode/src/plugin/xai.ts -->
 - <https://auth.x.ai/oauth2/authorize>
@@ -71,8 +73,6 @@
   <!-- packages/opencode/src/provider/transform.ts -->
 - <https://docs.x.ai/docs/guides/reasoning#control-how-hard-the-model-thinks>
   <!-- packages/opencode/src/provider/transform.ts -->
-- <https://evgvlcaxfpwupaiwzqqm.supabase.co/auth/v1>
-  <!-- packages/opencode/src/plugin/bharatcode.ts -->
 - <https://git-scm.com>
   <!-- packages/kilo-vscode/src/agent-manager/git-errors.ts -->
 - <https://github.com>

@@ -67,7 +67,7 @@ describe("plugin.bharatcode", () => {
   test("buildAuthorizeUrl carries every Supabase parameter", async () => {
     const pkce = await generatePKCE()
     const url = new URL(buildAuthorizeUrl(pkce, "state-123", { redirectUri: TEST_REDIRECT_URI }))
-    expect(url.origin + url.pathname).toBe("https://evgvlcaxfpwupaiwzqqm.supabase.co/auth/v1/oauth/authorize")
+    expect(url.origin + url.pathname).toBe("https://auth.bharatcode.ai/auth/v1/oauth/authorize")
     expect(url.searchParams.get("client_id")).toBe("4cad332a-232f-4ef2-9363-12fea4420635")
     expect(url.searchParams.get("response_type")).toBe("code")
     expect(url.searchParams.get("redirect_uri")).toBe(TEST_REDIRECT_URI)
