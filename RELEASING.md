@@ -47,7 +47,9 @@ gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
 
 ## Version scheme
 
-- Fork of Kilo Code v7.8.8. BharatCode releases: `7.8.8-bc.N` — upstream X.Y.Z, `-bc` marks ours, `N` counts our releases. An upstream bump lands as `7.8.9-bc.1`, etc.
+- Fork of Kilo Code. BharatCode releases: **`X.Y.Z.N`** (four numeric parts) — the first three are the upstream version we synced to, the fourth counts OUR releases. Currently `7.8.17.3` = upstream 7.8.17, our 3rd release. An upstream sync to 7.8.18 restarts the counter: `7.8.18.1`.
+- **Why four parts and not `-bc.N`:** the VS Code Marketplace upload validator accepts only 1–4 dot-separated numbers — it rejects any prerelease suffix, so `7.8.17-bc.2` cannot be uploaded. Four numeric parts keep the upstream/release-counter split readable AND pass the validator. This format is not strict semver (deliberate — nothing here is published to npm), and the Zed `extension.toml` is excluded from version sync for exactly that reason.
+- Tags use the same string (`7.8.17.3`). `release.yml` derives the series from the first three parts of the root `package.json`, so the counter continues automatically.
 - ~36 `package.json` files share the version string; the bump replaces the old literal once per file. The embedded CLI inherits it via `KILO_VERSION` (`packages/opencode/script/build.ts`), so extension About and `bharatcode --version` stay in sync.
 - Tag the exact final release commit — if you amend after tagging, re-point the tag (`git tag -d` + re-create) or the push ships the old tree.
 
@@ -55,7 +57,7 @@ gh release upload <ver> -R thenabbu/BharatCode-VSCode-Extension --clobber \
 
 - tree clean, branch synced with origin, tag not taken
 - esbuild production gate RC=0
-- zip audit per platform: zero `*.map`, only the target platform's binary under `extension/bin/`, `extension/LICENSE.txt` with the BharatCode line, manifest `bharatcode.bharatcode-vscode` at the new version
+- zip audit per platform: zero `*.map`, only the target platform's binary under `extension/bin/`, `extension/LICENSE.txt` with the BharatCode line, manifest `thenabbu.bharatcode-vscode` at the new version
 - sha256 recorded before anything else touches `out/`
 
 ## Pitfalls that bit once

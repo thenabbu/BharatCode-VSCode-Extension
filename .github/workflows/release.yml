@@ -49,16 +49,29 @@ jobs:
           # instead of a hardcoded 7.8.8 so an upstream sync that moves the base
           # (7.8.8 -> 7.8.17) moves the tag series with it, and a HEAD already
           # carrying the computed version is tagged without an empty bump commit.
-          base="$(node -p "require('./package.json').version.replace(/-bc\..*$/, '')")"
-          existing="$(git tag --points-at HEAD --list "${base}-bc.*" | head -1 || true)"
+          # kilocode_change: version scheme is X.Y.Z.N (4 numeric parts) so the
+          # marketplace validator accepts it (it rejects the old -bc.N prerelease
+          # form). Series = first three parts; the 4th is our release counter.
+          series="$(node -p "require('./package.json').version.split('.').slice(0,3).join('.')")"
+          existing="$(git tag --points-at HEAD --list "${series}.*" | head -1 || true)"
           if [ -n "$existing" ]; then
             V="$existing"
             SHA="$(git rev-parse HEAD)"
             echo "HEAD already released as $V — rebuilding only"
           else
-            latest="$(git tag -l "${base}-bc.*" --sort=-v:refname | head -1 || true)"
-            if [ -n "$latest" ]; then n="${latest##*-bc.}"; else n=0; fi
-            V="${base}-bc.$((n + 1))"
+            # kilocode_change: seed the counter from the LEGACY `-bc.N` tags on the
+            # first cut after the X.Y.Z.N migration. Without this the new series
+            # has no matches and the counter restarts at .1, which DOWNGRADES an
+            # already-published version (7.8.17.3 -> 7.8.17.1) and is refused by
+            # the marketplace. Take the max of both schemes.
+            latest="$(git tag -l "${series}.*" --sort=-v:refname | head -1 || true)"
+            legacy="$(git tag -l "${series}-bc.*" --sort=-v:refname | head -1 || true)"
+            if [ -n "$latest" ]; then n="${latest##*.}"; else n=0; fi
+            if [ -n "$legacy" ]; then
+              ln="${legacy##*-bc.}"
+              if [ "$ln" -gt "$n" ]; then n="$ln"; fi
+            fi
+            V="${series}.$((n + 1))"
             if [ "$(node -p "require('./package.json').version")" = "$V" ]; then
               echo "package.json already at $V — tagging without a bump commit"
               SHA="$(git rev-parse HEAD)"
@@ -161,7 +174,7 @@ jobs:
               assert "BharatCode modifications" in lic and "Kilo Code" in lic, f"{plat}: license lines missing"
               man = json.loads(z.read("extension/package.json"))
               assert man["version"] == V, f"{plat}: version {man['version']} != {V}"
-              assert man["name"] == "bharatcode-vscode" and man["publisher"] == "bharatcode", f"{plat}: manifest identity"
+              assert man["name"] == "bharatcode-vscode" and man["publisher"] == "thenabbu", f"{plat}: manifest identity"
               print(f"{plat}: OK v{man['version']}")
           PY
           (cd packages/kilo-vscode/out && sha256sum *.vsix > SHA256SUMS)
