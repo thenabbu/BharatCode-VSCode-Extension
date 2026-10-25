@@ -47,7 +47,7 @@
   line-height: 1.4;
 }
 
-/* kilocode_change - onboarding card: the panel is the surface a new user
+/* onboarding card: the panel is the surface a new user
    actually looks at, so connecting lives here instead of a toast. */
 .welcome-onboarding {
   display: flex;

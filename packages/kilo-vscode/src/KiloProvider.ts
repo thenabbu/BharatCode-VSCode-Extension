@@ -1438,7 +1438,7 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
           await handleLogin(this.authCtx, attempt, () => this.loginAttempt)
           break
         }
-        // kilocode_change - BharatCode connect entry point for the webview
+        // BharatCode connect entry point for the webview
         // (the welcome screen has no other way to start a new user).
         case "connectBharatcode":
           void vscode.commands.executeCommand("kilo-code.new.setBharatcodeKey")
