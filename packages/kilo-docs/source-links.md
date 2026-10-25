@@ -21,6 +21,8 @@
   <!-- packages/opencode/src/config/tui-migrate.ts -->
 - <https://app.kilo.ai/usage>
   <!-- packages/opencode/src/kilocode/components/dialog-kilo-profile.tsx -->
+- <https://auth.bharatcode.ai/auth/v1>
+  <!-- packages/opencode/src/plugin/bharatcode.ts -->
 - <https://auth.x.ai>
   <!-- packages/opencode/src/plugin/xai.ts -->
 - <https://auth.x.ai/oauth2/authorize>

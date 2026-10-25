@@ -70,8 +70,7 @@ export const dict = {
   "ui.sessionTurn.error.freeUsageExceeded": "Прекорачена је бесплатна употреба",
   "ui.sessionTurn.error.addCredits": "Додајте кредите",
   "dialog.usageExceeded.freeTier.title": "Достигнуто је ограничење бесплатног",
-  "dialog.usageExceeded.freeTier.description":
-    "Претплатите се на Kilo Go за 10 УСД месечно и остварите поуздан приступ најбољим моделима отвореног кода.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Претплатите се",
   "dialog.usageExceeded.accountRateLimit.title": "Достигнуто је ограничење Го",
   "dialog.usageExceeded.accountRateLimit.description":

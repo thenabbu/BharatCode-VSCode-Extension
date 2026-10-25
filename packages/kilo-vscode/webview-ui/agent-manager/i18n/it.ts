@@ -204,13 +204,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Nome worktree (facoltativo)",
   "agentManager.dialog.promptPlaceholder.mac": "Scrivi un messaggio (Cmd+Invio per inviare)",
   "agentManager.dialog.promptPlaceholder.other": "Scrivi un messaggio (Ctrl+Invio per inviare)",
-  "agentManager.dialog.advancedOptions": "Opzioni avanzate",
   "agentManager.dialog.branchName": "Nome branch",
   "agentManager.dialog.branchNamePlaceholder": "generato automaticamente",
+  "agentManager.dialog.branchNameHint":
+    "Nome del branch (facoltativo). Per impostazione predefinita è il nome del worktree. Se entrambi sono vuoti, viene generato un nome.",
   "agentManager.dialog.baseBranch": "Branch base",
   "agentManager.dialog.searchBranches": "Cerca branch...",
   "agentManager.dialog.branchBadge.default": "predefinito",
   "agentManager.dialog.branchBadge.remote": "remoto",
+  "agentManager.dialog.moreBranches": "Altri {{count}}. Digita per cercare.",
+  "agentManager.dialog.setDefaultBase": "Imposta come predefinito",
+  "agentManager.dialog.defaultBase": "Predefinito: {{branch}}",
   "agentManager.dialog.versions": "Versioni",
   "agentManager.dialog.versionHint": "{{count}} worktree verranno eseguiti in parallelo",
   "agentManager.dialog.compareModels": "Confronta modelli",
@@ -452,7 +456,7 @@ export const dict = {
   "agentManager.import.failed": "Importazione non riuscita",
   "agentManager.caffeination.toggle": "Mantieni il computer attivo mentre gli agenti BharatCode lavorano",
   "agentManager.caffeination.armed":
-    "Modalità per mantenere il computer attivo abilitata per gli agenti Kilo; fai clic per disabilitare",
+    "Modalità per mantenere il computer attivo abilitata per gli agenti BharatCode; fai clic per disabilitare",
   "agentManager.caffeination.active": "Computer mantenuto attivo mentre gli agenti BharatCode lavorano",
   "agentManager.caffeination.unavailable":
     "La modalità per mantenere il computer attivo non è disponibile su questa piattaforma",
@@ -460,6 +464,7 @@ export const dict = {
   "agentManager.browser.url": "Indirizzo",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Apri",
+  "agentManager.browser.openExternal": "Apri nel browser esterno",
   "agentManager.browser.inspect": "Seleziona elemento",
   "agentManager.browser.devtoolsTitle": "Strumenti per sviluppatori",
   "agentManager.browser.refresh": "Aggiorna browser",
@@ -506,7 +511,7 @@ export const dict = {
     "Chiedi all'agente di ogni worktree di aprire una pull request. Oppure usa Apply nel pannello diff per copiare le modifiche in Local.",
   "agentManager.intro.updateTitle": "Risolvi i conflitti con BharatCode",
   "agentManager.intro.updateText":
-    "Prima di applicare le modifiche a Local o fare il merge di una pull request, esegui /update-from-base nella sessione di quel worktree. Kilo unisce le ultime modifiche del branch di base e risolve prima i conflitti all'interno di quel worktree.",
+    "Prima di applicare le modifiche a Local o fare il merge di una pull request, esegui /update-from-base nella sessione di quel worktree. BharatCode unisce le ultime modifiche del branch di base e risolve prima i conflitti all'interno di quel worktree.",
   "agentManager.intro.prDetection":
     "I badge PR si aggiornano automaticamente per ogni branch del worktree (è richiesto l'accesso a GitHub CLI).",
   "agentManager.intro.checksRunning": "Controlli in corso",
@@ -536,11 +541,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "sconosciuta",
   "agentManager.orphans.dialogTitle": "Cartelle di worktree rimaste",
   "agentManager.orphans.helpIntro":
-    "Kilo tiene ogni worktree che crea nella cartella .kilo/worktrees di questa repository. Le cartelle elencate qui sotto si trovano in quella cartella, ma git non ne elenca nessuna come worktree, quindi non sono più usate da niente.",
+    "BharatCode tiene ogni worktree che crea nella cartella .kilo/worktrees di questa repository. Le cartelle elencate qui sotto si trovano in quella cartella, ma git non ne elenca nessuna come worktree, quindi non sono più usate da niente.",
   "agentManager.orphans.helpCheckout":
     "Una cartella segnalata come contenente un checkout git ha ancora una voce .git al suo interno e può contenere lavoro non committato. Quelle cartelle restano deselezionate, quindi aprine una e controllala prima di eliminarla.",
   "agentManager.orphans.helpCauses":
-    "Le cartelle rimaste derivano di solito da un'eliminazione interrotta, da un worktree rimosso fuori da Kilo o da uno strumento che ha scritto nella cartella dopo la rimozione. Le eliminazioni ancora in corso non sono elencate qui.",
+    "Le cartelle rimaste derivano di solito da un'eliminazione interrotta, da un worktree rimosso fuori da BharatCode o da uno strumento che ha scritto nella cartella dopo la rimozione. Le eliminazioni ancora in corso non sono elencate qui.",
   "agentManager.orphans.helpDelete":
     "L'eliminazione rimuove definitivamente dal disco le cartelle selezionate, senza passare dal Cestino. Nessun branch e nessun worktree attivo viene toccato. Le dimensioni indicano lo spazio che ogni cartella occupa sul disco in questo momento.",
   "agentManager.orphans.helpMore": "Mostra altro",

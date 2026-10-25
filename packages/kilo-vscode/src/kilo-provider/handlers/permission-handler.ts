@@ -106,8 +106,8 @@ export async function handlePermissionResponse(
     return
   }
 
-  const dir = ctx.getPermissionDirectory(permissionId)
   const target = ctx.getPermissionSession?.(permissionId) ?? sessionID
+  const dir = ctx.getPermissionDirectory(permissionId) ?? (target ? ctx.getWorkspaceDirectory(target) : undefined)
   const claimed = ctx.isPermissionResponseClaimed?.(permissionId) ?? false
   if (!target || (!dir && !claimed) || (ctx.getPermissionSession?.(permissionId) && target !== sessionID)) {
     console.error("[BharatCode] KiloProvider: Unknown permission route")

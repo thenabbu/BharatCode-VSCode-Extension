@@ -69,8 +69,7 @@ export const dict = {
   "ui.sessionTurn.error.freeUsageExceeded": "លើសពីការប្រើប្រាស់ឥតគិតថ្លៃ",
   "ui.sessionTurn.error.addCredits": "បន្ថែមក្រេឌីត",
   "dialog.usageExceeded.freeTier.title": "បានដល់ដែនកំណត់ឥតគិតថ្លៃ",
-  "dialog.usageExceeded.freeTier.description":
-    "ជាវ Kilo Go ក្នុងតម្លៃ $10/ខែ សម្រាប់ការចូលប្រើដែលអាចទុកចិត្តបានចំពោះម៉ូដែលប្រភពបើកចំហល្អបំផុត។", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "ជាវ",
   "dialog.usageExceeded.accountRateLimit.title": "ឈានដល់កម្រិតកំណត់",
   "dialog.usageExceeded.accountRateLimit.description":

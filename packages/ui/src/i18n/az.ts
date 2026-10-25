@@ -68,8 +68,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.freeUsageExceeded": "Pulsuz istifadə limiti aşıldı",
   "ui.sessionTurn.error.addCredits": "Kredit əlavə et",
   "dialog.usageExceeded.freeTier.title": "Pulsuz limitə çatdınız",
-  "dialog.usageExceeded.freeTier.description":
-    "Ayda $10 olan Kilo Go abunəliyi ilə ən yaxşı açıq mənbəli modellərə etibarlı giriş əldə edin.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Abunə ol",
   "dialog.usageExceeded.accountRateLimit.title": "Go limitinə çatdınız",
   "dialog.usageExceeded.accountRateLimit.description":

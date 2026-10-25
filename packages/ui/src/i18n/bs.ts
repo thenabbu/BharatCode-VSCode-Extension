@@ -77,8 +77,7 @@ export const dict = {
   "ui.sessionTurn.error.addCredits": "Dodaj kredite",
 
   "dialog.usageExceeded.freeTier.title": "Dostignut besplatan limit",
-  "dialog.usageExceeded.freeTier.description":
-    "Pretplati se na Kilo Go za $10/mjesec i ostvari pouzdan pristup najboljim modelima otvorenog koda.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Pretplati se",
   "dialog.usageExceeded.accountRateLimit.title": "Dostignut Go limit",
   "dialog.usageExceeded.accountRateLimit.description":
@@ -223,7 +222,7 @@ export const dict = {
   "ui.toolErrorCard.copyError": "Kopiraj grešku",
   "ui.message.duration.seconds": "{{count}}s",
   "ui.message.duration.minutesSeconds": "{{minutes}}m {{seconds}}s",
-  // kilocode_change start - preserve Kilo UI translations across the upstream dictionary refresh
+  // kilocode_change start - preserve BharatCode UI translations across the upstream dictionary refresh
   "ui.sessionTurn.status.delegatingWaitingPermission": "Subagent waiting for permission",
   "ui.sessionTurn.status.delegatingWaitingQuestion": "Subagent waiting for response",
   "ui.messagePart.mcp.input": "Ulaz",

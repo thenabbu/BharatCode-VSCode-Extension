@@ -14,7 +14,7 @@ export const ZenmuxPlugin = define({
           if (item.provider.id !== ProviderV2.ID.make("zenmux")) continue // kilocode_change
           evt.provider.update(item.provider.id, (provider) => {
             provider.request.headers["HTTP-Referer"] ??= "https://kilo.ai/" // kilocode_change
-            provider.request.headers["X-Title"] ??= "Kilo Code" // kilocode_change
+            provider.request.headers["X-Title"] ??= "BharatCode" // kilocode_change
           })
         }
       }),

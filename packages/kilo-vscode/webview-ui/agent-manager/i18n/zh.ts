@@ -187,13 +187,16 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Worktree 名称（可选）",
   "agentManager.dialog.promptPlaceholder.mac": "输入消息（⌘Enter 发送）",
   "agentManager.dialog.promptPlaceholder.other": "输入消息（Ctrl+Enter 发送）",
-  "agentManager.dialog.advancedOptions": "高级选项",
   "agentManager.dialog.branchName": "分支名称",
   "agentManager.dialog.branchNamePlaceholder": "自动生成",
+  "agentManager.dialog.branchNameHint": "分支名称（可选）。默认使用 worktree 名称。两者都为空时会自动生成名称。",
   "agentManager.dialog.baseBranch": "基础分支",
   "agentManager.dialog.searchBranches": "搜索分支...",
   "agentManager.dialog.branchBadge.default": "默认",
   "agentManager.dialog.branchBadge.remote": "远程",
+  "agentManager.dialog.moreBranches": "还有 {{count}} 个。输入以搜索。",
+  "agentManager.dialog.setDefaultBase": "设为默认",
+  "agentManager.dialog.defaultBase": "默认：{{branch}}",
   "agentManager.dialog.versions": "版本",
   "agentManager.dialog.versionHint": "{{count}} 个 Worktree 将并行运行",
   "agentManager.dialog.compareModels": "比较模型",
@@ -436,6 +439,7 @@ export const dict = {
   "agentManager.browser.url": "地址",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "打开",
+  "agentManager.browser.openExternal": "在外部浏览器中打开",
   "agentManager.browser.refresh": "刷新浏览器",
   "agentManager.browser.back": "后退",
   "agentManager.browser.forward": "前进",
@@ -466,7 +470,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "使用 BharatCode 解决冲突",
   "agentManager.intro.updateText":
-    "将更改应用到 Local 或合并 pull request 前，请在该 worktree 的会话中运行 /update-from-base。Kilo 会先在该 worktree 中合并基础分支的最新更改并解决冲突。",
+    "将更改应用到 Local 或合并 pull request 前，请在该 worktree 的会话中运行 /update-from-base。BharatCode 会先在该 worktree 中合并基础分支的最新更改并解决冲突。",
   "agentManager.intro.stage1.title": "你的仓库",
   "agentManager.intro.stage1.text": "本地文件保持不变",
   "agentManager.intro.stage2.title": "示例：两个任务并行",
@@ -503,11 +507,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "未知",
   "agentManager.orphans.dialogTitle": "残留的 worktree 文件夹",
   "agentManager.orphans.helpIntro":
-    "Kilo 会把创建的每个 worktree 都保存在本仓库的 .kilo/worktrees 文件夹中。下面这些文件夹位于该文件夹内，但 git 并未把它们列为 worktree，因此已经没有任何内容在使用它们。",
+    "BharatCode 会把创建的每个 worktree 都保存在本仓库的 .kilo/worktrees 文件夹中。下面这些文件夹位于该文件夹内，但 git 并未把它们列为 worktree，因此已经没有任何内容在使用它们。",
   "agentManager.orphans.helpCheckout":
     "被标记为仍包含 git 检出的文件夹内仍有 .git 条目，可能存在尚未提交的改动。这类文件夹默认不会被选中，请在删除前先打开查看。",
   "agentManager.orphans.helpCauses":
-    "残留通常来自中断的删除、在 Kilo 之外移除的 worktree，或在文件夹被移除后仍向其中写入的工具。仍在进行中的删除不会列在这里。",
+    "残留通常来自中断的删除、在 BharatCode 之外移除的 worktree，或在文件夹被移除后仍向其中写入的工具。仍在进行中的删除不会列在这里。",
   "agentManager.orphans.helpDelete":
     "删除会将所选文件夹从磁盘上彻底移除，不经过回收站。不会改动任何分支或使用中的 worktree。显示的大小是每个文件夹当前在磁盘上占用的空间。",
   "agentManager.orphans.helpMore": "显示更多",

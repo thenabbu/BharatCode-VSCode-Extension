@@ -197,13 +197,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Nome do Worktree (opcional)",
   "agentManager.dialog.promptPlaceholder.mac": "Digite uma mensagem (⌘Enter para enviar)",
   "agentManager.dialog.promptPlaceholder.other": "Digite uma mensagem (Ctrl+Enter para enviar)",
-  "agentManager.dialog.advancedOptions": "Opções avançadas",
   "agentManager.dialog.branchName": "Nome do branch",
   "agentManager.dialog.branchNamePlaceholder": "gerado automaticamente",
+  "agentManager.dialog.branchNameHint":
+    "Nome do branch (opcional). Usa o nome do worktree por padrão. Se ambos estiverem vazios, um nome é gerado.",
   "agentManager.dialog.baseBranch": "Branch base",
   "agentManager.dialog.searchBranches": "Buscar branches...",
   "agentManager.dialog.branchBadge.default": "padrão",
   "agentManager.dialog.branchBadge.remote": "remoto",
+  "agentManager.dialog.moreBranches": "Mais {{count}}. Digite para pesquisar.",
+  "agentManager.dialog.setDefaultBase": "Definir como padrão",
+  "agentManager.dialog.defaultBase": "Padrão: {{branch}}",
   "agentManager.dialog.versions": "Versões",
   "agentManager.dialog.versionHint": "{{count}} worktrees serão executados em paralelo",
   "agentManager.dialog.compareModels": "Comparar Modelos",
@@ -443,7 +447,7 @@ export const dict = {
   "agentManager.import.failed": "Falha na importação",
   "agentManager.caffeination.toggle": "Manter o computador acordado enquanto os agentes BharatCode trabalham",
   "agentManager.caffeination.armed":
-    "O modo de manter o computador acordado para os agentes Kilo está ativado; clique para desativar",
+    "O modo de manter o computador acordado para os agentes BharatCode está ativado; clique para desativar",
   "agentManager.caffeination.active": "Mantendo o computador acordado enquanto os agentes BharatCode trabalham",
   "agentManager.caffeination.unavailable":
     "O modo de manter o computador acordado não está disponível nesta plataforma",
@@ -451,6 +455,7 @@ export const dict = {
   "agentManager.browser.url": "Endereço",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Abrir",
+  "agentManager.browser.openExternal": "Abrir no navegador externo",
   "agentManager.browser.inspect": "Selecionar elemento",
   "agentManager.browser.devtoolsTitle": "Ferramentas de desenvolvedor",
   "agentManager.browser.refresh": "Atualizar navegador",
@@ -485,7 +490,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Resolva conflitos com o BharatCode",
   "agentManager.intro.updateText":
-    "Antes de aplicar alterações no Local ou mesclar um pull request, execute /update-from-base na sessão desse worktree. O Kilo mescla as alterações mais recentes da base e resolve os conflitos primeiro dentro desse worktree.",
+    "Antes de aplicar alterações no Local ou mesclar um pull request, execute /update-from-base na sessão desse worktree. O BharatCode mescla as alterações mais recentes da base e resolve os conflitos primeiro dentro desse worktree.",
   "agentManager.intro.stage1.title": "Seu repositório",
   "agentManager.intro.stage1.text": "Os arquivos locais permanecem inalterados",
   "agentManager.intro.stage2.title": "Exemplo: duas tarefas em paralelo",
@@ -524,11 +529,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "desconhecido",
   "agentManager.orphans.dialogTitle": "Pastas de worktree remanescentes",
   "agentManager.orphans.helpIntro":
-    "O Kilo mantém cada worktree que cria dentro da pasta .kilo/worktrees deste repositório. As pastas abaixo estão nessa pasta, mas o git não lista nenhuma delas como worktree, portanto nada mais as usa.",
+    "O BharatCode mantém cada worktree que cria dentro da pasta .kilo/worktrees deste repositório. As pastas abaixo estão nessa pasta, mas o git não lista nenhuma delas como worktree, portanto nada mais as usa.",
   "agentManager.orphans.helpCheckout":
     "Uma pasta sinalizada como contendo um checkout do git ainda tem uma entrada .git dentro dela e pode guardar trabalho sem commit. Essas pastas ficam desmarcadas, então abra uma e verifique-a antes de excluí-la.",
   "agentManager.orphans.helpCauses":
-    "As pastas remanescentes geralmente vêm de uma exclusão interrompida, de um worktree removido fora do Kilo ou de uma ferramenta que gravou na pasta depois que ela foi removida. Exclusões que ainda estão em andamento não aparecem aqui.",
+    "As pastas remanescentes geralmente vêm de uma exclusão interrompida, de um worktree removido fora do BharatCode ou de uma ferramenta que gravou na pasta depois que ela foi removida. Exclusões que ainda estão em andamento não aparecem aqui.",
   "agentManager.orphans.helpDelete":
     "A exclusão remove as pastas selecionadas do disco definitivamente, sem passar pela Lixeira. Nenhuma branch e nenhum worktree ativo é afetado. Os tamanhos são o espaço que cada pasta ocupa no disco neste momento.",
   "agentManager.orphans.helpMore": "Mostrar mais",

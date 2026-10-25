@@ -68,8 +68,7 @@ export const dict = {
   "ui.sessionTurn.error.freeUsageExceeded": "Истифодаи ройгон аз ҳад зиёд",
   "ui.sessionTurn.error.addCredits": "Илова кардани кредитҳо",
   "dialog.usageExceeded.freeTier.title": "Ба ҳадди ройгон расид",
-  "dialog.usageExceeded.freeTier.description":
-    "Ба Kilo Go бо нархи $10 дар як моҳ обуна шавед, то ба беҳтарин моделҳои кушодаасос дастрасии боэътимод дошта бошед.", // kilocode_change
+  "dialog.usageExceeded.freeTier.description": "Upgrade your BharatCode plan for reliable access to the best models.", // kilocode_change
   "dialog.usageExceeded.freeTier.actionLabel": "Обуна шавед",
   "dialog.usageExceeded.accountRateLimit.title": "Ба маҳдудияти рафтан расид",
   "dialog.usageExceeded.accountRateLimit.description":

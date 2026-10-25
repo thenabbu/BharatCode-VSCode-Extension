@@ -200,13 +200,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Nombre del Worktree (opcional)",
   "agentManager.dialog.promptPlaceholder.mac": "Escribe un mensaje (⌘Enter para enviar)",
   "agentManager.dialog.promptPlaceholder.other": "Escribe un mensaje (Ctrl+Enter para enviar)",
-  "agentManager.dialog.advancedOptions": "Opciones avanzadas",
   "agentManager.dialog.branchName": "Nombre del branch",
   "agentManager.dialog.branchNamePlaceholder": "generado automáticamente",
+  "agentManager.dialog.branchNameHint":
+    "Nombre de la rama (opcional). Usa el nombre del worktree por defecto. Si ambos están vacíos, se genera un nombre.",
   "agentManager.dialog.baseBranch": "Branch base",
   "agentManager.dialog.searchBranches": "Buscar branches...",
   "agentManager.dialog.branchBadge.default": "predeterminado",
   "agentManager.dialog.branchBadge.remote": "remoto",
+  "agentManager.dialog.moreBranches": "{{count}} más. Escribe para buscar.",
+  "agentManager.dialog.setDefaultBase": "Establecer como predeterminada",
+  "agentManager.dialog.defaultBase": "Predeterminada: {{branch}}",
   "agentManager.dialog.versions": "Versiones",
   "agentManager.dialog.versionHint": "{{count}} worktrees se ejecutarán en paralelo",
   "agentManager.dialog.compareModels": "Comparar modelos",
@@ -446,7 +450,7 @@ export const dict = {
   "agentManager.import.failed": "Error en la importación",
   "agentManager.caffeination.toggle": "Mantener el equipo activo mientras trabajan los agentes de BharatCode",
   "agentManager.caffeination.armed":
-    "Modo para mantener el equipo activo habilitado para los agentes de Kilo; haz clic para desactivar",
+    "Modo para mantener el equipo activo habilitado para los agentes de BharatCode; haz clic para desactivar",
   "agentManager.caffeination.active": "Manteniendo el equipo activo mientras trabajan los agentes de BharatCode",
   "agentManager.caffeination.unavailable":
     "El modo para mantener el equipo activo no está disponible en esta plataforma",
@@ -454,6 +458,7 @@ export const dict = {
   "agentManager.browser.url": "Dirección",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Abrir",
+  "agentManager.browser.openExternal": "Abrir en el navegador externo",
   "agentManager.browser.inspect": "Seleccionar elemento",
   "agentManager.browser.devtoolsTitle": "Herramientas de desarrollo",
   "agentManager.browser.refresh": "Actualizar navegador",
@@ -499,7 +504,7 @@ export const dict = {
     "Pide al agente de cada worktree que abra un pull request. O usa Apply en el panel de diff para copiar los cambios a Local.",
   "agentManager.intro.updateTitle": "Resuelve los conflictos con BharatCode",
   "agentManager.intro.updateText":
-    "Antes de aplicar cambios a Local o fusionar una pull request, ejecuta /update-from-base en la sesión de ese worktree. Kilo fusiona los últimos cambios de la rama base y resuelve primero los conflictos dentro de ese worktree.",
+    "Antes de aplicar cambios a Local o fusionar una pull request, ejecuta /update-from-base en la sesión de ese worktree. BharatCode fusiona los últimos cambios de la rama base y resuelve primero los conflictos dentro de ese worktree.",
   "agentManager.intro.prDetection":
     "Las insignias de PR se actualizan automáticamente para cada rama de worktree (se requiere iniciar sesión en GitHub CLI).",
   "agentManager.intro.checksRunning": "Comprobaciones en curso",
@@ -529,11 +534,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "desconocido",
   "agentManager.orphans.dialogTitle": "Carpetas de worktree sobrantes",
   "agentManager.orphans.helpIntro":
-    "Kilo guarda cada worktree que crea dentro de la carpeta .kilo/worktrees de este repositorio. Las carpetas siguientes están en esa carpeta, pero git no incluye ninguna de ellas como worktree, así que ya no se usan.",
+    "BharatCode guarda cada worktree que crea dentro de la carpeta .kilo/worktrees de este repositorio. Las carpetas siguientes están en esa carpeta, pero git no incluye ninguna de ellas como worktree, así que ya no se usan.",
   "agentManager.orphans.helpCheckout":
     "Una carpeta marcada como que contiene un checkout de git todavía tiene una entrada .git en su interior y puede guardar trabajo sin confirmar. Esas carpetas quedan sin seleccionar, así que abre una y revísala antes de eliminarla.",
   "agentManager.orphans.helpCauses":
-    "Los restos suelen provenir de una eliminación que se interrumpió, de un worktree eliminado fuera de Kilo o de una herramienta que escribió en la carpeta después de que se eliminara. Las eliminaciones que aún están en curso no aparecen aquí.",
+    "Los restos suelen provenir de una eliminación que se interrumpió, de un worktree eliminado fuera de BharatCode o de una herramienta que escribió en la carpeta después de que se eliminara. Las eliminaciones que aún están en curso no aparecen aquí.",
   "agentManager.orphans.helpDelete":
     "Al eliminar, las carpetas seleccionadas se borran del disco de forma definitiva, sin pasar por la Papelera. No se toca ninguna rama ni ningún worktree activo. Los tamaños son el espacio que cada carpeta ocupa en el disco ahora mismo.",
   "agentManager.orphans.helpMore": "Mostrar más",

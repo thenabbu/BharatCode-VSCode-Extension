@@ -57,7 +57,9 @@ const browser = {
         }
         // kilocode_change start - unrelated localhost requests must not terminate the active OAuth attempt
         if (url.searchParams.get("state") !== state) {
-          response.writeHead(400, { "Content-Type": "text/html" }).end(KiloOauthCallbackPage.error("Invalid OAuth state"))
+          response
+            .writeHead(400, { "Content-Type": "text/html" })
+            .end(KiloOauthCallbackPage.error("Invalid OAuth state"))
           return
         }
         // kilocode_change end

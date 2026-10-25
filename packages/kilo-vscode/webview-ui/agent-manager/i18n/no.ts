@@ -194,13 +194,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Worktree-navn (valgfritt)",
   "agentManager.dialog.promptPlaceholder.mac": "Skriv en melding (⌘Enter for å sende)",
   "agentManager.dialog.promptPlaceholder.other": "Skriv en melding (Ctrl+Enter for å sende)",
-  "agentManager.dialog.advancedOptions": "Avanserte alternativer",
   "agentManager.dialog.branchName": "Branch-navn",
   "agentManager.dialog.branchNamePlaceholder": "automatisk generert",
+  "agentManager.dialog.branchNameHint":
+    "Grennavn (valgfritt). Bruker worktree-navnet som standard. Hvis begge er tomme, genereres et navn.",
   "agentManager.dialog.baseBranch": "Base-branch",
   "agentManager.dialog.searchBranches": "Søk branches...",
   "agentManager.dialog.branchBadge.default": "standard",
   "agentManager.dialog.branchBadge.remote": "fjern",
+  "agentManager.dialog.moreBranches": "{{count}} til. Skriv for å søke.",
+  "agentManager.dialog.setDefaultBase": "Angi som standard",
+  "agentManager.dialog.defaultBase": "Standard: {{branch}}",
   "agentManager.dialog.versions": "Versjoner",
   "agentManager.dialog.versionHint": "{{count}} worktrees vil kjøre parallelt",
   "agentManager.dialog.compareModels": "Sammenlign modeller",
@@ -439,7 +443,7 @@ export const dict = {
   "agentManager.import.failed": "Import mislyktes",
   "agentManager.caffeination.toggle": "Hold datamaskinen våken mens BharatCode-agentene arbeider",
   "agentManager.caffeination.armed":
-    "Modus for å holde datamaskinen våken er aktivert for Kilo-agentene; klikk for å deaktivere",
+    "Modus for å holde datamaskinen våken er aktivert for BharatCode-agentene; klikk for å deaktivere",
   "agentManager.caffeination.active": "Holder datamaskinen våken mens BharatCode-agentene arbeider",
   "agentManager.caffeination.unavailable":
     "Modus for å holde datamaskinen våken er ikke tilgjengelig på denne plattformen",
@@ -447,6 +451,7 @@ export const dict = {
   "agentManager.browser.url": "Adresse",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Åpne",
+  "agentManager.browser.openExternal": "Åpne i ekstern nettleser",
   "agentManager.browser.inspect": "Velg element",
   "agentManager.browser.devtoolsTitle": "Utviklerverktøy",
   "agentManager.browser.refresh": "Oppdater nettleser",
@@ -481,7 +486,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Løs konflikter med BharatCode",
   "agentManager.intro.updateText":
-    "Før du bruker endringer på Local eller slår sammen en pull request, må du kjøre /update-from-base i økten for det worktree-et. Kilo slår sammen de nyeste endringene fra base-branchen og løser konflikter inne i worktree-et først.",
+    "Før du bruker endringer på Local eller slår sammen en pull request, må du kjøre /update-from-base i økten for det worktree-et. BharatCode slår sammen de nyeste endringene fra base-branchen og løser konflikter inne i worktree-et først.",
   "agentManager.intro.stage1.title": "Ditt repositorium",
   "agentManager.intro.stage1.text": "Lokale filer forblir uendret",
   "agentManager.intro.stage2.title": "Eksempel: to oppgaver parallelt",
@@ -520,11 +525,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "ukjent",
   "agentManager.orphans.dialogTitle": "Gjenglemte worktree-mapper",
   "agentManager.orphans.helpIntro":
-    "Kilo lagrer alle worktrees den oppretter, i mappen .kilo/worktrees i dette repositoriet. Mappene nedenfor ligger i den mappen, men git viser ingen av dem som et worktree, så det er ikke lenger noe som bruker dem.",
+    "BharatCode lagrer alle worktrees den oppretter, i mappen .kilo/worktrees i dette repositoriet. Mappene nedenfor ligger i den mappen, men git viser ingen av dem som et worktree, så det er ikke lenger noe som bruker dem.",
   "agentManager.orphans.helpCheckout":
     "En mappe som er merket med at den inneholder en git-utsjekking, har fortsatt en .git-oppføring inni og kan inneholde arbeid som ikke er committet. Slike mapper er ikke valgt, så åpne en av dem og sjekk den før du sletter den.",
   "agentManager.orphans.helpCauses":
-    "Gjenglemte mapper skyldes vanligvis en sletting som ble avbrutt, et worktree som ble fjernet utenom Kilo, eller et verktøy som skrev til mappen etter at den ble fjernet. Slettinger som fortsatt pågår, vises ikke her.",
+    "Gjenglemte mapper skyldes vanligvis en sletting som ble avbrutt, et worktree som ble fjernet utenom BharatCode, eller et verktøy som skrev til mappen etter at den ble fjernet. Slettinger som fortsatt pågår, vises ikke her.",
   "agentManager.orphans.helpDelete":
     "Sletting fjerner de valgte mappene permanent fra disken, uten å gå via Papirkurven. Ingen branch og ingen aktive worktrees blir berørt. Størrelsene viser hvor mye plass hver mappe bruker på disken akkurat nå.",
   "agentManager.orphans.helpMore": "Vis mer",

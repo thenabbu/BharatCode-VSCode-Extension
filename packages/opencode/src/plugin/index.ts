@@ -31,6 +31,7 @@ import { parsePluginSpecifier, readPluginId, readV1Plugin, resolvePluginId } fro
 import { KiloAuthPlugin } from "@kilocode/kilo-gateway" // kilocode_change
 import { AtomicChatPlugin } from "@kilocode/plugin-atomic-chat" // kilocode_change
 import { AnacondaDesktopPlugin } from "@/kilocode/anaconda-desktop/provider" // kilocode_change
+import { BharatcodeAuthPlugin } from "./bharatcode" // kilocode_change
 import { registerAdapter } from "@/control-plane/adapters"
 import type { WorkspaceAdapter } from "@/control-plane/types"
 import { RuntimeFlags } from "@/effect/runtime-flags"
@@ -72,6 +73,7 @@ function internalPlugins(flags: RuntimeFlags.Info): PluginInstance[] {
     KiloAuthPlugin, // kilocode_change
     AtomicChatPlugin, // kilocode_change
     AnacondaDesktopPlugin, // kilocode_change
+    BharatcodeAuthPlugin, // kilocode_change - primary provider: Supabase OAuth + API key methods
     // Temporary rollout: pre-release builds use WebSockets by default; releases require explicit opt-in.
     (input) =>
       CodexAuthPlugin(input, {

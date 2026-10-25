@@ -190,13 +190,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "ชื่อ Worktree (ไม่บังคับ)",
   "agentManager.dialog.promptPlaceholder.mac": "พิมพ์ข้อความ (⌘Enter เพื่อส่ง)",
   "agentManager.dialog.promptPlaceholder.other": "พิมพ์ข้อความ (Ctrl+Enter เพื่อส่ง)",
-  "agentManager.dialog.advancedOptions": "ตัวเลือกขั้นสูง",
   "agentManager.dialog.branchName": "ชื่อ Branch",
   "agentManager.dialog.branchNamePlaceholder": "สร้างอัตโนมัติ",
+  "agentManager.dialog.branchNameHint":
+    "ชื่อ branch (ไม่บังคับ) ค่าเริ่มต้นคือชื่อ worktree หากว่างทั้งคู่ ระบบจะสร้างชื่อให้",
   "agentManager.dialog.baseBranch": "Branch ฐาน",
   "agentManager.dialog.searchBranches": "ค้นหา Branch...",
   "agentManager.dialog.branchBadge.default": "ค่าเริ่มต้น",
   "agentManager.dialog.branchBadge.remote": "ระยะไกล",
+  "agentManager.dialog.moreBranches": "อีก {{count}} รายการ พิมพ์เพื่อค้นหา",
+  "agentManager.dialog.setDefaultBase": "ตั้งเป็นค่าเริ่มต้น",
+  "agentManager.dialog.defaultBase": "ค่าเริ่มต้น: {{branch}}",
   "agentManager.dialog.versions": "เวอร์ชัน",
   "agentManager.dialog.versionHint": "{{count}} Worktrees จะทำงานพร้อมกัน",
   "agentManager.dialog.compareModels": "เปรียบเทียบโมเดล",
@@ -439,6 +443,7 @@ export const dict = {
   "agentManager.browser.url": "ที่อยู่",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "เปิด",
+  "agentManager.browser.openExternal": "เปิดในเบราว์เซอร์ภายนอก",
   "agentManager.browser.refresh": "รีเฟรชเบราว์เซอร์",
   "agentManager.browser.back": "ย้อนกลับ",
   "agentManager.browser.forward": "ไปข้างหน้า",
@@ -473,7 +478,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "แก้ไขข้อขัดแย้งด้วย BharatCode",
   "agentManager.intro.updateText":
-    "ก่อนนำการเปลี่ยนแปลงไปใช้กับ Local หรือผสาน pull request ให้เรียกใช้ /update-from-base ในเซสชันของ worktree นั้น Kilo จะผสานการเปลี่ยนแปลงล่าสุดจากสาขาฐานและแก้ไขข้อขัดแย้งใน worktree นั้นก่อน",
+    "ก่อนนำการเปลี่ยนแปลงไปใช้กับ Local หรือผสาน pull request ให้เรียกใช้ /update-from-base ในเซสชันของ worktree นั้น BharatCode จะผสานการเปลี่ยนแปลงล่าสุดจากสาขาฐานและแก้ไขข้อขัดแย้งใน worktree นั้นก่อน",
   "agentManager.intro.stage1.title": "repository ของคุณ",
   "agentManager.intro.stage1.text": "ไฟล์ในเครื่องจะไม่เปลี่ยนแปลง",
   "agentManager.intro.stage2.title": "ตัวอย่าง: สองงานทำพร้อมกัน",
@@ -512,11 +517,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "ไม่ทราบ",
   "agentManager.orphans.dialogTitle": "โฟลเดอร์ worktree ที่ตกค้าง",
   "agentManager.orphans.helpIntro":
-    "Kilo จะเก็บ worktree ทุกรายการที่สร้างขึ้นไว้ในโฟลเดอร์ .kilo/worktrees ของที่เก็บนี้ โฟลเดอร์ด้านล่างอยู่ในโฟลเดอร์นั้น แต่ git ไม่ได้แสดงรายการใดเป็น worktree จึงไม่มีสิ่งใดใช้งานโฟลเดอร์เหล่านี้อีกต่อไป",
+    "BharatCode จะเก็บ worktree ทุกรายการที่สร้างขึ้นไว้ในโฟลเดอร์ .kilo/worktrees ของที่เก็บนี้ โฟลเดอร์ด้านล่างอยู่ในโฟลเดอร์นั้น แต่ git ไม่ได้แสดงรายการใดเป็น worktree จึงไม่มีสิ่งใดใช้งานโฟลเดอร์เหล่านี้อีกต่อไป",
   "agentManager.orphans.helpCheckout":
     "โฟลเดอร์ที่ถูกทำเครื่องหมายว่ามี git checkout อยู่ยังมีรายการ .git อยู่ข้างในและอาจมีงานที่ยังไม่ได้ commit จึงไม่ได้ถูกเลือกไว้ ให้เปิดขึ้นมาตรวจสอบก่อนลบ",
   "agentManager.orphans.helpCauses":
-    "โฟลเดอร์ตกค้างมักเกิดจากการลบที่ถูกขัดจังหวะ worktree ที่ถูกลบจากภายนอก Kilo หรือเครื่องมือที่เขียนข้อมูลลงในโฟลเดอร์หลังจากที่ถูกลบไปแล้ว การลบที่ยังทำงานอยู่จะไม่แสดงที่นี่",
+    "โฟลเดอร์ตกค้างมักเกิดจากการลบที่ถูกขัดจังหวะ worktree ที่ถูกลบจากภายนอก BharatCode หรือเครื่องมือที่เขียนข้อมูลลงในโฟลเดอร์หลังจากที่ถูกลบไปแล้ว การลบที่ยังทำงานอยู่จะไม่แสดงที่นี่",
   "agentManager.orphans.helpDelete":
     "การลบจะนำโฟลเดอร์ที่เลือกออกจากดิสก์อย่างถาวรโดยไม่ผ่านถังขยะ ไม่มีแบรนช์และไม่มี worktree ที่ใช้งานอยู่ถูกแตะต้อง ขนาดที่แสดงคือพื้นที่ที่แต่ละโฟลเดอร์ใช้บนดิสก์ในขณะนี้",
   "agentManager.orphans.helpMore": "แสดงเพิ่มเติม",

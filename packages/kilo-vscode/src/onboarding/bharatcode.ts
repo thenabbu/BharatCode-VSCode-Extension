@@ -46,19 +46,82 @@ async function ask(): Promise<string | undefined> {
   }
 }
 
-/** First-run flow: no key stored -> prompt -> validate live -> auth.set("bharatcode"). */
+type AuthChoice = "oauth" | "api"
+
+/** First-run picker: OAuth (recommended) or a pasted API key — user's call. */
+async function choose(): Promise<AuthChoice | undefined> {
+  const picked = await vscode.window.showQuickPick(
+    [
+      {
+        label: "$(account) Sign in with BharatCode",
+        description: "Recommended - opens your browser, no API key needed",
+        choice: "oauth" as const,
+      },
+      {
+        label: "$(key) Use an API key",
+        description: "Paste a key from bharatcode.ai instead",
+        choice: "api" as const,
+      },
+    ],
+    {
+      title: "Connect BharatCode",
+      placeHolder: "BharatCode is the primary provider of this extension",
+      ignoreFocusOut: true,
+    },
+  )
+  return picked?.choice
+}
+
+/**
+ * Supabase OAuth via the backend's bharatcode auth method (PKCE + loopback
+ * callback). Mirrors the settings-page connect flow: authorize -> open the
+ * browser -> block on the callback -> reset the backend so the provider
+ * picks the session up immediately.
+ */
+async function signInWithBrowser(client: () => Promise<KiloClient>): Promise<void> {
+  const c = await client()
+  const directory = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
+  const scope = directory ? { directory } : {}
+  const { data: authorization } = await c.provider.oauth.authorize(
+    { providerID: "bharatcode", method: 0, ...scope },
+    { throwOnError: true },
+  )
+  if (!authorization?.url) throw new Error("BharatCode sign-in did not return a URL.")
+  const opened = await vscode.env.openExternal(vscode.Uri.parse(authorization.url))
+  if (!opened) throw new Error("Could not open the browser for BharatCode sign-in.")
+  await c.provider.oauth.callback({ providerID: "bharatcode", method: 0, ...scope }, { throwOnError: true })
+  await c.global.dispose().catch(() => {})
+}
+
+/**
+ * First-run flow: nothing stored -> offer OAuth or API key -> run the picked
+ * path -> auth (type oauth or api) lands in the backend store.
+ */
 export async function ensureKey(ctx: vscode.ExtensionContext, client: () => Promise<KiloClient>): Promise<void> {
   if (ctx.globalState.get<boolean>(KEY_SET_FLAG)) return
-  const key = await ask()
-  if (!key) return
-  try {
-    const c = await client()
-    await c.auth.set({ providerID: "bharatcode", auth: { type: "api", key } }, { throwOnError: true })
-    await ctx.globalState.update(KEY_SET_FLAG, true)
-    void vscode.window.showInformationMessage("BharatCode connected - open the sidebar chat to start.")
-  } catch (error) {
-    console.warn("[BharatCode] BharatCode key save failed:", error)
-    void vscode.window.showErrorMessage("Could not save the BharatCode key: " + String(error))
+  for (;;) {
+    const choice = await choose()
+    if (!choice) return
+    try {
+      if (choice === "oauth") {
+        await signInWithBrowser(client)
+      } else {
+        const key = await ask()
+        if (!key) continue
+        const c = await client()
+        await c.auth.set({ providerID: "bharatcode", auth: { type: "api", key } }, { throwOnError: true })
+      }
+      await ctx.globalState.update(KEY_SET_FLAG, true)
+      void vscode.window.showInformationMessage("BharatCode connected - open the sidebar chat to start.")
+      return
+    } catch (error) {
+      console.warn("[BharatCode] BharatCode sign-in failed:", error)
+      const retry = await vscode.window.showErrorMessage(
+        "BharatCode sign-in failed: " + String((error as Error)?.message ?? error),
+        "Try again",
+      )
+      if (retry !== "Try again") return
+    }
   }
 }
 

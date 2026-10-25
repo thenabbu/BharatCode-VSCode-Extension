@@ -192,13 +192,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "اسم Worktree (اختياري)",
   "agentManager.dialog.promptPlaceholder.mac": "اكتب رسالة (⌘Enter للإرسال)",
   "agentManager.dialog.promptPlaceholder.other": "اكتب رسالة (Ctrl+Enter للإرسال)",
-  "agentManager.dialog.advancedOptions": "خيارات متقدمة",
   "agentManager.dialog.branchName": "اسم الفرع",
   "agentManager.dialog.branchNamePlaceholder": "يتم إنشاؤه تلقائيًا",
+  "agentManager.dialog.branchNameHint":
+    "اسم الفرع (اختياري). يستخدم اسم worktree افتراضيًا. إذا كان كلاهما فارغًا، يتم إنشاء اسم.",
   "agentManager.dialog.baseBranch": "الفرع الأساسي",
   "agentManager.dialog.searchBranches": "البحث في الفروع...",
   "agentManager.dialog.branchBadge.default": "افتراضي",
   "agentManager.dialog.branchBadge.remote": "بعيد",
+  "agentManager.dialog.moreBranches": "{{count}} فروع أخرى. اكتب للبحث.",
+  "agentManager.dialog.setDefaultBase": "تعيين كافتراضي",
+  "agentManager.dialog.defaultBase": "الافتراضي: {{branch}}",
   "agentManager.dialog.versions": "النسخ",
   "agentManager.dialog.versionHint": "{{count}} Worktrees ستعمل بالتوازي",
   "agentManager.dialog.compareModels": "مقارنة النماذج",
@@ -442,6 +446,7 @@ export const dict = {
   "agentManager.browser.url": "العنوان",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "فتح",
+  "agentManager.browser.openExternal": "فتح في المتصفح الخارجي",
   "agentManager.browser.refresh": "تحديث المتصفح",
   "agentManager.browser.back": "رجوع",
   "agentManager.browser.forward": "تقدّم",
@@ -476,7 +481,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "طلب سحب",
   "agentManager.intro.updateTitle": "حلّ التعارضات باستخدام BharatCode",
   "agentManager.intro.updateText":
-    "قبل تطبيق التغييرات على Local أو دمج طلب سحب، شغّل /update-from-base في جلسة الـ worktree المعني. يدمج Kilo أحدث تغييرات الفرع الأساسي ويحلّ التعارضات داخل الـ worktree نفسه أولًا.",
+    "قبل تطبيق التغييرات على Local أو دمج طلب سحب، شغّل /update-from-base في جلسة الـ worktree المعني. يدمج BharatCode أحدث تغييرات الفرع الأساسي ويحلّ التعارضات داخل الـ worktree نفسه أولًا.",
   "agentManager.intro.stage1.title": "مستودعك",
   "agentManager.intro.stage1.text": "تبقى الملفات المحلية دون تغيير",
   "agentManager.intro.stage2.title": "مثال: مهمتان بالتوازي",
@@ -513,11 +518,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "غير معروف",
   "agentManager.orphans.dialogTitle": "مجلدات worktree متبقية",
   "agentManager.orphans.helpIntro":
-    "يحفظ Kilo كل worktree يُنشئه داخل مجلد .kilo/worktrees في هذا المستودع. المجلدات أدناه موجودة في ذلك المجلد، لكن git لا يسرد أيًا منها باعتباره worktree، لذا لم يعد أي شيء يستخدمها.",
+    "يحفظ BharatCode كل worktree يُنشئه داخل مجلد .kilo/worktrees في هذا المستودع. المجلدات أدناه موجودة في ذلك المجلد، لكن git لا يسرد أيًا منها باعتباره worktree، لذا لم يعد أي شيء يستخدمها.",
   "agentManager.orphans.helpCheckout":
     "المجلد المُعلَّم بأنه يحتوي على نسخة عمل git لا يزال يضم مدخل .git بداخله وقد يحتوي على عمل غير مُودَع في commit. لذلك تُترك هذه المجلدات غير محددة؛ افتح أحدها وتحقق منه قبل حذفه.",
   "agentManager.orphans.helpCauses":
-    "تنتج المجلدات المتبقية عادةً عن عملية حذف توقفت في منتصفها، أو worktree أُزيل من خارج Kilo، أو أداة كتبت في المجلد بعد إزالته. أما عمليات الحذف التي لا تزال قيد التنفيذ فلا تظهر هنا.",
+    "تنتج المجلدات المتبقية عادةً عن عملية حذف توقفت في منتصفها، أو worktree أُزيل من خارج BharatCode، أو أداة كتبت في المجلد بعد إزالته. أما عمليات الحذف التي لا تزال قيد التنفيذ فلا تظهر هنا.",
   "agentManager.orphans.helpDelete":
     "يؤدي الحذف إلى إزالة المجلدات المحددة من القرص نهائيًا دون المرور بسلة المحذوفات. ولا يتأثر أي فرع أو أي worktree نشط. تمثل الأحجام المساحة التي يشغلها كل مجلد على القرص في الوقت الحالي.",
   "agentManager.orphans.helpMore": "إظهار المزيد",

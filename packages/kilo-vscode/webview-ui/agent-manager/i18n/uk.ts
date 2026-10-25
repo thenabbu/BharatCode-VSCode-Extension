@@ -206,13 +206,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Назва робочого дерева (необов'язково)",
   "agentManager.dialog.promptPlaceholder.mac": "Введіть повідомлення (\u2318Enter для надсилання)",
   "agentManager.dialog.promptPlaceholder.other": "Введіть повідомлення (Ctrl+Enter для надсилання)",
-  "agentManager.dialog.advancedOptions": "Розширені параметри",
   "agentManager.dialog.branchName": "Назва гілки",
   "agentManager.dialog.branchNamePlaceholder": "автоматично згенерована",
+  "agentManager.dialog.branchNameHint":
+    "Назва гілки (необов'язково). Типово назва worktree. Якщо обидві порожні, назву буде створено.",
   "agentManager.dialog.baseBranch": "Базова гілка",
   "agentManager.dialog.searchBranches": "Пошук гілок...",
   "agentManager.dialog.branchBadge.default": "за замовчуванням",
   "agentManager.dialog.branchBadge.remote": "віддалена",
+  "agentManager.dialog.moreBranches": "Ще {{count}}. Введіть текст для пошуку.",
+  "agentManager.dialog.setDefaultBase": "Зробити типовою",
+  "agentManager.dialog.defaultBase": "Типова: {{branch}}",
   "agentManager.dialog.versions": "Версії",
   "agentManager.dialog.versionHint": "{{count}} робочих дерев виконуватимуться паралельно",
   "agentManager.dialog.compareModels": "Порівняти моделі",
@@ -458,6 +462,7 @@ export const dict = {
   "agentManager.browser.url": "Адреса",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Відкрити",
+  "agentManager.browser.openExternal": "Відкрити у зовнішньому браузері",
   "agentManager.browser.refresh": "Оновити браузер",
   "agentManager.browser.back": "Назад",
   "agentManager.browser.forward": "Вперед",
@@ -493,7 +498,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Розв’язуйте конфлікти за допомогою BharatCode",
   "agentManager.intro.updateText":
-    "Перш ніж застосовувати зміни до Local або зливати pull request, виконайте /update-from-base у сесії цього worktree. Kilo спочатку зіллє останні зміни базової гілки та розв’яже конфлікти всередині цього worktree.",
+    "Перш ніж застосовувати зміни до Local або зливати pull request, виконайте /update-from-base у сесії цього worktree. BharatCode спочатку зіллє останні зміни базової гілки та розв’яже конфлікти всередині цього worktree.",
   "agentManager.intro.stage1.title": "Ваш репозиторій",
   "agentManager.intro.stage1.text": "Локальні файли залишаються без змін",
   "agentManager.intro.stage2.title": "Приклад: два завдання паралельно",
@@ -532,11 +537,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "невідомо",
   "agentManager.orphans.dialogTitle": "Залишені теки worktree",
   "agentManager.orphans.helpIntro":
-    "Kilo зберігає всі створені worktree у теці .kilo/worktrees цього репозиторію. Теки нижче містяться в цій теці, але git не вважає жодну з них worktree, тому ними більше ніщо не користується.",
+    "BharatCode зберігає всі створені worktree у теці .kilo/worktrees цього репозиторію. Теки нижче містяться в цій теці, але git не вважає жодну з них worktree, тому ними більше ніщо не користується.",
   "agentManager.orphans.helpCheckout":
     "Тека, позначена як така, що містить робочу копію git, усе ще має всередині запис .git і може зберігати незакомічену роботу. Такі теки лишаються невибраними, тому відкрийте одну з них і перевірте перед видаленням.",
   "agentManager.orphans.helpCauses":
-    "Залишки зазвичай з'являються через перерване видалення, worktree, видалений поза Kilo, або інструмент, який записав дані до теки після її видалення. Видалення, які ще тривають, тут не показуються.",
+    "Залишки зазвичай з'являються через перерване видалення, worktree, видалений поза BharatCode, або інструмент, який записав дані до теки після її видалення. Видалення, які ще тривають, тут не показуються.",
   "agentManager.orphans.helpDelete":
     "Видалення остаточно вилучає вибрані теки з диска, не переміщуючи їх до Кошика. Жодна гілка й жоден активний worktree не змінюються. Розміри показують, скільки місця кожна тека займає на диску зараз.",
   "agentManager.orphans.helpMore": "Показати більше",

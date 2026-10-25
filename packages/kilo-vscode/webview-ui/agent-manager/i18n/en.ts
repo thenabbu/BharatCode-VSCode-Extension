@@ -102,11 +102,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "unknown",
   "agentManager.orphans.dialogTitle": "Leftover worktree folders",
   "agentManager.orphans.helpIntro":
-    "Kilo keeps every worktree it creates inside the .kilo/worktrees folder of this repository. The folders below are in that folder, but git does not list any of them as a worktree, so nothing is using them anymore.",
+    "BharatCode keeps every worktree it creates inside the .kilo/worktrees folder of this repository. The folders below are in that folder, but git does not list any of them as a worktree, so nothing is using them anymore.",
   "agentManager.orphans.helpCheckout":
     "A folder flagged as containing a git checkout still has a .git entry inside and may hold uncommitted work. Those are left unselected, so open one and check it before you delete it.",
   "agentManager.orphans.helpCauses":
-    "Leftovers usually come from a deletion that was interrupted, a worktree removed outside Kilo, or a tool that wrote into the folder after it was removed. Deletions that are still running are not listed here.",
+    "Leftovers usually come from a deletion that was interrupted, a worktree removed outside BharatCode, or a tool that wrote into the folder after it was removed. Deletions that are still running are not listed here.",
   "agentManager.orphans.helpDelete":
     "Deleting removes the selected folders from disk for good, without going through the Trash. No branch and no active worktree is touched. Sizes are what each folder takes up on disk right now.",
   "agentManager.orphans.helpMore": "Show more",
@@ -241,13 +241,17 @@ export const dict = {
   "agentManager.dialog.project.missing": "Repository not found",
   "agentManager.dialog.promptPlaceholder.mac": "Type a message (\u2318Enter to send)",
   "agentManager.dialog.promptPlaceholder.other": "Type a message (Ctrl+Enter to send)",
-  "agentManager.dialog.advancedOptions": "Advanced options",
   "agentManager.dialog.branchName": "Branch name",
   "agentManager.dialog.branchNamePlaceholder": "auto-generated",
+  "agentManager.dialog.branchNameHint":
+    "Branch name (optional). Defaults to the worktree name. When both are empty, a name is generated.",
   "agentManager.dialog.baseBranch": "Base branch",
   "agentManager.dialog.searchBranches": "Search branches...",
   "agentManager.dialog.branchBadge.default": "default",
   "agentManager.dialog.branchBadge.remote": "remote",
+  "agentManager.dialog.moreBranches": "{{count}} more. Type to search.",
+  "agentManager.dialog.setDefaultBase": "Set as default",
+  "agentManager.dialog.defaultBase": "Default: {{branch}}",
   "agentManager.dialog.versions": "Versions",
   "agentManager.dialog.versionHint": "{{count}} worktrees will run in parallel",
   "agentManager.dialog.compareModels": "Compare Models",
@@ -475,6 +479,7 @@ export const dict = {
   "agentManager.browser.url": "Address",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Open",
+  "agentManager.browser.openExternal": "Open in external browser",
   "agentManager.browser.inspect": "Select element",
   "agentManager.browser.devtoolsTitle": "Developer tools",
   "agentManager.browser.refresh": "Refresh browser",
@@ -535,7 +540,7 @@ export const dict = {
     "Ask the agent in each worktree to open a pull request. Or use Apply in the diff panel to copy changes to Local.",
   "agentManager.intro.updateTitle": "Resolve conflicts with BharatCode",
   "agentManager.intro.updateText":
-    "Before applying changes to Local or merging a pull request, run /update-from-base in that worktree's session. Kilo merges the latest base changes and resolves conflicts there first.",
+    "Before applying changes to Local or merging a pull request, run /update-from-base in that worktree's session. BharatCode merges the latest base changes and resolves conflicts there first.",
   "agentManager.intro.prDetection":
     "PR badges update automatically for each worktree branch (GitHub CLI sign-in required).",
   "agentManager.intro.checksRunning": "Checks running",

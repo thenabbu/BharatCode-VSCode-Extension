@@ -197,13 +197,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Nazwa Worktree (opcjonalnie)",
   "agentManager.dialog.promptPlaceholder.mac": "Wpisz wiadomość (⌘Enter aby wysłać)",
   "agentManager.dialog.promptPlaceholder.other": "Wpisz wiadomość (Ctrl+Enter aby wysłać)",
-  "agentManager.dialog.advancedOptions": "Opcje zaawansowane",
   "agentManager.dialog.branchName": "Nazwa brancha",
   "agentManager.dialog.branchNamePlaceholder": "generowana automatycznie",
+  "agentManager.dialog.branchNameHint":
+    "Nazwa gałęzi (opcjonalnie). Domyślnie nazwa worktree. Jeśli obie są puste, nazwa zostanie wygenerowana.",
   "agentManager.dialog.baseBranch": "Branch bazowy",
   "agentManager.dialog.searchBranches": "Szukaj branchy...",
   "agentManager.dialog.branchBadge.default": "domyślny",
   "agentManager.dialog.branchBadge.remote": "zdalny",
+  "agentManager.dialog.moreBranches": "Jeszcze {{count}}. Wpisz, aby wyszukać.",
+  "agentManager.dialog.setDefaultBase": "Ustaw jako domyślną",
+  "agentManager.dialog.defaultBase": "Domyślna: {{branch}}",
   "agentManager.dialog.versions": "Wersje",
   "agentManager.dialog.versionHint": "{{count}} worktree będą działać równolegle",
   "agentManager.dialog.compareModels": "Porównaj modele",
@@ -441,13 +445,14 @@ export const dict = {
   "agentManager.import.failed": "Import nie powiódł się",
   "agentManager.caffeination.toggle": "Nie usypiaj komputera, gdy agenci BharatCode pracują",
   "agentManager.caffeination.armed":
-    "Tryb zapobiegania uśpieniu komputera włączony dla agentów Kilo; kliknij, aby wyłączyć",
+    "Tryb zapobiegania uśpieniu komputera włączony dla agentów BharatCode; kliknij, aby wyłączyć",
   "agentManager.caffeination.active": "Komputer pozostaje aktywny, gdy agenci BharatCode pracują",
   "agentManager.caffeination.unavailable": "Tryb utrzymywania komputera aktywnego jest niedostępny na tej platformie",
   "agentManager.browser.title": "Zintegrowana przeglądarka",
   "agentManager.browser.url": "Adres",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Otwórz",
+  "agentManager.browser.openExternal": "Otwórz w zewnętrznej przeglądarce",
   "agentManager.browser.inspect": "Wybierz element",
   "agentManager.browser.devtoolsTitle": "Narzędzia deweloperskie",
   "agentManager.browser.refresh": "Odśwież przeglądarkę",
@@ -483,7 +488,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Rozwiąż konflikty z BharatCode",
   "agentManager.intro.updateText":
-    "Zanim zastosujesz zmiany w Local lub scalisz pull request, uruchom /update-from-base w sesji tego worktree. Kilo scala najnowsze zmiany z gałęzi bazowej i najpierw rozwiązuje konflikty w tym worktree.",
+    "Zanim zastosujesz zmiany w Local lub scalisz pull request, uruchom /update-from-base w sesji tego worktree. BharatCode scala najnowsze zmiany z gałęzi bazowej i najpierw rozwiązuje konflikty w tym worktree.",
   "agentManager.intro.stage1.title": "Twoje repozytorium",
   "agentManager.intro.stage1.text": "Lokalne pliki pozostają niezmienione",
   "agentManager.intro.stage2.title": "Przykład: dwa zadania równolegle",
@@ -522,11 +527,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "nieznany",
   "agentManager.orphans.dialogTitle": "Pozostałe foldery worktree",
   "agentManager.orphans.helpIntro":
-    "Kilo przechowuje każdy tworzony worktree w folderze .kilo/worktrees tego repozytorium. Poniższe foldery znajdują się w tym folderze, ale git nie wymienia żadnego z nich jako worktree, więc nic już ich nie używa.",
+    "BharatCode przechowuje każdy tworzony worktree w folderze .kilo/worktrees tego repozytorium. Poniższe foldery znajdują się w tym folderze, ale git nie wymienia żadnego z nich jako worktree, więc nic już ich nie używa.",
   "agentManager.orphans.helpCheckout":
     "Folder oznaczony jako zawierający checkout git nadal ma w środku wpis .git i może zawierać zmiany bez commita. Takie foldery pozostają niezaznaczone, więc otwórz jeden z nich i sprawdź go, zanim go usuniesz.",
   "agentManager.orphans.helpCauses":
-    "Pozostałości zwykle wynikają z przerwanego usuwania, worktree usuniętego poza Kilo albo narzędzia, które zapisało coś w folderze po jego usunięciu. Usuwanie, które nadal trwa, nie jest tu wymieniane.",
+    "Pozostałości zwykle wynikają z przerwanego usuwania, worktree usuniętego poza BharatCode albo narzędzia, które zapisało coś w folderze po jego usunięciu. Usuwanie, które nadal trwa, nie jest tu wymieniane.",
   "agentManager.orphans.helpDelete":
     "Usunięcie trwale usuwa wybrane foldery z dysku, bez przenoszenia ich do Kosza. Żadna gałąź ani żaden aktywny worktree nie zostaje zmieniony. Rozmiary pokazują, ile miejsca każdy folder zajmuje na dysku w tej chwili.",
   "agentManager.orphans.helpMore": "Pokaż więcej",

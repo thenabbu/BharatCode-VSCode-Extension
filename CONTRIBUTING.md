@@ -14,9 +14,10 @@ There are lots of ways to contribute to the project:
 
 Questions and discussion belong in [GitHub Issues](https://github.com/thenabbu/BharatCode-VSCode-Extension/issues).
 
+
 ## Prerequisites
 
-- **Bun 1.4.2+** — required for all packages.
+- **Bun `1.4.4`** - The exact official npm package is required for all packages. Install it as shown below.
 - **Java 21** — required by the JetBrains plugin. The root `bun turbo typecheck` and `bun turbo test:ci` commands include `@kilocode/kilo-jetbrains` and will fail without Java 21.
 
   The preferred way to install Java is via [SDKMAN](https://sdkman.io/install):
@@ -39,9 +40,22 @@ Questions and discussion belong in [GitHub Issues](https://github.com/thenabbu/B
   bun turbo typecheck --filter=!@kilocode/kilo-jetbrains
   ```
 
+Use Node.js 24.22.1 or newer with npm from a trusted source to install the pinned Bun release:
+
+```bash
+npm install --global bun@1.4.4
+bun --version
+bun --print "Bun.revision"
+```
+
+The expected `Bun.revision` is `38afee6c84fcf48c0edb2466aa4b27d287a59c30`. The CLI build rejects other revisions. The root `package.json` pins the npm package version, and `script/kilocode/bun.json` records the exact revision and target artifact checksums.
+
+The first CLI build needs access to the npm registry. The build caches verified Bun archives in a private, user-scoped temporary directory. Each build extracts a fresh executable before compilation.
+
 ## Developing BharatCode
 
-- **Requirements:** Bun 1.4.2+, Java 21 (see [Prerequisites](#prerequisites) above)
+
+- **Requirements:** Bun `1.4.4` at the exact revision above, Java 21 (see [Prerequisites](#prerequisites) above)
 - Install dependencies and start the CLI from the repo root:
 
   ```bash
@@ -89,6 +103,8 @@ bun run test
 bun run compile
 bun run package
 ```
+
+Linux visual CI prefers Ubuntu's official HTTPS archive for Playwright system packages and retains the Azure mirror as a fallback.
 
 ### Documentation checks
 
@@ -237,6 +253,7 @@ KILO_API_URL=http://localhost:3000 bun dev
 
 This points the CLI at your local server instead of the default URL. The default is `http://127.0.0.1:9` — a dead end on purpose; this build has no cloud gateway, and model traffic goes to bharatcode.ai instead.
 
+
 There are also optional overrides for other services:
 
 | Variable | Default | Purpose |
@@ -244,6 +261,7 @@ There are also optional overrides for other services:
 | `KILO_API_URL` | `http://127.0.0.1:9` | Kilo cloud API — intentionally dead-ended in this build; not needed for bharatcode.ai |
 | `KILO_SESSION_INGEST_URL` | `https://ingest.kilosessions.ai` | Session export / cloud sync — disabled in this build |
 | `KILO_MODELS_URL` | `https://models.dev` | Model metadata — fetch disabled in this build |
+
 
 > **VS Code:** The repo includes a "VSCode - Run Extension (Local Backend)" launch config in `.vscode/launch.json` that sets `KILO_API_URL=http://localhost:3000` automatically.
 

@@ -84,7 +84,9 @@ export async function activate(context: vscode.ExtensionContext) {
     trusted: () => vscode.workspace.isTrusted,
     useSystemChrome: () => integratedBrowserUseSystemChrome(),
     fallback: () => process.platform === "linux" && integratedBrowserFallback(),
+    theme: browserTheme,
   })
+  context.subscriptions.push(vscode.window.onDidChangeActiveColorTheme(() => browserBroker.retheme()))
 
   // Create shared connection service (one server for all webviews)
   const connectionService = new KiloConnectionService(
@@ -876,7 +878,7 @@ export async function activate(context: vscode.ExtensionContext) {
     ),
   )
 
-  // Register URI handler for extension deep links (vscode://bharatcode.bharatcode-vscode/kilocode/...)
+  // Register URI handler for extension deep links (vscode://thenabbu.bharatcode-vscode/kilocode/...)
   context.subscriptions.push(
     vscode.window.registerUriHandler({
       async handleUri(uri: vscode.Uri) {
@@ -953,6 +955,12 @@ export async function deactivate() {
     if (result.status === "rejected") console.warn("[BharatCode] Extension shutdown failed:", result.reason)
   }
   TelemetryProxy.getInstance().shutdown()
+}
+
+/** Current IDE color scheme, so the Integrated Browser matches the editor theme. */
+function browserTheme(): "dark" | "light" {
+  const kind = vscode.window.activeColorTheme.kind
+  return kind === vscode.ColorThemeKind.Light || kind === vscode.ColorThemeKind.HighContrastLight ? "light" : "dark"
 }
 
 function openKiloInNewTab(

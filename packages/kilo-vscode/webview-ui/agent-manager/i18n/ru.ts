@@ -199,13 +199,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Имя Worktree (необязательно)",
   "agentManager.dialog.promptPlaceholder.mac": "Введите сообщение (⌘Enter для отправки)",
   "agentManager.dialog.promptPlaceholder.other": "Введите сообщение (Ctrl+Enter для отправки)",
-  "agentManager.dialog.advancedOptions": "Расширенные параметры",
   "agentManager.dialog.branchName": "Имя ветки",
   "agentManager.dialog.branchNamePlaceholder": "генерируется автоматически",
+  "agentManager.dialog.branchNameHint":
+    "Имя ветки (необязательно). По умолчанию имя worktree. Если оба пусты, имя создаётся автоматически.",
   "agentManager.dialog.baseBranch": "Базовая ветка",
   "agentManager.dialog.searchBranches": "Поиск веток...",
   "agentManager.dialog.branchBadge.default": "по умолчанию",
   "agentManager.dialog.branchBadge.remote": "удалённая",
+  "agentManager.dialog.moreBranches": "Ещё {{count}}. Введите текст для поиска.",
+  "agentManager.dialog.setDefaultBase": "Сделать по умолчанию",
+  "agentManager.dialog.defaultBase": "По умолчанию: {{branch}}",
   "agentManager.dialog.versions": "Версии",
   "agentManager.dialog.versionHint": "{{count}} Worktree будут выполняться параллельно",
   "agentManager.dialog.compareModels": "Сравнить модели",
@@ -450,6 +454,7 @@ export const dict = {
   "agentManager.browser.url": "Адрес",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Открыть",
+  "agentManager.browser.openExternal": "Открыть во внешнем браузере",
   "agentManager.browser.refresh": "Обновить браузер",
   "agentManager.browser.back": "Назад",
   "agentManager.browser.forward": "Вперёд",
@@ -485,7 +490,7 @@ export const dict = {
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Разрешайте конфликты с помощью BharatCode",
   "agentManager.intro.updateText":
-    "Перед применением изменений к Local или слиянием pull request выполните /update-from-base в сессии этого worktree. Kilo сначала сольёт последние изменения базовой ветки и разрешит конфликты внутри этого worktree.",
+    "Перед применением изменений к Local или слиянием pull request выполните /update-from-base в сессии этого worktree. BharatCode сначала сольёт последние изменения базовой ветки и разрешит конфликты внутри этого worktree.",
   "agentManager.intro.stage1.title": "Ваш репозиторий",
   "agentManager.intro.stage1.text": "Локальные файлы остаются без изменений",
   "agentManager.intro.stage2.title": "Пример: две задачи параллельно",
@@ -524,11 +529,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "неизвестно",
   "agentManager.orphans.dialogTitle": "Оставшиеся папки worktree",
   "agentManager.orphans.helpIntro":
-    "Kilo хранит все создаваемые worktree в папке .kilo/worktrees этого репозитория. Папки ниже находятся в этой папке, но git не считает ни одну из них worktree, поэтому они больше не используются.",
+    "BharatCode хранит все создаваемые worktree в папке .kilo/worktrees этого репозитория. Папки ниже находятся в этой папке, но git не считает ни одну из них worktree, поэтому они больше не используются.",
   "agentManager.orphans.helpCheckout":
     "Папка, помеченная как содержащая рабочую копию git, всё ещё содержит запись .git и может хранить незакоммиченную работу. Такие папки остаются невыбранными, поэтому откройте одну из них и проверьте её перед удалением.",
   "agentManager.orphans.helpCauses":
-    "Остатки обычно появляются из-за прерванного удаления, worktree, удалённого вне Kilo, или инструмента, который записал данные в папку после её удаления. Удаления, которые ещё выполняются, здесь не показываются.",
+    "Остатки обычно появляются из-за прерванного удаления, worktree, удалённого вне BharatCode, или инструмента, который записал данные в папку после её удаления. Удаления, которые ещё выполняются, здесь не показываются.",
   "agentManager.orphans.helpDelete":
     "Удаление безвозвратно убирает выбранные папки с диска, минуя Корзину. Ни одна ветка и ни один активный worktree не затрагиваются. Размеры показывают, сколько места каждая папка занимает на диске сейчас.",
   "agentManager.orphans.helpMore": "Показать ещё",

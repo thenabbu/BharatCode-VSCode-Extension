@@ -202,13 +202,17 @@ export const dict = {
   "agentManager.dialog.namePlaceholder": "Nom du Worktree (optionnel)",
   "agentManager.dialog.promptPlaceholder.mac": "Saisissez un message (⌘Entrée pour envoyer)",
   "agentManager.dialog.promptPlaceholder.other": "Saisissez un message (Ctrl+Entrée pour envoyer)",
-  "agentManager.dialog.advancedOptions": "Options avancées",
   "agentManager.dialog.branchName": "Nom de la branche",
   "agentManager.dialog.branchNamePlaceholder": "généré automatiquement",
+  "agentManager.dialog.branchNameHint":
+    "Nom de branche (facultatif). Par défaut, le nom du worktree. Si les deux sont vides, un nom est généré.",
   "agentManager.dialog.baseBranch": "Branche de base",
   "agentManager.dialog.searchBranches": "Rechercher des branches...",
   "agentManager.dialog.branchBadge.default": "par défaut",
   "agentManager.dialog.branchBadge.remote": "distant",
+  "agentManager.dialog.moreBranches": "{{count}} de plus. Tapez pour rechercher.",
+  "agentManager.dialog.setDefaultBase": "Définir par défaut",
+  "agentManager.dialog.defaultBase": "Par défaut : {{branch}}",
   "agentManager.dialog.versions": "Versions",
   "agentManager.dialog.versionHint": "{{count}} worktrees s'exécuteront en parallèle",
   "agentManager.dialog.compareModels": "Comparer les modèles",
@@ -454,6 +458,7 @@ export const dict = {
   "agentManager.browser.url": "Adresse",
   "agentManager.browser.urlPlaceholder": "http://localhost:3000",
   "agentManager.browser.open": "Ouvrir",
+  "agentManager.browser.openExternal": "Ouvrir dans le navigateur externe",
   "agentManager.browser.inspect": "Sélectionner l'élément",
   "agentManager.browser.devtoolsTitle": "Outils de développement",
   "agentManager.browser.refresh": "Actualiser le navigateur",
@@ -500,7 +505,7 @@ export const dict = {
     "Demandez à l'agent de chaque worktree d'ouvrir une pull request. Ou utilisez Apply dans le panneau de diff pour copier les modifications vers Local.",
   "agentManager.intro.updateTitle": "Résolvez les conflits avec BharatCode",
   "agentManager.intro.updateText":
-    "Avant d'appliquer des modifications à Local ou de fusionner une pull request, exécutez /update-from-base dans la session de ce worktree. Kilo fusionne les dernières modifications de la branche de base et résout d'abord les conflits dans ce worktree.",
+    "Avant d'appliquer des modifications à Local ou de fusionner une pull request, exécutez /update-from-base dans la session de ce worktree. BharatCode fusionne les dernières modifications de la branche de base et résout d'abord les conflits dans ce worktree.",
   "agentManager.intro.prDetection":
     "Les badges PR se mettent à jour automatiquement pour chaque branche de worktree (connexion à GitHub CLI requise).",
   "agentManager.intro.checksRunning": "Vérifications en cours",
@@ -530,11 +535,11 @@ export const dict = {
   "agentManager.orphans.sizeUnknown": "inconnue",
   "agentManager.orphans.dialogTitle": "Dossiers de worktree résiduels",
   "agentManager.orphans.helpIntro":
-    "Kilo place chaque worktree qu'il crée dans le dossier .kilo/worktrees de ce dépôt. Les dossiers ci-dessous se trouvent dans ce dossier, mais git n'en répertorie aucun comme worktree : plus rien ne les utilise.",
+    "BharatCode place chaque worktree qu'il crée dans le dossier .kilo/worktrees de ce dépôt. Les dossiers ci-dessous se trouvent dans ce dossier, mais git n'en répertorie aucun comme worktree : plus rien ne les utilise.",
   "agentManager.orphans.helpCheckout":
     "Un dossier signalé comme contenant un checkout git possède encore une entrée .git et peut renfermer du travail non commité. Ces dossiers restent désélectionnés : ouvrez-en un et vérifiez-le avant de le supprimer.",
   "agentManager.orphans.helpCauses":
-    "Les résidus proviennent généralement d'une suppression interrompue, d'un worktree supprimé en dehors de Kilo ou d'un outil qui a écrit dans le dossier après sa suppression. Les suppressions encore en cours ne sont pas listées ici.",
+    "Les résidus proviennent généralement d'une suppression interrompue, d'un worktree supprimé en dehors de BharatCode ou d'un outil qui a écrit dans le dossier après sa suppression. Les suppressions encore en cours ne sont pas listées ici.",
   "agentManager.orphans.helpDelete":
     "La suppression retire définitivement du disque les dossiers sélectionnés, sans passer par la Corbeille. Aucune branche ni aucun worktree actif n'est touché. Les tailles correspondent à l'espace disque occupé par chaque dossier en ce moment.",
   "agentManager.orphans.helpMore": "Afficher plus",
