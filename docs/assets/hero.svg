@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 340" width="1280" height="340" role="img" aria-label="BharatCode - open source AI coding agent for VS Code, powered by bharatcode.ai with qwen-3.8-27b and deepseek-v4.1-flash">
+  <title>BharatCode - AI coding agent for VS Code</title>
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff6a35" stop-opacity="0.22"/>
+      <stop offset="45%" stop-color="#ff6a35" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#038fac" stop-opacity="0.16"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6a35"/>
+      <stop offset="55%" stop-color="#e1ba00"/>
+      <stop offset="100%" stop-color="#038fac"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="0.42" cy="-0.1" r="1.05">
+      <stop offset="0%" stop-color="#2e2724" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0f0a07" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#2e2724" stroke-width="1" stroke-opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="340" fill="#0f0a07"/>
+  <rect width="1280" height="340" fill="url(#grid)"/>
+  <rect width="1280" height="340" fill="url(#vig)"/>
+  <rect width="1280" height="340" fill="url(#glow)"/>
+
+  <!-- eyelet strip -->
+  <text x="88" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+        font-size="13" fill="#817874" letter-spacing="2.6">MIT · PURE BY DEFAULT · NO TELEMETRY</text>
+  <text x="1192" y="66" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+        font-size="13" fill="#817874" letter-spacing="1.2">v7.8.105</text>
+
+  <!-- mark: centred on the 152 cap-height band of the wordmark (y 116-152) -->
+  <g transform="translate(88 63.5) scale(0.256)">
+    <g fill="none" stroke="#ff6a35" stroke-width="54" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M194 142 84 256l110 114"/>
+      <path d="m318 142 110 114-110 114"/>
+    </g>
+    <path fill="#ff6a35" d="m256 221 35 35-35 35-35-35z"/>
+  </g>
+
+  <text x="244" y="152" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+        font-size="64" font-weight="650" fill="#fef9f7" letter-spacing="-1.8">BharatCode</text>
+
+  <text x="247" y="196" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+        font-size="23" fill="#dbd2cd">The open source AI coding agent for VS Code</text>
+
+  <!-- model chips (widths measured, not eyeballed) -->
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15">
+    <rect x="250" y="228" rx="7" width="192" height="36" fill="#1c1410" stroke="#b44012" stroke-width="1.5"/>
+    <text x="267" y="251" fill="#ff936f">qwen-3.8-27b</text>
+    <text x="389" y="251" fill="#817874" font-size="13">262k</text>
+
+    <rect x="456" y="228" rx="7" width="239" height="36" fill="#1c1410" stroke="#005c70" stroke-width="1.5"/>
+    <text x="473" y="251" fill="#6bcde9">deepseek-v4.1-flash</text>
+    <text x="658" y="251" fill="#817874" font-size="13">1M</text>
+
+    <rect x="709" y="228" rx="7" width="142" height="36" fill="#1c1410" stroke="#453e3a" stroke-width="1.5"/>
+    <text x="726" y="251" fill="#dbd2cd" font-size="13">one endpoint</text>
+  </g>
+
+  <rect x="88" y="296" width="1104" height="3" rx="1.5" fill="url(#rule)"/>
+</svg>

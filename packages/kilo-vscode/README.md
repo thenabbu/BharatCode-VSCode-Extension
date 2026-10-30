@@ -1,117 +1,88 @@
-<p align="center">
-  <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest"><img src="https://img.shields.io/github/v/release/thenabbu/BharatCode-VSCode-Extension?label=release&color=ff6b35" alt="Latest release" height="20"></a>
-  <a href="https://bharatcode.ai"><img src="https://raster.shields.io/badge/bharatcode.ai-ff6b35?style=flat&logoColor=white" alt="bharatcode.ai" height="20"></a>
-</p>
+<div align="center">
 
-<p align="center">
-  <strong>BharatCode is an AI coding agent for VS Code.</strong><br>
-  Generate code, automate tasks, and run terminal commands with qwen-3.8-27b and deepseek-v4.1-flash, the two models served by bharatcode.ai.
-</p>
+<img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.svg" alt="BharatCode — AI coding agent for VS Code" width="100%">
 
-## Key Features
+<br>
 
-- **Code Generation:** BharatCode can generate code using natural language.
-- **Inline Autocomplete:** Get intelligent code completions as you type, powered by a bring-your-own-key AI provider. The BharatCode models are chat-only, so inline autocomplete requires your own provider key.
-- **Task Automation:** BharatCode can automate repetitive coding tasks to save time.
-- **Automated Refactoring:** BharatCode can refactor and improve existing code efficiently.
-- **MCP support:** Connect Model Context Protocol servers through config to extend the agent's capabilities.
-- **Agents**: Code, Plan, Ask, and Debug built in, plus your own custom agents.
+<img src="https://vsmarketplacebadges.dev/version-short/thenabbu.bharatcode-vscode.svg" alt="Marketplace version">
+<img src="https://vsmarketplacebadges.dev/installs-short/thenabbu.bharatcode-vscode.svg" alt="Installs">
+<img src="https://img.shields.io/badge/license-MIT-5e5652?labelColor=1c1410" alt="MIT licensed">
 
-## Get Started
+</div>
 
-1. Install the BharatCode extension `.vsix` for your platform from the [Releases page](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest).
-2. On first launch, BharatCode prompts you for your API key. Create one at [bharatcode.ai](https://bharatcode.ai) — all model requests go through the BharatCode API at `https://bharatcode.ai/api/model/v1`.
-3. Start coding with AI that adapts to your workflow.
+**BharatCode is an AI coding agent that lives inside VS Code.** It reads your project, edits files across it, runs terminal commands, and drives a browser to check its own work — powered by [bharatcode.ai](https://bharatcode.ai) with two models: `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context).
 
-## Developer Setup
+> **Fork notice.** BharatCode is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode), itself a fork of [OpenCode](https://github.com/anomalyco/opencode). Upstream and its contributors did the heavy lifting — this fork brings their agent to the BharatCode platform. MIT licensed, attribution preserved. We do not claim their work as ours.
 
-If you want to contribute or modify the extension locally, see the [Contributing Guide](/CONTRIBUTING.md) for build and setup instructions.
+## Get started in three steps
 
-### Snapshot Builds
+1. **Install** — `ext install thenabbu.bharatcode-vscode` from the Extensions view (VS Code 1.105.1+). Prefer a platform build? Grab the `.vsix` from [Releases](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest).
+2. **Connect** — create a key at [bharatcode.ai](https://bharatcode.ai) and paste it when BharatCode asks. That is the entire onboarding: no second account, no CLI to install.
+3. **Chat** — open the BharatCode sidebar and describe what you want.
 
-To build and share a development snapshot of the extension:
+## What it does
+
+- **Code generation** across multiple files, applied as real edits you review as a diff.
+- **Agents** — switch by intent: **Code** (implements), **Plan** (designs first), **Ask** (answers without touching files), **Debug** (traces failures). Bring your own custom agents as plain-text definitions.
+- **Agent Manager** — several sessions side by side, each isolated in its own git worktree, so parallel work cannot collide.
+- **Terminal and browser control** — it can run what it wrote and look at the result.
+- **Self-checking** — the agent re-reads its own output and corrects before handing back.
+- **MCP servers, skills and rules** in plain text, shaped per project.
+- **Generated commit messages** from your actual staged diff.
+- **Inline actions** on any selection: explain, fix, improve, add to context.
+
+## Inline autocomplete — the honest version
+
+BharatCode's two models are **chat-only**; there is no fill-in-the-middle endpoint, so they cannot drive ghost text. Inline autocomplete works only if you connect your own completion provider — **Mistral** or **Inception** — through Settings → autocomplete provider. Your BharatCode key still covers all chat, editing and agent work.
+
+## Two models, one key
+
+| Model | Context | Reach for it when |
+|---|---|---|
+| `qwen-3.8-27b` | 262k | Everyday edits, fast turnaround, most tasks |
+| `deepseek-v4.1-flash` | 1M | Whole-repo reasoning, long sessions, large files |
+
+Switch mid-task from the model picker in the chat header. Both are served from a single OpenAI-compatible endpoint at `https://bharatcode.ai/api/model/v1`.
+
+## Private by default
+
+This build strips upstream's cloud coupling rather than hiding it: no telemetry, no session sharing, no presence, no upstream model-catalogue fetch. Only `bharatcode.ai` is contacted — plus any BYOK provider you configure yourself. Your API key lives in the extension backend's auth store, never in `settings.json`. Details: [PRIVACY.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/PRIVACY.md).
+
+## Developer setup
 
 ```bash
-# Run from packages/kilo-vscode/
-
-# Build only (outputs VSIX to system temp dir)
-bun run snapshot:build
-
-# Build and install directly into VS Code
-bun run snapshot:install
+bun install
+bun run extension           # build + launch VS Code in dev mode
+bun run extension:isolated  # same, in a clean profile under .kilo-dev/
 ```
 
-The snapshot version embeds the current commit SHA and your git username (from `git config user.name`), e.g. `7.0.47-snapshot+8ff7f2d02.yourname`.
+Building a single-platform `.vsix`:
+
+```bash
+cd packages/kilo-vscode
+bun run package
+```
+
+Snapshot builds for sharing a development cut:
+
+```bash
+cd packages/kilo-vscode
+bun run snapshot:build      # VSIX into your temp dir
+bun run snapshot:install    # build and install into VS Code
+```
+
+The snapshot version embeds the commit SHA and your git username, e.g. `7.0.47-snapshot+8ff7f2d02.yourname`.
+
+Configuration, gates and per-package commands: [AGENTS.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/AGENTS.md).
 
 ## Contributing
 
-We welcome contributions from developers, writers, and enthusiasts!
-To get started, please read our [Contributing Guide](/CONTRIBUTING.md). It includes details on setting up your environment, coding standards, types of contribution and how to submit pull requests.
-
-## Code of Conduct
-
-Our community is built on respect, inclusivity, and collaboration. Please review our [Code of Conduct](/CODE_OF_CONDUCT.md) to understand the expectations for all contributors and community members.
+Contributions are welcome from developers and writers alike. Start with the [Contributing Guide](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/CONTRIBUTING.md), and please read the [Code of Conduct](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/CODE_OF_CONDUCT.md) first.
 
 ## License
 
-This project is licensed under the [MIT License](/LICENSE).
-You're free to use, modify, and distribute this code, including for commercial purposes as long as you include proper attribution and license notices. See [License](/LICENSE).
+[MIT](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/LICENSE) — use it, modify it, ship it commercially, keeping the attribution and licence notices.
 
-Thanks to all the contributors who help make BharatCode better!
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/mcowger">
-        <img src="https://avatars.githubusercontent.com/u/1929548?size=100" width="100" height="100" alt="mcowger" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/bhaktatejas922">
-        <img src="https://avatars.githubusercontent.com/u/26863466?size=100" width="100" height="100" alt="bhaktatejas922" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/NyxJae">
-        <img src="https://avatars.githubusercontent.com/u/52313587?size=100" width="100" height="100" alt="NyxJae" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/Aikiboy123">
-        <img src="https://avatars.githubusercontent.com/u/161741275?size=100" width="100" height="100" alt="Aikiboy123" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/cobra91">
-        <img src="https://avatars.githubusercontent.com/u/1060585?size=100" width="100" height="100" alt="cobra91" style="border-radius: 50%;" />
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/ivanarifin">
-        <img src="https://avatars.githubusercontent.com/u/111653938?size=100" width="100" height="100" alt="ivanarifin" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/PeterDaveHello">
-        <img src="https://avatars.githubusercontent.com/u/3691490?size=100" width="100" height="100" alt="PeterDaveHello" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/possible055">
-        <img src="https://avatars.githubusercontent.com/u/38576169?size=100" width="100" height="100" alt="possible055" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/seuros">
-        <img src="https://avatars.githubusercontent.com/u/2394703?size=100" width="100" height="100" alt="seuros" style="border-radius: 50%;" />
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension/graphs/contributors">
-        <b>more ...</b>
-      </a>
-    </td>
-  </tr>
-</table>
+<div align="center">
+<sub><a href="https://bharatcode.ai">bharatcode.ai</a> · <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension">GitHub</a> · <a href="https://marketplace.visualstudio.com/items?itemName=thenabbu.bharatcode-vscode">Marketplace</a></sub>
+</div>
