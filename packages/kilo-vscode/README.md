@@ -1,12 +1,10 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.svg" alt="BharatCode — AI coding agent for VS Code" width="100%">
+<img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.png" alt="BharatCode — AI coding agent for VS Code" width="100%">
 
 <br>
 
-<img src="https://vsmarketplacebadges.dev/version-short/thenabbu.bharatcode-vscode.svg" alt="Marketplace version">
-<img src="https://vsmarketplacebadges.dev/installs-short/thenabbu.bharatcode-vscode.svg" alt="Installs">
-<img src="https://img.shields.io/badge/license-MIT-5e5652?labelColor=1c1410" alt="MIT licensed">
+**MIT licensed** · `qwen-3.8-27b` · `deepseek-v4.1-flash` · no telemetry
 
 </div>
 
