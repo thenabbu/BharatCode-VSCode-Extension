@@ -476,16 +476,6 @@ export interface ExportSessionTranscriptRequest {
   sessionID: string
 }
 
-export interface RequestAutocompleteSettingsMessage {
-  type: "requestAutocompleteSettings"
-}
-
-export interface RequestChatCompletionMessage {
-  type: "requestChatCompletion"
-  text: string
-  requestId: string
-}
-
 export interface SpeechToTextPrewarmMessage {
   type: "speechToTextPrewarm"
 }
@@ -539,10 +529,6 @@ export interface RequestGitChangesContextMessage {
   agentManagerContext?: string
 }
 
-export interface ChatCompletionAcceptedMessage {
-  type: "chatCompletionAccepted"
-  suggestionLength?: number
-}
 export interface UpdateSettingRequest {
   type: "updateSetting"
   key: string
@@ -1824,8 +1810,6 @@ export type WebviewMessage =
   | DeleteSessionRequest
   | RenameSessionRequest
   | ExportSessionTranscriptRequest
-  | RequestAutocompleteSettingsMessage
-  | RequestChatCompletionMessage
   | SpeechToTextPrewarmMessage
   | SpeechToTextStartMessage
   | SpeechToTextStopMessage
@@ -1835,7 +1819,6 @@ export type WebviewMessage =
   | RequestFilePickerMessage
   | RequestTerminalContextMessage
   | RequestGitChangesContextMessage
-  | ChatCompletionAcceptedMessage
   | UpdateSettingRequest
   | RequestTimelineSettingMessage
   | RequestAutoCleanupStateMessage

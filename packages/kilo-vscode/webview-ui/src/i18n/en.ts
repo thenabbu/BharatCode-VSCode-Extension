@@ -656,7 +656,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Make web search available to models from all providers.",
   "settings.checkpoints.title": "Checkpoints",
   "settings.display.title": "Display",
-  "settings.autocomplete.title": "Autocomplete",
+
   "settings.notifications.title": "Notifications",
   "settings.context.title": "Context",
   "settings.indexing.title": "Indexing",
@@ -862,16 +862,6 @@ export const dict = {
   "settings.language.current": "Current:",
 
   "common.add": "Add",
-
-  "settings.autocomplete.model.title": "Autocomplete model",
-  "settings.autocomplete.model.description": "Select the model used for inline code completions",
-  "settings.autocomplete.autoTrigger.title": "Enable automatic inline completions",
-  "settings.autocomplete.autoTrigger.description": "Automatically show inline completion suggestions as you type",
-  "settings.autocomplete.smartKeybinding.title": "Enable smart inline task keybinding",
-  "settings.autocomplete.smartKeybinding.description": "Use a smart keybinding for triggering inline tasks",
-  "settings.autocomplete.chatAutocomplete.title": "Enable chat textarea autocomplete",
-  "settings.autocomplete.chatAutocomplete.description": "Show autocomplete suggestions in the chat textarea",
-  "settings.autocomplete.modelsHint": "To choose which model is used for autocompletions, see the Models settings.",
 
   "settings.notifications.sounds": "Sounds",
   "settings.notifications.enable.title": "Enable Sound Notifications",

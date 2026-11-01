@@ -702,9 +702,7 @@ export const dict = {
     "Web aramasını tüm sağlayıcıların modelleri için kullanılabilir hale getirin.",
   "settings.checkpoints.title": "Kontrol Noktaları",
   "settings.display.title": "Görünüm",
-  "settings.autocomplete.title": "Otomatik Tamamlama",
-  "settings.autocomplete.model.title": "Otomatik tamamlama modeli",
-  "settings.autocomplete.model.description": "Satır içi (inline) kod tamamlamaları için kullanılacak modeli seçin",
+
   "settings.notifications.title": "Bildirimler",
   "settings.context.title": "Bağlam",
   "settings.indexing.title": "İndeksleme",
@@ -880,15 +878,6 @@ export const dict = {
   "settings.language.current": "Mevcut:",
 
   "common.add": "Ekle",
-
-  "settings.autocomplete.autoTrigger.title": "Otomatik satır içi tamamlamaları etkinleştir",
-  "settings.autocomplete.autoTrigger.description": "Yazarken satır içi tamamlama önerilerini otomatik göster",
-  "settings.autocomplete.smartKeybinding.title": "Akıllı satır içi görev tuş atamasını etkinleştir",
-  "settings.autocomplete.smartKeybinding.description": "Satır içi görevleri tetiklemek için akıllı tuş ataması kullan",
-  "settings.autocomplete.chatAutocomplete.title": "Sohbet metin alanı otomatik tamamlamasını etkinleştir",
-  "settings.autocomplete.chatAutocomplete.description": "Sohbet metin alanında otomatik tamamlama önerileri göster",
-  "settings.autocomplete.modelsHint":
-    "Otomatik tamamlama için kullanılacak modeli seçmek için Modeller ayarlarına bakın.",
 
   "settings.notifications.sounds": "Sesler",
   "settings.notifications.enable.title": "Sesli bildirimleri etkinleştir",

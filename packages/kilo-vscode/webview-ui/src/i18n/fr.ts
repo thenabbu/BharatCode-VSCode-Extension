@@ -763,9 +763,7 @@ export const dict = {
     "Rendez la recherche web disponible pour les modèles de tous les fournisseurs.",
   "settings.checkpoints.title": "Points de contrôle",
   "settings.display.title": "Affichage",
-  "settings.autocomplete.title": "Autocomplétion",
-  "settings.autocomplete.model.title": "Modèle d'autocomplétion",
-  "settings.autocomplete.model.description": "Sélectionnez le modèle utilisé pour les complétions de code en ligne",
+
   "settings.notifications.title": "Notifications",
   "settings.context.title": "Contexte",
 
@@ -910,16 +908,6 @@ export const dict = {
 
   "common.add": "Ajouter",
 
-  "settings.autocomplete.autoTrigger.title": "Activer la complétion automatique en ligne",
-  "settings.autocomplete.autoTrigger.description":
-    "Afficher automatiquement les suggestions de complétion lors de la saisie",
-  "settings.autocomplete.smartKeybinding.title": "Activer le raccourci intelligent de tâche en ligne",
-  "settings.autocomplete.smartKeybinding.description":
-    "Utiliser un raccourci intelligent pour déclencher les tâches en ligne",
-  "settings.autocomplete.chatAutocomplete.title": "Activer l'autocomplétion du chat",
-  "settings.autocomplete.chatAutocomplete.description": "Afficher les suggestions d'autocomplétion dans le chat",
-  "settings.autocomplete.modelsHint":
-    "Pour choisir le modèle utilisé pour l'autocomplétion, consultez les paramètres des Modèles.",
   "settings.notifications.sounds": "Sons",
   "settings.notifications.enable.title": "Activer les notifications sonores",
   "settings.notifications.enable.description":

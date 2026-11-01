@@ -291,9 +291,6 @@ test("settings and mode editing expose distinct model field purposes", async ({ 
   await expect(page.getByRole("button", { name: "Subagent Model: Not set" })).toHaveAccessibleDescription(
     /Default model and reasoning effort/,
   )
-  await expect(page.getByRole("button", { name: "Autocomplete model: Not set" })).toHaveAccessibleDescription(
-    "Select the model used for inline code completions",
-  )
   await expect(page.getByRole("button", { name: "Model per Mode: code: Not set" })).toHaveAccessibleDescription(
     /Override the default model for specific modes/,
   )

@@ -17,7 +17,7 @@
 
 ## What this is
 
-An AI coding agent that runs inside VS Code — not beside it. It reads your project, edits files across it, runs terminal commands, and drives a browser to check its own work. Open source, MIT, and honest about its limits: two chat models from one key, and inline autocomplete that needs a bring-your-own-key provider.
+An AI coding agent that runs inside VS Code — not beside it. It reads your project, edits files across it, runs terminal commands, and drives a browser to check its own work. Open source, MIT, and honest about its limits: two chat models from one key.
 
 Everything below is what the shipped build actually does. If a feature isn't listed here, it isn't in this fork, even though you may have read about it somewhere upstream.
 
@@ -63,7 +63,7 @@ One endpoint, one key, two models with genuinely different jobs:
 
 Switch mid-task from the model picker in the chat header. Both are served from `https://bharatcode.ai/api/model/v1`.
 
-**The honest part:** these two models are **chat-only**. There is no fill-in-the-middle endpoint, so they cannot power ghost-text autocomplete. Inline autocomplete in this build works only if you connect your own completion provider — Mistral or Inception — through the Providers page. See [Configuration](docs/CONFIGURATION.md#inline-autocomplete). Bracketed autocomplete on a BharatCode key alone does not exist, and no page in this repo will tell you otherwise.
+**The honest part:** these two models are **chat-only**. There is no fill-in-the-middle endpoint, so this build ships no inline autocomplete at all. Use VS Code's own completion provider for that — the two features sit side by side without conflict.
 
 ## How a prompt travels
 
@@ -88,7 +88,6 @@ Your API key lives in the extension backend's auth store — never in `settings.
 - **MCP servers, skills and rules** defined in plain text, shaped per project.
 - **Generated commit messages** from your actual diff (`BharatCode: Generate Commit Message`).
 - **Inline actions** on any selection: explain, fix, improve, add to context.
-- **Autocomplete** — ghost text and next-edit suggestions, via your own BYOK provider (see above).
 
 Seventy-four commands ship in the palette. The ones worth knowing on day one:
 
@@ -147,7 +146,7 @@ The full eight-platform release chain is automated — every push to `bc/main` d
 
 | If you want to… | Read |
 |---|---|
-| Change a setting, pick a model, get autocomplete working | [docs/CONFIGURATION.md](docs/CONFIGURATION.md) |
+| Change a setting or pick a model | [docs/CONFIGURATION.md](docs/CONFIGURATION.md) |
 | Work on the code, run the gates | [AGENTS.md](AGENTS.md) |
 | Open your first pull request | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Exercise the backend without rebuilding the extension | [TESTING.md](TESTING.md) |
@@ -168,12 +167,6 @@ No. The rebrand is one part of it — the harder part is what was removed. The u
 <summary>Why two models and not five hundred?</summary>
 
 Because the provider serves two. BharatCode is built to make one provider's setup effortless in VS Code, not to be a universal router. If you want a broad model catalogue, upstream Kilo Code or any multi-provider extension is a better fit and we would rather say so than pad a feature list.
-</details>
-
-<details>
-<summary>Why does autocomplete ask for a different key?</summary>
-
-The BharatCode models answer chat completions only; fill-in-the-middle is a separate endpoint class that they do not expose. Ghost-text needs a completion model, so autocomplete uses your own Mistral or Inception key. Your BharatCode key still covers all chat, editing and agent work.
 </details>
 
 <details>

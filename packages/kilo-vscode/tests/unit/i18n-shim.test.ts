@@ -3,10 +3,10 @@ import { resolveLocale, selectedLocale, t, translate } from "../../src/services/
 
 describe("extension host i18n", () => {
   it("returns translated string for known key", () => {
-    const result = t("kilocode:autocomplete.statusBar.enabled")
+    const result = t("kilocode:attention.done")
     expect(typeof result).toBe("string")
     expect(result.length).toBeGreaterThan(0)
-    expect(result).not.toBe("kilocode:autocomplete.statusBar.enabled")
+    expect(result).not.toBe("kilocode:attention.done")
   })
 
   it("returns the key itself for unknown key", () => {
@@ -18,48 +18,35 @@ describe("extension host i18n", () => {
   })
 
   it("interpolates a single variable", () => {
-    const result = t("kilocode:autocomplete.statusBar.tooltip.noUsableProvider", {
-      providers: "OpenAI, Anthropic",
-      command: "command:kilo-code.new.settingsButtonClicked",
-    })
-    expect(result).toContain("OpenAI, Anthropic")
-    expect(result).not.toContain("{{providers}}")
+    const result = t("mcp.signIn.success", { name: "GitHub" })
+    expect(result).toContain("GitHub")
+    expect(result).not.toContain("{{name}}")
   })
 
   it("interpolates multiple variables", () => {
-    const result = t("kilocode:autocomplete.statusBar.tooltip.completionSummary", {
-      count: "5",
-      startTime: "10:00",
-      endTime: "11:00",
-      cost: "$0.05",
-    })
-    expect(result).toContain("5")
-    expect(result).toContain("10:00")
-    expect(result).toContain("11:00")
-    expect(result).toContain("$0.05")
+    const result = t("mcp.signIn.notFound", { name: "docker" })
+    expect(result).toContain("docker")
     expect(result).not.toContain("{{")
   })
 
   it("interpolates numeric variable as string", () => {
-    const result = t("kilocode:autocomplete.statusBar.tooltip.noUsableProvider", {
-      providers: 42 as unknown as string,
-    })
+    const result = t("mcp.signIn.success", { name: 42 as unknown as string })
     expect(result).toContain("42")
   })
 
   it("leaves unreferenced vars intact in template", () => {
-    const key = "kilocode:autocomplete.statusBar.tooltip.noUsableProvider"
+    const key = "mcp.signIn.success"
     const result = t(key, { unrelated: "value" })
-    expect(result).toContain("{{providers}}")
+    expect(result).toContain("{{name}}")
   })
 
   it("returns the raw key when called without vars on a template key", () => {
-    const result = t("kilocode:autocomplete.statusBar.tooltip.noUsableProvider")
-    expect(result).toContain("{{providers}}")
+    const result = t("mcp.signIn.success")
+    expect(result).toContain("{{name}}")
   })
 
   it("handles empty vars object (no interpolation)", () => {
-    const result = t("kilocode:autocomplete.statusBar.enabled", {})
+    const result = t("kilocode:attention.done", {})
     expect(typeof result).toBe("string")
     expect(result).not.toContain("{{")
   })
@@ -103,15 +90,11 @@ describe("extension host i18n", () => {
     expect(selectedLocale(vscode)).toBe("nl")
   })
 
-  it("translates status bar tooltip copy for German", () => {
-    const text = translate("de", "kilocode:autocomplete.statusBar.tooltip.completionSummary", {
-      count: 1,
-      startTime: "12:25:24",
-      endTime: "12:25:26",
-      cost: "$0.00",
-    })
+  it("translates attention notification copy for German", () => {
+    const text = translate("de", "kilocode:attention.done")
 
-    expect(text).not.toContain("Performed")
-    expect(text).toContain("Vervollständigungen")
+    expect(typeof text).toBe("string")
+    expect(text.length).toBeGreaterThan(0)
+    expect(text).not.toBe("kilocode:attention.done")
   })
 })

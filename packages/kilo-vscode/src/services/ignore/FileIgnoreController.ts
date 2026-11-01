@@ -106,7 +106,7 @@ export class FileIgnoreController {
   }
 
   /**
-   * Returns true if the file can be read/used as autocomplete context.
+   * Returns true if the file may be read and sent as editor context.
    * When no workspace path was provided, denies all access.
    */
   validateAccess(filePath: string): boolean {

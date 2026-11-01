@@ -702,9 +702,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "모든 제공업체의 모델에서 웹 검색을 사용할 수 있도록 합니다.",
   "settings.checkpoints.title": "체크포인트",
   "settings.display.title": "디스플레이",
-  "settings.autocomplete.title": "자동 완성",
-  "settings.autocomplete.model.title": "자동 완성 모델",
-  "settings.autocomplete.model.description": "인라인 코드 완성에 사용되는 모델 선택",
+
   "settings.notifications.title": "알림",
   "settings.context.title": "컨텍스트",
 
@@ -881,13 +879,6 @@ export const dict = {
 
   "common.add": "추가",
 
-  "settings.autocomplete.autoTrigger.title": "자동 인라인 완성 활성화",
-  "settings.autocomplete.autoTrigger.description": "입력 시 인라인 완성 제안을 자동으로 표시",
-  "settings.autocomplete.smartKeybinding.title": "스마트 인라인 작업 키바인딩 활성화",
-  "settings.autocomplete.smartKeybinding.description": "인라인 작업을 트리거하는 스마트 키바인딩 사용",
-  "settings.autocomplete.chatAutocomplete.title": "채팅 텍스트 영역 자동완성 활성화",
-  "settings.autocomplete.chatAutocomplete.description": "채팅 텍스트 영역에서 자동완성 제안 표시",
-  "settings.autocomplete.modelsHint": "자동 완성에 사용되는 모델을 선택하려면 모델 설정을 참조하세요.",
   "settings.notifications.sounds": "소리",
   "settings.notifications.enable.title": "소리 알림 활성화",
   "settings.notifications.enable.description":

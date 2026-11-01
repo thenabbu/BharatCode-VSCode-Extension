@@ -712,9 +712,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Disponibilize a pesquisa na web para modelos de todos os provedores.",
   "settings.checkpoints.title": "Pontos de Verificação",
   "settings.display.title": "Exibição",
-  "settings.autocomplete.title": "Autocompletar",
-  "settings.autocomplete.model.title": "Modelo de autocompletar",
-  "settings.autocomplete.model.description": "Selecione o modelo usado para preenchimento de código inline",
+
   "settings.notifications.title": "Notificações",
   "settings.context.title": "Contexto",
 
@@ -898,15 +896,6 @@ export const dict = {
 
   "common.add": "Adicionar",
 
-  "settings.autocomplete.autoTrigger.title": "Ativar completamento automático inline",
-  "settings.autocomplete.autoTrigger.description":
-    "Mostrar automaticamente sugestões de completamento inline ao digitar",
-  "settings.autocomplete.smartKeybinding.title": "Ativar atalho inteligente de tarefa inline",
-  "settings.autocomplete.smartKeybinding.description": "Usar um atalho inteligente para acionar tarefas inline",
-  "settings.autocomplete.chatAutocomplete.title": "Ativar autocompletar do chat",
-  "settings.autocomplete.chatAutocomplete.description": "Mostrar sugestões de autocompletar no campo de chat",
-  "settings.autocomplete.modelsHint":
-    "Para escolher qual modelo é usado para autocompletar, veja as configurações de Modelos.",
   "settings.notifications.sounds": "Sons",
   "settings.notifications.enable.title": "Ativar notificações sonoras",
   "settings.notifications.enable.description":

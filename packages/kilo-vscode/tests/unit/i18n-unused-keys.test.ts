@@ -14,7 +14,7 @@
  *   kilo-i18n     shared webview overrides (packages/kilo-i18n)
  *   agent-manager agent manager webview dict
  *   cli-backend   extension server/remote dict
- *   host          extension host dict (autocomplete)
+ *   host          extension host dict (attention, mcp)
  *
  * The upstream @opencode-ai/ui dict (packages/ui/src/i18n) is intentionally
  * NOT covered: it is upstream-owned code where removals create merge

@@ -748,9 +748,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Gør websøgning tilgængelig for modeller fra alle udbydere.",
   "settings.checkpoints.title": "Kontrolpunkter",
   "settings.display.title": "Visning",
-  "settings.autocomplete.title": "Autofuldførelse",
-  "settings.autocomplete.model.title": "Autocomplete-model",
-  "settings.autocomplete.model.description": "Vælg den model, der bruges til inline kodefuldførelse",
+
   "settings.notifications.title": "Notifikationer",
   "settings.context.title": "Kontekst",
 
@@ -891,14 +889,6 @@ export const dict = {
 
   "common.add": "Tilføj",
 
-  "settings.autocomplete.autoTrigger.title": "Aktiver automatisk inline-fuldførelse",
-  "settings.autocomplete.autoTrigger.description": "Vis automatisk inline-fuldførelsesforslag under indtastning",
-  "settings.autocomplete.smartKeybinding.title": "Aktiver smart inline-opgave-tastaturgenvej",
-  "settings.autocomplete.smartKeybinding.description": "Brug en smart tastaturgenvej til at udløse inline-opgaver",
-  "settings.autocomplete.chatAutocomplete.title": "Aktiver chat-autofuldførelse",
-  "settings.autocomplete.chatAutocomplete.description": "Vis autofuldførelsesforslag i chatfeltet",
-  "settings.autocomplete.modelsHint":
-    "For at vælge hvilken model der bruges til autofuldførelse, se Modelindstillinger.",
   "settings.notifications.sounds": "Lyde",
   "settings.notifications.enable.title": "Aktivér lydnotifikationer",
   "settings.notifications.enable.description":

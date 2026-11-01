@@ -104,7 +104,7 @@ The script checks for a prebuilt binary in `packages/opencode/dist/**/bin/bharat
 
 ### Extension ↔ CLI Backend
 
-The extension is a client of the CLI. Activation creates one shared `KiloConnectionService`; on its first connection, which autocomplete may prewarm, `ServerManager` spawns `bin/bharatcode serve --port 0`, captures the dynamically assigned port from stdout, and communicates over HTTP + SSE. The current child process is reused unless it exits. A random password is generated and passed via `KILO_SERVER_PASSWORD` env var for basic auth.
+The extension is a client of the CLI. Activation creates one shared `KiloConnectionService`; on its first connection `ServerManager` spawns `bin/bharatcode serve --port 0`, captures the dynamically assigned port from stdout, and communicates over HTTP + SSE. The current child process is reused unless it exits. A random password is generated and passed via `KILO_SERVER_PASSWORD` env var for basic auth.
 
 ```text
 Extension (Node.js)                          CLI Backend (child process)

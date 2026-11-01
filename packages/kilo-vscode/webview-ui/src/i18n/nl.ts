@@ -703,9 +703,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Maak zoeken op internet beschikbaar voor modellen van alle providers.",
   "settings.checkpoints.title": "Controlepunten",
   "settings.display.title": "Weergave",
-  "settings.autocomplete.title": "Automatisch Aanvullen",
-  "settings.autocomplete.model.title": "Autocomplete-model",
-  "settings.autocomplete.model.description": "Selecteer het model dat wordt gebruikt voor inline code-aanvullingen",
+
   "settings.notifications.title": "Meldingen",
   "settings.context.title": "Context",
   "settings.indexing.title": "Indexering",
@@ -884,18 +882,6 @@ export const dict = {
   "settings.language.current": "Huidig:",
 
   "common.add": "Toevoegen",
-
-  "settings.autocomplete.autoTrigger.title": "Automatische inline aanvullingen inschakelen",
-  "settings.autocomplete.autoTrigger.description":
-    "Toon automatisch suggesties voor inline aanvullingen tijdens het typen",
-  "settings.autocomplete.smartKeybinding.title": "Slimme inline taak-sneltoets inschakelen",
-  "settings.autocomplete.smartKeybinding.description":
-    "Gebruik een slimme sneltoets voor het activeren van inline taken",
-  "settings.autocomplete.chatAutocomplete.title": "Chat tekstveld automatisch aanvullen inschakelen",
-  "settings.autocomplete.chatAutocomplete.description":
-    "Toon suggesties voor automatisch aanvullen in het chat tekstveld",
-  "settings.autocomplete.modelsHint":
-    "Om te kiezen welk model wordt gebruikt voor automatisch aanvullen, zie de Modellen-instellingen.",
 
   "settings.notifications.sounds": "Geluiden",
   "settings.notifications.enable.title": "Geluidsmeldingen inschakelen",

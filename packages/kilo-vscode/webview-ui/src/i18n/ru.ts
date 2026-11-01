@@ -748,9 +748,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Сделайте веб-поиск доступным для моделей всех провайдеров.",
   "settings.checkpoints.title": "Контрольные точки",
   "settings.display.title": "Отображение",
-  "settings.autocomplete.title": "Автодополнение",
-  "settings.autocomplete.model.title": "Модель автодополнения",
-  "settings.autocomplete.model.description": "Выберите модель для встроенного (inline) автодополнения кода",
+
   "settings.notifications.title": "Уведомления",
   "settings.context.title": "Контекст",
 
@@ -890,13 +888,6 @@ export const dict = {
 
   "common.add": "Добавить",
 
-  "settings.autocomplete.autoTrigger.title": "Включить автоматическое встроенное дополнение",
-  "settings.autocomplete.autoTrigger.description": "Автоматически показывать предложения дополнения при вводе",
-  "settings.autocomplete.smartKeybinding.title": "Включить умную клавишу встроенной задачи",
-  "settings.autocomplete.smartKeybinding.description": "Использовать умную клавишу для запуска встроенных задач",
-  "settings.autocomplete.chatAutocomplete.title": "Включить автодополнение чата",
-  "settings.autocomplete.chatAutocomplete.description": "Показывать предложения автодополнения в поле чата",
-  "settings.autocomplete.modelsHint": "Чтобы выбрать модель для автодополнения, см. настройки Моделей.",
   "settings.notifications.sounds": "Звуки",
   "settings.notifications.enable.title": "Включить звуковые уведомления",
   "settings.notifications.enable.description":

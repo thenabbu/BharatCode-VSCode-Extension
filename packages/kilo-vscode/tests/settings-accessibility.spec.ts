@@ -9,7 +9,6 @@ const NAMES = [
   "Web Tools",
   "Checkpoints",
   "Display",
-  "Autocomplete",
   "Notifications",
   "Context",
   "Commit Message",

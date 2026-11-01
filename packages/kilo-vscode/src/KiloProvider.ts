@@ -16,9 +16,8 @@ import { MaxCostNudge, type MaxCostChoice } from "@opencode-ai/core/kilocode/cos
 import { type KiloConnectionService, ServerStartupError } from "./services/cli-backend"
 import { previewSound, testOSNotification } from "./services/attention"
 import type { EditorContext, IndexingStatus } from "./services/cli-backend/types"
-import { FileIgnoreController } from "./services/autocomplete/shims/FileIgnoreController"
-import { ChatTextAreaAutocomplete } from "./services/autocomplete/chat-autocomplete/ChatTextAreaAutocomplete"
-import { notebookUri } from "./services/autocomplete/continuedev/core/autocomplete/notebook"
+import { FileIgnoreController } from "./services/ignore/FileIgnoreController"
+import { notebookUri } from "./services/notebook/notebook-uri"
 import { buildWebviewHtml, getWebviewFontSize, isCursorHost } from "./utils"
 import { EXTENSION_ID } from "./constants"
 import { saveImage } from "./kilo-provider/save-image"
@@ -94,11 +93,6 @@ import { childID } from "./kilo-provider/task-session"
 import { VisibleTaskStreams } from "./kilo-provider/visible-task-streams"
 import { handleNetworkEvent, clearNetworkWaits } from "./kilo-provider/network"
 import { SessionAbort } from "./kilo-provider/abort"
-import {
-  buildAutocompleteSettingsMessage,
-  validAutocompleteSetting,
-  watchAutocompleteConfig,
-} from "./services/autocomplete/settings"
 import { routeEarlyMessage } from "./kilo-provider/early-message"
 import * as Board from "./kilo-provider/session-board"
 import { handleModelUsageMessage } from "./kilo-provider/model-usage"
@@ -541,7 +535,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
   private unsubscribeSandboxPreference: (() => void) | null = null
   private initConnectionPromise: Promise<void> | null = null
   private webviewMessageDisposable: vscode.Disposable | null = null
-  private autocompleteConfigDisposable: vscode.Disposable | null = null
   private indexingConfigDisposable: vscode.Disposable | null = null
   private chatConfigDisposable: vscode.Disposable | null = null
   private throughputConfigDisposable: vscode.Disposable | null = null
@@ -562,7 +555,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
   /** Workspace folders plus any session directories recently asked about. */
   private static readonly IGNORE_CONTROLLER_LIMIT = 16
   private readonly ignoreControllers = new Map<string, Promise<FileIgnoreController>>()
-  private chatAutocomplete: ChatTextAreaAutocomplete | null = null
   private projectDirectory: string | null | undefined
   private settingsGeneration = 0
   private indexingProjectId: string | undefined
@@ -1242,8 +1234,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       this.postMessage({ type: "sessionAcknowledged", sessionID, eventID })
     })
     this.setFocusTarget("other")
-    this.autocompleteConfigDisposable?.dispose()
-    this.autocompleteConfigDisposable = watchAutocompleteConfig((msg) => this.postMessage(msg))
     this.indexingConfigDisposable?.dispose()
     this.indexingConfigDisposable = watchIndexingConfig(() => void this.sendIndexingSettings())
     this.chatConfigDisposable?.dispose()
@@ -1615,27 +1605,11 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
             .update("language", message.locale || undefined, vscode.ConfigurationTarget.Global)
           this.connectionService.notifyLanguageChanged(message.locale as string)
           break
-        case "requestChatCompletion": {
-          if (!this.chatAutocomplete) {
-            this.chatAutocomplete = new ChatTextAreaAutocomplete(this.connectionService)
-          }
-          void this.chatAutocomplete.handle(
-            { type: "requestChatCompletion", text: message.text, requestId: message.requestId },
-            {
-              postMessage: (msg: { type: "chatCompletionResult"; text: string; requestId: string }) =>
-                this.postMessage(msg),
-            },
-          )
-          break
-        }
         case "requestFileSearch":
         case "requestSessionSearch":
         case "requestFilePicker":
         case "requestTerminalContext":
           await this.handleContextRequest(message)
-          break
-        case "chatCompletionAccepted":
-          this.chatAutocomplete?.telemetry.captureAcceptSuggestion(message.suggestionLength)
           break
         case "toggleRemote":
         case "setRemoteEnabled":
@@ -5162,7 +5136,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       return
     }
     const { section, leaf } = buildSettingPath(key)
-    if (section === "autocomplete" && !validAutocompleteSetting(leaf, value)) return
     if (section === "indexing" && !validIndexingSetting(leaf, value)) return
     if (section === "chat" && !validChatSetting(leaf, value)) return
     const config = vscode.workspace.getConfiguration(`kilo-code.new${section ? `.${section}` : ""}`)
@@ -5212,7 +5185,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
     await this.extensionContext?.globalState.update("kilo.marketplace.dismissedSuggestions", undefined)
 
     // Re-send all settings to the webview so the UI reflects the reset
-    this.postMessage(buildAutocompleteSettingsMessage())
     await this.sendIndexingSettings()
     this.sendBrowserSettings()
     this.sendNotificationSettings()
@@ -6315,7 +6287,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
     this.viewStateDisposable?.dispose()
     this.visibilityDisposable?.dispose()
     this.webviewMessageDisposable?.dispose()
-    this.autocompleteConfigDisposable?.dispose()
     this.indexingConfigDisposable?.dispose()
     this.chatConfigDisposable?.dispose()
     this.throughputConfigDisposable?.dispose()
@@ -6356,7 +6327,6 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       )
     }
     this.ignoreControllers.clear()
-    this.chatAutocomplete?.dispose()
     disposeGitChangesTarget()
   }
 }

@@ -37,7 +37,6 @@ const AgentBehaviourTab = lazy(() => import("./AgentBehaviourTab"))
 const AutoApproveTab = lazy(() => import("./AutoApproveTab"))
 const BrowserTab = lazy(() => import("./BrowserTab"))
 const CheckpointsTab = lazy(() => import("./CheckpointsTab"))
-const AutocompleteTab = lazy(() => import("./AutocompleteTab"))
 const NotificationsTab = lazy(() => import("./NotificationsTab"))
 const ContextTab = lazy(() => import("./ContextTab"))
 const CommitMessageTab = lazy(() => import("./CommitMessageTab"))
@@ -436,10 +435,6 @@ const Settings: Component<SettingsProps> = (props) => {
             <Icon name="eye" />
             <span class="label">{language.t("settings.display.title")}</span>
           </Tabs.Trigger>
-          <Tabs.Trigger value="autocomplete" aria-label={language.t("settings.autocomplete.title")}>
-            <Icon name="code-lines" />
-            <span class="label">{language.t("settings.autocomplete.title")}</span>
-          </Tabs.Trigger>
           <Tabs.Trigger value="notifications" aria-label={language.t("settings.notifications.title")}>
             <Icon name="circle-check" />
             <span class="label">{language.t("settings.notifications.title")}</span>
@@ -516,10 +511,6 @@ const Settings: Component<SettingsProps> = (props) => {
         <Tabs.Content value="display">
           <h3>{language.t("settings.display.title")}</h3>
           <DisplayTab />
-        </Tabs.Content>
-        <Tabs.Content value="autocomplete">
-          <h3>{language.t("settings.autocomplete.title")}</h3>
-          <AutocompleteTab onNavigateToModels={() => onTabChange("models")} />
         </Tabs.Content>
         <Tabs.Content value="notifications">
           <h3>{language.t("settings.notifications.title")}</h3>

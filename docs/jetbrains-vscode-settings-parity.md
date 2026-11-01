@@ -27,7 +27,7 @@ No CLI/SDK change and no new runtime feature.
 | Agent Behavior, Auto-Approve | Skipped by request |
 | Indexing, Sandboxing | Imply enabling new features |
 | Browser Automation | Playwright feature not present in JetBrains |
-| Autocomplete (provider/model/toggles) | No autocomplete feature (flags exist only as migration stubs) |
+| Autocomplete (provider/model/toggles) | Not in this fork — inline completion is left to VS Code's own provider |
 | Agent Manager (auto-branch, prefix) | VS Code-only feature |
 | Notification/attention sounds | Client must implement sound playback |
 | `maxCost` alert | Client must render the alert UI |

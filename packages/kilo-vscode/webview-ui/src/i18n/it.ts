@@ -579,7 +579,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Rendi disponibile la ricerca web ai modelli di tutti i provider.",
   "settings.checkpoints.title": "Checkpoint",
   "settings.display.title": "Visualizzazione",
-  "settings.autocomplete.title": "Autocompletamento",
+
   "settings.notifications.title": "Notifiche",
   "settings.context.title": "Contesto",
   "settings.indexing.title": "Indicizzazione",
@@ -744,16 +744,7 @@ export const dict = {
   "settings.language.auto": "Auto (lingua VS Code)",
   "settings.language.current": "Corrente:",
   "common.add": "Aggiungi",
-  "settings.autocomplete.model.title": "Modello autocompletamento",
-  "settings.autocomplete.model.description": "Seleziona il modello usato per i completamenti inline del codice",
-  "settings.autocomplete.autoTrigger.title": "Abilita completamenti inline automatici",
-  "settings.autocomplete.autoTrigger.description":
-    "Mostra automaticamente suggerimenti di completamento inline mentre scrivi",
-  "settings.autocomplete.smartKeybinding.title": "Abilita scorciatoia smart per task inline",
-  "settings.autocomplete.smartKeybinding.description": "Usa una scorciatoia smart per attivare task inline",
-  "settings.autocomplete.chatAutocomplete.title": "Abilita autocompletamento textarea chat",
-  "settings.autocomplete.chatAutocomplete.description":
-    "Mostra suggerimenti di autocompletamento nella textarea della chat",
+
   "settings.notifications.sounds": "Suoni",
   "settings.notifications.enable.title": "Abilita le notifiche sonore",
   "settings.notifications.enable.description":
@@ -1333,10 +1324,6 @@ export const dict = {
   "settings.models.hidePromptTraining.title": "Nascondi i modelli che usano i prompt per l'addestramento",
   "settings.models.hidePromptTraining.description":
     "Nascondi i modelli BharatCode Gateway i cui provider potrebbero usare i tuoi prompt per l'addestramento.",
-
-  // Autocomplete hint
-  "settings.autocomplete.modelsHint":
-    "Per scegliere quale modello usare per l'autocompletamento, vedi le impostazioni Modelli.",
 
   // Indexing
   "settings.indexing.globalEnable.title": "Abilita globalmente",

@@ -708,9 +708,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Udostępnij wyszukiwanie w sieci modelom wszystkich dostawców.",
   "settings.checkpoints.title": "Punkty kontrolne",
   "settings.display.title": "Wyświetlanie",
-  "settings.autocomplete.title": "Autouzupełnianie",
-  "settings.autocomplete.model.title": "Model autouzupełniania",
-  "settings.autocomplete.model.description": "Wybierz model używany do uzupełniania kodu w linii (inline)",
+
   "settings.notifications.title": "Powiadomienia",
   "settings.context.title": "Kontekst",
 
@@ -851,13 +849,6 @@ export const dict = {
 
   "common.add": "Dodaj",
 
-  "settings.autocomplete.autoTrigger.title": "Włącz automatyczne uzupełnianie inline",
-  "settings.autocomplete.autoTrigger.description": "Automatycznie pokazuj sugestie uzupełniania podczas pisania",
-  "settings.autocomplete.smartKeybinding.title": "Włącz inteligentny skrót zadania inline",
-  "settings.autocomplete.smartKeybinding.description": "Użyj inteligentnego skrótu do wyzwalania zadań inline",
-  "settings.autocomplete.chatAutocomplete.title": "Włącz autouzupełnianie czatu",
-  "settings.autocomplete.chatAutocomplete.description": "Pokaż sugestie autouzupełniania w polu czatu",
-  "settings.autocomplete.modelsHint": "Aby wybrać model używany do autouzupełniania, zobacz Ustawienia modeli.",
   "settings.notifications.sounds": "Dźwięki",
   "settings.notifications.enable.title": "Włącz powiadomienia dźwiękowe",
   "settings.notifications.enable.description":

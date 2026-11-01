@@ -702,9 +702,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Зробіть вебпошук доступним для моделей усіх постачальників.",
   "settings.checkpoints.title": "Контрольні точки",
   "settings.display.title": "Відображення",
-  "settings.autocomplete.title": "Автодоповнення",
-  "settings.autocomplete.model.title": "Модель автодоповнення",
-  "settings.autocomplete.model.description": "Виберіть модель для вбудованого (inline) автодоповнення коду",
+
   "settings.notifications.title": "Сповіщення",
   "settings.context.title": "Контекст",
   "settings.indexing.title": "Індексування",
@@ -881,15 +879,6 @@ export const dict = {
   "settings.language.current": "Поточна:",
 
   "common.add": "Додати",
-
-  "settings.autocomplete.autoTrigger.title": "Увімкнути автоматичні підказки",
-  "settings.autocomplete.autoTrigger.description": "Автоматично показувати підказки під час введення",
-  "settings.autocomplete.smartKeybinding.title": "Увімкнути розумне прив'язування клавіш",
-  "settings.autocomplete.smartKeybinding.description":
-    "Використовувати розумне прив'язування клавіш для активації підказок",
-  "settings.autocomplete.chatAutocomplete.title": "Увімкнути автодоповнення в полі чату",
-  "settings.autocomplete.chatAutocomplete.description": "Показувати підказки автодоповнення в полі введення чату",
-  "settings.autocomplete.modelsHint": "Щоб вибрати модель для автодоповнення, див. Налаштування моделей.",
 
   "settings.notifications.sounds": "Звуки",
   "settings.notifications.enable.title": "Увімкнути звукові сповіщення",

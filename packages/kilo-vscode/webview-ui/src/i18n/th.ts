@@ -742,9 +742,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "ทำให้โมเดลจากผู้ให้บริการทั้งหมดใช้การค้นหาเว็บได้",
   "settings.checkpoints.title": "จุดตรวจสอบ",
   "settings.display.title": "การแสดงผล",
-  "settings.autocomplete.title": "เติมข้อความอัตโนมัติ",
-  "settings.autocomplete.model.title": "โมเดล Autocomplete",
-  "settings.autocomplete.model.description": "เลือกโมเดลที่ใช้สำหรับการเติมโค้ดแบบอินไลน์ (inline completions)",
+
   "settings.notifications.title": "การแจ้งเตือน",
   "settings.context.title": "บริบท",
 
@@ -880,13 +878,6 @@ export const dict = {
 
   "common.add": "เพิ่ม",
 
-  "settings.autocomplete.autoTrigger.title": "เปิดใช้งานการเติมอัตโนมัติแบบอินไลน์",
-  "settings.autocomplete.autoTrigger.description": "แสดงข้อเสนอแนะการเติมอัตโนมัติระหว่างพิมพ์",
-  "settings.autocomplete.smartKeybinding.title": "เปิดใช้งานปุ่มลัดงานอินไลน์อัจฉริยะ",
-  "settings.autocomplete.smartKeybinding.description": "ใช้ปุ่มลัดอัจฉริยะสำหรับงานอินไลน์",
-  "settings.autocomplete.chatAutocomplete.title": "เปิดใช้งานเติมอัตโนมัติแชท",
-  "settings.autocomplete.chatAutocomplete.description": "แสดงข้อเสนอแนะเติมอัตโนมัติในช่องแชท",
-  "settings.autocomplete.modelsHint": "เลือกโมเดลที่ใช้สำหรับการเติมอัตโนมัติได้ที่การตั้งค่าโมเดล",
   "settings.notifications.sounds": "เสียง",
   "settings.notifications.enable.title": "เปิดใช้การแจ้งเตือนด้วยเสียง",
   "settings.notifications.enable.description":

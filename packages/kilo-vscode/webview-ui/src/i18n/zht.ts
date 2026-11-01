@@ -684,9 +684,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "讓所有供應商的模型都可使用網頁搜尋。",
   "settings.checkpoints.title": "檢查點",
   "settings.display.title": "顯示",
-  "settings.autocomplete.title": "自動完成",
-  "settings.autocomplete.model.title": "自動補全模型",
-  "settings.autocomplete.model.description": "選擇用於內聯程式碼補全的模型",
+
   "settings.notifications.title": "通知",
   "settings.context.title": "上下文",
 
@@ -817,13 +815,6 @@ export const dict = {
 
   "common.add": "新增",
 
-  "settings.autocomplete.autoTrigger.title": "啟用自動內嵌補全",
-  "settings.autocomplete.autoTrigger.description": "在您輸入時自動顯示內嵌補全建議",
-  "settings.autocomplete.smartKeybinding.title": "啟用智慧內嵌任務快捷鍵",
-  "settings.autocomplete.smartKeybinding.description": "使用智慧快捷鍵觸發內嵌任務",
-  "settings.autocomplete.chatAutocomplete.title": "啟用聊天文字方塊自動補全",
-  "settings.autocomplete.chatAutocomplete.description": "在聊天文字方塊中顯示自動補全建議",
-  "settings.autocomplete.modelsHint": "若要選擇用於自動補全的模型，請參閱模型設定。",
   "settings.notifications.sounds": "聲音",
   "settings.notifications.enable.title": "啟用聲音通知",
   "settings.notifications.enable.description": "在工作階段完成、遇到錯誤或需要你輸入時播放聲音",

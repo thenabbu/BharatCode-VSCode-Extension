@@ -724,9 +724,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "让所有提供商的模型都可使用网页搜索。",
   "settings.checkpoints.title": "检查点",
   "settings.display.title": "显示",
-  "settings.autocomplete.title": "自动补全",
-  "settings.autocomplete.model.title": "自动补全模型",
-  "settings.autocomplete.model.description": "选择用于内联代码补全的模型",
+
   "settings.notifications.title": "通知",
   "settings.context.title": "上下文",
 
@@ -857,13 +855,6 @@ export const dict = {
 
   "common.add": "添加",
 
-  "settings.autocomplete.autoTrigger.title": "启用自动内联补全",
-  "settings.autocomplete.autoTrigger.description": "在您输入时自动显示内联补全建议",
-  "settings.autocomplete.smartKeybinding.title": "启用智能内联任务快捷键",
-  "settings.autocomplete.smartKeybinding.description": "使用智能快捷键触发内联任务",
-  "settings.autocomplete.chatAutocomplete.title": "启用聊天文本框自动补全",
-  "settings.autocomplete.chatAutocomplete.description": "在聊天文本框中显示自动补全建议",
-  "settings.autocomplete.modelsHint": "若要选择用于自动补全的模型，请参阅模型设置。",
   "settings.notifications.sounds": "声音",
   "settings.notifications.enable.title": "启用声音通知",
   "settings.notifications.enable.description": "在会话完成、遇到错误或需要你输入时播放声音",

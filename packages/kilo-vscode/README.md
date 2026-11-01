@@ -29,10 +29,6 @@
 - **Generated commit messages** from your actual staged diff.
 - **Inline actions** on any selection: explain, fix, improve, add to context.
 
-## Inline autocomplete — the honest version
-
-BharatCode's two models are **chat-only**; there is no fill-in-the-middle endpoint, so they cannot drive ghost text. Inline autocomplete works only if you connect your own completion provider — **Mistral** or **Inception** — through Settings → autocomplete provider. Your BharatCode key still covers all chat, editing and agent work.
-
 ## Two models, one key
 
 | Model | Context | Reach for it when |
