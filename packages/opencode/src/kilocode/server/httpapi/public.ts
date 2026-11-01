@@ -85,44 +85,6 @@ export function matchLegacyKiloOpenApi(input: Record<string, unknown>) {
   const name = update?.$ref?.replace("#/components/schemas/", "")
   const fields = name ? spec.components?.schemas?.[name]?.properties : update?.properties
   if (fields?.sessionID) fields.sessionID = nullable(fields.sessionID)
-
-  const fim = spec.paths?.["/kilo/fim"]?.post?.responses
-  if (!fim) return
-  fim["200"] = {
-    description: "Streaming FIM completion response",
-    content: {
-      "text/event-stream": {
-        schema: {
-          type: "object",
-          properties: {
-            choices: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  delta: {
-                    type: "object",
-                    properties: {
-                      content: { type: "string" },
-                    },
-                  },
-                  text: { type: "string" },
-                },
-              },
-            },
-            usage: {
-              type: "object",
-              properties: {
-                prompt_tokens: { type: "number" },
-                completion_tokens: { type: "number" },
-              },
-            },
-            cost: { type: "number" },
-          },
-        },
-      },
-    },
-  }
 }
 
 function rebrand(value: unknown): void {

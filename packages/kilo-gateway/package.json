@@ -17,9 +17,6 @@
   ],
   "exports": {
     ".": "./src/index.ts",
-    "./fim": "./src/fim.ts",
-    "./edit": "./src/edit.ts",
-    "./edit-prompt": "./src/edit-prompt.ts",
     "./provider-usage": "./src/provider-usage.ts",
     "./event-service": "./src/event-service/client.ts",
     "./tui": "./src/tui.ts"
