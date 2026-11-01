@@ -147,6 +147,8 @@ export class KiloConnectionService {
   private viewedSending = false
   private viewedDirty = false
   private unsubRemote: (() => void) | null = null
+  /** Kept for the rootless-sign-in fallback (extension storage as cwd). */
+  private context: vscode.ExtensionContext
 
   constructor(
     context: vscode.ExtensionContext,
@@ -160,6 +162,7 @@ export class KiloConnectionService {
         update: async () => undefined,
       } satisfies Pick<vscode.Memento, "get" | "update">)
     this.sandboxPreference = new SandboxPreference(state)
+    this.context = context
     this.serverManager = new ServerManager(context, (code, signal) => this.handleServerExit(code, signal), env)
     this.active = vscode.window.state.focused
     this.windowStateDisposable = vscode.window.onDidChangeWindowState((ws) => {
@@ -212,14 +215,16 @@ export class KiloConnectionService {
   /**
    * Get the shared SDK client, auto-connecting if not yet started.
    * Accepts an optional directory to use as the workspace root; falls back
-   * to the first VS Code workspace folder. Throws if neither is available
-   * or if the connection fails.
+   * to the first VS Code workspace folder, then to the extension's own
+   * storage folder. The backend only uses the directory as its working
+   * directory, so account work (sign-in, settings) must not require an open
+   * project — `resolveServerCwd` already falls back to globalStorage and
+   * indexing self-disables (KILO_DISABLE_CODEBASE_INDEXING).
    */
   async getClientAsync(dir?: string): Promise<KiloClient> {
     if (dir) this.trackDirectory(dir)
     if (this.client && this.state === "connected") return this.client
-    const root = dir ?? vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
-    if (!root) throw new Error("No workspace folder open")
+    const root = dir ?? vscode.workspace.workspaceFolders?.[0]?.uri.fsPath ?? this.context.globalStorageUri.fsPath
     this.trackDirectory(root)
     await this.connect(root)
     return this.getClient()

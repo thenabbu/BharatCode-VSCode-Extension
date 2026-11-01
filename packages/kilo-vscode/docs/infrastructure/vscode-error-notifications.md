@@ -2,7 +2,7 @@
 
 **Priority:** P1
 
-`showErrorMessage` is used in peripheral services (commit, Agent Manager, autocomplete). Core connection errors only go to `console.error` and webview `postMessage`.
+`showErrorMessage` is used in peripheral services (commit, Agent Manager). Core connection errors only go to `console.error` and webview `postMessage`.
 
 ## Remaining Work
 

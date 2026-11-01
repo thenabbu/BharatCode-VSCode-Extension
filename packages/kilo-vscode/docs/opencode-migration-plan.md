@@ -85,7 +85,6 @@ Open issues from the [GitHub project board](https://github.com/orgs/Kilo-Org/pro
 | [Extension View Doesn't Refresh on Update](error-handling/extension-refresh-on-update.md) | Force webview reload when extension version changes | P1 |
 | [Propagate CLI Errors to UI](error-handling/propagate-cli-errors-to-ui.md) | Surface CLI stderr errors in chat or as VS Code notifications | P1 |
 | [CLI Startup Errors](error-handling/cli-startup-errors.md) | Detect CLI process exit before connection; show error with details and retry | P1 |
-| [Autocomplete Settings Link Broken](error-handling/autocomplete-settings-link.md) | Fix "settings" link in autocomplete broken notice; fix missing default model | P1 |
 
 ### Infrastructure / Refactoring
 
