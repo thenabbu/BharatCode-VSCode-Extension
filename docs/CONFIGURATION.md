@@ -36,13 +36,12 @@ Open Settings and search `BharatCode`. The most used ones:
 |---|---|
 | `BharatCode: Set API Key` (command) | Replace the stored API key |
 | Default model provider/model | Model used for new sessions |
-| Inline autocomplete provider/model | BYOK completion provider — see below |
 | Auto-approve | Start sessions with the main auto-approve toggle on |
 | Attention notifications/sounds | Alert when a task completes, errors, or needs input |
 | Font size | Webview UI font size |
 | Language | Override the BharatCode UI language |
 
-All 40 contributed settings are documented inline in the Settings UI.
+All contributed settings are documented inline in the Settings UI.
 
 ## Config files
 
@@ -66,16 +65,6 @@ Example global `kilo.json`:
 
 Reload after edits: Command Palette → `BharatCode: Reload Config and Skills`.
 
-## Inline autocomplete
-
-BharatCode's two models serve chat completions only — there is no fill-in-the-middle endpoint, so they cannot drive ghost-text suggestions. Inline autocomplete works through a bring-your-own-key provider instead:
-
-1. Settings → search `autocomplete provider` → pick `mistral` or `inception`
-2. Pick the matching autocomplete model
-3. Connect that provider's API key (the Providers page, or its own auth flow)
-
-The bundled gateway path is intentionally disabled in this build — the provider list shows it as *BharatCode gateway (disabled)*.
-
 ## What this build disables on purpose
 
 The extension ships with upstream cloud coupling switched off: telemetry, session sharing, presence, the internal extension marketplace, and Kilo's model-catalog fetch. Only `bharatcode.ai` (plus any BYOK keys you add) is contacted. Details in [PRIVACY.md](../PRIVACY.md).
@@ -86,5 +75,4 @@ The extension ships with upstream cloud coupling switched off: telemetry, sessio
 |---|---|
 | Key rejected at onboarding | Re-copy the key from bharatcode.ai, run `BharatCode: Set API Key` |
 | No models listed | Check network access to `https://bharatcode.ai/api/model/v1/models` (it answers without auth) |
-| Autocomplete never appears | Expected without a BYOK provider key — see [Inline autocomplete](#inline-autocomplete) |
 | Config edits ignored | Run `BharatCode: Reload Config and Skills`; check for a project `kilo.json` overriding your global file |

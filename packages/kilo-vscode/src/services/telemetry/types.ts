@@ -51,16 +51,6 @@ export enum TelemetryEventName {
   SHELL_INTEGRATION_ERROR = "Shell Integration Error",
   CONSECUTIVE_MISTAKE_ERROR = "Consecutive Mistake Error",
 
-  // Autocomplete
-  AUTOCOMPLETE_SUGGESTION_REQUESTED = "Autocomplete Suggestion Requested",
-  AUTOCOMPLETE_LLM_REQUEST_COMPLETED = "Autocomplete LLM Request Completed",
-  AUTOCOMPLETE_LLM_REQUEST_FAILED = "Autocomplete LLM Request Failed",
-  AUTOCOMPLETE_LLM_SUGGESTION_RETURNED = "Autocomplete LLM Suggestion Returned",
-  AUTOCOMPLETE_SUGGESTION_CACHE_HIT = "Autocomplete Suggestion Cache Hit",
-  AUTOCOMPLETE_ACCEPT_SUGGESTION = "Autocomplete Accept Suggestion",
-  AUTOCOMPLETE_SUGGESTION_FILTERED = "Autocomplete Suggestion Filtered",
-  AUTOCOMPLETE_UNIQUE_SUGGESTION_SHOWN = "Autocomplete Unique Suggestion Shown",
-
   // Inline Assist
   INLINE_ASSIST_AUTO_TASK = "Inline Assist Auto Task",
 

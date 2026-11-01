@@ -18,9 +18,6 @@ import { EXTENSION_DISPLAY_NAME } from "./constants"
 import { KiloConnectionService } from "./services/cli-backend"
 import { start as startBharatcodeOnboarding } from "./onboarding/bharatcode"
 import { retention } from "./services/task-cleanup/retention"
-import { registerAutocompleteProvider } from "./services/autocomplete"
-import { ensureBackendForAutocomplete } from "./services/autocomplete/ensure-backend"
-import { AutocompleteServiceManager } from "./services/autocomplete/AutocompleteServiceManager"
 import { AttentionService, showOSNotification } from "./services/attention"
 import { CaffeinationService } from "./services/caffeination"
 import { confirmCaffeination } from "./services/caffeination/confirm"
@@ -61,9 +58,9 @@ const panelTitleHandler = (panel: vscode.WebviewPanel) => (title: string) => {
 }
 
 // Activated via "onStartupFinished" and "onUri" (package.json) so that commands, code actions,
-// keybindings, autocomplete, commit-message generation, and URI deep links all work immediately —
+// keybindings, commit-message generation, and URI deep links all work immediately —
 // without requiring the user to open a Kilo sidebar or panel first. The CLI backend is NOT spawned here;
-// it starts lazily when a webview connects or when ensureBackendForAutocomplete() triggers it.
+// it starts lazily when a webview connects.
 export async function activate(context: vscode.ExtensionContext) {
   console.log("BharatCode extension is now active")
   shuttingDown = false
@@ -148,7 +145,6 @@ export async function activate(context: vscode.ExtensionContext) {
       } catch {
         remoteService.setClient(null)
       }
-      AutocompleteServiceManager.getInstance()?.load()
     } else {
       remoteService.clearState()
       remoteService.setClient(null)
@@ -461,7 +457,6 @@ export async function activate(context: vscode.ExtensionContext) {
   })
 
   // Prewarm only after all global event consumers are ready.
-  ensureBackendForAutocomplete(connectionService)
 
   provider.setAutoApproveController(autoApprove)
   agentManagerHost.setAutoApproveController(autoApprove)
@@ -902,9 +897,6 @@ export async function activate(context: vscode.ExtensionContext) {
       },
     }),
   )
-
-  // Register autocomplete provider
-  void registerAutocompleteProvider(context, connectionService)
 
   // Register commit message generation
   registerCommitMessageService(context, connectionService)

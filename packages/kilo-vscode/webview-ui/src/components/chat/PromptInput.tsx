@@ -1,6 +1,6 @@
 /**
  * PromptInput component
- * Text input with send/abort buttons, ghost-text autocomplete, and @ file mention support
+ * Text input with send/abort buttons and @ file mention support
  */
 
 import {
@@ -64,7 +64,6 @@ import { hasGitChangesMention } from "../../hooks/git-changes-context-utils"
 import { useSlashCommand, skill as isSkill } from "../../hooks/useSlashCommand"
 import { useGoalComposer } from "./goal/useGoalComposer"
 import { GoalHeader } from "./goal/GoalHeader"
-import { useGhostText } from "../../hooks/useGhostText"
 import { useSpeechToText } from "../speech-to-text/useSpeechToText"
 import { useSpeechToTextModels } from "../../context/speech-to-text-models"
 import { createSpeechShortcut } from "../speech-to-text/shortcut"
@@ -511,7 +510,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
         hints: [],
         select: () => {
           goal.activate()
-          ghost.dismiss()
           textareaRef?.focus()
         },
       },
@@ -573,7 +571,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
     requestSandbox()
   })
 
-  const ghost = useGhostText(vscode, text, () => server.isConnected())
   const speech = useSpeechToText(vscode, server, language)
   const speechModels = useSpeechToTextModels()
 
@@ -940,7 +937,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
       const key = draftKey()
       mention.closeMention()
       slash.close()
-      ghost.dismiss()
       if (!(await session.deleteQueuedMessage(request.sessionID, request.messageID))) return
       if (!session.sessions().some((item) => item.id === request.sessionID)) return
       const active = draftKey() === key && textareaRef?.isConnected
@@ -1318,23 +1314,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
     unsubscribe()
   })
 
-  const acceptSuggestion = () => {
-    if (readonly()) return
-    const result = ghost.accept()
-    if (!result) return
-
-    const val = text() + result.text
-    setText(val)
-
-    if (textareaRef) {
-      textareaRef.value = val
-      adjustHeight()
-      syncHighlightScroll()
-    }
-  }
-
-  const syncGhost = () => ghost.sync(textareaRef)
-
   const scrollToActiveItem = () => {
     if (!dropdownRef) return
     const items = dropdownRef.querySelectorAll(".file-mention-item")
@@ -1411,18 +1390,15 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
 
     if (!goal.active()) slash.onInput(val, target.selectionStart ?? val.length)
     mention.onInput(val, target.selectionStart ?? val.length)
-    ghost.setMentionOpen(slash.show() || mention.showMention())
-    ghost.scheduleRequest(val, textareaRef)
   }
 
   const escape = (e: KeyboardEvent) => {
     if (e.key !== "Escape") return false
     if (hasPopup()) return true
-    if (!ghost.text() && !goal.active() && !isBusy()) return false
+    if (!goal.active() && !isBusy()) return false
     e.preventDefault()
     e.stopPropagation()
-    if (ghost.text()) ghost.dismiss()
-    else if (goal.active()) goal.cancel()
+    if (goal.active()) goal.cancel()
     else session.abort()
     return true
   }
@@ -1483,13 +1459,11 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
     if (mention.handleArrowKey(e, textareaRef)) return
 
     if (slash.onKeyDown(e, textareaRef, setText, adjustHeight)) {
-      ghost.setMentionOpen(slash.show())
       queueMicrotask(scrollToActiveSlashItem)
       return
     }
 
     if (mention.onKeyDown(e, textareaRef, setText, adjustHeight)) {
-      ghost.setMentionOpen(mention.showMention())
       queueMicrotask(scrollToActiveItem)
       return
     }
@@ -1529,18 +1503,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
       return
     }
 
-    if (e.key === "Tab" && !e.shiftKey && ghost.text()) {
-      if (!isAtEnd()) return
-      e.preventDefault()
-      acceptSuggestion()
-      return
-    }
-    if (e.key === "ArrowRight" && ghost.text()) {
-      if (!isAtEnd()) return
-      e.preventDefault()
-      acceptSuggestion()
-      return
-    }
     if (escape(e)) return
     if (isEnterKeyCommitNotIme(e) && !e.shiftKey) {
       e.preventDefault()
@@ -1599,7 +1561,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
     ref.focus()
     adjustHeight()
     syncHighlightScroll()
-    ghost.scheduleRequest(result.text, ref)
   }
 
   const startSpeech = () => {
@@ -1736,7 +1697,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
       !goal.prepare(draft, () => {
         setText("")
         slash.close()
-        ghost.dismiss()
         adjustHeight()
       })
     )
@@ -1857,7 +1817,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
     if (objective) {
       mention.closeMention()
       slash.close()
-      ghost.dismiss()
       goal.send(
         key,
         stamp,
@@ -2274,7 +2233,7 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
                           // history state a manual edit would reset, but leave
                           // mention, slash, and ghost alone: restored paste
                           // content is not new input, so it should not rerun
-                          // autocomplete or request a suggestion.
+                          // or request a suggestion.
                           preEnhanceText = null
                           preEnhancePastes = null
                           history.reset()
@@ -2308,9 +2267,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
                 </Show>
               )}
             </Index>
-            <Show when={ghost.text()}>
-              <span class="prompt-input-ghost-text">{ghost.text()}</span>
-            </Show>
             {/* A <div> with white-space: pre-wrap collapses a trailing newline,
                 but a <textarea> renders it as a real empty line. This <br> is
                 added in that case so the overlay and textarea heights match. */}

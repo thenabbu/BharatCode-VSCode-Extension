@@ -750,9 +750,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Omogućite web pretragu modelima svih pružalaca.",
   "settings.checkpoints.title": "Kontrolne tačke",
   "settings.display.title": "Prikaz",
-  "settings.autocomplete.title": "Automatsko dovršavanje",
-  "settings.autocomplete.model.title": "Model za automatsko dovršavanje",
-  "settings.autocomplete.model.description": "Odaberite model koji se koristi za inline dovršavanje koda",
+
   "settings.notifications.title": "Obavještenja",
   "settings.context.title": "Kontekst",
 
@@ -887,14 +885,6 @@ export const dict = {
 
   "common.add": "Dodaj",
 
-  "settings.autocomplete.autoTrigger.title": "Omogući automatsko inline dovršavanje",
-  "settings.autocomplete.autoTrigger.description": "Automatski prikaži prijedloge inline dovršavanja tokom tipkanja",
-  "settings.autocomplete.smartKeybinding.title": "Omogući pametnu prečicu inline zadatka",
-  "settings.autocomplete.smartKeybinding.description": "Koristi pametnu prečicu za pokretanje inline zadataka",
-  "settings.autocomplete.chatAutocomplete.title": "Omogući automatsko dovršavanje chata",
-  "settings.autocomplete.chatAutocomplete.description": "Prikaži prijedloge automatskog dovršavanja u polju chata",
-  "settings.autocomplete.modelsHint":
-    "Da odaberete koji se model koristi za automatsko dovršavanje, pogledajte postavke Modela.",
   "settings.notifications.sounds": "Zvukovi",
   "settings.notifications.enable.title": "Omogući zvučne obavijesti",
   "settings.notifications.enable.description":

@@ -20,7 +20,6 @@ import {
   selectedSpeechToTextModel,
 } from "../speech-to-text/availability"
 import { speechToTextModelOptions } from "../speech-to-text/model-selector"
-import { AUTOCOMPLETE_SELECTOR_MODELS, getAutocompleteSelection } from "./autocomplete-model-selector"
 import { preserveVariant } from "../../context/session-variant-store"
 
 const ModelsTab: Component = () => {
@@ -29,15 +28,6 @@ const ModelsTab: Component = () => {
   const provider = useProvider()
   const session = useSession()
   const speechModels = useSpeechToTextModels()
-
-  const autocompleteProvider = () => {
-    const v = settings()["autocomplete.provider"]
-    return typeof v === "string" ? v : undefined
-  }
-  const autocompleteModel = () => {
-    const v = settings()["autocomplete.model"]
-    return typeof v === "string" ? v : undefined
-  }
 
   function handleModelSelect(configKey: "model" | "small_model") {
     return (providerID: string, modelID: string) => {
@@ -113,18 +103,6 @@ const ModelsTab: Component = () => {
         },
       })
     }
-  }
-
-  function handleAutocompleteModelSelect(providerID: string, modelID: string) {
-    if (!providerID || !modelID) {
-      // Clearing both keys reverts to the resolved server-side default. Users
-      // who pick "Not set" follow future default changes automatically.
-      updateSetting("autocomplete.provider", null)
-      updateSetting("autocomplete.model", null)
-      return
-    }
-    updateSetting("autocomplete.provider", providerID)
-    updateSetting("autocomplete.model", modelID)
   }
 
   return (
@@ -203,22 +181,6 @@ const ModelsTab: Component = () => {
             clearLabel={language.t("settings.context.compactionModel.useChatModel")}
             label={language.t("settings.context.compactionModel.title")}
             description={language.t("settings.context.compactionModel.description")}
-          />
-        </SettingsRow>
-        <SettingsRow
-          title={language.t("settings.autocomplete.model.title")}
-          description={language.t("settings.autocomplete.model.description")}
-        >
-          <ModelSelectorBase
-            value={getAutocompleteSelection(autocompleteProvider(), autocompleteModel())}
-            onSelect={handleAutocompleteModelSelect}
-            placement="bottom-start"
-            models={AUTOCOMPLETE_SELECTOR_MODELS}
-            favorites={false}
-            allowClear
-            clearLabel={language.t("settings.providers.notSet")}
-            label={language.t("settings.autocomplete.model.title")}
-            description={language.t("settings.autocomplete.model.description")}
           />
         </SettingsRow>
         <SettingsRow

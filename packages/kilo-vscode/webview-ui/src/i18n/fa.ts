@@ -664,7 +664,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "جستجوی وب را برای مدل‌های همه ارائه‌دهندگان در دسترس قرار دهید.",
   "settings.checkpoints.title": "نقاط بازیابی",
   "settings.display.title": "نمایش",
-  "settings.autocomplete.title": "تکمیل خودکار",
+
   "settings.notifications.title": "اعلان‌ها",
   "settings.context.title": "زمینه",
   "settings.indexing.title": "ایندکس‌گذاری",
@@ -868,16 +868,6 @@ export const dict = {
   "settings.language.current": "فعلی:",
 
   "common.add": "افزودن",
-
-  "settings.autocomplete.model.title": "مدل تکمیل خودکار",
-  "settings.autocomplete.model.description": "مدل مورد استفاده برای تکمیل‌های درون‌خطی کد را انتخاب کنید",
-  "settings.autocomplete.autoTrigger.title": "فعال‌سازی تکمیل‌های خودکار درون‌خطی",
-  "settings.autocomplete.autoTrigger.description": "پیشنهادهای تکمیل درون‌خطی را هنگام تایپ به‌صورت خودکار نمایش بده",
-  "settings.autocomplete.smartKeybinding.title": "فعال‌سازی میانبر هوشمند وظایف درون‌خطی",
-  "settings.autocomplete.smartKeybinding.description": "از یک میانبر هوشمند برای فعال‌سازی وظایف درون‌خطی استفاده کن",
-  "settings.autocomplete.chatAutocomplete.title": "فعال‌سازی تکمیل خودکار متن چت",
-  "settings.autocomplete.chatAutocomplete.description": "نمایش پیشنهادات تکمیل خودکار در کادر متنی چت",
-  "settings.autocomplete.modelsHint": "برای انتخاب مدل مورد استفاده در تکمیل خودکار، به تنظیمات مدل‌ها مراجعه کنید.",
 
   "settings.notifications.sounds": "صداها",
   "settings.notifications.enable.title": "فعال‌سازی اعلان‌های صوتی",

@@ -38,7 +38,7 @@ That is the whole setup. What you get behind those three steps:
 The extension is not a thin API client. It runs a complete agent stack locally inside VS Code:
 
 - **Bundled backend binary.** The extension ships its own `bharatcode` binary (`extension/bin/bharatcode`, `.exe` on Windows) inside the VSIX. It never calls a system-installed CLI.
-- **Lazy local server.** On first use — your first chat submit, opening the Agent Manager, or an autocomplete prewarm — the extension's `ServerManager` spawns `bharatcode serve --port 0`. The OS picks a free port and the extension parses it from the child's stdout. That one child process is reused until it exits; if it crashes, the status chip in the chat header offers **Restart server**.
+- **Lazy local server.** On first use — your first chat submit or opening the Agent Manager — the extension's `ServerManager` spawns `bharatcode serve --port 0`. The OS picks a free port and the extension parses it from the child's stdout. That one child process is reused until it exits; if it crashes, the status chip in the chat header offers **Restart server**.
 - **Loopback-only auth.** The server listens on `127.0.0.1` only and is protected by HTTP Basic auth with a random per-session password (32-byte hex) injected as `KILO_SERVER_PASSWORD`; the username is `kilo`. Nothing on your network can reach it without that password.
 - **Request path.** The chat UI is a SolidJS webview that talks to the extension host over `postMessage`. The extension host calls the local backend over HTTP with server-sent events for streaming responses, using `@kilocode/sdk`. The backend forwards to the BharatCode API.
 
@@ -76,7 +76,7 @@ On first launch, BharatCode prompts you for an API key — create one at [bharat
 
 ## Configuration
 
-Everything user-configurable lives in one guide: [docs/CONFIGURATION.md](docs/CONFIGURATION.md) — API key, models, default model selection, config files, and how to get inline autocomplete working with a bring-your-own-key provider.
+Everything user-configurable lives in one guide: [docs/CONFIGURATION.md](docs/CONFIGURATION.md) — API key, models, default model selection, and config files.
 
 Quick answers:
 
@@ -96,7 +96,6 @@ BharatCode ships with specialized agents you switch between depending on the tas
 ## What it does
 
 - **Code generation** from natural language, across multiple files.
-- **Inline autocomplete** with ghost-text suggestions and tab to accept — served by a bring-your-own-key provider (BharatCode's two models are chat-only; see [configuration](docs/CONFIGURATION.md#inline-autocomplete)).
 - **Self-checking** so the agent reviews and corrects its own work.
 - **Terminal and browser control** to run commands and automate the web.
 - **Skills, modes, and MCP servers** defined in plain text to shape the agent per project.
@@ -127,7 +126,7 @@ Where to go next, depending on what you need:
 | [RELEASING.md](RELEASING.md) | The release process: version bump, per-platform VSIX builds, checksums, tagging. |
 | [PRIVACY.md](PRIVACY.md) | What data the extension collects and sends, including how the API key is stored. |
 | [SECURITY.md](SECURITY.md) | How to report vulnerabilities in this repository. |
-| [docs/CONFIGURATION.md](docs/CONFIGURATION.md) | The full user configuration guide: key, models, config files, autocomplete. |
+| [docs/CONFIGURATION.md](docs/CONFIGURATION.md) | The full user configuration guide: key, models, config files. |
 
 ## FAQ
 

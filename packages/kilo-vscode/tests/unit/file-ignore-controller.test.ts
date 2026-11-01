@@ -3,7 +3,7 @@ import os from "node:os"
 import path from "node:path"
 import fs from "node:fs/promises"
 import ignore from "ignore"
-import { FileIgnoreController } from "../../src/services/autocomplete/shims/FileIgnoreController"
+import { FileIgnoreController } from "../../src/services/ignore/FileIgnoreController"
 
 // Activate Windows drive-letter detection in the `ignore` package.
 // On actual Windows this runs automatically (process.platform === 'win32');

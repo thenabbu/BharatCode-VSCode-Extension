@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from "vitest"
 
-// Mock vscode following the pattern from AutocompleteServiceManager.spec.ts
+// Mock vscode following the pattern used by the other service specs
 vi.mock("vscode", () => {
   const disposable = { dispose: vi.fn() }
 

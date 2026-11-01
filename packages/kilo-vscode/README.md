@@ -11,7 +11,6 @@
 ## Key Features
 
 - **Code Generation:** BharatCode can generate code using natural language.
-- **Inline Autocomplete:** Get intelligent code completions as you type, powered by a bring-your-own-key AI provider. The BharatCode models are chat-only, so inline autocomplete requires your own provider key.
 - **Task Automation:** BharatCode can automate repetitive coding tasks to save time.
 - **Automated Refactoring:** BharatCode can refactor and improve existing code efficiently.
 - **MCP support:** Connect Model Context Protocol servers through config to extend the agent's capabilities.

@@ -150,17 +150,6 @@ export const ProvidersDisabledExpanded: Story = {
   ),
 }
 
-export const ModelsAutocompleteOpen: Story = {
-  name: "ModelsTab — autocomplete model picker open",
-  render: () => (
-    <StoryProviders config={{} as any}>
-      <OpenModelPicker>
-        <ModelsTab />
-      </OpenModelPicker>
-    </StoryProviders>
-  ),
-}
-
 export const ModelsAccessibleLabels: Story = {
   name: "ModelsTab — accessible model labels",
   render: () => (

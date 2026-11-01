@@ -695,9 +695,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "اجعل البحث على الويب متاحًا لنماذج جميع المزوّدين.",
   "settings.checkpoints.title": "نقاط التحقق",
   "settings.display.title": "العرض",
-  "settings.autocomplete.title": "الإكمال التلقائي",
-  "settings.autocomplete.model.title": "نموذج الإكمال التلقائي",
-  "settings.autocomplete.model.description": "حدد النموذج المستخدم لإكمال الكود المضمن (inline completions)",
+
   "settings.notifications.title": "الإشعارات",
   "settings.context.title": "السياق",
   "settings.indexing.title": "الفهرسة",
@@ -865,13 +863,6 @@ export const dict = {
 
   "common.add": "إضافة",
 
-  "settings.autocomplete.autoTrigger.title": "تمكين الإكمال التلقائي المضمّن",
-  "settings.autocomplete.autoTrigger.description": "عرض اقتراحات الإكمال المضمّن تلقائياً أثناء الكتابة",
-  "settings.autocomplete.smartKeybinding.title": "تمكين اختصار المهمة المضمّنة الذكي",
-  "settings.autocomplete.smartKeybinding.description": "استخدام اختصار ذكي لتشغيل المهام المضمّنة",
-  "settings.autocomplete.chatAutocomplete.title": "تمكين الإكمال التلقائي للدردشة",
-  "settings.autocomplete.chatAutocomplete.description": "عرض اقتراحات الإكمال التلقائي في مربع الدردشة",
-  "settings.autocomplete.modelsHint": "لاختيار النموذج المستخدم للإكمال التلقائي، راجع إعدادات النماذج.",
   "settings.notifications.sounds": "أصوات",
   "settings.notifications.enable.title": "تمكين الإشعارات الصوتية",
   "settings.notifications.enable.description": "تشغيل أصوات عند اكتمال الجلسات أو حدوث خطأ أو الحاجة إلى ردّك",

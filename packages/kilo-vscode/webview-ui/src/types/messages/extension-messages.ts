@@ -582,25 +582,6 @@ export interface CommandsLoadedMessage {
   commands: SlashCommandInfo[]
 }
 
-export interface AutocompleteSettingsLoadedMessage {
-  type: "autocompleteSettingsLoaded"
-  settings: {
-    enableAutoTrigger: boolean
-    enableSmartInlineTaskKeybinding: boolean
-    enableChatAutocomplete: boolean
-    /** `null` means "no explicit setting — use the resolved default." */
-    provider: string | null
-    /** `null` means "no explicit setting — use the resolved default." */
-    model: string | null
-  }
-}
-
-export interface ChatCompletionResultMessage {
-  type: "chatCompletionResult"
-  text: string
-  requestId: string
-}
-
 export interface SpeechToTextResultMessage {
   type: "speechToTextResult"
   text: string
@@ -1866,8 +1847,6 @@ export type ExtensionMessage =
   | AgentsLoadedMessage
   | SkillsLoadedMessage
   | CommandsLoadedMessage
-  | AutocompleteSettingsLoadedMessage
-  | ChatCompletionResultMessage
   | SpeechToTextStartedMessage
   | SpeechToTextCancelledMessage
   | SpeechToTextResultMessage

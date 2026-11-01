@@ -757,9 +757,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "Permite que los modelos de todos los proveedores usen la búsqueda web.",
   "settings.checkpoints.title": "Puntos de control",
   "settings.display.title": "Pantalla",
-  "settings.autocomplete.title": "Autocompletado",
-  "settings.autocomplete.model.title": "Modelo de autocompletado",
-  "settings.autocomplete.model.description": "Selecciona el modelo utilizado para el autocompletado de código en línea",
+
   "settings.notifications.title": "Notificaciones",
   "settings.context.title": "Contexto",
 
@@ -897,14 +895,6 @@ export const dict = {
 
   "common.add": "Añadir",
 
-  "settings.autocomplete.autoTrigger.title": "Habilitar completado en línea automático",
-  "settings.autocomplete.autoTrigger.description": "Mostrar automáticamente sugerencias de completado al escribir",
-  "settings.autocomplete.smartKeybinding.title": "Habilitar atajo inteligente de tarea en línea",
-  "settings.autocomplete.smartKeybinding.description": "Usar un atajo inteligente para activar tareas en línea",
-  "settings.autocomplete.chatAutocomplete.title": "Habilitar autocompletado del chat",
-  "settings.autocomplete.chatAutocomplete.description": "Mostrar sugerencias de autocompletado en el chat",
-  "settings.autocomplete.modelsHint":
-    "Para elegir qué modelo se usa para el autocompletado, consulta la configuración de Modelos.",
   "settings.notifications.sounds": "Sonidos",
   "settings.notifications.enable.title": "Activar las notificaciones sonoras",
   "settings.notifications.enable.description":

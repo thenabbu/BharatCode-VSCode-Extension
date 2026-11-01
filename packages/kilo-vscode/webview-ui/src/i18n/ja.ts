@@ -745,9 +745,7 @@ export const dict = {
   "settings.webTools.webSearch.description": "すべてのプロバイダーのモデルでウェブ検索を利用できるようにします。",
   "settings.checkpoints.title": "チェックポイント",
   "settings.display.title": "表示",
-  "settings.autocomplete.title": "オートコンプリート",
-  "settings.autocomplete.model.title": "オートコンプリートモデル",
-  "settings.autocomplete.model.description": "インラインでのコード補完に使用するモデルを選択します",
+
   "settings.notifications.title": "通知",
   "settings.context.title": "コンテキスト",
 
@@ -883,13 +881,6 @@ export const dict = {
 
   "common.add": "追加",
 
-  "settings.autocomplete.autoTrigger.title": "自動インライン補完を有効にする",
-  "settings.autocomplete.autoTrigger.description": "入力時にインライン補完の提案を自動的に表示",
-  "settings.autocomplete.smartKeybinding.title": "スマートインラインタスクキーバインドを有効にする",
-  "settings.autocomplete.smartKeybinding.description": "インラインタスクをトリガーするスマートキーバインドを使用",
-  "settings.autocomplete.chatAutocomplete.title": "チャットの自動補完を有効にする",
-  "settings.autocomplete.chatAutocomplete.description": "チャットテキストエリアに自動補完の提案を表示",
-  "settings.autocomplete.modelsHint": "オートコンプリートに使用するモデルを選択するには、モデル設定をご覧ください。",
   "settings.notifications.sounds": "サウンド",
   "settings.notifications.enable.title": "サウンド通知を有効にする",
   "settings.notifications.enable.description":

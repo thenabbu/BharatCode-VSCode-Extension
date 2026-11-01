@@ -17,7 +17,6 @@
   ],
   "exports": {
     ".": "./src/index.ts",
-    "./autocomplete": "./src/autocomplete.ts",
     "./fim": "./src/fim.ts",
     "./edit": "./src/edit.ts",
     "./edit-prompt": "./src/edit-prompt.ts",
