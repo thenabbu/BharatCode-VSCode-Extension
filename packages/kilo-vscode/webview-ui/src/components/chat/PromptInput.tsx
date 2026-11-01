@@ -2293,33 +2293,27 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
             }}
             onKeyUp={(e) => {
               if (speechUp(e)) return
-              syncGhost()
             }}
             onPaste={handlePaste}
             onCopy={(e) => {
-              if (paste.clipboard(e, textareaRef, setText)) syncGhost()
+              if (paste.clipboard(e, textareaRef, setText)) syncHighlightScroll()
             }}
             onCut={(e) => {
               if (!paste.clipboard(e, textareaRef, setText, true)) return
               adjustHeight()
               syncHighlightScroll()
-              syncGhost()
             }}
-            onClick={syncGhost}
             onFocus={() => {
               hold.claim()
-              syncGhost()
               setFocused(true)
               props.onFocusChange?.(true)
             }}
             onBlur={() => {
               hold.release()
-              syncGhost()
               setFocused(false)
               props.onFocusChange?.(false)
             }}
             onSelect={() => {
-              syncGhost()
               if (textareaRef) mention.snapSelection(textareaRef)
             }}
             onScroll={syncHighlightScroll}

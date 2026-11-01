@@ -43,8 +43,6 @@
   <!-- packages/kilo-vscode/src/onboarding/bharatcode.ts -->
   <!-- packages/opencode/src/provider/model-cache.ts -->
   <!-- packages/opencode/src/provider/models.ts -->
-- <https://bharatcode.ai/credits>
-  <!-- packages/kilo-vscode/src/services/autocomplete/AutocompleteServiceManager.ts -->
 - <https://bharatcode.ai/docs>
   <!-- packages/kilo-vscode/webview-ui/agent-manager/intro/AgentManagerIntro.tsx -->
   <!-- packages/kilo-vscode/webview-ui/src/components/marketplace/InstallModal.tsx -->
