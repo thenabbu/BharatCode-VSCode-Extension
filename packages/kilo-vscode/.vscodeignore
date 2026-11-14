@@ -22,11 +22,6 @@ AGENTS.md
 
 # Include dist/ directory for compiled extension (production)
 !dist/**
-# ...but not the vendored type declarations and markdown that ride along in dist/node_modules:
-# `**/*.ts` above is undone by the `!dist/**` re-include, and no webview loads these.
-dist/**/*.d.ts
-dist/**/*.md
-dist/**/*.map
 
 # Include bin/ directory for CLI binary (production)
 !bin/**

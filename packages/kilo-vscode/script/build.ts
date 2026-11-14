@@ -102,8 +102,12 @@ for (const config of targets) {
   for (const stale of ["ffmpeg", "ffmpeg.exe"]) rmSync(join(binDir, stale), { force: true })
 
   console.log(`  📦 Packaging .vsix for ${config.target}${prerelease ? " (pre-release)" : ""}...`)
-  // drop sourcemaps left in dist/: vsce re-includes them through !dist/** (ignore-order quirk)
-  for (const f of new Bun.Glob("dist/**/*.map").scanSync(".")) rmSync(f)
+  // vsce gives `!` negations priority over ignore patterns, so `!dist/**` re-includes everything
+  // under dist no matter what .vscodeignore says. Drop the files that must not ship instead:
+  // sourcemaps, and the vendored .d.ts/.md that playwright/chromium-bidi copy into dist/node_modules.
+  for (const pattern of ["dist/**/*.map", "dist/node_modules/**/*.d.ts", "dist/node_modules/**/*.md"]) {
+    for (const f of new Bun.Glob(pattern).scanSync(".")) rmSync(f)
+  }
   const vsixPath = join(outDir, `bharatcode-vscode-${config.target}.vsix`)
   const args = ["--no-dependencies", "--skip-license", "--target", config.target, "-o", vsixPath]
   if (prerelease) args.push("--pre-release")
