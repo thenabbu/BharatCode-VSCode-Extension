@@ -692,7 +692,8 @@ export const dict = {
   "settings.language.title": "語言",
   "settings.aboutKiloCode.title": "關於 BharatCode",
 
-  "session.messages.welcome": "BharatCode 在此面板中執行一個由你的 BharatCode 模型驅動的智慧代理。讓它建構功能、修復 bug 或解釋你的程式碼庫。",
+  "session.messages.welcome":
+    "BharatCode 在此面板中執行一個由你的 BharatCode 模型驅動的智慧代理。讓它建構功能、修復 bug 或解釋你的程式碼庫。",
   "session.messages.connect": "連接 BharatCode",
   "session.onboarding.title": "設定 BharatCode",
   "session.onboarding.body": "在瀏覽器登入或貼上 API 金鑰，兩種方式皆可。帳戶由擴充功能保存，不會寫入設定。",

@@ -750,7 +750,8 @@ export const dict = {
   "settings.language.title": "ภาษา",
   "settings.aboutKiloCode.title": "เกี่ยวกับ BharatCode",
 
-  "session.messages.welcome": "BharatCode รันเอเยนต์ในแผงนี้ด้วยโมเดล BharatCode ของคุณ สั่งให้สร้างฟีเจอร์ แก้บั๊ก หรืออธิบายโค้ดเบสของคุณได้เลย",
+  "session.messages.welcome":
+    "BharatCode รันเอเยนต์ในแผงนี้ด้วยโมเดล BharatCode ของคุณ สั่งให้สร้างฟีเจอร์ แก้บั๊ก หรืออธิบายโค้ดเบสของคุณได้เลย",
   "session.messages.connect": "เชื่อมต่อ BharatCode",
   "session.onboarding.title": "ตั้งค่า BharatCode",
   "session.onboarding.body":
