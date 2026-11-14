@@ -1,9 +1,6 @@
 <div align="center">
 
-<picture>
-  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero-mobile.png">
-  <img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.png" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" style="width:100%;max-width:1280px;height:auto">
-</picture>
+<img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.png" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" width="100%">
 
 <br>
 
@@ -67,21 +64,6 @@ Two models ship with your BharatCode account, and the extension wires both up fo
 Both come from one OpenAI-compatible endpoint at `https://bharatcode.ai/api/model/v1`, and the list is read live from it.
 
 **Prefer another model?** Add it yourself. Settings → Providers → **Custom provider** takes a base URL, a key and a model list, with OpenAI, OpenAI-compatible and Anthropic endpoints all supported. Your own key for OpenAI, Anthropic or anything else you run sits alongside the BharatCode models you already have.
-
----
-
-## Settings worth knowing
-
-| Setting | What it does |
-|---|---|
-| `kilo-code.defaultModel` | Model new tasks start on |
-| `kilo-code.autoApprove` | Whether edits and commands run without asking |
-| `kilo-code.language` | Interface language |
-| `kilo-code.fontSize` | Chat text size |
-
-35 settings ship in total, documented inline in the Settings UI. Agent config — permissions, instructions, MCP servers, custom agents — lives in `kilo.json`, project-level or global at `~/.config/kilo/`.
-
-Full reference: [docs/CONFIGURATION.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/docs/CONFIGURATION.md).
 
 ---
 

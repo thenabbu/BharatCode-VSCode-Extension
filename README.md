@@ -1,9 +1,6 @@
 <div align="center">
 
-<picture>
-  <source media="(max-width: 640px)" srcset="docs/assets/hero-mobile.svg">
-  <img src="docs/assets/hero.svg" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" style="width:100%;max-width:1280px;height:auto">
-</picture>
+<img src="docs/assets/hero.png" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" width="100%">
 
 <br>
 
@@ -87,19 +84,6 @@ Your BharatCode account comes with two models, and the extension wires both up f
 Both come from one OpenAI-compatible endpoint at `https://bharatcode.ai/api/model/v1`, and the list is read live from it.
 
 **Prefer another model?** Add it yourself. Settings → Providers → **Custom provider** takes a base URL, a key and a model list, and supports OpenAI, OpenAI-compatible and Anthropic endpoints. Bring your own key for OpenAI, Anthropic, or anything else you run, and it sits alongside the BharatCode models you already have.
-
----
-
-## Configuration
-
-Two layers, kept separate on purpose:
-
-- **VS Code settings** (`kilo-code.*`) — editor-side: language, font size, notifications, default model, auto-approve. 35 of them, all documented inline in the Settings UI.
-- **Agent config** (`kilo.json`) — project-level, or global at `~/.config/kilo/`. Model, permissions, instructions, MCP servers, custom agents.
-
-The `kilo-code.*` prefix and `.kilo` path are the backend's identifiers — renaming them would break keybindings and existing config, so the ids stay and only the labels say BharatCode.
-
-Every setting, config key and failure case: **[docs/CONFIGURATION.md](docs/CONFIGURATION.md)**.
 
 ---
 
