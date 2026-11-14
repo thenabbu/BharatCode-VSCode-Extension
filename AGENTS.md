@@ -1,6 +1,6 @@
 # AGENTS.md
 
-BharatCode is an open source AI coding agent — a fork of Kilo Code, rebranded and powered by bharatcode.ai. This build ships a single provider with two chat models (`qwen-3.8-27b` and `deepseek-v4.1-flash`) and bring-your-own-key inline autocomplete. There is no multi-vendor model catalogue: never claim 500+ models or hundreds of providers.
+This repo is the **VS Code extension for BharatCode**. BharatCode (bharatcode.ai) is an LLM inference provider, not an agent and not this product: it serves an OpenAI-compatible chat API with two models (`qwen-3.8-27b`, 262k and `deepseek-v4.1-flash`, 1M). The extension is what turns that provider into a working agent in VS Code: it ships the agent runtime as a bundled backend binary and pre-configures the provider, endpoint (https://bharatcode.ai/api/model/v1) and model list, so the user's only step is signing in. It is a fork of Kilo Code; attribution stays. There is no multi-vendor model catalogue and no inline autocomplete: never claim 500+ models, hundreds of providers, or autocomplete.
 
 - ALWAYS USE PARALLEL TOOLS WHEN APPLICABLE.
 - The default branch in this repo is `bc/main` (not `main`).
