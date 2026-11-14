@@ -579,6 +579,7 @@ export class DiffViewerProvider implements vscode.Disposable {
       styleUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "diff-viewer.css")),
       iconsBaseUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "assets", "icons")),
       workerUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "shiki-worker.js")),
+      module: true,
       title: "Changes",
       port: this.connection.getServerInfo()?.port,
       extraStyles: "#root { display: flex; flex-direction: column; }",

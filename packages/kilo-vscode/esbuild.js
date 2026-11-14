@@ -444,7 +444,13 @@ function getWebviewsConfig() {
     },
     outdir: "dist",
     bundle: true,
-    format: "iife",
+    // Shared chunks instead of 7 self-contained bundles. As IIFE each webview inlined its own
+    // copy of every shared dependency (shiki grammars/themes alone were 7.5MB x 6 bundles), which
+    // made dist/ 38MB deflated vs 18MB with splitting. The HTML side must load these as
+    // type="module" (buildWebviewHtml `module: true`) or the chunk imports never execute.
+    format: "esm",
+    splitting: true,
+    chunkNames: "chunks/[name]-[hash]",
     minify: production,
     sourcemap: !production,
     sourcesContent: false,
