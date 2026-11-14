@@ -1,33 +1,38 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.png" alt="BharatCode — AI coding agent for VS Code" width="100%">
+<img src="https://raw.githubusercontent.com/thenabbu/BharatCode-VSCode-Extension/bc/main/docs/assets/hero.png" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" width="100%">
 
 <br>
 
-**MIT licensed** · `qwen-3.8-27b` · `deepseek-v4.1-flash` · no telemetry
+**The VS Code extension for BharatCode.** Sign in once and an agent is running against your BharatCode models — provider, endpoint and model list already configured. MIT licensed, no telemetry.
 
 </div>
 
-**BharatCode is an AI coding agent that lives inside VS Code.** It reads your project, edits files across it, runs terminal commands, and drives a browser to check its own work — powered by [bharatcode.ai](https://bharatcode.ai) with two models: `qwen-3.8-27b` (262k context) and `deepseek-v4.1-flash` (1M context).
+## What this is
 
-> **Fork notice.** BharatCode is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode), itself a fork of [OpenCode](https://github.com/anomalyco/opencode). Upstream and its contributors did the heavy lifting — this fork brings their agent to the BharatCode platform. MIT licensed, attribution preserved. We do not claim their work as ours.
+BharatCode ([bharatcode.ai](https://bharatcode.ai)) is an LLM inference provider: one OpenAI-compatible endpoint, one key, two chat models. It serves models — it is not an agent.
+
+This extension is the half that turns those models into a working agent in your editor. It ships the agent runtime inside the package and configures the provider for you, so there is no base URL to paste, no custom-provider block to write, no model list to maintain and no separate CLI to install.
+
+> **Fork notice.** This extension is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode), itself a fork of [OpenCode](https://github.com/anomalyco/opencode). Upstream and its contributors did the heavy lifting — this fork brings their agent to the BharatCode provider. MIT licensed, attribution preserved. We do not claim their work as ours.
 
 ## Get started in three steps
 
-1. **Install** — `ext install thenabbu.bharatcode-vscode` from the Extensions view (VS Code 1.105.1+). Prefer a platform build? Grab the `.vsix` from [Releases](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest).
-2. **Connect** — create a key at [bharatcode.ai](https://bharatcode.ai) and paste it when BharatCode asks. That is the entire onboarding: no second account, no CLI to install.
-3. **Chat** — open the BharatCode sidebar and describe what you want.
+1. **Install** — `ext install thenabbu.bharatcode-vscode` (VS Code 1.105.1+). Prefer a platform build? Grab the `.vsix` from [Releases](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest).
+2. **Open a folder** — `File → Open Folder`. The agent runtime works against a workspace root, and sign-in starts from it.
+3. **Connect** — BharatCode asks on first launch: **Sign in with BharatCode** (opens your browser, nothing to copy) or **paste an API key** from your account. Either works; the credential is stored by the extension backend, never in `settings.json`.
 
-## What it does
+That is the whole onboarding. No second account, no CLI to install.
 
-- **Code generation** across multiple files, applied as real edits you review as a diff.
-- **Agents** — switch by intent: **Code** (implements), **Plan** (designs first), **Ask** (answers without touching files), **Debug** (traces failures). Bring your own custom agents as plain-text definitions.
+## What you get
+
+- **Code generation across files**, applied as real edits you review as a diff.
+- **Agents** — switch by intent: **Code** (implements), **Plan** (designs first), **Ask** (answers without touching files), **Debug** (traces failures). Custom agents as plain-text definitions.
 - **Agent Manager** — several sessions side by side, each isolated in its own git worktree, so parallel work cannot collide.
 - **Terminal and browser control** — it can run what it wrote and look at the result.
 - **Self-checking** — the agent re-reads its own output and corrects before handing back.
 - **MCP servers, skills and rules** in plain text, shaped per project.
-- **Generated commit messages** from your actual staged diff.
-- **Inline actions** on any selection: explain, fix, improve, add to context.
+- **Generated commit messages** from your actual staged diff, plus inline actions on any selection: explain, fix, improve, add to context.
 
 ## Two models, one key
 
@@ -36,11 +41,15 @@
 | `qwen-3.8-27b` | 262k | Everyday edits, fast turnaround, most tasks |
 | `deepseek-v4.1-flash` | 1M | Whole-repo reasoning, long sessions, large files |
 
-Switch mid-task from the model picker in the chat header. Both are served from a single OpenAI-compatible endpoint at `https://bharatcode.ai/api/model/v1`.
+Switch mid-task from the model picker in the chat header. Both are served from a single OpenAI-compatible endpoint at `https://bharatcode.ai/api/model/v1`, and the list is read from that endpoint rather than a hardcoded catalogue.
 
-## Private by default
+## What this build does not do
 
-This build strips upstream's cloud coupling rather than hiding it: no telemetry, no session sharing, no presence, no upstream model-catalogue fetch. Only `bharatcode.ai` is contacted — plus any BYOK provider you configure yourself. Your API key lives in the extension backend's auth store, never in `settings.json`. Details: [PRIVACY.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/PRIVACY.md).
+- **No inline autocomplete.** BharatCode's models are chat-only (no fill-in-the-middle endpoint), so there is no ghost-text completion here. VS Code's own suggestions keep working beside the agent.
+- **No telemetry, no session sharing, no presence.** Upstream's cloud coupling is removed, not hidden.
+- **No 500-model catalogue.** One provider, two models. If you want a broad catalogue, upstream Kilo Code is a better fit.
+
+Only `bharatcode.ai` is contacted, plus any BYOK provider you configure yourself. Full inventory: [PRIVACY.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/PRIVACY.md).
 
 ## Developer setup
 
@@ -57,21 +66,7 @@ cd packages/kilo-vscode
 bun run package
 ```
 
-Snapshot builds for sharing a development cut:
-
-```bash
-cd packages/kilo-vscode
-bun run snapshot:build      # VSIX into your temp dir
-bun run snapshot:install    # build and install into VS Code
-```
-
-The snapshot version embeds the commit SHA and your git username, e.g. `7.0.47-snapshot+8ff7f2d02.yourname`.
-
-Configuration, gates and per-package commands: [AGENTS.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/AGENTS.md).
-
-## Contributing
-
-Contributions are welcome from developers and writers alike. Start with the [Contributing Guide](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/CONTRIBUTING.md), and please read the [Code of Conduct](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/CODE_OF_CONDUCT.md) first.
+Configuration, gates and per-package commands: [AGENTS.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/AGENTS.md). Contributing: [CONTRIBUTING.md](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/CONTRIBUTING.md). Please read the [Code of Conduct](https://github.com/thenabbu/BharatCode-VSCode-Extension/blob/bc/main/CODE_OF_CONDUCT.md) first.
 
 ## License
 
