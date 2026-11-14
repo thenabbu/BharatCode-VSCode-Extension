@@ -1,6 +1,9 @@
 <div align="center">
 
-<img src="docs/assets/hero.svg" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" width="100%">
+<picture>
+  <source media="(max-width: 640px)" srcset="docs/assets/hero-mobile.svg">
+  <img src="docs/assets/hero.svg" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" style="width:100%;max-width:1280px;height:auto">
+</picture>
 
 <br>
 
