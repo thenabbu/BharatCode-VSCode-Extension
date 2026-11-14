@@ -2,6 +2,7 @@ import * as vscode from "vscode"
 import { basename } from "node:path"
 import { realpathSync } from "node:fs"
 import { KiloProvider } from "./KiloProvider"
+import { setFfmpegCacheDir } from "./speech-to-text/ffmpeg-fetch"
 import { AgentManagerProvider } from "./agent-manager/AgentManagerProvider"
 import { VscodeHost } from "./agent-manager/vscode-host"
 import { DiffViewerProvider } from "./diff/DiffViewerProvider"
@@ -64,6 +65,9 @@ const panelTitleHandler = (panel: vscode.WebviewPanel) => (title: string) => {
 export async function activate(context: vscode.ExtensionContext) {
   console.log("BharatCode extension is now active")
   shuttingDown = false
+
+  // Speech input downloads its FFmpeg helper on first use; it is no longer bundled in the vsix.
+  setFfmpegCacheDir(context.globalStorageUri.fsPath)
 
   // Drives the "!kilo-code.new.isCursor" guards on the native view/title and
   // editor/title menu contributions — see isCursorHost() for why.

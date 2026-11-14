@@ -4,6 +4,7 @@ import * as os from "os"
 import * as path from "path"
 import type { ChildProcess } from "child_process"
 import { exec, spawn } from "../util/process"
+import { downloadFfmpeg } from "./ffmpeg-fetch"
 
 type Input = {
   requestId: string
@@ -325,9 +326,16 @@ async function findFFmpeg(): Promise<string> {
     }
   }
 
-  throw new Error(
-    "Speech input needs the bundled FFmpeg helper, but it was not found. Rebuild or reinstall BharatCode.",
-  )
+  // The helper is no longer packaged: fetch the pinned build once into extension storage.
+  try {
+    const bin = await downloadFfmpeg()
+    await exec(bin, ["-version"], { timeout: 3000 })
+    return bin
+  } catch (err) {
+    console.warn("[BharatCode] FFmpeg download failed:", err)
+  }
+
+  throw new Error("Speech input needs FFmpeg. Install ffmpeg on your PATH (or set KILO_FFMPEG_PATH) and try again.")
 }
 
 function bundledPath(): string {
