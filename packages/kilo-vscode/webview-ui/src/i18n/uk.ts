@@ -747,12 +747,12 @@ export const dict = {
   "settings.aboutKiloCode.title": "Про BharatCode",
 
   "session.messages.welcome":
-    "BharatCode — це асистент з кодування на базі ШІ. Попросіть його розробити функцію, виправити помилку або пояснити вашу кодову базу.",
+    "BharatCode запускає агента у цій панелі на ваших моделях BharatCode. Попросіть його створити функцію, виправити помилку або пояснити кодову базу.",
   "session.messages.connect": "Підключити BharatCode",
   "session.onboarding.title": "Налаштувати BharatCode",
   "session.onboarding.body":
     "Увійдіть через браузер або вставте API-ключ — підійде будь-який спосіб. Акаунт зберігає розширення, а не налаштування.",
-  "session.onboarding.hint": "BharatCode — асистент у цій панелі. Підключіть його один раз і починайте.",
+  "session.onboarding.hint": "BharatCode — це агент у цій панелі. Підключіть один раз і починайте.",
   "session.workspaceScope.description":
     "Чат BharatCode використовує лише «{{folder}}» — першу папку в цьому робочому просторі.",
   "session.workspaceScope.alternatives":

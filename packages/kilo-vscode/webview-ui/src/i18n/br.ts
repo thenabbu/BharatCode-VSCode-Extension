@@ -761,12 +761,12 @@ export const dict = {
   "settings.aboutKiloCode.title": "Sobre o BharatCode",
 
   "session.messages.welcome":
-    "BharatCode é um assistente de programação com IA. Peça para criar funcionalidades, corrigir bugs ou explicar sua base de código.",
+    "BharatCode executa um agente neste painel, com seus modelos BharatCode. Peça para criar recursos, corrigir bugs ou explicar seu código.",
   "session.messages.connect": "Conectar BharatCode",
   "session.onboarding.title": "Configurar BharatCode",
   "session.onboarding.body":
     "Entre pelo navegador ou cole uma chave de API — os dois funcionam. A conta fica na extensão, nunca nas configurações.",
-  "session.onboarding.hint": "O BharatCode é o assistente deste painel. Conecte uma vez e comece.",
+  "session.onboarding.hint": "BharatCode é o agente deste painel. Conecte uma vez e comece.",
   "session.workspaceScope.description":
     "O chat do BharatCode usa apenas “{{folder}}”, a primeira pasta deste espaço de trabalho.",
   "session.workspaceScope.alternatives":

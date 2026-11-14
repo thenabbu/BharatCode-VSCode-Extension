@@ -692,11 +692,11 @@ export const dict = {
   "settings.language.title": "語言",
   "settings.aboutKiloCode.title": "關於 BharatCode",
 
-  "session.messages.welcome": "BharatCode 是一個 AI 程式設計助手。讓它幫你建構功能、修復 bug 或解釋程式碼庫。",
+  "session.messages.welcome": "BharatCode 在此面板中執行一個由你的 BharatCode 模型驅動的智慧代理。讓它建構功能、修復 bug 或解釋你的程式碼庫。",
   "session.messages.connect": "連接 BharatCode",
   "session.onboarding.title": "設定 BharatCode",
   "session.onboarding.body": "在瀏覽器登入或貼上 API 金鑰，兩種方式皆可。帳戶由擴充功能保存，不會寫入設定。",
-  "session.onboarding.hint": "BharatCode 就是這個面板裡的助手。連接一次即可開始。",
+  "session.onboarding.hint": "BharatCode 就是此面板中的智慧代理。連接一次即可開始。",
 
   "session.workspaceScope.description": "BharatCode 聊天僅使用此工作區中的第一個資料夾「{{folder}}」。",
   "session.workspaceScope.alternatives": "若要使用其他資料夾，請在獨立視窗中開啟，或將其作為專案新增至 Agent Manager。",
