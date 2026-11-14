@@ -242,7 +242,7 @@ describe("vscode vsix", () => {
     expect(VsCode.TARGETS["win32-arm64"]).toBe("windows-arm64")
   })
 
-  test("describes the embedded CLI target and bundled FFmpeg helper", async () => {
+  test("describes the embedded CLI target without a bundled FFmpeg helper", async () => {
     const dir = await scratch()
     try {
       const file = path.join(dir, "kilo-vscode-linux-x64.vsix")
@@ -252,7 +252,6 @@ describe("vscode vsix", () => {
 
       expect(await validate(bom)).toEqual([])
       expect(bom.metadata.properties).toContainEqual({ name: "kilocode:embedded:cli", value: "linux-x64" })
-      expect(names(bom)).toContain("@ffmpeg-installer/linux-x64")
       expect(names(bom)).toContain("bubblewrap")
     } finally {
       await fs.promises.rm(dir, { recursive: true, force: true })

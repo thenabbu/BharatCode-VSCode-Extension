@@ -13,7 +13,6 @@ import {
   sanitizeSandboxResources,
 } from "../src/services/cli-backend/cli-resources"
 import { currentBwrapTarget, ensureBwrapForTarget } from "./bwrap-helper"
-import { currentFfmpegTarget, ensureFfmpegForTarget } from "./ffmpeg-helper"
 
 const forceRebuild = process.argv.includes("--force")
 const compiledOnly = process.argv.includes("--compiled")
@@ -99,7 +98,6 @@ async function cliInputs() {
     "patches",
     ...[...dirs].sort(),
     "packages/kilo-vscode/script/bwrap-helper.ts",
-    "packages/kilo-vscode/script/ffmpeg-helper.ts",
     "packages/kilo-vscode/script/local-bin.ts",
     "packages/kilo-vscode/src/services/cli-backend/cli-resources.ts",
   ]
@@ -287,7 +285,6 @@ async function bundleKiloSandboxWorker() {
 }
 
 async function ensureLocalHelpers() {
-  await ensureFfmpegForTarget(currentFfmpegTarget(), targetBinDir)
   if (process.env.KILO_SKIP_BUNDLED_BWRAP === "1") return
   if (await sanitizeSandboxResources(targetBinDir, true)) return
   await ensureBwrapForTarget(currentBwrapTarget())

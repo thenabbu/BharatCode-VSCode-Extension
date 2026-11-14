@@ -7,7 +7,6 @@ import {
   copySandboxResources,
   copyTreeSitterResources,
 } from "../src/services/cli-backend/cli-resources"
-import { ensureFfmpegForTarget } from "./ffmpeg-helper"
 import { evidence as sbom } from "./sbom"
 
 const packageJsonPath = join(import.meta.dir, "..", "package.json")
@@ -98,8 +97,9 @@ for (const config of targets) {
 
   console.log(`  ✅ Binary ready at ${targetBinary}`)
 
-  console.log("Adding bundled FFmpeg helper...")
-  await ensureFfmpegForTarget(config.target, binDir)
+  // FFmpeg is downloaded at runtime now; a leftover copy from an older build would still be
+  // packaged by `!bin/**`, so drop it before vsce runs.
+  for (const stale of ["ffmpeg", "ffmpeg.exe"]) rmSync(join(binDir, stale), { force: true })
 
   console.log(`  📦 Packaging .vsix for ${config.target}${prerelease ? " (pre-release)" : ""}...`)
   // drop sourcemaps left in dist/: vsce re-includes them through !dist/** (ignore-order quirk)

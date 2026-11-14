@@ -15,7 +15,6 @@ import path from "node:path"
 import { Artifact, Deps, Manifest, Policy, Scan, compose, serialize } from "../../../script/kilocode/sbom/index"
 import type { Component, Manifest as ManifestType } from "../../../script/kilocode/sbom/index"
 import * as Cli from "../../opencode/script/kilocode/sbom"
-import { packages as ffmpeg } from "./ffmpeg-helper"
 
 const repo = path.resolve(import.meta.dir, "../../..")
 
@@ -38,31 +37,6 @@ function constraint(target: string) {
     arch,
     libc: os === "alpine" ? "musl" : os === "linux" ? "glibc" : undefined,
   }
-}
-
-/**
- * The FFmpeg helper is fetched with `npm pack` during VSIX assembly, so it is
- * outside the frozen install and has to be modelled from the pinned spec.
- * Windows ARM64 intentionally ships none and must not claim one.
- */
-function helper(target: string): Component[] {
-  const spec = ffmpeg[target]
-  if (!spec) return []
-  const at = spec.lastIndexOf("@")
-  const name = spec.slice(0, at)
-  const version = spec.slice(at + 1)
-  return [
-    {
-      type: "application",
-      name,
-      version,
-      purl: Deps.purl(name, version),
-      licenses: ["LGPL-2.1-or-later"],
-      delivery: "contained",
-      platform: target,
-      description: "Bundled FFmpeg helper used for speech input",
-    },
-  ]
 }
 
 export type Release = { version: string; channel?: string; commit?: string }
@@ -108,7 +82,7 @@ export async function vsix(input: { file: string; target: string; release: Relea
       properties: { "embedded:cli": cli },
     },
     tools: [...embedded.tools, ...scan.tools],
-    components: [...enriched.components, ...embedded.components, ...helper(input.target), ...scan.components],
+    components: [...enriched.components, ...embedded.components, ...scan.components],
     dependencies: { ...embedded.dependencies, ...extension.dependencies },
     gaps: [...extension.gaps, ...enriched.gaps, ...embedded.gaps, ...scan.gaps],
   })
