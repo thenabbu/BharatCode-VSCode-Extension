@@ -1,7 +1,7 @@
 {
   "name": "bharatcode-vscode",
-  "displayName": "BharatCode - AI coding agent for VS Code",
-  "description": "BharatCode is an open source AI coding agent for VS Code: browser automation, automated refactoring, an agent manager, and custom modes for planning, coding, and debugging. Powered by bharatcode.ai with two models: qwen-3.8-27b (262k context) and deepseek-v4.1-flash (1M context).",
+  "displayName": "BharatCode for VS Code",
+  "description": "The VS Code extension for BharatCode (bharatcode.ai). Sign in and the agent runs - the provider, endpoint and models are configured for you, so there is nothing to set up by hand.",
   "version": "7.8.108",
   "icon": "assets/icons/logo-outline-black.png",
   "galleryBanner": {
@@ -37,11 +37,13 @@
     "bharatcode",
     "bharatcode.ai",
     "ai",
-    "coding agent",
-    "coding assistant",
     "pair programming",
     "chat",
-    "terminal"
+    "terminal",
+    "ai agent",
+    "llm",
+    "inference",
+    "openai-compatible"
   ],
   "activationEvents": [
     "onStartupFinished",
