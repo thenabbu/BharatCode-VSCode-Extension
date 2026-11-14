@@ -6213,7 +6213,7 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
       topBarSurface: this.opts.topBarSurface === "tab" ? "tab_title" : "sidebar_title",
       agentManagerSettings: this.opts.agentManagerSettings !== undefined,
       settings: this.opts.settingsPanel?.(),
-      module: this.opts.settingsPanel !== undefined,
+      module: true,
       preloads: preloads.map((file) => webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", file))),
     })
   }

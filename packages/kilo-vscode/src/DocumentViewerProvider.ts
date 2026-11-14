@@ -154,6 +154,7 @@ export class DocumentViewerProvider implements vscode.Disposable {
       styleUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "documents.css")),
       iconsBaseUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "assets", "icons")),
       workerUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "shiki-worker.js")),
+      module: true,
       title: "Documents",
       port: this.connection.getServerInfo()?.port,
     })

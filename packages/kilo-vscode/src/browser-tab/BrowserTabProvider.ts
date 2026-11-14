@@ -192,6 +192,7 @@ export class BrowserTabProvider {
       styleUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "browser-tab.css")),
       iconsBaseUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "assets", "icons")),
       workerUri: webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, "dist", "shiki-worker.js")),
+      module: true,
       title: "Integrated Browser",
       port: this.opts.connectionPort(),
       browserAutomation: this.options.enabled(),
