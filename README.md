@@ -1,43 +1,106 @@
 <div align="center">
 
-<img src="docs/assets/hero.svg" alt="BharatCode — the open source AI coding agent for VS Code" width="100%">
+<img src="docs/assets/hero.png" alt="BharatCode for VS Code — the VS Code extension for bharatcode.ai" width="100%">
 
 <br>
 
 <a href="https://marketplace.visualstudio.com/items?itemName=thenabbu.bharatcode-vscode"><img src="https://vsmarketplacebadges.dev/version-short/thenabbu.bharatcode-vscode.svg" alt="Marketplace version"></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=thenabbu.bharatcode-vscode"><img src="https://vsmarketplacebadges.dev/installs-short/thenabbu.bharatcode-vscode.svg" alt="Marketplace installs"></a>
 <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest"><img src="https://img.shields.io/github/v/release/thenabbu/BharatCode-VSCode-Extension?label=release&amp;color=038fac&amp;labelColor=1c1410&amp;exclude_prerelease=true&amp;sort=semver" alt="Latest release"></a>
 <a href="https://github.com/thenabbu/BharatCode-VSCode-Extension/actions/workflows/checks.yml"><img src="https://img.shields.io/github/actions/workflow/status/thenabbu/BharatCode-VSCode-Extension/checks.yml?branch=bc/main&amp;label=checks&amp;color=e1ba00&amp;labelColor=1c1410" alt="CI status"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-5e5652?labelColor=1c1410" alt="MIT licensed"></a>
-<a href="https://bharatcode.ai"><img src="https://img.shields.io/badge/powered%20by-bharatcode.ai-ff6a35?labelColor=1c1410" alt="Powered by bharatcode.ai"></a>
+<a href="https://bharatcode.ai"><img src="https://img.shields.io/badge/provider-bharatcode.ai-ff6a35?labelColor=1c1410" alt="Provider: bharatcode.ai"></a>
+
+<br>
+
+### Your coding agent, ready in one click
+
+**BharatCode for VS Code** installs the whole agent for you — runtime, provider, endpoint and models included. Sign in, and you are writing with it.
 
 </div>
 
-> **Fork notice.** BharatCode is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode), itself a fork of [OpenCode](https://github.com/anomalyco/opencode). Upstream projects and their contributors did the heavy lifting — this fork exists to bring their agent to the [BharatCode](https://bharatcode.ai) platform, rebranded and reconfigured so that bharatcode.ai is the only provider wired in. All credit to them; MIT licensed, attribution preserved in [LICENSE](LICENSE) and in the `kilocode_change` markers throughout the source. We do not claim their work as ours.
+---
 
-## What this is
+**[Install from the VS Code Marketplace »](https://marketplace.visualstudio.com/items?itemName=thenabbu.bharatcode-vscode)**
 
-An AI coding agent that runs inside VS Code — not beside it. It reads your project, edits files across it, runs terminal commands, and drives a browser to check its own work. Open source, MIT, and honest about its limits: two chat models from one key.
-
-Everything below is what the shipped build actually does. If a feature isn't listed here, it isn't in this fork, even though you may have read about it somewhere upstream.
-
-## Install
-
-The extension is listed on the VS Code Marketplace as **`thenabbu.bharatcode-vscode`**.
-
-```text
-Ctrl+P  →  ext install thenabbu.bharatcode-vscode
-```
-
-Or search for **BharatCode** in the Extensions view. Needs VS Code **1.105.1** or newer.
-
-Need to install by hand instead? Download the file for your system from the [Releases page](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest), then run `Extensions: Install from VSIX...` from the Command Palette — or point `code` at it directly, swapping the name for your platform from the table below:
+*Or press `Ctrl+P` / `⌘P` and paste:*
 
 ```bash
-code --install-extension bharatcode-vscode-linux-x64-7.8.105.vsix
+ext install thenabbu.bharatcode-vscode
 ```
 
-Releases publish **eight** platform builds — Windows, Linux, macOS and Alpine, each on x64 and arm64 — plus a `SHA256SUMS` file:
+VS Code **1.105.1** or newer. Chromebook, Linux, macOS and Windows all get their own build.
+
+---
+
+## Three steps to your first task
+
+**1. Click install.** The Marketplace link above does everything — VS Code downloads it and adds the agent to your editor. Around 160–180 MB, because the entire runtime travels inside the package. Nothing to fetch afterwards.
+
+**2. Open a folder.** `File → Open Folder`. Your project is what the agent reads and edits.
+
+**3. Sign in.** BharatCode greets you on first launch and offers both ways in:
+
+| | **Sign in with BharatCode** | **API key** |
+|---|---|---|
+| **Best for** | Nearly everyone | Scripts, shared machines, CI |
+| **How** | A browser tab opens; click approve; done | Paste a key from your bharatcode.ai account |
+| **Typing** | None | One paste |
+
+Both are first-class paths and both work on first run — pick either. Your credential is stored by the extension backend, **never** in `settings.json`, so it stays out of your repo and your dotfiles.
+
+Missed the prompt? `BharatCode: Connect Account` in the Command Palette brings it back.
+
+That is the entire setup. No base URL, no provider JSON, no model list, no CLI.
+
+---
+
+## What it does
+
+**Writes across your project.** Describe the change; it edits the files, shows you a diff, and you approve what lands.
+
+**Switches hats with you.** *Code* implements, *Plan* designs before writing, *Ask* answers from your codebase, *Debug* traces a failure to its cause. Custom agents are plain-text definitions you can write yourself.
+
+**Runs several tasks at once.** Agent Manager puts sessions side by side, each in its own git worktree, so parallel work stays out of its own way.
+
+**Runs what it wrote.** It has the terminal and a browser, so it can execute the build, read the error, and fix it before handing back.
+
+**Checks its own work.** It re-reads what it produced and corrects before you see it.
+
+**Learns your project.** MCP servers, skills and rules live in plain text and can be scoped per project.
+
+**Handles the small stuff.** Commit messages written from your staged diff, plus inline actions on any selection: explain, fix, improve, add to context.
+
+---
+
+## The models
+
+Your BharatCode account comes with two models, and the extension wires both up for you. Switch mid-task from the picker in the chat header.
+
+| Model | Context | Best at |
+|---|---|---|
+| `qwen-3.8-27b` | 262k | Everyday edits and fast iteration |
+| `deepseek-v4.1-flash` | 1M | Whole-repo reasoning and long sessions |
+
+Both come from one OpenAI-compatible endpoint at `https://bharatcode.ai/api/model/v1`, and the list is read live from it.
+
+**Prefer another model?** Add it yourself. Settings → Providers → **Custom provider** takes a base URL, a key and a model list, and supports OpenAI, OpenAI-compatible and Anthropic endpoints. Bring your own key for OpenAI, Anthropic, or anything else you run, and it sits alongside the BharatCode models you already have.
+
+---
+
+## Install by hand
+
+<details>
+<summary>Download a <code>.vsix</code> for your platform</summary>
+
+<br>
+
+Grab the file for your system from [Releases](https://github.com/thenabbu/BharatCode-VSCode-Extension/releases/latest), then run `Extensions: Install from VSIX...` from the Command Palette:
+
+```bash
+code --install-extension bharatcode-vscode-linux-x64-<version>.vsix
+```
+
+Eight platform builds ship per release, plus `SHA256SUMS`:
 
 | Platform | File suffix | | Platform | File suffix |
 |---|---|---|---|---|
@@ -46,148 +109,85 @@ Releases publish **eight** platform builds — Windows, Linux, macOS and Alpine,
 | macOS Intel | `darwin-x64` | | macOS Apple Silicon | `darwin-arm64` |
 | Windows x64 | `win32-x64` | | Windows arm64 | `win32-arm64` |
 
-Each build is about 160–180 MB because it carries its own backend binary. That is the reason for the split: you download one platform, never all of them. Verify a download against `SHA256SUMS` with `sha256sum --check`.
+Each carries its own runtime binary, which is why they are split per platform — you download yours, once. Verify with `sha256sum --check SHA256SUMS`.
 
-> **macOS Gatekeeper:** builds are unsigned for now. If macOS blocks the install: `xattr -dr com.apple.quarantine ~/.vscode/extensions/bharatcode.bharatcode-vscode-*`
+> **macOS first run:** builds are unsigned for now. If Gatekeeper blocks it:
+> `xattr -dr com.apple.quarantine ~/.vscode/extensions/bharatcode.bharatcode-vscode-*`
 
-Then: create a key at [bharatcode.ai](https://bharatcode.ai), paste it when BharatCode asks on first launch, and start a task. That is the whole onboarding — there is no second account, no sign-up flow inside the editor, no CLI to install.
+</details>
 
-## The two models
+---
 
-One endpoint, one key, two models with genuinely different jobs:
+## FAQ
 
-| Model | Context | Reach for it when |
-|---|---|---|
-| `qwen-3.8-27b` | 262k | Everyday edits, fast turnaround, most tasks |
-| `deepseek-v4.1-flash` | 1M | Whole-repo reasoning, long sessions, large files |
+<details>
+<summary>Is BharatCode the same thing as this extension?</summary>
 
-Switch mid-task from the model picker in the chat header. Both are served from `https://bharatcode.ai/api/model/v1`.
+Two separate things, and the split is what makes setup simple.
 
-**The honest part:** these two models are **chat-only**. There is no fill-in-the-middle endpoint, so this build ships no inline autocomplete at all. Use VS Code's own completion provider for that — the two features sit side by side without conflict.
+**BharatCode** ([bharatcode.ai](https://bharatcode.ai)) is an LLM inference provider — one OpenAI-compatible endpoint, one key, two chat models. It serves models. It is your account.
 
-## How a prompt travels
+**This extension** is the VS Code client for that provider. It ships the agent runtime inside the package and points it at your BharatCode account, which is why signing in is the only step you take.
 
-<img src="docs/assets/request-flow.svg" alt="Prompt path: webview to extension host to a bundled backend child process on 127.0.0.1, then HTTPS to bharatcode.ai" width="100%">
+Install the extension, sign in, and the agent is running — because the extension does the wiring.
 
-The extension is not a thin API wrapper. It ships a complete agent runtime inside the VSIX:
+</details>
 
-1. **Bundled backend binary.** `extension/bin/bharatcode` (`bharatcode.exe` on Windows) travels inside every platform build. A system-installed CLI is never used, so the version you get is the version that was tested with that extension release.
-2. **Lazy local server.** On first use the extension's `ServerManager` spawns `bharatcode serve --port 0`. The OS picks a free port; the extension parses it from the child's stdout. That one child is reused until it exits — if it dies, the status chip in the chat header offers **Restart server**.
-3. **Loopback-only auth.** The server binds `127.0.0.1` and is guarded by HTTP Basic auth with a random 32-byte per-session password passed as `KILO_SERVER_PASSWORD`. Nothing on your network reaches it without that password.
-4. **The request path.** The chat UI is a SolidJS webview talking to the extension host over `postMessage`. The host speaks HTTP + server-sent events to the local backend via `@kilocode/sdk`. The backend calls bharatcode.ai.
+<details>
+<summary>Where does this extension come from?</summary>
 
-Your API key lives in the extension backend's auth store — never in `settings.json` — and is sent only to the provider you connected. [PRIVACY.md](PRIVACY.md) has the full inventory.
+It is a fork of [Kilo Code](https://github.com/Kilo-Org/kilocode), itself a fork of [OpenCode](https://github.com/anomalyco/opencode). Those projects and their contributors built the agent this package runs, and the credit is theirs — MIT licensed, with attribution preserved in [LICENSE](LICENSE) and in the `kilocode_change` markers throughout the source. This fork brings that agent to the BharatCode provider, rebrands it, and reconfigures the provider layer so bharatcode.ai is wired in from the start. We build on their work; we do not claim it.
 
-## What it does
+</details>
 
-- **Multi-file code generation** from natural language, applied as real edits you review as a diff.
-- **Self-checking** — the agent re-reads its own output and corrects before handing back.
-- **Terminal and browser control**, so it can run the thing it just wrote and look at the result.
-- **Agents** you switch between by intent: **Code** (default, implements), **Plan** (designs before writing), **Ask** (answers without touching files), **Debug** (traces failures). Custom agents are plain-text definitions of your own.
-- **Agent Manager** — several sessions side by side in one editor tab, each isolated in its own git worktree, so parallel work cannot collide. Command Palette → `BharatCode: Agent Manager`.
-- **MCP servers, skills and rules** defined in plain text, shaped per project.
-- **Generated commit messages** from your actual diff (`BharatCode: Generate Commit Message`).
-- **Inline actions** on any selection: explain, fix, improve, add to context.
+<details>
+<summary>Do I need a key if I sign in with my browser?</summary>
 
-Seventy-four commands ship in the palette. The ones worth knowing on day one:
+One or the other is enough. Browser sign-in stores a session; a pasted key stores a key. Both land in the extension backend's auth store and both go only to the provider you connected.
 
-| Command | What it does |
-|---|---|
-| `BharatCode: New Task` | Start a fresh session |
-| `BharatCode: Agent Manager` | Multi-session, worktree-isolated workspace |
-| `BharatCode: Connect Account` | Set or replace your API key |
-| `BharatCode: Reload Config and Skills` | Re-read config after edits |
-| `BharatCode: Toggle Auto-Approve` | Flip approval mode for the session |
-| `BharatCode: Generate Commit Message` | Write a message from the staged diff |
+</details>
 
-## Configuration
+<details>
+<summary>Why two models instead of a big catalogue?</summary>
 
-Two layers, deliberately separate:
+Because that is what your BharatCode account serves, and they cover a lot of ground between them: 262k context for fast day-to-day work, 1M for whole-repo reasoning. If you want more, add your own provider under **Custom provider** and your own models show up next to these.
 
-- **VS Code settings** (`kilo-code.*` — the stable id namespace, kept for compatibility) control UI and editor behaviour: font size, language, notifications, default model, auto-approve. Forty contributed settings, documented inline in the Settings UI.
-- **Agent runtime config** lives in `kilo.json` — project-level, or global at `~/.config/kilo/`. Model, permissions, instructions, MCP servers, custom agents.
+</details>
 
-The `kilo-code.*` prefix in setting ids and the `.kilo` config path are intentional: they are identifiers the backend reads, and renaming them would break your keybindings and existing config. Only the human-readable labels say BharatCode.
+<details>
+<summary>How do I sign out, or switch accounts?</summary>
 
-Every setting, config file and troubleshooting case is in **[docs/CONFIGURATION.md](docs/CONFIGURATION.md)**.
+**Settings → Providers → the BharatCode card → disconnect**. That clears the stored credential, so a stale login cannot quietly reconnect. Uninstalling keeps the credential files, so a reinstall resumes your session — for a clean slate, quit VS Code fully and delete `~/.local/share/kilo/` (`%USERPROFILE%\.local\share\kilo\` on Windows).
 
-## What this build switches off
+</details>
 
-Upstream couples the agent to its own cloud. This fork removes that coupling rather than hiding it:
+<details>
+<summary>Does it work offline?</summary>
 
-- **No telemetry**, no session sharing, no presence.
-- **No model-catalogue fetch** from upstream. The provider list is bharatcode.ai plus any BYOK key you add.
-- **No sign-in to a second service.** Your API key is the whole identity.
+The agent runtime lives on your machine, so it starts without a network. The models are served remotely, so plan on a connection for actual work.
 
-Only `bharatcode.ai` is contacted (plus whichever BYOK provider you configure yourself). Details and reasons: [PRIVACY.md](PRIVACY.md).
+</details>
 
-## Build it yourself
-
-Everything runs on [Bun](https://bun.sh). From the repo root:
-
-```bash
-bun install
-bun run extension           # build + launch VS Code with the extension in dev mode
-bun run extension:isolated  # same, in a clean profile under .kilo-dev/
-```
-
-Per-package commands, guards and quality gates are in **[AGENTS.md](AGENTS.md)** — the file both contributors and the agent itself read.
-
-Building a `.vsix` for a single platform:
-
-```bash
-cd packages/kilo-vscode
-bun run package
-```
-
-The full eight-platform release chain is automated — every push to `bc/main` derives the next version, builds all eight targets, audits the archives and publishes a GitHub Release. See **[RELEASING.md](RELEASING.md)**.
+---
 
 ## Where to look next
 
 | If you want to… | Read |
 |---|---|
 | Change a setting or pick a model | [docs/CONFIGURATION.md](docs/CONFIGURATION.md) |
-| Work on the code, run the gates | [AGENTS.md](AGENTS.md) |
-| Open your first pull request | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Exercise the backend without rebuilding the extension | [TESTING.md](TESTING.md) |
-| Review someone else's PR | [REVIEW.md](REVIEW.md) |
+| Know exactly what leaves your machine | [PRIVACY.md](PRIVACY.md) |
+| Contribute code or docs | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| Work on the codebase | [AGENTS.md](AGENTS.md) |
 | Cut a release | [RELEASING.md](RELEASING.md) |
-| Know exactly what is sent where | [PRIVACY.md](PRIVACY.md) |
 | Report a vulnerability | [SECURITY.md](SECURITY.md) |
-
-## FAQ
-
-<details>
-<summary>Is this just Kilo Code with a new name?</summary>
-
-No. The rebrand is one part of it — the harder part is what was removed. The upstream cloud coupling (telemetry, session sharing, presence, the internal marketplace, upstream's model catalogue) is stripped, and the provider layer is reconfigured so bharatcode.ai is the only wired-in provider. Everything else is upstream engineering we depend on and credit.
-</details>
-
-<details>
-<summary>Why two models and not five hundred?</summary>
-
-Because the provider serves two. BharatCode is built to make one provider's setup effortless in VS Code, not to be a universal router. If you want a broad model catalogue, upstream Kilo Code or any multi-provider extension is a better fit and we would rather say so than pad a feature list.
-</details>
-
-<details>
-<summary>Why is the download so large?</summary>
-
-Each platform build carries its own ~150 MB agent runtime binary, so the extension works with nothing installed on your `PATH`. Splitting per platform means you fetch only yours — one 180 MB file instead of a 1.07 GB universal one.
-</details>
-
-<details>
-<summary>Does it work offline?</summary>
-
-No. The agent runtime is local, but every model call goes to bharatcode.ai.
-</details>
 
 ## Contributing
 
-Pull requests are welcome from developers and writers alike. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup and standards, and read [AGENTS.md](AGENTS.md) before touching code — it is the same file the agent itself follows. Please read the [Code of Conduct](CODE_OF_CONDUCT.md) first.
+Pull requests are welcome from developers and writers alike. Start with [CONTRIBUTING.md](CONTRIBUTING.md); if you are touching code, read [AGENTS.md](AGENTS.md) — it is the same file the agent itself follows. The [Code of Conduct](CODE_OF_CONDUCT.md) applies to every space around this project.
 
 ## License
 
-MIT. Use it, modify it, ship it commercially — keep the attribution and licence notices. The full text, including upstream copyright lines, is in [LICENSE](LICENSE).
+MIT — use it, modify it, ship it commercially, keeping the attribution and licence notices. Full text, including upstream copyright lines, in [LICENSE](LICENSE).
 
 <div align="center">
 <br>
